@@ -4,6 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0f172a">
 <title>VIP MOLL</title>
+  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22VIP%20MOLL%22%2C%22short_name%22%3A%22VIPMOLL%22%2C%22start_url%22%3A%22.%2Findex.html%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230f172a%22%2C%22theme_color%22%3A%22%230f172a%22%7D">
 <style>
 :root{--bg:#f0f2f5;--surface:#fff;--text:#17202a;--muted:#667085;--line:#e4e7ec;--blue:#0f172a;--blue2:#e2e8f0;--accent:#d97706;--green:#16a34a;--shadow:0 4px 20px #10182812;--radius:16px}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px system-ui,-apple-system,"Noto Sans Ethiopic",Arial,sans-serif;transition:background 0.3s}body.dark{--bg:#0f172a;--surface:#1e293b;--text:#f8fafc;--muted:#94a3b8;--line:#334155;--blue:#38bdf8;--blue2:#0f172a;--accent:#f59e0b;--shadow:0 4px 20px #0008}
@@ -455,5 +456,13 @@ $('myShop').onclick=()=>openModal(tr('myShop'),`<p>${tr('shopInfo')}</p>`);
 $('navVideo').onclick = () => alert(tr('video'));
 $('navMessage').onclick = () => alert(tr('messages'));
 $('navNotif').onclick = () => alert(tr('notif'));
+</script>
+  <script>
+if ('serviceWorker' in navigator) {
+  const swCode = "const CACHE='vipmoll-v1';self.addEventListener('install',e=>{self.skipWaiting()});self.addEventListener('fetch',e=>{e.respondWith(fetch(e.request).catch(()=>caches.match(e.request)))});";
+  const blob = new Blob([swCode], {type: 'application/javascript'});
+  const swUrl = URL.createObjectURL(blob);
+  navigator.serviceWorker.register(swUrl).catch(err => console.log('SW err:', err));
+}
 </script>
 </body></html>
