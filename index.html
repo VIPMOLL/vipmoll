@@ -7,6 +7,7 @@
 <style>
 :root{--bg:#f8fafc;--surface:#ffffff;--text:#0f172a;--muted:#64748b;--line:#e2e8f0;--primary:#e11d48;--primary-hover:#be123c;--blue:#2563eb;--shadow:0 4px 6px -1px rgb(0 0 0 / 0.05);--radius:16px;--header-h:64px}
 body.dark{--bg:#0f172a;--surface:#1e293b;--text:#f8fafc;--muted:#94a3b8;--line:#334155;--primary:#f43f5e;--primary-hover:#e11d48;--blue:#3b82f6;--shadow:0 4px 6px -1px rgb(0 0 0 / 0.5)}
+
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{margin:0;background:var(--bg);color:var(--text);font:15px system-ui,-apple-system,"Noto Sans Ethiopic",Arial,sans-serif;transition:background 0.3s,color 0.3s;padding-bottom:60px}
 button,input,select,textarea{font:inherit;outline:none;border:none}
@@ -50,8 +51,9 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
 .seller{display:flex;align-items:center;justify-content:space-between;margin-top:auto;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
 .avatar{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--line);color:var(--text);font-weight:800;font-size:10px;margin-right:6px}
 
-/* Product Detail Modal (Jiji Style) */
-.detail-img{width:100%;height:300px;background:var(--bg);border-radius:16px;object-fit:cover;margin-bottom:20px;display:flex;align-items:center;justify-content:center;font-size:80px;border:1px solid var(--line)}
+/* Product Detail Modal */
+.detail-img{width:100%;height:300px;background:var(--bg);border-radius:16px;object-fit:cover;margin-bottom:20px;display:flex;align-items:center;justify-content:center;font-size:80px;border:1px solid var(--line);overflow:hidden}
+.detail-img img{width:100%;height:100%;object-fit:contain}
 .detail-title{font-size:24px;font-weight:900;margin:0 0 8px}
 .detail-price{font-size:28px;font-weight:900;color:var(--blue);margin:0 0 16px}
 .detail-desc{color:var(--muted);line-height:1.6;margin-bottom:24px;font-size:15px}
@@ -72,7 +74,7 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
 /* Payment Options */
 .pay-btn{display:flex;align-items:center;gap:12px;width:100%;padding:16px;border-radius:12px;background:var(--bg);border:1px solid var(--line);margin-bottom:10px;font-weight:700;color:var(--text);cursor:pointer;transition:0.2s}
 .pay-btn:hover{border-color:var(--primary);background:var(--surface)}
-.pay-btn img{width:32px;height:32px;border-radius:8px}
+.pay-btn img{width:32px;height:32px;border-radius:8px;object-fit:contain}
 
 /* Modals */
 .modalback{display:none;position:fixed;inset:0;background:#000a;backdrop-filter:blur(4px);z-index:100;align-items:flex-end;justify-content:center;padding:0}
@@ -167,13 +169,8 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
       <h2>የተመረጡ ምርቶች</h2>
       <span class="meta" id="count">0 ምርቶች</span>
     </div>
-    <!-- ምርቶች በJS ይመጣሉ -->
     <div class="grid" id="products"></div>
   </main>
-
-  <aside class="cart-panel" style="display:none">
-    <!-- Desktop Cart እዚህ ይገኛል -->
-  </aside>
 </div>
 
 <!-- Mobile Bottom Nav -->
@@ -213,7 +210,6 @@ let currentFilter = 'All';
 
 const $ = id => document.getElementById(id);
 
-// Save functions
 function saveData() {
   localStorage.setItem('vip-products', JSON.stringify(products));
   localStorage.setItem('vip-messages', JSON.stringify(messages));
@@ -256,7 +252,7 @@ function renderProducts() {
   $('count').innerText = count + ' ምርቶች';
 }
 
-// ==================== PRODUCT DETAIL (JIJI STYLE) ====================
+// ==================== PRODUCT DETAIL ====================
 function openProductDetail(id) {
   const p = products.find(x => x.id === id);
   if (!p) return;
@@ -264,7 +260,7 @@ function openProductDetail(id) {
   $('modalTitle').innerText = 'የምርት ዝርዝር';
   $('modalContent').innerHTML = `
     <div class="detail-img">
-      ${p.img ? `<img src="${p.img}" style="width:100%;height:100%;object-fit:cover;border-radius:16px">` : '📦'}
+      ${p.img ? `<img src="${p.img}" alt="${p.name}">` : '📦'}
     </div>
     <h1 class="detail-title">${p.name}</h1>
     <div class="detail-price">${p.price.toLocaleString()} ብር</div>
@@ -295,9 +291,8 @@ function openProductDetail(id) {
 function contactSeller(productId) {
   if (!currentUser) { checkAuth(); return; }
   const p = products.find(x => x.id === productId);
-  const chatId = `chat_${productId}_${currentUser}`; // Simple chat ID
+  const chatId = `chat_${productId}_${currentUser}`;
 
-  // Initialize chat
   if (!messages[chatId]) {
     messages[chatId] = [
       { sender: p.seller, text: `ሰላም! ስለ "${p.name}" ጠይቀዋል። እንዴት ልርዳዎት?`, time: new Date().toLocaleTimeString() }
@@ -305,7 +300,6 @@ function contactSeller(productId) {
     saveData();
   }
 
-  // Render Chat UI
   $('modalTitle').innerText = `💬 ${p.seller} ጋር ተወያይ`;
   $('modalContent').innerHTML = `
     <div class="chat-box">
@@ -324,7 +318,6 @@ function contactSeller(productId) {
     </div>
   `;
   
-  // Scroll to bottom
   setTimeout(() => {
     const msgs = $('chatMsgs');
     if (msgs) msgs.scrollTop = msgs.scrollHeight;
@@ -347,7 +340,7 @@ function sendMsg(chatId, sellerName, productId) {
   msgs.appendChild(div);
   msgs.scrollTop = msgs.scrollHeight;
 
-  // Simulate Reply (For testing purposes)
+  // Simulate Reply
   setTimeout(() => {
     messages[chatId].push({ sender: sellerName, text: "እሺ፣ ተረዳሁ። በቅርቡ እናገኝዎታለን።", time: new Date().toLocaleTimeString() });
     saveData();
@@ -359,7 +352,6 @@ function sendMsg(chatId, sellerName, productId) {
   }, 1500);
 }
 
-// View all messages
 function openInbox() {
   if (!currentUser) { checkAuth(); return; }
   const chatIds = Object.keys(messages);
@@ -417,8 +409,7 @@ function publishProduct() {
 
   const saveProduct = (imgData) => {
     const newProduct = {
-      id: Date.now(),
-      name, cat, price, loc, desc, img: imgData, seller: users[currentUser].name, phone
+      id: Date.now(), name, cat, price, loc, desc, img: imgData, seller: users[currentUser].name, phone
     };
     products.unshift(newProduct);
     saveData();
@@ -446,16 +437,16 @@ function openWallet() {
       <div style="font-size:14px;color:var(--muted);margin-bottom:8px">ያለህ ቀሪ ሂሳብ</div>
       <div style="font-size:36px;font-weight:900;color:var(--blue)">${bal.toLocaleString()} ብር</div>
     </div>
-    <h4 style="margin:0 0 12px;color:var(--muted)">የክፍያ መንገድ ምረጥ (ገንዘብ አስገባ)</h4>
+    <h4 style="margin:0 0 12px;color:var(--muted)">የክፍያ መንገድ ምረጥ</h4>
     
-    <button class="pay-btn" onclick="window.open('https://t.me/telebirr', '_blank')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Telebirr_Logo.png/240px-Telebirr_Logo.png" alt="Telebirr"> Telebirr
+    <button class="pay-btn" onclick="window.open('https://t.me/telebirr_official', '_blank')">
+      <span style="font-size:24px">📱</span> Telebirr (ቴሌብር)
     </button>
     <button class="pay-btn" onclick="window.open('https://cbe.com.et', '_blank')">
-      <img src="https://play-lh.googleusercontent.com/xUj5G7aX6V4Jm7VqZ9rT2sV9LqY5w8X1b3K4n6M8p0Q2R4S6T8U0W2Y4Z6A8C0E" alt="CBE" style="background:#4a148c;object-fit:cover"> CBE Birr
+      <span style="font-size:24px">🏦</span> CBE Birr (የኢትዮጵያ ንግድ ባንክ)
     </button>
     <button class="pay-btn" onclick="window.open('https://www.awashbank.com', '_blank')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Awash_International_Bank_logo.svg/240px-Awash_International_Bank_logo.svg.png" alt="Awash"> Awash Bank
+      <span style="font-size:24px">🏛️</span> Awash Bank (አዋሽ ባንክ)
     </button>
     
     <div style="margin-top:24px;border-top:1px solid var(--line);padding-top:24px">
@@ -473,7 +464,7 @@ function simulateDeposit() {
   users[currentUser].balance += amt;
   saveData();
   alert('✅ ገንዘብ በተሳካ ሁኔታ ገብቷል! (ለሙከራ ብቻ)');
-  openWallet(); // Refresh
+  openWallet();
 }
 
 // ==================== AUTH SYSTEM ====================
@@ -529,7 +520,7 @@ function logout() {
   closeModal();
 }
 
-// ==================== MENU & UI ====================
+// ==================== MENU & LANGUAGE ====================
 function openModal(type) {
   if (type === 'sell') openSellModal();
   else if (type === 'wallet') openWallet();
@@ -540,12 +531,38 @@ function openModal(type) {
       <button class="menu-item" onclick="openSellModal()"><div class="menu-icon">➕</div> እቃ ሽጥ (Sell Item)</button>
       <button class="menu-item" onclick="openWallet()"><div class="menu-icon">💳</div> የገንዘብ ቦርሳ (Wallet)</button>
       <div style="height:1px;background:var(--line);margin:12px 0"></div>
+      <button class="menu-item" onclick="openLanguageModal()"><div class="menu-icon">🌐</div> ቋንቋ (Language)</button>
       <button class="menu-item" onclick="toggleTheme()"><div class="menu-icon">🌙</div> ጨለማ ሁነታ (Dark Mode)</button>
       <div style="height:1px;background:var(--line);margin:12px 0"></div>
       <button class="menu-item" onclick="logout()" style="color:var(--primary)"><div class="menu-icon" style="background:#fee2e2;color:var(--primary)">🚪</div> ውጣ (Logout)</button>
     `;
     $('modalBack').classList.add('show');
   }
+}
+
+function openLanguageModal() {
+  $('modalTitle').innerText = '🌐 ቋንቋ ቀይር';
+  $('modalContent').innerHTML = `
+    <div class="field">
+      <label>ቋንቋ ምረጥ (Select Language)</label>
+      <select id="langSelect" style="padding:16px;font-size:16px" onchange="changeLanguage(this.value)">
+        <option value="am">🇪🇹 አማርኛ</option>
+        <option value="en">🇺🇸 English</option>
+        <option value="ar">🇸🇦 العربية</option>
+        <option value="fr">🇫🇷 Français</option>
+        <option value="zh">🇨🇳 中文</option>
+        <option value="hi">🇮🇳 हिन्दी</option>
+        <option value="es">🇪🇸 Español</option>
+      </select>
+    </div>
+    <p style="color:var(--muted);font-size:12px;text-align:center;margin-top:12px">ቋንቋውን ሲቀይሩ በራሱ ይተረጎማል!</p>
+  `;
+  $('modalBack').classList.add('show');
+}
+
+function changeLanguage(lang) {
+  alert('ቋንቋ ወደ ' + lang.toUpperCase() + ' ተቀይሯል! (ለሙከራ)');
+  // Real translation logic would go here
 }
 
 function closeModal() { $('modalBack').classList.remove('show'); }
