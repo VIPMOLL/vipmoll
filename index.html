@@ -1,127 +1,152 @@
 <!doctype html>
 <html lang="am">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0f172a">
-<title>VIP MOLL</title>
-  
-<link rel="manifest" href='data:application/manifest+json,{"name":"VIP MOLL","short_name":"VIPMOLL","start_url":"./index.html","display":"standalone","background_color":"#0f172a","theme_color":"#0f172a","icons":[{"src":"icon.png","sizes":"512x512","type":"image/png"}]}'>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#ffffff">
+<title>VIP MALL | Premium Marketplace</title>
 <style>
-:root{--bg:#f0f2f5;--surface:#fff;--text:#17202a;--muted:#667085;--line:#e4e7ec;--blue:#0f172a;--blue2:#e2e8f0;--accent:#d97706;--green:#16a34a;--shadow:0 4px 20px #10182812;--radius:16px}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px system-ui,-apple-system,"Noto Sans Ethiopic",Arial,sans-serif;transition:background 0.3s}body.dark{--bg:#0f172a;--surface:#1e293b;--text:#f8fafc;--muted:#94a3b8;--line:#334155;--blue:#38bdf8;--blue2:#0f172a;--accent:#f59e0b;--shadow:0 4px 20px #0008}
+:root{--bg:#f8fafc;--surface:#ffffff;--text:#0f172a;--muted:#64748b;--line:#e2e8f0;--primary:#e11d48;--primary-hover:#be123c;--blue:#2563eb;--shadow:0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);--radius:16px;--header-h:64px}
+body.dark{--bg:#0f172a;--surface:#1e293b;--text:#f8fafc;--muted:#94a3b8;--line:#334155;--primary:#f43f5e;--primary-hover:#e11d48;--blue:#3b82f6;--shadow:0 4px 6px -1px rgb(0 0 0 / 0.5)}
 
-button,input,select,textarea{font:inherit;outline:none}button{cursor:pointer;border:0;border-radius:12px;padding:12px 16px;font-weight:700;transition:all 0.2s}.primary{background:var(--blue);color:white}.primary:hover{opacity:0.9;transform:translateY(-1px)}.soft{background:var(--blue2);color:var(--blue)}.soft:hover{background:var(--line)}.plain{background:var(--bg);color:var(--text)}.danger{background:#fee2e2;color:#b91c1c}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--text);font:15px system-ui,-apple-system,"Noto Sans Ethiopic",Arial,sans-serif;transition:background 0.3s,color 0.3s;padding-bottom:60px}
+button,input,select,textarea{font:inherit;outline:none;border:none}
+button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;transition:all 0.2s}
+.primary{background:var(--primary);color:white}
+.primary:hover{background:var(--primary-hover);transform:translateY(-1px)}
+.soft{background:var(--line);color:var(--text)}
+.circle{width:42px;height:42px;border-radius:50%;padding:0;background:var(--surface);color:var(--text);font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);border:1px solid var(--line);position:relative}
 
-/* Top Bar */
-.top{height:64px;position:sticky;top:0;z-index:10;background:var(--surface);box-shadow:var(--shadow);display:flex;align-items:center;gap:16px;padding:0 max(16px,calc((100vw - 1240px)/2))}
-.logo{font-size:24px;font-weight:900;color:var(--blue);white-space:nowrap;letter-spacing:-1px}.logo span{color:var(--accent)}.search{flex:1;max-width:510px}.search input{width:100%;border:1px solid var(--line);border-radius:24px;background:var(--bg);padding:12px 18px;color:var(--text);transition:0.2s}.search input:focus{border-color:var(--blue)}.top-actions{display:flex;gap:8px;align-items:center;margin-left:auto}.circle{width:42px;height:42px;border-radius:50%;padding:0;background:var(--bg);color:var(--text);font-size:18px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line)}
+/* Header */
+.top{position:sticky;top:0;z-index:40;background:var(--surface);box-shadow:0 1px 3px rgb(0 0 0 / 0.05);display:flex;align-items:center;gap:12px;padding:12px max(16px,calc((100vw - 1240px)/2));border-bottom:1px solid var(--line);height:var(--header-h)}
+.logo{font-size:24px;font-weight:900;color:var(--primary);letter-spacing:-1px;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.search{flex:1;max-width:600px;position:relative}
+.search input{width:100%;border:1px solid var(--line);border-radius:24px;background:var(--bg);padding:12px 20px 12px 44px;color:var(--text);font-size:14px;transition:border-color 0.2s}
+.search input:focus{border-color:var(--primary)}
+.search::before{content:'🔍';position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:16px;opacity:0.5}
+.top-actions{display:flex;gap:8px;align-items:center;margin-left:auto}
+
+/* Categories (Jiji Style) */
+.cat-nav{background:var(--surface);border-bottom:1px solid var(--line);padding:0 max(16px,calc((100vw - 1240px)/2));display:flex;overflow-x:auto;gap:24px;scrollbar-width:none;position:sticky;top:var(--header-h);z-index:30}
+.cat-nav::-webkit-scrollbar{display:none}
+.cat-item{white-space:nowrap;padding:16px 0;color:var(--muted);font-weight:600;cursor:pointer;border-bottom:2px solid transparent;transition:0.2s;display:flex;align-items:center;gap:6px;font-size:14px}
+.cat-item.active{color:var(--primary);border-bottom-color:var(--primary)}
+.cat-item:hover{color:var(--text)}
 
 /* Layout */
-.wrap{max-width:1240px;margin:22px auto;padding:0 16px;display:grid;grid-template-columns:240px minmax(0,1fr) 280px;gap:20px}
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
-.side{padding:16px;height:max-content;position:sticky;top:86px}.side h3,.right h3{font-size:14px;color:var(--muted);margin:5px 8px 12px;text-transform:uppercase;letter-spacing:1px}
-.navitem{width:100%;display:flex;gap:12px;align-items:center;text-align:left;background:transparent;color:var(--text);padding:12px;border-radius:10px;font-weight:600;margin-bottom:2px;transition:0.2s}
-.navitem:hover,.navitem.active{background:var(--blue2);color:var(--blue)}
+.wrap{max-width:1240px;margin:24px auto;padding:0 16px;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px}
+.sectionhead{display:flex;justify-content:space-between;align-items:center;margin:0 0 16px}
+.sectionhead h2{font-size:22px;margin:0;font-weight:800;letter-spacing:-0.5px}
 
-/* Hero */
-.hero{padding:30px 24px;background:linear-gradient(135deg,var(--blue),#1e293b);color:white;border-radius:var(--radius);margin-bottom:20px;position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;right:-20px;top:-20px;width:150px;height:150px;background:var(--accent);filter:blur(60px);opacity:0.6;border-radius:50%}
-.hero h1{font-size:clamp(24px,4vw,36px);margin:0 0 10px;font-weight:900;letter-spacing:-1px}
-.hero p{margin:0 0 20px;color:#cbd5e1;font-size:16px}
-.hero button{background:var(--accent);color:white;padding:14px 28px;font-size:16px;border-radius:30px;box-shadow:0 4px 15px #d9770640}
-
-/* Products */
-.chips{display:flex;gap:8px;overflow:auto;padding:3px 0 16px}
-.chip{white-space:nowrap;background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:24px;padding:10px 16px;font-weight:600;transition:0.2s}
-.chip.active{background:var(--blue);color:white;border-color:var(--blue)}
-.sectionhead{display:flex;justify-content:space-between;align-items:center;margin:20px 4px 12px}
-.sectionhead h2{font-size:20px;margin:0;font-weight:800}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.product{overflow:hidden;transition:transform 0.2s;cursor:pointer}.product:hover{transform:translateY(-3px)}
-.photo{height:160px;background:linear-gradient(135deg,var(--blue2),var(--bg));display:grid;place-items:center;font-size:55px;position:relative}
-.photo img{width:100%;height:100%;object-fit:cover}
-.tag{position:absolute;top:10px;left:10px;background:var(--accent);color:#fff;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:800}
-.pbody{padding:14px}.pbody h3{margin:0 0 8px;font-size:16px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Product Grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+.product{background:var(--surface);border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);transition:transform 0.2s,box-shadow 0.2s;position:relative;display:flex;flex-direction:column}
+.product:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.photo{aspect-ratio:1;background:linear-gradient(135deg,var(--bg),var(--line));display:grid;place-items:center;font-size:64px;position:relative;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s}
+.product:hover .photo img{transform:scale(1.05)}
+.tag{position:absolute;top:12px;left:12px;background:var(--primary);color:#fff;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:800;letter-spacing:0.5px;z-index:2}
+.like-btn{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:var(--surface);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);font-size:14px;cursor:pointer;z-index:2;transition:0.2s}
+.like-btn:hover{background:var(--primary);color:white}
+.pbody{padding:16px;flex:1;display:flex;flex-direction:column;justify-content:space-between}
+.pbody h3{margin:0 0 6px;font-size:15px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
 .price{font-size:18px;font-weight:900;color:var(--blue);margin:4px 0}
-.meta{font-size:12px;color:var(--muted)}
-.seller{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:12px;color:var(--muted);font-weight:600}
-.avatar{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--blue2);color:var(--blue);font-weight:900}
+.meta{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px;margin-bottom:8px}
+.seller{display:flex;align-items:center;justify-content:space-between;margin-top:auto;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+.avatar{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--line);color:var(--text);font-weight:800;font-size:10px;margin-right:6px}
+.add-cart-btn{background:var(--bg);color:var(--text);border:1px solid var(--line);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;transition:0.2s}
+.add-cart-btn:hover{background:var(--primary);color:white;border-color:var(--primary);transform:scale(1.1)}
 
-/* Right Sidebar */
-.right{padding:20px;height:max-content}
-.right p{font-size:13px;color:var(--muted);line-height:1.6}
-.right .wide{width:100%;margin:8px 0;padding:14px}
-.notice{padding:14px;border-radius:12px;background:#fffbeb;color:#b45309;font-size:12px;line-height:1.5;margin-top:16px;border:1px solid #fcd34d}
-.dark .notice{background:#451a03;color:#fcd34d;border-color:#78350f}
+/* Sidebar Cart */
+.cart-panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;height:max-content;position:sticky;top:calc(var(--header-h) + 60px);box-shadow:var(--shadow)}
+.cart-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:16px}
+.cart-head h3{margin:0;font-size:18px;font-weight:800}
+.cart-items{display:flex;flex-direction:column;gap:12px;max-height:350px;overflow-y:auto;margin-bottom:20px;padding-right:4px}
+.cart-item{display:flex;gap:12px;align-items:center;background:var(--bg);padding:12px;border-radius:12px;border:1px solid var(--line)}
+.cart-item-img{width:44px;height:44px;background:var(--surface);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;border:1px solid var(--line)}
+.cart-item-info{flex:1}
+.cart-item-info h4{margin:0 0 4px;font-size:14px;font-weight:700}
+.cart-item-info p{margin:0;font-size:13px;color:var(--blue);font-weight:800}
+.cart-total{display:flex;justify-content:space-between;font-weight:900;font-size:20px;margin-bottom:20px;padding-top:16px;border-top:1px dashed var(--line)}
+.empty-cart{text-align:center;color:var(--muted);padding:40px 0;font-size:14px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.empty-cart span{font-size:40px;opacity:0.5}
 
-/* Modal & UI */
-.modalback{display:none;position:fixed;inset:0;background:#000a;backdrop-filter:blur(4px);z-index:30;align-items:flex-end;justify-content:center;padding:0}
+/* Modal */
+.modalback{display:none;position:fixed;inset:0;background:#000a;backdrop-filter:blur(4px);z-index:100;align-items:flex-end;justify-content:center;padding:0}
 .modalback.show{display:flex}
-.modal{width:100%;max-width:500px;max-height:90vh;overflow:auto;background:var(--surface);color:var(--text);border-radius:24px 24px 0 0;padding:24px;box-shadow:0 -10px 40px #0006;animation:slideUp 0.3s cubic-bezier(0.16,1,0.3,1)}
+.modal{width:100%;max-width:500px;max-height:90vh;overflow:auto;background:var(--surface);color:var(--text);border-radius:24px 24px 0 0;padding:24px;animation:slideUp 0.3s cubic-bezier(0.16,1,0.3,1);box-shadow:0 -10px 40px #0004}
 .modalhead{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:20px}
 .modalhead h2{margin:0;font-size:20px;font-weight:800}
 .field{display:grid;gap:8px;margin:16px 0}
 .field label{font-size:13px;font-weight:700;color:var(--muted)}
-.field input,.field select,.field textarea{width:100%;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--text);transition:0.2s}
-.field input:focus,.field select:focus{border-color:var(--blue);background:var(--surface)}
+.field input,.field select,.field textarea{width:100%;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--text);font-size:15px}
+.field input:focus,.field select:focus{border-color:var(--primary)}
 .field textarea{min-height:90px;resize:vertical}
-.tabs{display:flex;gap:8px;margin:16px 0;background:var(--bg);padding:6px;border-radius:14px}
-.tabs button{flex:1;border-radius:10px;background:transparent;color:var(--muted);padding:10px;font-weight:700}
+.full{width:100%;padding:16px;font-size:16px}
+.tabs{display:flex;gap:8px;margin-bottom:16px;background:var(--bg);padding:6px;border-radius:14px}
+.tabs button{flex:1;padding:10px;border-radius:10px;background:transparent;color:var(--muted);font-weight:700;box-shadow:none}
 .tabs button.active{background:var(--surface);color:var(--text);box-shadow:0 2px 8px #0001}
-.muted{color:var(--muted);font-size:13px;line-height:1.5}
-.rowauth{display:flex;gap:10px;margin:12px 0}.rowauth button{flex:1}
-.full{width:100%}
-#authStatus{white-space:pre-wrap;overflow-wrap:anywhere;padding:12px;border-radius:10px;background:var(--bg);margin-top:12px;font-size:13px;font-weight:600;display:none}
-#authStatus.show{display:block}
-.hide{display:none!important}
 
-/* Menu FB Style */
-.menu-item{display:flex;align-items:center;gap:16px;padding:14px;border-radius:12px;cursor:pointer;font-weight:700;color:var(--text);background:transparent;width:100%;text-align:left;font-size:16px;margin-bottom:4px;transition:0.2s}
-.menu-item:hover{background:var(--bg)}
-.menu-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;background:var(--blue2);color:var(--blue)}
+/* Menu Items (FB Style) */
+.menu-item{display:flex;align-items:center;gap:16px;padding:16px;border-radius:12px;cursor:pointer;font-weight:700;color:var(--text);background:transparent;width:100%;text-align:left;font-size:16px;margin-bottom:4px;transition:0.2s;border:1px solid transparent}
+.menu-item:hover{background:var(--bg);border-color:var(--line)}
+.menu-icon{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;background:var(--line);color:var(--text);flex-shrink:0}
 .menu-divider{height:1px;background:var(--line);margin:12px 0}
 
-/* Login Screen Custom */
-.login-screen{position:fixed;inset:0;background:linear-gradient(135deg,#0f172a,#1e293b);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;color:#fff}
-.login-card{width:100%;max-width:400px;background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:30px;box-shadow:0 20px 50px rgba(0,0,0,0.5);text-align:center}
-.login-card .logo{font-size:32px;margin-bottom:8px;color:#fff;justify-content:center;display:block}
-.login-card p{color:#94a3b8;margin-bottom:24px}
-.login-card input{width:100%;padding:14px;margin-bottom:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.2);background:rgba(0,0,0,0.2);color:#fff;font-size:16px}
-.login-card input:focus{border-color:var(--accent);background:rgba(0,0,0,0.4)}
-.login-card button{width:100%;padding:14px;background:var(--accent);color:#fff;font-size:16px;border-radius:12px;box-shadow:0 4px 15px rgba(217,119,6,0.4)}
-.login-card .switch{font-size:14px;color:#94a3b8;margin-top:20px}
-.login-card .switch span{color:var(--accent);cursor:pointer;font-weight:bold}
+/* Login Overlay */
+.login-screen{position:fixed;inset:0;background:linear-gradient(135deg,#0f172a,#1e293b);z-index:200;display:none;align-items:center;justify-content:center;padding:20px;color:#fff}
+.login-screen.active{display:flex}
+.login-card{width:100%;max-width:420px;background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:32px;box-shadow:0 20px 50px rgba(0,0,0,0.5);text-align:center}
+.login-card .logo{font-size:36px;margin-bottom:8px;color:#fff;justify-content:center;display:block}
+.login-card p{color:#94a3b8;margin-bottom:28px;font-size:15px}
+.login-card input{width:100%;padding:16px;margin-bottom:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.2);background:rgba(0,0,0,0.2);color:#fff;font-size:16px;transition:0.2s}
+.login-card input:focus{border-color:var(--primary);background:rgba(0,0,0,0.4)}
+.login-card button{width:100%;padding:16px;background:var(--primary);color:#fff;font-size:16px;border-radius:12px;box-shadow:0 4px 15px rgba(225,29,72,0.4);margin-top:8px}
+.login-card .switch{font-size:14px;color:#94a3b8;margin-top:24px}
+.login-card .switch span{color:var(--primary);cursor:pointer;font-weight:bold}
+#loginError{color:#ef4444;font-size:13px;margin-top:12px;min-height:20px;font-weight:bold}
+
+/* Mobile Bottom Nav */
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--line);z-index:40;padding:8px 0;box-shadow:0 -2px 10px #0001}
+.bottom-nav-inner{display:flex;justify-content:space-around;align-items:center}
+.b-nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--muted);font-size:11px;font-weight:600;padding:8px 12px;border-radius:10px;transition:0.2s}
+.b-nav-item.active{color:var(--primary)}
+.b-nav-item span{font-size:20px}
 
 @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
 
-@media(max-width:1000px){.wrap{grid-template-columns:210px minmax(0,1fr)}.right{display:none}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:650px){
-  .top{height:60px;padding:0 12px;gap:8px}.logo{font-size:20px}.search{max-width:none}.search input{padding:10px 14px}
-  .top-actions .desktop{display:none}
-  .wrap{display:block;margin:12px auto;padding:0 12px}
-  .side{position:static;margin-bottom:16px;padding:10px;display:flex;overflow:auto;gap:6px;border:none;background:transparent;box-shadow:none}
-  .side h3{display:none}.navitem{width:auto;white-space:nowrap;padding:10px;background:var(--surface);border:1px solid var(--line);border-radius:20px;font-size:13px}
-  .navitem.active{border-color:var(--blue)}
-  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.photo{height:130px}.pbody{padding:12px}.pbody h3{font-size:14px}.price{font-size:16px}
-  .hero{padding:24px 20px;border-radius:20px}.hero h1{font-size:24px}.hero p{font-size:14px}
-  .modal{border-radius:20px 20px 0 0}
+@media(max-width:900px){
+  .wrap{grid-template-columns:1fr}
+  .cart-panel{display:none}
+  .cart-panel.mobile-active{display:block;position:fixed;top:auto;bottom:60px;left:0;right:0;z-index:50;border-radius:24px 24px 0 0;max-height:80vh;overflow:auto;box-shadow:0 -10px 40px #000a;animation:slideUp 0.3s}
+  .bottom-nav{display:block}
+}
+@media(max-width:600px){
+  .top{padding:10px 12px;height:auto;flex-wrap:wrap;gap:8px}
+  .logo{font-size:20px}
+  .search{order:3;width:100%;max-width:none;margin-top:4px}
+  .cat-nav{top:110px;gap:16px;padding:0 12px}
+  .grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .pbody{padding:12px}
+  .pbody h3{font-size:13px}
+  .price{font-size:16px}
+  .photo{font-size:40px}
+  .wrap{margin:16px auto;padding:0 12px}
 }
 </style></head>
 <body>
 
-<!-- Initial Login Screen Overlay -->
+<!-- Login Overlay -->
 <div class="login-screen" id="loginScreen">
   <div class="login-card">
-    <div class="logo">VIP<span>MOLL</span></div>
+    <div class="logo">VIP<span>MALL</span></div>
     <p>የእርስዎ ምርጥ የግዥ ቦታ</p>
-    
     <div id="loginForm">
       <input type="email" id="loginEmail" placeholder="ኢሜይል / Email">
       <input type="password" id="loginPassword" placeholder="የይለፍ ቃል / Password">
-      <button onclick="doLogin()" id="loginBtnMain">ግባ / Login</button>
+      <button onclick="doLogin()">ግባ / Login</button>
       <div class="switch">መለያ የለህም? <span onclick="showSignup()">ተመዝገብ / Sign Up</span></div>
     </div>
-
     <div id="signupForm" style="display:none">
       <input type="text" id="signupName" placeholder="ሙሉ ስም / Full Name">
       <input type="email" id="signupEmail" placeholder="ኢሜይል / Email">
@@ -129,341 +154,461 @@ button,input,select,textarea{font:inherit;outline:none}button{cursor:pointer;bor
       <button onclick="doSignup()">ተመዝገብ / Sign Up</button>
       <div class="switch">መለያ አለህ? <span onclick="showLogin()">ግባ / Login</span></div>
     </div>
-    <div id="loginError" style="color:#ef4444;font-size:13px;margin-top:10px;"></div>
+    <div id="loginError"></div>
   </div>
 </div>
 
-<!-- Main App -->
+<!-- Header -->
 <header class="top">
- <div class="logo">VIP<span>MOLL</span></div>
- <div class="search"><input id="search" data-i18n-placeholder="search" placeholder="እቃ ፈልግ..."></div>
- <div class="top-actions">
-  <button class="circle desktop" id="navVideo" title="Video">📹</button>
-  <button class="circle desktop" id="navMessage" title="Messages">✉️</button>
-  <button class="circle desktop" id="navNotif" title="Notifications">🔔</button>
-  <button class="circle" id="settingsBtn" type="button" title="Menu" style="font-size:24px;">☰</button>
- </div>
+  <div class="logo">VIP MALL <span style="font-size:10px;background:var(--primary);color:white;padding:2px 6px;border-radius:4px;letter-spacing:0;vertical-align:middle">PRO</span></div>
+  <div class="search"><input id="search" placeholder="ምርቶችን ይፈልጉ..."></div>
+  <div class="top-actions">
+    <button class="circle" id="cartBtn">🛒<span id="cartCount" style="position:absolute;top:-4px;right:-4px;background:var(--primary);color:white;font-size:10px;font-weight:bold;min-width:18px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px">0</span></button>
+    <button class="circle" id="settingsBtn">☰</button>
+  </div>
 </header>
 
+<!-- Categories -->
+<nav class="cat-nav">
+  <div class="cat-item active" data-filter="All">🏠 ሁሉም</div>
+  <div class="cat-item" data-filter="Electronics">📱 ኤሌክትሮኒክስ</div>
+  <div class="cat-item" data-filter="Fashion">👕 ልብስ</div>
+  <div class="cat-item" data-filter="Home">🛋️ የቤት ዕቃ</div>
+  <div class="cat-item" data-filter="Vehicles">🚗 መኪና</div>
+</nav>
+
 <div class="wrap">
- <aside class="panel side">
-  <h3 data-i18n="menu">MENU</h3>
-  <button class="navitem active" data-filter="All">🏠 <span data-i18n="all">ሁሉም እቃዎች</span></button>
-  <button class="navitem" data-filter="Electronics">📱 <span data-i18n="electronics">ኤሌክትሮኒክስ</span></button>
-  <button class="navitem" data-filter="Fashion">👕 <span data-i18n="fashion">ልብስ</span></button>
-  <button class="navitem" data-filter="Home">🛋️ <span data-i18n="home">የቤት እቃ</span></button>
-  <button class="navitem" data-filter="Vehicles">🚗 <span data-i18n="vehicles">መኪና</span></button>
-  <button class="navitem" data-filter="Other">🛍️ <span data-i18n="other">ሌሎች</span></button>
-  <button class="navitem" id="myShop">🏪 <span data-i18n="myShop">የእኔ ሱቅ</span></button>
-  <button class="navitem" id="wallet">💳 <span data-i18n="wallet">ገንዘብ</span></button>
-  <button class="navitem" id="sellBtn">＋ <span data-i18n="sell">እቃ ሽጥ</span></button>
- </aside>
+  <main>
+    <div class="sectionhead">
+      <h2>የተመረጡ ምርቶች</h2>
+      <span class="meta" id="count">4 ምርቶች</span>
+    </div>
+    <div class="grid" id="products">
+      <article class="product" data-category="Electronics" data-name="Smartphone X Pro" data-price="12500">
+        <div class="photo">📱<span class="tag">-15%</span><div class="like-btn" onclick="this.innerHTML = this.innerHTML === '🤍' ? '❤️' : '🤍'">🤍</div></div>
+        <div class="pbody">
+          <h3>Smartphone X Pro</h3>
+          <div class="price">12,500 ብር</div>
+          <div class="meta">📍 አዲስ አበባ</div>
+          <div class="seller">
+            <div style="display:flex;align-items:center"><span class="avatar">S</span> SMART Store</div>
+            <button class="add-cart-btn" onclick="addToCart('Smartphone X Pro', 12500, '📱')">+</button>
+          </div>
+        </div>
+      </article>
 
- <main>
-  <section class="hero">
-    <h1>VIP MOLL</h1>
-    <p data-i18n="heroText">ግዛ፣ ሽጥ፣ አገናኝ — የኦንላይን ገበያህ</p>
-    <button id="heroSell" data-i18n="heroSell">እቃ ለመሸጥ ጀምር</button>
-  </section>
-  
-  <div class="chips" id="chips">
-    <button class="chip active" data-filter="All"><span data-i18n="all">ሁሉም</span></button>
-    <button class="chip" data-filter="Electronics">📱 <span data-i18n="electronics">Electronics</span></button>
-    <button class="chip" data-filter="Fashion">👕 <span data-i18n="fashion">Fashion</span></button>
-    <button class="chip" data-filter="Home">🏠 <span data-i18n="home">Home</span></button>
-    <button class="chip" data-filter="Vehicles">🚗 <span data-i18n="vehicles">Vehicles</span></button>
-    <button class="chip" data-filter="Other">🛍️ <span data-i18n="other">Other</span></button>
-  </div>
-  
-  <div class="sectionhead"><h2 id="listingTitle" data-i18n="recent">በቅርቡ የተጨመሩ እቃዎች</h2><span class="muted" id="count">4 items</span></div>
-  
-  <div class="grid" id="products">
-   <article class="panel product" data-category="Electronics" data-name="Smartphone"><div class="photo">📱<span class="tag">NEW</span></div><div class="pbody"><h3>Smartphone</h3><div class="price">12,500 ብር</div><div class="meta">አዲስ • አዲስ አበባ</div><div class="seller"><span class="avatar">S</span> SMART Seller</div></div></article>
-   <article class="panel product" data-category="Fashion" data-name="Fashion shoes"><div class="photo">👟</div><div class="pbody"><h3>Fashion shoes</h3><div class="price">2,300 ብር</div><div class="meta">ጥሩ ሁኔታ • ጅማ</div><div class="seller"><span class="avatar">A</span> Abebe Store</div></div></article>
-   <article class="panel product" data-category="Home" data-name="Home furniture"><div class="photo">🛋️</div><div class="pbody"><h3>Home furniture</h3><div class="price">8,000 ብር</div><div class="meta">አዲስ • ባህር ዳር</div><div class="seller"><span class="avatar">M</span> Meron Shop</div></div></article>
-   <article class="panel product" data-category="Vehicles" data-name="Car spare parts"><div class="photo">🚘</div><div class="pbody"><h3>Car spare parts</h3><div class="price">5,600 ብር</div><div class="meta">ጥሩ ሁኔታ • ሀዋሳ</div><div class="seller"><span class="avatar">T</span> Tadesse Auto</div></div></article>
-  </div>
-  <div class="footer" style="color:var(--muted);font-size:12px;padding:20px 4px;text-align:center;">VIP MOLL • <span data-i18n="footer">ደህንነት ያለው ግብይት እንገንባ</span></div>
- </main>
+      <article class="product" data-category="Fashion" data-name="Fashion Sneakers" data-price="2300">
+        <div class="photo">👟<div class="like-btn" onclick="this.innerHTML = this.innerHTML === '🤍' ? '❤️' : '🤍'">🤍</div></div>
+        <div class="pbody">
+          <h3>Fashion Sneakers</h3>
+          <div class="price">2,300 ብር</div>
+          <div class="meta">📍 ጅማ</div>
+          <div class="seller">
+            <div style="display:flex;align-items:center"><span class="avatar">A</span> Abebe Store</div>
+            <button class="add-cart-btn" onclick="addToCart('Fashion Sneakers', 2300, '👟')">+</button>
+          </div>
+        </div>
+      </article>
 
- <aside class="panel right">
-   <h3 data-i18n="sellerInfo">የሻጭ መረጃ</h3>
-   <p data-i18n="sellerDesc">እቃህን በፎቶ፣ በዋጋና በመግለጫ አስገባ።</p>
-   <button class="primary wide" id="rightSell">＋ <span data-i18n="sell">እቃ ሽጥ</span></button>
-   <button class="soft wide" id="rightLogin" data-i18n="createLogin">መለያ ፍጠር / ግባ</button>
-   <div class="notice" data-i18n="notice">የሙከራ ስሪት ነው።</div>
- </aside>
+      <article class="product" data-category="Home" data-name="Modern Sofa" data-price="8000">
+        <div class="photo">🛋️<span class="tag">NEW</span><div class="like-btn" onclick="this.innerHTML = this.innerHTML === '🤍' ? '❤️' : '🤍'">🤍</div></div>
+        <div class="pbody">
+          <h3>Modern Sofa</h3>
+          <div class="price">8,000 ብር</div>
+          <div class="meta">📍 ባህር ዳር</div>
+          <div class="seller">
+            <div style="display:flex;align-items:center"><span class="avatar">M</span> Meron Shop</div>
+            <button class="add-cart-btn" onclick="addToCart('Modern Sofa', 8000, '🛋️')">+</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product" data-category="Vehicles" data-name="Car Spare Parts" data-price="5600">
+        <div class="photo">🚘<div class="like-btn" onclick="this.innerHTML = this.innerHTML === '🤍' ? '❤️' : '🤍'">🤍</div></div>
+        <div class="pbody">
+          <h3>Car Spare Parts</h3>
+          <div class="price">5,600 ብር</div>
+          <div class="meta">📍 ሀዋሳ</div>
+          <div class="seller">
+            <div style="display:flex;align-items:center"><span class="avatar">T</span> Tadesse Auto</div>
+            <button class="add-cart-btn" onclick="addToCart('Car Spare Parts', 5600, '🚘')">+</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <aside class="cart-panel" id="cartPanel">
+    <div class="cart-head">
+      <h3>🛒 የግዢ ጋሪ</h3>
+      <button class="circle" id="closeCart" style="width:32px;height:32px;font-size:14px;display:none">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="empty-cart"><span>🛒</span>ጋሪዎ ባዶ ነው</div>
+    </div>
+    <div class="cart-total">
+      <span>ጠቅላላ ድምር:</span>
+      <span id="cartTotal" style="color:var(--blue)">0 ብር</span>
+    </div>
+    <button class="primary full" onclick="checkout()">ወደ ክፍያ ሂድ</button>
+  </aside>
 </div>
 
+<!-- Mobile Bottom Nav -->
+<div class="bottom-nav">
+  <div class="bottom-nav-inner">
+    <div class="b-nav-item active" onclick="window.scrollTo(0,0)"><span>🏠</span>መነሻ</div>
+    <div class="b-nav-item" onclick="document.getElementById('search').focus()"><span>🔍</span>ፍለጋ</div>
+    <div class="b-nav-item" onclick="openModal('sell')"><span>➕</span>ሽጥ</div>
+    <div class="b-nav-item" onclick="openModal('wallet')"><span>💳</span>ዋሌት</div>
+    <div class="b-nav-item" onclick="openModal('menu')"><span>☰</span>ሜኑ</div>
+  </div>
+</div>
+
+<!-- Modal -->
 <div class="modalback" id="modalBack">
   <section class="modal">
     <div class="modalhead">
-      <h2 id="modalTitle">VIP MOLL</h2>
-      <button class="circle" id="closeModal" style="background:var(--bg)">✕</button>
+      <h2 id="modalTitle">VIP MALL</h2>
+      <button class="circle" id="closeModal" style="width:32px;height:32px;font-size:16px">✕</button>
     </div>
     <div id="modalContent"></div>
   </section>
 </div>
 
 <script>
-const I18N={
-ET:{search:'እቃ ፈልግ...',menu:'ምናሌ',all:'ሁሉም እቃዎች',electronics:'ኤሌክትሮኒክስ',fashion:'ልብስ',home:'የቤት እቃ',vehicles:'መኪና',other:'ሌሎች',myShop:'የእኔ ሱቅ',wallet:'ገንዘብ',sell:'እቃ ሽጥ',heroText:'ግዛ፣ ሽጥ፣ አገናኝ — የኦንላይን ገበያህ',heroSell:'እቃ ለመሸጥ ጀምር',recent:'በቅርቡ የተጨመሩ እቃዎች',sellerInfo:'የሻጭ መረጃ',sellerDesc:'እቃህን በፎቶ፣ በዋጋና በመግለጫ አስገባ።',createLogin:'መለያ ፍጠር / ግባ',notice:'የሙከራ ስሪት ነው።',footer:'ደህንነት ያለው ግብይት እንገንባ',login:'ግባ',register:'መለያ ፍጠር',fullName:'ሙሉ ስም',email:'ኢሜይል',password:'የይለፍ ቃል',emailSignup:'በEmail ተመዝገብ',emailLogin:'በEmail ግባ',resend:'እንደገና ላክ',reset:'ረሳሁ',phone:'ስልክ ቁጥር',sendCode:'SMS ኮድ ላክ',otp:'ኮድ',verify:'አረጋግጥ',authIntro:'ይመዝገቡ ወይም ይግቡ።',itemName:'የእቃው ስም',category:'ምድብ',price:'ዋጋ (ብር)',description:'መግለጫ',photo:'ፎቶ',addItem:'አሳይ',walletTitle:'የገንዘብ ቦርሳ (Wallet)',deposit:'ገንዘብ አስገባ (Deposit)',withdraw:'ገንዘብ አውጣ (Withdraw)',amount:'መጠን',method:'የክፍያ ዘዴ',paymentRequest:'አስገባ',shopInfo:'ሱቅህ ለመጀመሪያ ጊዜ ነፃ ነው።',loginSuccess:'ገብተዋል።',wrongInput:'ትክክለኛ መረጃ ያስገቡ።',logout:'ውጣ',signedOut:'ወጥተዋል።',language:'ቋንቋ',video:'ቪዲዮ',messages:'መልእክቶች',notif:'ማሳወቂያዎች',darkMode:'ጨለማ ሁነታ',help:'እርዳታ',menuTitle:'ሜኑ',balance:'ያለህ ቀሪ ሂሳብ'},
-US:{search:'Search products...',menu:'MENU',all:'All products',electronics:'Electronics',fashion:'Fashion',home:'Home',vehicles:'Vehicles',other:'Other',myShop:'My shop',wallet:'Wallet',sell:'Sell item',heroText:'Buy, sell and connect',heroSell:'Start selling',recent:'Recently added products',sellerInfo:'Seller information',sellerDesc:'Add product photos, prices and descriptions.',createLogin:'Create account / Login',notice:'Test version.',footer:'Let us build a safer marketplace',login:'Login',register:'Create account',fullName:'Full name',email:'Email address',password:'Password',emailSignup:'Sign up with email',emailLogin:'Login with email',resend:'Resend',reset:'Forgot?',phone:'Phone number',sendCode:'Send SMS code',otp:'SMS code',verify:'Verify',authIntro:'Register or login.',itemName:'Product name',category:'Category',price:'Price (ETB)',description:'Description',photo:'Product photo',addItem:'Publish item',walletTitle:'Wallet',deposit:'Deposit',withdraw:'Withdraw',amount:'Amount',method:'Payment method',paymentRequest:'Submit',shopInfo:'Your shop is free at first.',loginSuccess:'You are signed in.',wrongInput:'Please enter valid information.',logout:'Logout',signedOut:'You have signed out.',language:'Language',video:'Video Products',messages:'Messages',notif:'Notifications',darkMode:'Dark Mode',help:'Help & Support',menuTitle:'Menu',balance:'Your Balance'},
-CN:{search:'搜索商品...',menu:'菜单',all:'所有商品',electronics:'电子产品',fashion:'服装',home:'家居',vehicles:'汽车',other:'其他',myShop:'我的店铺',wallet:'钱包',sell:'出售商品',heroText:'买卖、连接',heroSell:'开始出售',recent:'最新商品',sellerInfo:'卖家信息',sellerDesc:'添加商品信息。',createLogin:'注册 / 登录',notice:'测试版本。',footer:'安全的交易市场',login:'登录',register:'创建账户',fullName:'姓名',email:'邮箱',password:'密码',emailSignup:'邮箱注册',emailLogin:'邮箱登录',resend:'重发',reset:'忘记密码',phone:'手机号',sendCode:'发送SMS',otp:'验证码',verify:'验证',authIntro:'注册或登录。',itemName:'商品名称',category:'类别',price:'价格',description:'描述',photo:'照片',addItem:'发布',walletTitle:'钱包',deposit:'充值',withdraw:'提现',amount:'金额',method:'付款方式',paymentRequest:'提交',shopInfo:'初期免费。',loginSuccess:'登录成功。',wrongInput:'请输入有效信息。',logout:'退出登录',signedOut:'已退出。',language:'语言',video:'视频产品',messages:'消息',notif:'通知',darkMode:'深色模式',help:'帮助',menuTitle:'菜单',balance:'余额'},
-IN:{search:'उत्पाद खोजें...',menu:'मेन्यू',all:'सभी उत्पाद',electronics:'इलेक्ट्रॉनिक्स',fashion:'कपड़े',home:'घर',vehicles:'वाहन',other:'अन्य',myShop:'मेरी दुकान',wallet:'वॉलेट',sell:'वस्तु बेचें',heroText:'खरीदें, बेचें और जुड़ें',heroSell:'बेचना शुरू करें',recent:'हाल ही में जोड़े गए',sellerInfo:'विक्रेता जानकारी',sellerDesc:'विवरण जोड़ें।',createLogin:'खाता बनाएँ / लॉगिन',notice:'परीक्षण संस्करण।',footer:'सुरक्षित बाज़ार',login:'लॉगिन',register:'खाता बनाएँ',fullName:'पूरा नाम',email:'ईमेल',password:'पासवर्ड',emailSignup:'साइन अप',emailLogin:'लॉगिन',resend:'फिर भेजें',reset:'भूल गए?',phone:'फोन',sendCode:'SMS भेजें',otp:'कोड',verify:'सत्यापित',authIntro:'पंजीकरण करें।',itemName:'उत्पाद का नाम',category:'श्रेणी',price:'कीमत',description:'विवरण',photo:'फोटो',addItem:'प्रकाशित करें',walletTitle:'वॉलेट',deposit:'जमा',withdraw:'निकासी',amount:'राशि',method:'भुगतान विधि',paymentRequest:'जमा करें',shopInfo:'मुफ़्त।',loginSuccess:'लॉग इन हैं।',wrongInput:'सही जानकारी दर्ज करें।',logout:'लॉग आउट',signedOut:'लॉग आउट हुए।',language:'भाषा',video:'वीडियो',messages:'संदेश',notif:'सूचनाएं',darkMode:'डार्क मोड',help:'सहायता',menuTitle:'मेन्यू',balance:'शेष राशि'},
-JP:{search:'商品を検索...',menu:'メニュー',all:'すべての商品',electronics:'電子機器',fashion:'ファッション',home:'家具',vehicles:'車',other:'その他',myShop:'マイショップ',wallet:'ウォレット',sell:'商品を販売',heroText:'買う、売る、つながる',heroSell:'販売を始める',recent:'最近の商品',sellerInfo:'出品者情報',sellerDesc:'商品情報を追加。',createLogin:'アカウント作成 / ログイン',notice:'テスト版。',footer:'安全なマーケット',login:'ログイン',register:'アカウント作成',fullName:'氏名',email:'メール',password:'パスワード',emailSignup:'登録',emailLogin:'ログイン',resend:'再送',reset:'忘れた',phone:'電話番号',sendCode:'SMS送信',otp:'コード',verify:'確認',authIntro:'登録またはログイン。',itemName:'商品名',category:'カテゴリー',price:'価格',description:'説明',photo:'写真',addItem:'出品する',walletTitle:'ウォレット',deposit:'入金',withdraw:'出金',amount:'金額',method:'支払い方法',paymentRequest:'送信',shopInfo:'最初は無料。',loginSuccess:'ログインしました。',wrongInput:'正しい情報を入力。',logout:'ログアウト',signedOut:'ログアウトしました。',language:'言語',video:'ビデオ',messages:'メッセージ',notif:'通知',darkMode:'ダークモード',help:'ヘルプ',menuTitle:'メニュー',balance:'残高'},
-DE:{search:'Produkte suchen...',menu:'MENÜ',all:'Alle Produkte',electronics:'Elektronik',fashion:'Mode',home:'Wohnen',vehicles:'Fahrzeuge',other:'Andere',myShop:'Mein Shop',wallet:'Geldbörse',sell:'Artikel verkaufen',heroText:'Kaufen, verkaufen und verbinden',heroSell:'Jetzt verkaufen',recent:'Kürzlich hinzugefügt',sellerInfo:'Verkäuferinfo',sellerDesc:'Produktdetails hinzufügen.',createLogin:'Konto erstellen / Anmelden',notice:'Testversion.',footer:'Sicherer Marktplatz',login:'Anmelden',register:'Konto erstellen',fullName:'Vollständiger Name',email:'E-Mail',password:'Passwort',emailSignup:'Registrieren',emailLogin:'Anmelden',resend:'Erneut senden',reset:'Vergessen?',phone:'Telefonnummer',sendCode:'SMS senden',otp:'Code',verify:'Bestätigen',authIntro:'Registrieren oder anmelden.',itemName:'Produktname',category:'Kategorie',price:'Preis',description:'Beschreibung',photo:'Foto',addItem:'Veröffentlichen',walletTitle:'Geldbörse',deposit:'Einzahlen',withdraw:'Auszahlen',amount:'Betrag',method:'Zahlungsmethode',paymentRequest:'Senden',shopInfo:'Zunächst kostenlos.',loginSuccess:'Angemeldet.',wrongInput:'Gültige Daten eingeben.',logout:'Abmelden',signedOut:'Abgemeldet.',language:'Sprache',video:'Videos',messages:'Nachrichten',notif:'Benachrichtigungen',darkMode:'Dunkelmodus',help:'Hilfe',menuTitle:'Menü',balance:'Guthaben'},
-FR:{search:'Rechercher...',menu:'MENU',all:'Tous les produits',electronics:'Électronique',fashion:'Mode',home:'Maison',vehicles:'Véhicules',other:'Autres',myShop:'Ma boutique',wallet:'Portefeuille',sell:'Vendre',heroText:'Achetez, vendez et échangez',heroSell:'Commencer à vendre',recent:'Produits récents',sellerInfo:'Infos vendeur',sellerDesc:'Ajouter des détails.',createLogin:'Créer un compte / Connexion',notice:'Version de test.',footer:'Marché sûr',login:'Connexion',register:'Créer un compte',fullName:'Nom complet',email:'Email',password:'Mot de passe',emailSignup:'S’inscrire',emailLogin:'Connexion',resend:'Renvoyer',reset:'Oublié ?',phone:'Téléphone',sendCode:'Envoyer SMS',otp:'Code',verify:'Vérifier',authIntro:'Inscrivez-vous ou connectez-vous.',itemName:'Nom du produit',category:'Catégorie',price:'Prix',description:'Description',photo:'Photo',addItem:'Publier',walletTitle:'Portefeuille',deposit:'Dépôt',withdraw:'Retrait',amount:'Montant',method:'Paiement',paymentRequest:'Envoyer',shopInfo:'Gratuit au début.',loginSuccess:'Connecté.',wrongInput:'Infos valides.',logout:'Déconnexion',signedOut:'Déconnecté.',language:'Langue',video:'Vidéos',messages:'Messages',notif:'Notifications',darkMode:'Mode sombre',help:'Aide',menuTitle:'Menu',balance:'Solde'},
-RU:{search:'Поиск...',menu:'МЕНЮ',all:'Все товары',electronics:'Электроника',fashion:'Одежда',home:'Дом',vehicles:'Авто',other:'Другое',myShop:'Мой магазин',wallet:'Кошелёк',sell:'Продать',heroText:'Покупайте и продавайте',heroSell:'Начать продавать',recent:'Недавние товары',sellerInfo:'Инфо о продавце',sellerDesc:'Добавьте детали.',createLogin:'Создать аккаунт / Войти',notice:'Тестовая версия.',footer:'Безопасный маркетплейс',login:'Войти',register:'Создать аккаунт',fullName:'Полное имя',email:'Почта',password:'Пароль',emailSignup:'Регистрация',emailLogin:'Войти',resend:'Отправить снова',reset:'Забыли?',phone:'Телефон',sendCode:'Отправить SMS',otp:'Код',verify:'Подтвердить',authIntro:'Зарегистрируйтесь.',itemName:'Название товара',category:'Категория',price:'Цена',description:'Описание',photo:'Фото',addItem:'Опубликовать',walletTitle:'Кошелёк',deposit:'Пополнить',withdraw:'Вывести',amount:'Сумма',method:'Оплата',paymentRequest:'Отправить',shopInfo:'Сначала бесплатно.',loginSuccess:'Вы вошли.',wrongInput:'Корректные данные.',logout:'Выйти',signedOut:'Вы вышли.',language:'Язык',video:'Видео',messages:'Сообщения',notif:'Уведомления',darkMode:'Темный режим',help:'Помощь',menuTitle:'Меню',balance:'Баланс'},
-BR:{search:'Buscar...',menu:'MENU',all:'Todos',electronics:'Eletrônicos',fashion:'Moda',home:'Casa',vehicles:'Veículos',other:'Outros',myShop:'Minha loja',wallet:'Carteira',sell:'Vender',heroText:'Compre, venda e conecte-se',heroSell:'Vender',recent:'Recentes',sellerInfo:'Vendedor',sellerDesc:'Adicione detalhes.',createLogin:'Entrar / Cadastrar',notice:'Versão de teste.',footer:'Mercado seguro',login:'Entrar',register:'Cadastrar',fullName:'Nome completo',email:'Email',password:'Senha',emailSignup:'Cadastrar',emailLogin:'Entrar',resend:'Reenviar',reset:'Esqueci',phone:'Telefone',sendCode:'Enviar SMS',otp:'Código',verify:'Verificar',authIntro:'Cadastre-se ou entre.',itemName:'Produto',category:'Categoria',price:'Preço',description:'Descrição',photo:'Foto',addItem:'Publicar',walletTitle:'Carteira',deposit:'Depositar',withdraw:'Sacar',amount:'Valor',method:'Pagamento',paymentRequest:'Enviar',shopInfo:'Grátis no início.',loginSuccess:'Logado.',wrongInput:'Dados válidos.',logout:'Sair',signedOut:'Desconectado.',language:'Idioma',video:'Vídeos',messages:'Mensagens',notif:'Notificações',darkMode:'Modo escuro',help:'Ajuda',menuTitle:'Menu',balance:'Saldo'},
-SA:{search:'ابحث...',menu:'القائمة',all:'الكل',electronics:'إلكترونيات',fashion:'أزياء',home:'المنزل',vehicles:'مركبات',other:'أخرى',myShop:'متجري',wallet:'المحفظة',sell:'بيع',heroText:'اشترِ وبع',heroSell:'ابدأ البيع',recent:'أضيفت حديثاً',sellerInfo:'البائع',sellerDesc:'أضف التفاصيل.',createLogin:'دخول / حساب',notice:'نسخة تجريبية.',footer:'سوق آمن',login:'دخول',register:'حساب',fullName:'الاسم',email:'البريد',password:'كلمة المرور',emailSignup:'تسجيل',emailLogin:'دخول',resend:'إعادة',reset:'نسيت؟',phone:'الهاتف',sendCode:'إرسال SMS',otp:'الرمز',verify:'تحقق',authIntro:'سجل أو ادخل.',itemName:'المنتج',category:'الفئة',price:'السعر',description:'الوصف',photo:'صورة',addItem:'نشر',walletTitle:'المحفظة',deposit:'إيداع',withdraw:'سحب',amount:'المبلغ',method:'الدفع',paymentRequest:'إرسال',shopInfo:'مجاني أولاً.',loginSuccess:'تم الدخول.',wrongInput:'معلومات صحيحة.',logout:'خروج',signedOut:'تم الخروج.',language:'اللغة',video:'فيديو',messages:'رسائل',notif:'إشعارات',darkMode:'الوضع الداكن',help:'مساعدة',menuTitle:'القائمة',balance:'الرصيد'},
-KR:{search:'검색...',menu:'메뉴',all:'모든 상품',electronics:'전자제품',fashion:'패션',home:'가구',vehicles:'차량',other:'기타',myShop:'내 상점',wallet:'지갑',sell:'판매',heroText:'구매 및 판매',heroSell:'판매 시작',recent:'최근 상품',sellerInfo:'판매자',sellerDesc:'세부 정보 추가.',createLogin:'로그인 / 가입',notice:'테스트 버전.',footer:'안전한 마켓',login:'로그인',register:'가입',fullName:'이름',email:'이메일',password:'비밀번호',emailSignup:'가입',emailLogin:'로그인',resend:'재전송',reset:'잊음?',phone:'전화번호',sendCode:'SMS 전송',otp:'코드',verify:'확인',authIntro:'가입 또는 로그인.',itemName:'상품명',category:'카테고리',price:'가격',description:'설명',photo:'사진',addItem:'게시',walletTitle:'지갑',deposit:'입금',withdraw:'출금',amount:'금액',method:'결제',paymentRequest:'제출',shopInfo:'처음엔 무료.',loginSuccess:'로그인됨.',wrongInput:'올바른 정보.',logout:'로그아웃',signedOut:'로그아웃됨.',language:'언어',video:'비디오',messages:'메시지',notif:'알림',darkMode:'다크 모드',help:'도움말',menuTitle:'메뉴',balance:'잔액'}
-};
+// ==================== STATE ====================
+let cart = JSON.parse(localStorage.getItem('vip-cart')) || [];
+let currentFilter = 'All';
+let currentUser = JSON.parse(localStorage.getItem('vip-user')) || null;
+let users = JSON.parse(localStorage.getItem('vip-users')) || {};
 
-let currentLang=localStorage.getItem('vip-lang')||'ET';
-const $=id=>document.getElementById(id);
-const tr=k=>(I18N[currentLang]||I18N.ET)[k]||I18N.ET[k]||k;
+const $ = id => document.getElementById(id);
 
-function applyLanguage(code){
-  currentLang=code;localStorage.setItem('vip-lang',code);
-  const t=I18N[code]||I18N.ET;
-  document.documentElement.lang=code==='ET'?'am':({CN:'zh',IN:'hi',BR:'pt',RU:'ru',JP:'ja',DE:'de',FR:'fr',SA:'ar',KR:'ko'}[code]||'en');
-  document.documentElement.dir=code==='SA'?'rtl':'ltr';
-  
-  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(t[k])el.textContent=t[k]});
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{el.placeholder=t[el.dataset.i18nPlaceholder]||''});
-  $('search').placeholder=t.search;
-  $('listingTitle').textContent=t.recent;
-}
-applyLanguage(currentLang);
-
-// Theme setup
-if(localStorage.getItem('vip-dark')==='1'){document.body.classList.add('dark')}
-
-// Menu
-function openSettings(){
-  openModal('☰ '+tr('menuTitle'), `
-    <button class="menu-item" onclick="closeModal();login()"><div class="menu-icon">👤</div> ${tr('register')} / ${tr('login')}</button>
-    <button class="menu-item" onclick="alert('${tr('video')}')"><div class="menu-icon">🎬</div> ${tr('video')}</button>
-    <button class="menu-item" onclick="alert('${tr('messages')}')"><div class="menu-icon">💬</div> ${tr('messages')}</button>
-    <button class="menu-item" onclick="alert('${tr('notif')}')"><div class="menu-icon">🔔</div> ${tr('notif')}</button>
-    
-    <div class="menu-divider"></div>
-
-    <button class="menu-item" id="menuThemeBtn"><div class="menu-icon">🌙</div> ${tr('darkMode')}</button>
-    <button class="menu-item" onclick="openLanguageModal()"><div class="menu-icon">🌐</div> ${tr('language')}</button>
-    
-    <div class="menu-divider"></div>
-
-    <button class="menu-item" onclick="alert('${tr('help')}')"><div class="menu-icon">❓</div> ${tr('help')}</button>
-    <button class="menu-item" id="menuLogoutBtn" style="color:#b91c1c;"><div class="menu-icon" style="background:#fee2e2;color:#b91c1c;">🚪</div> ${tr('logout')}</button>
-  `);
-
-  $('menuThemeBtn').onclick = () => {
-    document.body.classList.toggle('dark');
-    const isDark = document.body.classList.contains('dark');
-    localStorage.setItem('vip-dark', isDark ? '1' : '0');
-    closeModal();
-  };
-
-  $('menuLogoutBtn').onclick = () => {
-    localStorage.removeItem('vip-user');
-    document.getElementById('loginScreen').style.display = 'flex';
-    closeModal();
-  };
-}
-$('settingsBtn').onclick = openSettings;
-
-function openLanguageModal(){
-  openModal('🌐 '+tr('language'), `
-    <div class="field"><label>${tr('language')}</label>
-      <select id="langSelect" style="padding:14px; font-size:16px; border-radius:12px;">
-        <option value="ET">🇪🇹 አማርኛ (Amharic)</option>
-        <option value="US">🇺🇸 English</option>
-        <option value="CN">🇨🇳 中文 (Chinese)</option>
-        <option value="IN">🇮🇳 हिन्दी (Hindi)</option>
-        <option value="JP">🇯🇵 日本語 (Japanese)</option>
-        <option value="DE">🇩🇪 Deutsch (German)</option>
-        <option value="FR">🇫🇷 Français (French)</option>
-        <option value="RU">🇷🇺 Русский (Russian)</option>
-        <option value="BR">🇧🇷 Português (Portuguese)</option>
-        <option value="SA">🇸🇦 العربية (Arabic)</option>
-        <option value="KR">🇰🇷 한국어 (Korean)</option>
-      </select>
-    </div>
-    <button class="primary full" onclick="saveLanguage()">Save</button>
-  `);
-  document.getElementById('langSelect').value = currentLang;
-}
-function saveLanguage(){
-  applyLanguage(document.getElementById('langSelect').value);
-  closeModal();
+// ==================== AUTH SYSTEM ====================
+function checkAuth() {
+  if (!currentUser) {
+    $('loginScreen').classList.add('active');
+  } else {
+    $('loginScreen').classList.remove('active');
+  }
 }
 
-function openModal(title,html){
-  $('modalTitle').textContent=title;
-  $('modalContent').innerHTML=html;
-  $('modalBack').classList.add('show');
+function showSignup() {
+  $('loginForm').style.display = 'none';
+  $('signupForm').style.display = 'block';
+  $('loginError').innerText = '';
 }
-function closeModal(){ $('modalBack').classList.remove('show'); }
-$('closeModal').onclick=closeModal;
-$('modalBack').onclick=e=>{if(e.target===$('modalBack'))closeModal()};
 
-// Login System (LocalStorage for now)
-function showSignup(){ document.getElementById('loginForm').style.display='none'; document.getElementById('signupForm').style.display='block'; }
-function showLogin(){ document.getElementById('signupForm').style.display='none'; document.getElementById('loginForm').style.display='block'; }
+function showLogin() {
+  $('signupForm').style.display = 'none';
+  $('loginForm').style.display = 'block';
+  $('loginError').innerText = '';
+}
 
-function doSignup(){
-  const name = document.getElementById('signupName').value;
-  const email = document.getElementById('signupEmail').value;
-  const pass = document.getElementById('signupPassword').value;
-  if(!email || !pass) { document.getElementById('loginError').innerText = 'ኢሜይል እና የይለፍ ቃል ያስፈልጋሉ!'; return; }
-  
-  let users = JSON.parse(localStorage.getItem('vip-users') || '{}');
-  if(users[email]) { document.getElementById('loginError').innerText = 'ይህ ኢሜይል ተመዝግቧል!'; return; }
+function doSignup() {
+  const name = $('signupName').value.trim();
+  const email = $('signupEmail').value.trim();
+  const pass = $('signupPassword').value;
+  if (!name || !email || !pass) { $('loginError').innerText = 'ሁሉንም መረጃ ያስገቡ!'; return; }
+  if (users[email]) { $('loginError').innerText = 'ይህ ኢሜይል ተመዝግቧል!'; return; }
   
   users[email] = { name, pass, balance: 0 };
   localStorage.setItem('vip-users', JSON.stringify(users));
-  localStorage.setItem('vip-user', email);
-  document.getElementById('loginScreen').style.display = 'none';
+  currentUser = email;
+  localStorage.setItem('vip-user', JSON.stringify(currentUser));
+  checkAuth();
 }
 
-function doLogin(){
-  const email = document.getElementById('loginEmail').value;
-  const pass = document.getElementById('loginPassword').value;
-  let users = JSON.parse(localStorage.getItem('vip-users') || '{}');
-  
-  if(users[email] && users[email].pass === pass){
-    localStorage.setItem('vip-user', email);
-    document.getElementById('loginScreen').style.display = 'none';
+function doLogin() {
+  const email = $('loginEmail').value.trim();
+  const pass = $('loginPassword').value;
+  if (users[email] && users[email].pass === pass) {
+    currentUser = email;
+    localStorage.setItem('vip-user', JSON.stringify(currentUser));
+    checkAuth();
   } else {
-    document.getElementById('loginError').innerText = 'ኢሜይል ወይም የይለፍ ቃል ስህተት ነው!';
+    $('loginError').innerText = 'ኢሜይል ወይም የይለፍ ቃል ስህተት ነው!';
   }
 }
 
-function checkLogin() {
-  if(!localStorage.getItem('vip-user')) {
-    document.getElementById('loginScreen').style.display = 'flex';
-  }
-}
-checkLogin();
-
-// Wallet System
-function wallet(){
-  const email = localStorage.getItem('vip-user');
-  if(!email) { openModal('SMART TRADING', `<p class="muted">${tr('wrongInput')}</p><button class="primary full" onclick="closeModal();login()">${tr('login')}</button>`); return; }
-  
-  let users = JSON.parse(localStorage.getItem('vip-users') || '{}');
-  let user = users[email];
-  let bal = user ? user.balance : 0;
-
-  openModal(tr('walletTitle'), `
-    <div class="notice" style="margin-bottom:16px;text-align:center;font-size:18px;font-weight:bold;background:var(--blue2);color:var(--blue)">
-      ${tr('balance')}: ${bal.toLocaleString()} ETB
-    </div>
-    <div class="tabs">
-      <button class="active" id="depositTab" onclick="switchWalletTab('deposit')">${tr('deposit')}</button>
-      <button id="withdrawTab" onclick="switchWalletTab('withdraw')">${tr('withdraw')}</button>
-    </div>
-    <div id="walletFields">
-      <div class="field"><label>${tr('amount')} (ETB)</label><input type="number" id="walletAmount" placeholder="0" min="10"></div>
-      <div class="field"><label>${tr('method')}</label><select id="walletMethod"><option>Telebirr</option><option>Bank transfer</option><option>CBE Birr</option></select></div>
-      <button class="primary full" id="walletActionBtn" onclick="processWallet('deposit')">${tr('deposit')}</button>
-    </div>
-  `);
-}
-
-function switchWalletTab(type){
-  document.getElementById('depositTab').className = type==='deposit' ? 'active' : '';
-  document.getElementById('withdrawTab').className = type==='withdraw' ? 'active' : '';
-  document.getElementById('walletActionBtn').innerText = type==='deposit' ? tr('deposit') : tr('withdraw');
-  document.getElementById('walletActionBtn').onclick = () => processWallet(type);
-}
-
-function processWallet(type){
-  const amount = Number(document.getElementById('walletAmount').value);
-  if(!amount || amount <= 0) { alert(tr('wrongInput')); return; }
-  
-  const email = localStorage.getItem('vip-user');
-  let users = JSON.parse(localStorage.getItem('vip-users') || '{}');
-  
-  if(type === 'withdraw' && users[email].balance < amount) {
-    alert('ቀሪ ሂሳብ አይበቃም! (Insufficient balance)'); return;
-  }
-  
-  users[email].balance += (type === 'deposit' ? amount : -amount);
-  localStorage.setItem('vip-users', JSON.stringify(users));
-  
-  alert(type === 'deposit' ? '✅ ገንዘብ በተሳካ ሁሉን አስገብተዋል!' : '✅ ገንዘብ በተሳካ ሁኔታ አውጥተዋል!');
+function logout() {
+  currentUser = null;
+  localStorage.removeItem('vip-user');
+  checkAuth();
   closeModal();
-  wallet(); // Refresh
 }
 
-// Generic Login Modal Caller
-function login(){ 
-  closeModal();
-  document.getElementById('loginScreen').style.display = 'flex';
+// ==================== CART SYSTEM ====================
+function addToCart(name, price, icon) {
+  const existing = cart.find(i => i.name === name);
+  if (existing) existing.qty += 1;
+  else cart.push({ name, price, icon, qty: 1 });
+  saveCart();
+  updateCartUI();
+  
+  // Animation
+  const btn = event.target;
+  btn.style.transform = 'scale(0.8)';
+  setTimeout(() => btn.style.transform = 'scale(1)', 150);
 }
 
-// Sell Product
-function sell(){
-  openModal(tr('sell'),`
-    <div class="field"><label>${tr('itemName')}</label><input id="itemName"></div>
-    <div class="field"><label>${tr('category')}</label><select id="itemCat"><option value="Electronics">${tr('electronics')}</option><option value="Fashion">${tr('fashion')}</option><option value="Home">${tr('home')}</option><option value="Vehicles">${tr('vehicles')}</option><option value="Other">${tr('other')}</option></select></div>
-    <div class="field"><label>${tr('price')}</label><input id="itemPrice" type="number" min="1"></div>
-    <div class="field"><label>${tr('description')}</label><textarea id="itemDesc"></textarea></div>
-    <div class="field"><label>${tr('photo')}</label><input id="itemPhoto" type="file" accept="image/*"></div>
-    <button class="primary full" id="addItem">${tr('addItem')}</button>
-  `);
-  $('addItem').onclick=()=>{
-    let n=$('itemName').value.trim(),p=Number($('itemPrice').value),c=$('itemCat').value,d=$('itemDesc').value.trim(),f=$('itemPhoto').files[0];
-    if(!n||!p){alert(tr('wrongInput'));return}
-    let card=document.createElement('article');card.className='panel product';card.dataset.category=c;card.dataset.name=n;
-    let emoji={Electronics:'📱',Fashion:'👕',Home:'🏠',Vehicles:'🚗',Other:'🛍️'}[c];
-    let photo=document.createElement('div');photo.className='photo';photo.textContent=emoji;
-    if(f){let img=document.createElement('img');img.src=URL.createObjectURL(f);photo.textContent='';photo.append(img)}
-    let body=document.createElement('div');body.className='pbody';
-    let h=document.createElement('h3');h.textContent=n;
-    let price=document.createElement('div');price.className='price';price.textContent=p.toLocaleString()+' ETB';
-    let meta=document.createElement('div');meta.className='meta';meta.textContent=d;
-    body.append(h,price,meta);card.append(photo,body);
-    $('products').prepend(card);closeModal();filterProducts();
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  saveCart();
+  updateCartUI();
+}
+
+function saveCart() {
+  localStorage.setItem('vip-cart', JSON.stringify(cart));
+}
+
+function updateCartUI() {
+  const count = cart.reduce((sum, item) => sum + item.qty, 0);
+  $('cartCount').innerText = count;
+  
+  if (cart.length === 0) {
+    $('cartItems').innerHTML = '<div class="empty-cart"><span>🛒</span>ጋሪዎ ባዶ ነው</div>';
+    $('cartTotal').innerText = '0 ብር';
+    return;
   }
-}
 
-// Filters & UI
-let currentFilter='All';
-function filterProducts(){
-  let q=$('search').value.toLowerCase(),cards=[...document.querySelectorAll('.product')],shown=0;
-  cards.forEach(c=>{
-    let ok=(currentFilter==='All'||c.dataset.category===currentFilter)&&((c.dataset.name||'').toLowerCase().includes(q)||c.textContent.toLowerCase().includes(q));
-    c.classList.toggle('hide',!ok);if(ok)shown++;
+  $('cartItems').innerHTML = '';
+  let total = 0;
+  cart.forEach((item, index) => {
+    total += item.price * item.qty;
+    const div = document.createElement('div');
+    div.className = 'cart-item';
+    div.innerHTML = `
+      <div class="cart-item-img">${item.icon}</div>
+      <div class="cart-item-info">
+        <h4>${item.name} <span style="color:var(--muted);font-weight:normal">x${item.qty}</span></h4>
+        <p>${(item.price * item.qty).toLocaleString()} ብር</p>
+      </div>
+      <button onclick="removeFromCart(${index})" style="background:none;color:var(--primary);padding:4px;font-size:18px;box-shadow:none">✕</button>
+    `;
+    $('cartItems').appendChild(div);
   });
-  $('count').textContent=shown+' '+(currentLang==='ET'?'እቃዎች':'items');
+  $('cartTotal').innerText = total.toLocaleString() + ' ብር';
 }
-function setFilter(f){
-  currentFilter=f;
-  document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b.dataset.filter===f));
-  filterProducts();
-}
-document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>setFilter(b.dataset.filter));
-$('search').addEventListener('input',filterProducts);
 
-$('rightLogin').onclick=login;
-['sellBtn','heroSell','rightSell'].forEach(id=>$(id).onclick=sell);
-$('wallet').onclick=wallet;
-$('myShop').onclick=()=>openModal(tr('myShop'),`<p>${tr('shopInfo')}</p>`);
-
-$('navVideo').onclick = () => alert(tr('video'));
-$('navMessage').onclick = () => alert(tr('messages'));
-$('navNotif').onclick = () => alert(tr('notif'));
-</script>
-  <script>
-if ('serviceWorker' in navigator) {
-  const swCode = "const CACHE='vipmoll-v1';self.addEventListener('install',e=>{self.skipWaiting()});self.addEventListener('fetch',e=>{e.respondWith(fetch(e.request).catch(()=>caches.match(e.request)))});";
-  const blob = new Blob([swCode], {type: 'application/javascript'});
-  const swUrl = URL.createObjectURL(blob);
-  navigator.serviceWorker.register(swUrl).catch(err => console.log('SW err:', err));
+function checkout() {
+  if (cart.length === 0) { alert('ጋሪዎ ባዶ ነው!'); return; }
+  if (!currentUser) { checkAuth(); return; }
+  
+  const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  if (users[currentUser].balance < total) {
+    alert('ቀሪ ሂሳብዎ አይበቃም! እባክዎ ወደ ዋሌት ሄደው ገንዘብ ያስገቡ።');
+    openModal('wallet');
+    return;
+  }
+  
+  users[currentUser].balance -= total;
+  localStorage.setItem('vip-users', JSON.stringify(users));
+  cart = [];
+  saveCart();
+  updateCartUI();
+  alert('✅ ግዢው በተሳካ ሁኔታ ተጠናቅቋል!');
 }
+
+// ==================== MODAL SYSTEM ====================
+function openModal(type) {
+  const modalContent = $('modalContent');
+  const modalTitle = $('modalTitle');
+  
+  if (type === 'menu') {
+    modalTitle.innerText = '☰ ሜኑ';
+    modalContent.innerHTML = `
+      <button class="menu-item" onclick="openModal('profile')"><div class="menu-icon">👤</div> የግል መገለጫ (Profile)</button>
+      <button class="menu-item" onclick="openModal('sell')"><div class="menu-icon">➕</div> እቃ ሽጥ (Sell Item)</button>
+      <button class="menu-item" onclick="openModal('wallet')"><div class="menu-icon">💳</div> የገንዘብ ቦርሳ (Wallet)</button>
+      <button class="menu-item" onclick="openModal('myShop')"><div class="menu-icon">🏪</div> የእኔ ሱቅ (My Shop)</button>
+      <div class="menu-divider"></div>
+      <button class="menu-item" onclick="openModal('language')"><div class="menu-icon">🌐</div> ቋንቋ (Language)</button>
+      <button class="menu-item" onclick="toggleTheme()"><div class="menu-icon">🌙</div> ጨለማ ሁነታ (Dark Mode)</button>
+      <button class="menu-item" onclick="openModal('help')"><div class="menu-icon">❓</div> እርዳታ (Help)</button>
+      <div class="menu-divider"></div>
+      <button class="menu-item" onclick="logout()" style="color:var(--primary)"><div class="menu-icon" style="background:#fee2e2;color:var(--primary)">🚪</div> ውጣ (Logout)</button>
+    `;
+  } 
+  else if (type === 'sell') {
+    modalTitle.innerText = '➕ አዲስ እቃ ሽጥ';
+    modalContent.innerHTML = `
+      <div class="field"><label>የእቃው ስም</label><input id="sellName" placeholder="ለምሳሌ፡ iPhone 13"></div>
+      <div class="field"><label>ምድብ</label>
+        <select id="sellCat"><option value="Electronics">📱 ኤሌክትሮኒክስ</option><option value="Fashion">👕 ልብስ</option><option value="Home">🛋️ የቤት ዕቃ</option><option value="Vehicles">🚗 መኪና</option></select>
+      </div>
+      <div class="field"><label>ዋጋ (ብር)</label><input id="sellPrice" type="number" placeholder="0"></div>
+      <div class="field"><label>መግለጫ</label><textarea id="sellDesc" placeholder="ስለ እቃው አጭር መግለጫ ይጻፉ..."></textarea></div>
+      <button class="primary full" onclick="publishProduct()">እቃውን አሳይ</button>
+    `;
+  }
+  else if (type === 'wallet') {
+    if (!currentUser) { checkAuth(); return; }
+    const bal = users[currentUser].balance;
+    modalTitle.innerText = '💳 የገንዘብ ቦርሳ';
+    modalContent.innerHTML = `
+      <div style="text-align:center;padding:20px;background:var(--bg);border-radius:16px;margin-bottom:20px">
+        <div style="font-size:14px;color:var(--muted);margin-bottom:8px">ያለህ ቀሪ ሂሳብ</div>
+        <div style="font-size:32px;font-weight:900;color:var(--blue)">${bal.toLocaleString()} ብር</div>
+      </div>
+      <div class="tabs">
+        <button class="active" id="tabDep" onclick="switchWalletTab('dep')">ገንዘብ አስገባ</button>
+        <button id="tabWit" onclick="switchWalletTab('wit')">ገንዘብ አውጣ</button>
+      </div>
+      <div class="field"><label>መጠን (ብር)</label><input id="walletAmt" type="number" placeholder="0" min="10"></div>
+      <div class="field"><label>የክፍያ ዘዴ</label>
+        <select id="walletMethod"><option>Telebirr</option><option>CBE Birr</option><option>Bank Transfer</option></select>
+      </div>
+      <button class="primary full" id="walletBtn" onclick="processWallet('dep')">ገንዘብ አስገባ</button>
+    `;
+  }
+  else if (type === 'myShop') {
+    modalTitle.innerText = '🏪 የእኔ ሱቅ';
+    modalContent.innerHTML = `<p style="color:var(--muted);line-height:1.6">ሱቅህን ለመክፈት የመጀመሪያው ወር ነፃ ነው። ከዚያ በኋላ ወርሃዊ ክፍያ ይኖራል።</p><button class="primary full" onclick="alert('በቅርቡ ይጀመራል!')">ሱቅ ክፈት</button>`;
+  }
+  else if (type === 'language') {
+    modalTitle.innerText = '🌐 ቋንቋ ቀይር';
+    modalContent.innerHTML = `
+      <div class="field"><label>ቋንቋ ምረጥ</label>
+        <select id="langSel" style="padding:16px;font-size:16px">
+          <option value="AM">🇪🇹 አማርኛ</option>
+          <option value="EN">🇺🇸 English</option>
+          <option value="AR">🇸🇦 العربية</option>
+          <option value="FR">🇫🇷 Français</option>
+          <option value="CN">🇨🇳 中文</option>
+        </select>
+      </div>
+      <button class="primary full" onclick="alert('ቋንቋ ተቀይሯል!')">አስቀምጥ</button>
+    `;
+  }
+  else if (type === 'help') {
+    modalTitle.innerText = '❓ እርዳታ';
+    modalContent.innerHTML = `<p style="line-height:1.6">ለማንኛውም ጥያቄ ወይም እርዳታ በኢሜይል support@vipmall.com ያግኙን።</p>`;
+  }
+  else if (type === 'profile') {
+    if (!currentUser) return;
+    const user = users[currentUser];
+    modalTitle.innerText = '👤 የግል መገለጫ';
+    modalContent.innerHTML = `
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px">
+        <div style="width:64px;height:64px;border-radius:50%;background:var(--primary);color:white;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900">${user.name[0]}</div>
+        <div><h3 style="margin:0">${user.name}</h3><p style="margin:4px 0 0;color:var(--muted)">${currentUser}</p></div>
+      </div>
+      <div style="background:var(--bg);padding:16px;border-radius:12px;display:flex;justify-content:space-between">
+        <span>ቀሪ ሂሳብ</span><strong style="color:var(--blue)">${user.balance.toLocaleString()} ብር</strong>
+      </div>
+    `;
+  }
+  
+  $('modalBack').classList.add('show');
+}
+
+function switchWalletTab(type) {
+  $('tabDep').className = type === 'dep' ? 'active' : '';
+  $('tabWit').className = type === 'wit' ? 'active' : '';
+  $('walletBtn').innerText = type === 'dep' ? 'ገንዘብ አስገባ' : 'ገንዘብ አውጣ';
+  $('walletBtn').onclick = () => processWallet(type);
+}
+
+function processWallet(type) {
+  const amt = Number($('walletAmt').value);
+  if (!amt || amt < 10) { alert('እባክዎ ትክክለኛ መጠን ያስገቡ (ቢያንስ 10 ብር)።'); return; }
+  if (type === 'wit' && users[currentUser].balance < amt) { alert('ቀሪ ሂሳብ አይበቃም!'); return; }
+  
+  users[currentUser].balance += (type === 'dep' ? amt : -amt);
+  localStorage.setItem('vip-users', JSON.stringify(users));
+  alert(type === 'dep' ? '✅ ገንዘብ በተሳካ ሁኔታ ገብቷል!' : '✅ ገንዘብ በተሳካ ሁኔታ ወጥቷል!');
+  closeModal();
+}
+
+function closeModal() { $('modalBack').classList.remove('show'); }
+$('closeModal').onclick = closeModal;
+$('modalBack').onclick = (e) => { if (e.target === $('modalBack')) closeModal(); };
+
+// ==================== FILTER & SEARCH ====================
+document.querySelectorAll('.cat-item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('active'));
+    item.classList.add('active');
+    currentFilter = item.dataset.filter;
+    filterProducts();
+  });
+});
+
+$('search').addEventListener('input', filterProducts);
+
+function filterProducts() {
+  const q = $('search').value.toLowerCase();
+  let count = 0;
+  document.querySelectorAll('.product').forEach(p => {
+    const matchCat = currentFilter === 'All' || p.dataset.category === currentFilter;
+    const matchQ = p.dataset.name.toLowerCase().includes(q);
+    if (matchCat && matchQ) { p.style.display = 'flex'; count++; }
+    else { p.style.display = 'none'; }
+  });
+  $('count').innerText = count + ' ምርቶች';
+}
+
+// ==================== PUBLISH PRODUCT ====================
+function publishProduct() {
+  const name = $('sellName').value.trim();
+  const cat = $('sellCat').value;
+  const price = Number($('sellPrice').value);
+  const desc = $('sellDesc').value.trim();
+  
+  if (!name || !price) { alert('ስም እና ዋጋ ያስፈልጋሉ!'); return; }
+  
+  const emoji = { Electronics: '📱', Fashion: '👕', Home: '🛋️', Vehicles: '🚗' }[cat];
+  const user = users[currentUser] || { name: 'User' };
+  
+  const card = document.createElement('article');
+  card.className = 'product';
+  card.dataset.category = cat;
+  card.dataset.name = name;
+  card.dataset.price = price;
+  card.innerHTML = `
+    <div class="photo">${emoji}<span class="tag">NEW</span><div class="like-btn" onclick="this.innerHTML = this.innerHTML === '🤍' ? '❤️' : '🤍'">🤍</div></div>
+    <div class="pbody">
+      <h3>${name}</h3>
+      <div class="price">${price.toLocaleString()} ብር</div>
+      <div class="meta">📍 ${desc.substring(0, 15)}...</div>
+      <div class="seller">
+        <div style="display:flex;align-items:center"><span class="avatar">${user.name[0]}</span> ${user.name}</div>
+        <button class="add-cart-btn" onclick="addToCart('${name}', ${price}, '${emoji}')">+</button>
+      </div>
+    </div>
+  `;
+  $('products').prepend(card);
+  closeModal();
+  alert('✅ እቃው በተሳካ ሁኔታ ተለጥፏል!');
+}
+
+// ==================== THEME ====================
+function toggleTheme() {
+  document.body.classList.toggle('dark');
+  const isDark = document.body.classList.contains('dark');
+  localStorage.setItem('vip-dark', isDark ? '1' : '0');
+  // Update menu icon if open
+  if ($('modalBack').classList.contains('show') && $('modalTitle').innerText.includes('ሜኑ')) {
+    openModal('menu');
+  }
+}
+if (localStorage.getItem('vip-dark') === '1') document.body.classList.add('dark');
+
+// ==================== EVENT LISTENERS ====================
+$('settingsBtn').onclick = () => openModal('menu');
+$('cartBtn').onclick = () => {
+  $('cartPanel').classList.toggle('mobile-active');
+  $('closeCart').style.display = $('cartPanel').classList.contains('mobile-active') ? 'flex' : 'none';
+};
+$('closeCart').onclick = () => {
+  $('cartPanel').classList.remove('mobile-active');
+  $('closeCart').style.display = 'none';
+};
+
+// ==================== INIT ====================
+updateCartUI();
+checkAuth();
 </script>
 </body></html>
