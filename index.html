@@ -9,67 +9,67 @@
 body.dark{--bg:#0f172a;--surface:#1e293b;--text:#f8fafc;--muted:#94a3b8;--line:#334155;--primary:#f43f5e;--primary-hover:#e11d48;--blue:#3b82f6;--shadow:0 4px 6px -1px rgb(0 0 0 / 0.5)}
 
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0;background:var(--bg);color:var(--text);font:15px system-ui,-apple-system,"Noto Sans Ethiopic",Arial,sans-serif;transition:background 0.3s,color 0.3s;padding-bottom:60px}
+body{margin:0;background:var(--bg);color:var(--text);font:15px system-ui,-apple-system,"Noto Sans Ethiopic",Arial,sans-serif;transition:background 0.3s,color 0.3s;padding-bottom:70px}
 button,input,select,textarea{font:inherit;outline:none;border:none}
 button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;transition:all 0.2s}
 .primary{background:var(--primary);color:white}
 .primary:hover{background:var(--primary-hover);transform:translateY(-1px)}
 .soft{background:var(--line);color:var(--text)}
-.circle{width:42px;height:42px;border-radius:50%;padding:0;background:var(--surface);color:var(--text);font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);border:1px solid var(--line);position:relative}
+.circle{width:42px;height:42px;border-radius:50%;padding:0;background:var(--surface);color:var(--text);font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);border:1px solid var(--line);position:relative;flex-shrink:0}
 
 /* Header */
-.top{position:sticky;top:0;z-index:40;background:var(--surface);box-shadow:0 1px 3px rgb(0 0 0 / 0.05);display:flex;align-items:center;gap:12px;padding:12px max(16px,calc((100vw - 1240px)/2));border-bottom:1px solid var(--line);height:var(--header-h)}
-.logo{font-size:24px;font-weight:900;color:var(--primary);letter-spacing:-1px;display:flex;align-items:center;gap:6px;white-space:nowrap}
-.search{flex:1;max-width:600px;position:relative}
-.search input{width:100%;border:1px solid var(--line);border-radius:24px;background:var(--bg);padding:12px 20px 12px 44px;color:var(--text);font-size:14px;transition:border-color 0.2s}
+.top{position:sticky;top:0;z-index:40;background:var(--surface);box-shadow:0 1px 3px rgb(0 0 0 / 0.05);display:flex;align-items:center;gap:12px;padding:10px max(16px,calc((100vw - 1240px)/2));border-bottom:1px solid var(--line);min-height:var(--header-h);flex-wrap:wrap}
+.logo{font-size:22px;font-weight:900;color:var(--primary);letter-spacing:-1px;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.search{flex:1;min-width:200px;position:relative}
+.search input{width:100%;border:1px solid var(--line);border-radius:24px;background:var(--bg);padding:10px 16px 10px 40px;color:var(--text);font-size:14px;transition:border-color 0.2s}
 .search input:focus{border-color:var(--primary)}
-.search::before{content:'🔍';position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:16px;opacity:0.5}
+.search::before{content:'🔍';position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px;opacity:0.5}
 .top-actions{display:flex;gap:8px;align-items:center;margin-left:auto}
 
 /* Categories */
-.cat-nav{background:var(--surface);border-bottom:1px solid var(--line);padding:0 max(16px,calc((100vw - 1240px)/2));display:flex;overflow-x:auto;gap:24px;scrollbar-width:none;position:sticky;top:var(--header-h);z-index:30}
+.cat-nav{background:var(--surface);border-bottom:1px solid var(--line);padding:0 max(16px,calc((100vw - 1240px)/2));display:flex;overflow-x:auto;gap:20px;scrollbar-width:none;position:sticky;top:64px;z-index:35}
 .cat-nav::-webkit-scrollbar{display:none}
-.cat-item{white-space:nowrap;padding:16px 0;color:var(--muted);font-weight:600;cursor:pointer;border-bottom:2px solid transparent;transition:0.2s;display:flex;align-items:center;gap:6px;font-size:14px}
+.cat-item{white-space:nowrap;padding:14px 0;color:var(--muted);font-weight:600;cursor:pointer;border-bottom:2px solid transparent;transition:0.2s;display:flex;align-items:center;gap:6px;font-size:14px}
 .cat-item.active{color:var(--primary);border-bottom-color:var(--primary)}
 
 /* Layout */
-.wrap{max-width:1240px;margin:24px auto;padding:0 16px;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px}
+.wrap{max-width:1240px;margin:16px auto;padding:0 16px;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px}
 .sectionhead{display:flex;justify-content:space-between;align-items:center;margin:0 0 16px}
-.sectionhead h2{font-size:22px;margin:0;font-weight:800;color:var(--text)}
+.sectionhead h2{font-size:20px;margin:0;font-weight:800;color:var(--text)}
 
 /* Product Grid */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px}
 .product{background:var(--surface);border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);transition:transform 0.2s,box-shadow 0.2s;position:relative;display:flex;flex-direction:column;cursor:pointer}
 .product:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.photo{aspect-ratio:1;background:linear-gradient(135deg,var(--bg),var(--line));display:grid;place-items:center;font-size:64px;position:relative;overflow:hidden}
+.photo{aspect-ratio:1;background:linear-gradient(135deg,var(--bg),var(--line));display:grid;place-items:center;font-size:50px;position:relative;overflow:hidden}
 .photo img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s}
-.tag{position:absolute;top:12px;left:12px;background:var(--primary);color:#fff;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:800;z-index:2}
-.pbody{padding:16px;flex:1;display:flex;flex-direction:column;justify-content:space-between}
-.pbody h3{margin:0 0 6px;font-size:15px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
-.price{font-size:18px;font-weight:900;color:var(--blue);margin:4px 0}
+.tag{position:absolute;top:10px;left:10px;background:var(--primary);color:#fff;border-radius:6px;padding:3px 8px;font-size:10px;font-weight:800;z-index:2}
+.pbody{padding:12px;flex:1;display:flex;flex-direction:column;justify-content:space-between}
+.pbody h3{margin:0 0 6px;font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+.price{font-size:16px;font-weight:900;color:var(--blue);margin:4px 0}
 .meta{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px;margin-bottom:8px}
-.seller{display:flex;align-items:center;justify-content:space-between;margin-top:auto;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
-.avatar{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--line);color:var(--text);font-weight:800;font-size:10px;margin-right:6px}
+.seller{display:flex;align-items:center;justify-content:space-between;margin-top:auto;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+.avatar{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--line);color:var(--text);font-weight:800;font-size:10px;margin-right:6px}
 
 /* Product Detail Modal */
-.detail-img{width:100%;height:300px;background:var(--bg);border-radius:16px;object-fit:cover;margin-bottom:20px;display:flex;align-items:center;justify-content:center;font-size:80px;border:1px solid var(--line);overflow:hidden}
+.detail-img{width:100%;height:250px;background:var(--bg);border-radius:16px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;font-size:80px;border:1px solid var(--line);overflow:hidden}
 .detail-img img{width:100%;height:100%;object-fit:contain}
-.detail-title{font-size:24px;font-weight:900;margin:0 0 8px}
-.detail-price{font-size:28px;font-weight:900;color:var(--blue);margin:0 0 16px}
-.detail-desc{color:var(--muted);line-height:1.6;margin-bottom:24px;font-size:15px}
+.detail-title{font-size:22px;font-weight:900;margin:0 0 8px}
+.detail-price{font-size:24px;font-weight:900;color:var(--blue);margin:0 0 16px}
+.detail-desc{color:var(--muted);line-height:1.6;margin-bottom:24px;font-size:14px}
 .detail-seller{background:var(--bg);padding:16px;border-radius:16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
 .seller-info{display:flex;align-items:center;gap:12px}
-.seller-info .avatar{width:48px;height:48px;font-size:20px}
+.seller-info .avatar{width:40px;height:40px;font-size:18px}
 
 /* Chat System */
-.chat-box{display:flex;flex-direction:column;height:400px;background:var(--bg);border-radius:16px;border:1px solid var(--line);overflow:hidden}
-.chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
-.msg{max-width:80%;padding:12px 16px;border-radius:16px;font-size:14px;line-height:1.5}
+.chat-box{display:flex;flex-direction:column;height:350px;background:var(--bg);border-radius:16px;border:1px solid var(--line);overflow:hidden}
+.chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:85%;padding:10px 14px;border-radius:16px;font-size:14px;line-height:1.4}
 .msg.sent{background:var(--primary);color:white;align-self:flex-end;border-bottom-right-radius:4px}
 .msg.received{background:var(--surface);color:var(--text);align-self:flex-start;border-bottom-left-radius:4px;border:1px solid var(--line)}
-.chat-input{display:flex;gap:8px;padding:12px;background:var(--surface);border-top:1px solid var(--line)}
-.chat-input input{flex:1;padding:12px;border-radius:24px;border:1px solid var(--line);background:var(--bg);color:var(--text)}
-.chat-input button{padding:12px 20px;border-radius:24px}
+.chat-input{display:flex;gap:8px;padding:10px;background:var(--surface);border-top:1px solid var(--line)}
+.chat-input input{flex:1;padding:10px;border-radius:20px;border:1px solid var(--line);background:var(--bg);color:var(--text);font-size:14px}
+.chat-input button{padding:10px 16px;border-radius:20px;font-size:14px}
 
 /* Payment Options */
 .pay-btn{display:flex;align-items:center;gap:12px;width:100%;padding:16px;border-radius:12px;background:var(--bg);border:1px solid var(--line);margin-bottom:10px;font-weight:700;color:var(--text);cursor:pointer;transition:0.2s}
@@ -78,31 +78,32 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
 /* Modals */
 .modalback{display:none;position:fixed;inset:0;background:#000a;backdrop-filter:blur(4px);z-index:100;align-items:flex-end;justify-content:center;padding:0}
 .modalback.show{display:flex}
-.modal{width:100%;max-width:520px;max-height:95vh;overflow:auto;background:var(--surface);color:var(--text);border-radius:24px 24px 0 0;padding:24px;animation:slideUp 0.3s;box-shadow:0 -10px 40px #0004}
-.modalhead{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:20px}
-.field{display:grid;gap:8px;margin:16px 0}
+.modal{width:100%;max-width:520px;max-height:90vh;overflow:auto;background:var(--surface);color:var(--text);border-radius:24px 24px 0 0;padding:20px;animation:slideUp 0.3s;box-shadow:0 -10px 40px #0004}
+.modalhead{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:16px}
+.modalhead h2{font-size:18px;font-weight:800;margin:0}
+.field{display:grid;gap:6px;margin:12px 0}
 .field label{font-size:13px;font-weight:700;color:var(--muted)}
-.field input,.field select,.field textarea{width:100%;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--text);font-size:15px}
-.full{width:100%;padding:16px;font-size:16px}
+.field input,.field select,.field textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font-size:14px}
+.full{width:100%;padding:14px;font-size:15px}
 
-.menu-item{display:flex;align-items:center;gap:16px;padding:16px;border-radius:12px;cursor:pointer;font-weight:700;color:var(--text);background:transparent;width:100%;text-align:left;font-size:16px;margin-bottom:4px;border:1px solid transparent}
+.menu-item{display:flex;align-items:center;gap:14px;padding:14px;border-radius:10px;cursor:pointer;font-weight:700;color:var(--text);background:transparent;width:100%;text-align:left;font-size:15px;margin-bottom:4px;border:1px solid transparent}
 .menu-item:hover{background:var(--bg);border-color:var(--line)}
-.menu-icon{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;background:var(--line);flex-shrink:0}
+.menu-icon{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--line);flex-shrink:0}
 
 .login-screen{position:fixed;inset:0;background:linear-gradient(135deg,#0f172a,#1e293b);z-index:200;display:none;align-items:center;justify-content:center;padding:20px;color:#fff}
 .login-screen.active{display:flex}
-.login-card{width:100%;max-width:420px;background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:32px;box-shadow:0 20px 50px rgba(0,0,0,0.5);text-align:center}
-.login-card .logo{font-size:36px;margin-bottom:8px;color:#fff;justify-content:center;display:block}
-.login-card input{width:100%;padding:16px;margin-bottom:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.2);background:rgba(0,0,0,0.2);color:#fff}
-.login-card button{width:100%;padding:16px;background:var(--primary);color:#fff;font-size:16px;border-radius:12px;margin-top:8px}
-.login-card .switch{font-size:14px;color:#94a3b8;margin-top:24px}
+.login-card{width:100%;max-width:400px;background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:24px;box-shadow:0 20px 50px rgba(0,0,0,0.5);text-align:center}
+.login-card .logo{font-size:30px;margin-bottom:8px;color:#fff;justify-content:center;display:block}
+.login-card input{width:100%;padding:14px;margin-bottom:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.2);background:rgba(0,0,0,0.2);color:#fff;font-size:14px}
+.login-card button{width:100%;padding:14px;background:var(--primary);color:#fff;font-size:15px;border-radius:10px;margin-top:4px}
+.login-card .switch{font-size:13px;color:#94a3b8;margin-top:20px}
 .login-card .switch span{color:var(--primary);cursor:pointer;font-weight:bold}
 
-.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--line);z-index:40;padding:8px 0;box-shadow:0 -2px 10px #0001}
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--line);z-index:50;padding:6px 0;box-shadow:0 -2px 10px #0001}
 .bottom-nav-inner{display:flex;justify-content:space-around;align-items:center}
-.b-nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--muted);font-size:11px;font-weight:600;padding:8px 12px}
+.b-nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--muted);font-size:10px;font-weight:600;padding:6px 10px;cursor:pointer}
 .b-nav-item.active{color:var(--primary)}
-.b-nav-item span{font-size:20px}
+.b-nav-item span:first-child{font-size:20px}
 
 @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
 
@@ -110,13 +111,15 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
   .wrap{grid-template-columns:1fr}
   .cart-panel{display:none}
   .bottom-nav{display:block}
+  .top{padding:10px 12px}
+  .logo{font-size:18px}
+  .search{order:3;width:100%;flex:1 1 100%;margin-top:4px}
+  .cat-nav{top:102px;gap:16px;padding:0 12px}
 }
 @media(max-width:600px){
-  .top{flex-wrap:wrap;height:auto;padding:10px 12px}
-  .search{order:3;width:100%;max-width:none;margin-top:4px}
-  .cat-nav{top:110px;gap:16px;padding:0 12px}
   .grid{grid-template-columns:repeat(2,1fr);gap:12px}
   .pbody h3{font-size:13px}
+  .price{font-size:15px}
 }
 </style></head>
 <body>
@@ -125,32 +128,32 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
 <div class="login-screen" id="loginScreen">
   <div class="login-card">
     <div class="logo">VIP<span>MALL</span></div>
-    <p style="color:#94a3b8;margin-bottom:24px" data-i18n="welcome">የእርስዎ ምርጥ የግዥ ቦታ</p>
+    <p style="color:#94a3b8;margin-bottom:20px" data-i18n="welcome">የእርስዎ ምርጥ የግዥ ቦታ</p>
     <div id="loginForm">
       <input type="email" id="loginEmail" placeholder="ኢሜይል / Email" data-i18n-placeholder="email">
       <input type="password" id="loginPassword" placeholder="የይለፍ ቃል / Password" data-i18n-placeholder="password">
       <button onclick="doLogin()" data-i18n="loginBtn">ግባ / Login</button>
-      <div class="switch"><span data-i18n="noAccount">መለያ የለህም?</span> <span onclick="showSignup()" data-i18n="signup">ተመዝገብ / Sign Up</span></div>
+      <div class="switch"><span data-i18n="noAccount">መለያ የለህም?</span> <span onclick="showSignup()" data-i18n="signup">ተመዝገብ</span></div>
     </div>
     <div id="signupForm" style="display:none">
       <input type="text" id="signupName" placeholder="ሙሉ ስም / Full Name" data-i18n-placeholder="fullName">
       <input type="email" id="signupEmail" placeholder="ኢሜይል / Email" data-i18n-placeholder="email">
       <input type="password" id="signupPassword" placeholder="የይለፍ ቃል / Password" data-i18n-placeholder="password">
       <input type="tel" id="signupPhone" placeholder="ስልክ ቁጥር / Phone (09...)" data-i18n-placeholder="phone">
-      <button onclick="doSignup()" data-i18n="signupBtn">ተመዝገብ / Sign Up</button>
-      <div class="switch"><span data-i18n="haveAccount">መለያ አለህ?</span> <span onclick="showLogin()" data-i18n="login">ግባ / Login</span></div>
+      <button onclick="doSignup()" data-i18n="signupBtn">ተመዝገብ</button>
+      <div class="switch"><span data-i18n="haveAccount">መለያ አለህ?</span> <span onclick="showLogin()" data-i18n="login">ግባ</span></div>
     </div>
-    <div id="loginError" style="color:#ef4444;font-size:13px;margin-top:12px;font-weight:bold"></div>
+    <div id="loginError" style="color:#ef4444;font-size:12px;margin-top:10px;font-weight:bold"></div>
   </div>
 </div>
 
 <!-- Header -->
 <header class="top">
-  <div class="logo">VIP MALL <span style="font-size:10px;background:var(--primary);color:white;padding:2px 6px;border-radius:4px;vertical-align:middle">PRO</span></div>
+  <div class="logo">VIP MALL <span style="font-size:9px;background:var(--primary);color:white;padding:2px 5px;border-radius:4px;vertical-align:middle">PRO</span></div>
   <div class="search"><input id="search" placeholder="ምርቶችን ይፈልጉ..." data-i18n-placeholder="searchPlaceholder"></div>
   <div class="top-actions">
-    <button class="circle" id="msgBtn" style="font-size:20px">💬</button>
-    <button class="circle" id="settingsBtn">☰</button>
+    <button class="circle" id="msgBtn" style="font-size:18px">💬</button>
+    <button class="circle" id="settingsBtn" style="font-size:18px">☰</button>
   </div>
 </header>
 
@@ -188,7 +191,7 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
   <section class="modal">
     <div class="modalhead">
       <h2 id="modalTitle">VIP MALL</h2>
-      <button class="circle" id="closeModal" style="width:32px;height:32px;font-size:16px">✕</button>
+      <button class="circle" id="closeModal" style="width:30px;height:30px;font-size:14px">✕</button>
     </div>
     <div id="modalContent"></div>
   </section>
@@ -200,29 +203,29 @@ const i18n = {
   am: {
     welcome: "የእርስዎ ምርጥ የግዥ ቦታ", email: "ኢሜይል", password: "የይለፍ ቃል",
     loginBtn: "ግባ", noAccount: "መለያ የለህም?", signup: "ተመዝገብ",
-    fullName: "ሙሉ ስም", phone: "ስልክ ቁጥር (09...)", signupBtn: "ተመዝገብ", haveAccount: "መለያ አለህ?", login: "ግባ",
+    fullName: "ሙሉ ስም", phone: "ስልክ ቁጥር", signupBtn: "ተመዝገብ", haveAccount: "መለያ አለህ?", login: "ግባ",
     searchPlaceholder: "ምርቶችን ይፈልጉ...",
     catAll: "ሁሉም", catElec: "ኤሌክትሮኒክስ", catFash: "ልብስ", catHome: "የቤት ዕቃ", catVeh: "መኪና",
     featured: "የተመረጡ ምርቶች", items: "ምርቶች",
     navHome: "መነሻ", navSearch: "ፍለጋ", navSell: "ሽጥ", navWallet: "ዋሌት", navMenu: "ሜኑ",
-    menuInbox: "የመልእክት ሳጥን", menuSell: "እቃ ሽጥ", menuWallet: "የገንዘብ ቦርሳ", menuLang: "ቋንቋ", menuDark: "ጨለማ ሁነታ", menuLogout: "ውጣ",
-    sellTitle: "አዲስ እቃ ሽጥ", prodName: "የእቃው ስም", category: "ምድብ", price: "ዋጋ (ብር)", location: "አካባቢ", desc: "መግለጫ", photo: "ፎቶ (ከስልክዎ ይምረጡ)", publish: "እቃውን አሳይ",
-    walletTitle: "የገንዘብ ቦርሳ", balance: "ያለህ ቀሪ ሂሳብ", paymentMethods: "የክፍያ መንገድ ምረጥ", manualDep: "ወይም በእጅ ያስገቡ", amount: "መጠን (ብር)", deposit: "አስገባ",
+    menuInbox: "መልእክት", menuSell: "እቃ ሽጥ", menuWallet: "ዋሌት", menuLang: "ቋንቋ", menuDark: "ናይት ሙድ", menuLogout: "ውጣ",
+    sellTitle: "አዲስ እቃ ሽጥ", prodName: "የእቃው ስም", category: "ምድብ", price: "ዋጋ (ብር)", location: "አካባቢ", desc: "መግለጫ", photo: "ፎቶ", publish: "እቃውን አሳይ",
+    walletTitle: "ዋሌት", balance: "ቀሪ ሂሳብ", paymentMethods: "የክፍያ መንገድ", manualDep: "በእጅ ማስገቢያ (ሙከራ)", amount: "መጠን", deposit: "አስገባ",
     prodDetail: "የምርት ዝርዝር", description: "መግለጫ", place: "ቦታ", verifiedSeller: "የተረጋገጠ ሻጭ", msgSeller: "💬 ሻጩን አግኝ", callSeller: "📞 ይደውሉ",
-    chatTitle: "ጋር ተወያይ", typeMsg: "መልእክት ይጻፉ...", send: "ላክ", noMsgs: "ምንም መልእክት የለም",
-    langTitle: "ቋንቋ ቀይር", selectLang: "ቋንቋ ምረጥ", savedMsg: "በተሳካ ሁኔታ ተቀይሯል!"
+    chatTitle: "ከ ጋር ተወያይ", typeMsg: "መልእክት ይጻፉ...", send: "ላክ", noMsgs: "ምንም መልእክት የለም",
+    langTitle: "ቋንቋ ቀይር", selectLang: "ቋንቋ ምረጥ", savedMsg: "ተቀይሯል!"
   },
   en: {
     welcome: "Your Best Shopping Destination", email: "Email", password: "Password",
     loginBtn: "Login", noAccount: "No account?", signup: "Sign Up",
-    fullName: "Full Name", phone: "Phone (09...)", signupBtn: "Sign Up", haveAccount: "Have an account?", login: "Login",
+    fullName: "Full Name", phone: "Phone", signupBtn: "Sign Up", haveAccount: "Have an account?", login: "Login",
     searchPlaceholder: "Search products...",
     catAll: "All", catElec: "Electronics", catFash: "Fashion", catHome: "Home", catVeh: "Vehicles",
     featured: "Featured Products", items: "items",
     navHome: "Home", navSearch: "Search", navSell: "Sell", navWallet: "Wallet", navMenu: "Menu",
     menuInbox: "Inbox", menuSell: "Sell Item", menuWallet: "Wallet", menuLang: "Language", menuDark: "Dark Mode", menuLogout: "Logout",
-    sellTitle: "Sell New Item", prodName: "Product Name", category: "Category", price: "Price (ETB)", location: "Location", desc: "Description", photo: "Photo (Select from phone)", publish: "Publish Item",
-    walletTitle: "Wallet", balance: "Your Balance", paymentMethods: "Select Payment Method", manualDep: "Or Deposit Manually", amount: "Amount (ETB)", deposit: "Deposit",
+    sellTitle: "Sell New Item", prodName: "Product Name", category: "Category", price: "Price (ETB)", location: "Location", desc: "Description", photo: "Photo", publish: "Publish",
+    walletTitle: "Wallet", balance: "Balance", paymentMethods: "Payment Method", manualDep: "Manual Deposit (Test)", amount: "Amount", deposit: "Deposit",
     prodDetail: "Product Details", description: "Description", place: "Location", verifiedSeller: "Verified Seller", msgSeller: "💬 Message Seller", callSeller: "📞 Call",
     chatTitle: "Chat with", typeMsg: "Type a message...", send: "Send", noMsgs: "No messages yet",
     langTitle: "Change Language", selectLang: "Select Language", savedMsg: "Changed successfully!"
@@ -233,10 +236,8 @@ let currentLang = localStorage.getItem('vip-lang') || 'am';
 let currentUser = JSON.parse(localStorage.getItem('vip-user')) || null;
 let users = JSON.parse(localStorage.getItem('vip-users')) || {};
 let products = JSON.parse(localStorage.getItem('vip-products')) || [
-  { id: 1, name: 'Smartphone X Pro', cat: 'Electronics', price: 12500, loc: 'Addis Ababa', desc: 'Brand new smartphone with 128GB storage and 48MP camera.', img: '', seller: 'SMART Store', phone: '0911223344' },
-  { id: 2, name: 'Fashion Sneakers', cat: 'Fashion', price: 2300, loc: 'Jimma', desc: 'Original leather sneakers, size 42. Very comfortable.', img: '', seller: 'Abebe Store', phone: '0911556677' },
-  { id: 3, name: 'Modern Sofa', cat: 'Home', price: 8000, loc: 'Bahir Dar', desc: '3-seater modern sofa, excellent condition.', img: '', seller: 'Meron Shop', phone: '0911889900' },
-  { id: 4, name: 'Car Spare Parts', cat: 'Vehicles', price: 5600, loc: 'Hawassa', desc: 'Toyota Corolla spare parts. Brand new.', img: '', seller: 'Tadesse Auto', phone: '0912112233' }
+  { id: 1, name: 'Smartphone X Pro', cat: 'Electronics', price: 12500, loc: 'Addis Ababa', desc: 'Brand new smartphone with 128GB storage.', img: '', seller: 'SMART Store', phone: '0911223344' },
+  { id: 2, name: 'Fashion Sneakers', cat: 'Fashion', price: 2300, loc: 'Jimma', desc: 'Original leather sneakers.', img: '', seller: 'Abebe Store', phone: '0911556677' }
 ];
 let messages = JSON.parse(localStorage.getItem('vip-messages')) || {};
 let currentFilter = 'All';
@@ -314,15 +315,15 @@ function openProductDetail(id) {
       <div class="seller-info">
         <div class="avatar">${p.seller[0]}</div>
         <div>
-          <div style="font-weight:bold;font-size:16px">${p.seller}</div>
-          <div style="font-size:12px;color:var(--muted)">${t('verifiedSeller')}</div>
+          <div style="font-weight:bold;font-size:15px">${p.seller}</div>
+          <div style="font-size:11px;color:var(--muted)">${t('verifiedSeller')}</div>
         </div>
       </div>
     </div>
 
-    <button class="primary full" style="margin-bottom:12px;font-size:18px" onclick="contactSeller(${p.id})">${t('msgSeller')}</button>
+    <button class="primary full" style="margin-bottom:10px;font-size:16px" onclick="contactSeller(${p.id})">${t('msgSeller')}</button>
     <a href="tel:${p.phone}" style="text-decoration:none;display:block">
-      <button class="soft full" style="font-size:16px;background:var(--line);color:var(--text)">${t('callSeller')} (${p.phone})</button>
+      <button class="soft full" style="font-size:14px;background:var(--line);color:var(--text)">${t('callSeller')} (${p.phone})</button>
     </a>
   `;
   $('modalBack').classList.add('show');
@@ -348,7 +349,7 @@ function contactSeller(productId) {
         ${messages[chatId].map(m => `
           <div class="msg ${m.sender === currentUser ? 'sent' : 'received'}">
             ${m.text}
-            <div style="font-size:10px;opacity:0.7;margin-top:4px;text-align:right">${m.time}</div>
+            <div style="font-size:9px;opacity:0.7;margin-top:4px;text-align:right">${m.time}</div>
           </div>
         `).join('')}
       </div>
@@ -377,7 +378,7 @@ function sendMsg(chatId, sellerName, productId) {
   const msgs = $('chatMsgs');
   const div = document.createElement('div');
   div.className = 'msg sent';
-  div.innerHTML = `${text}<div style="font-size:10px;opacity:0.7;margin-top:4px;text-align:right">${new Date().toLocaleTimeString()}</div>`;
+  div.innerHTML = `${text}<div style="font-size:9px;opacity:0.7;margin-top:4px;text-align:right">${new Date().toLocaleTimeString()}</div>`;
   msgs.appendChild(div);
   msgs.scrollTop = msgs.scrollHeight;
 
@@ -386,7 +387,7 @@ function sendMsg(chatId, sellerName, productId) {
     saveData();
     const replyDiv = document.createElement('div');
     replyDiv.className = 'msg received';
-    replyDiv.innerHTML = `Ok, I understand. We will contact you soon.<div style="font-size:10px;opacity:0.7;margin-top:4px">${new Date().toLocaleTimeString()}</div>`;
+    replyDiv.innerHTML = `Ok, I understand. We will contact you soon.<div style="font-size:9px;opacity:0.7;margin-top:4px">${new Date().toLocaleTimeString()}</div>`;
     msgs.appendChild(replyDiv);
     msgs.scrollTop = msgs.scrollHeight;
   }, 1500);
@@ -409,7 +410,7 @@ function openInbox() {
           <div class="menu-icon">💬</div>
           <div style="flex:1;overflow:hidden">
             <div style="font-weight:bold">${prod.seller}</div>
-            <div style="font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${lastMsg.text}</div>
+            <div style="font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${lastMsg.text}</div>
           </div>
         </div>
       `;
@@ -423,7 +424,7 @@ function openSellModal() {
   if (!currentUser) { checkAuth(); return; }
   $('modalTitle').innerText = t('sellTitle');
   $('modalContent').innerHTML = `
-    <div class="field"><label>${t('prodName')}</label><input id="sellName" placeholder="e.g. iPhone 13"></div>
+    <div class="field"><label>${t('prodName')}</label><input id="sellName" placeholder="iPhone 13"></div>
     <div class="field"><label>${t('category')}</label>
       <select id="sellCat">
         <option value="Electronics">${t('catElec')}</option>
@@ -460,7 +461,7 @@ function publishProduct() {
     saveData();
     closeModal();
     renderProducts();
-    alert('✅ Item published successfully!');
+    alert('✅ Item published!');
   };
 
   if (imgFile) {
@@ -478,24 +479,24 @@ function openWallet() {
   const bal = users[currentUser].balance;
   $('modalTitle').innerText = t('walletTitle');
   $('modalContent').innerHTML = `
-    <div style="text-align:center;padding:24px;background:var(--bg);border-radius:16px;margin-bottom:20px">
-      <div style="font-size:14px;color:var(--muted);margin-bottom:8px">${t('balance')}</div>
-      <div style="font-size:36px;font-weight:900;color:var(--blue)">${bal.toLocaleString()} ETB</div>
+    <div style="text-align:center;padding:20px;background:var(--bg);border-radius:16px;margin-bottom:20px">
+      <div style="font-size:13px;color:var(--muted);margin-bottom:4px">${t('balance')}</div>
+      <div style="font-size:30px;font-weight:900;color:var(--blue)">${bal.toLocaleString()} ETB</div>
     </div>
-    <h4 style="margin:0 0 12px;color:var(--muted)">${t('paymentMethods')}</h4>
+    <h4 style="margin:0 0 12px;color:var(--muted);font-size:14px">${t('paymentMethods')}</h4>
     
     <button class="pay-btn" onclick="window.open('https://t.me/telebirr_official', '_blank')">
-      <span style="font-size:24px">📱</span> Telebirr
+      <span style="font-size:22px">📱</span> Telebirr
     </button>
     <button class="pay-btn" onclick="window.open('https://cbe.com.et', '_blank')">
-      <span style="font-size:24px">🏦</span> CBE Birr
+      <span style="font-size:22px">🏦</span> CBE Birr
     </button>
     <button class="pay-btn" onclick="window.open('https://www.awashbank.com', '_blank')">
-      <span style="font-size:24px">🏛️</span> Awash Bank
+      <span style="font-size:22px">🏛️</span> Awash Bank
     </button>
     
-    <div style="margin-top:24px;border-top:1px solid var(--line);padding-top:24px">
-      <h4 style="margin:0 0 12px;color:var(--muted)">${t('manualDep')}</h4>
+    <div style="margin-top:20px;border-top:1px solid var(--line);padding-top:20px">
+      <h4 style="margin:0 0 10px;color:var(--muted);font-size:14px">${t('manualDep')}</h4>
       <div class="field"><label>${t('amount')}</label><input id="walletAmt" type="number" placeholder="0" min="10"></div>
       <button class="primary full" onclick="simulateDeposit()">${t('deposit')}</button>
     </div>
@@ -575,10 +576,10 @@ function openModal(type) {
       <button class="menu-item" onclick="openInbox()"><div class="menu-icon">💬</div> ${t('menuInbox')}</button>
       <button class="menu-item" onclick="openSellModal()"><div class="menu-icon">➕</div> ${t('menuSell')}</button>
       <button class="menu-item" onclick="openWallet()"><div class="menu-icon">💳</div> ${t('menuWallet')}</button>
-      <div style="height:1px;background:var(--line);margin:12px 0"></div>
+      <div style="height:1px;background:var(--line);margin:10px 0"></div>
       <button class="menu-item" onclick="openLanguageModal()"><div class="menu-icon">🌐</div> ${t('menuLang')}</button>
       <button class="menu-item" onclick="toggleTheme()"><div class="menu-icon">🌙</div> ${t('menuDark')}</button>
-      <div style="height:1px;background:var(--line);margin:12px 0"></div>
+      <div style="height:1px;background:var(--line);margin:10px 0"></div>
       <button class="menu-item" onclick="logout()" style="color:var(--primary)"><div class="menu-icon" style="background:#fee2e2;color:var(--primary)">🚪</div> ${t('menuLogout')}</button>
     `;
     $('modalBack').classList.add('show');
@@ -590,8 +591,8 @@ function openLanguageModal() {
   $('modalContent').innerHTML = `
     <div class="field">
       <label>${t('selectLang')}</label>
-      <select id="langSelect" style="padding:16px;font-size:16px" onchange="changeLanguage(this.value)">
-        <option value="am" ${currentLang==='am'?'selected':''}>🇪🇹 አማርኛ (Amharic)</option>
+      <select id="langSelect" style="padding:14px;font-size:15px" onchange="changeLanguage(this.value)">
+        <option value="am" ${currentLang==='am'?'selected':''}>🇪🇹 አማርኛ</option>
         <option value="en" ${currentLang==='en'?'selected':''}>🇺🇸 English</option>
       </select>
     </div>
