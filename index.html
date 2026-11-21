@@ -19,7 +19,8 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
 
 /* Header */
 .top{position:sticky;top:0;z-index:40;background:var(--surface);box-shadow:0 1px 3px rgb(0 0 0 / 0.05);display:flex;align-items:center;gap:12px;padding:10px max(16px,calc((100vw - 1240px)/2));border-bottom:1px solid var(--line);min-height:var(--header-h);flex-wrap:wrap}
-.logo{font-size:22px;font-weight:900;color:var(--primary);letter-spacing:-1px;display:flex;align-items:center;gap:6px;white-space:nowrap}
+/* ሎጎው ለመግቢያ ራስጌ */
+.logo-img{height:38px;object-fit:contain;border-radius:6px}
 .search{flex:1;min-width:200px;position:relative}
 .search input{width:100%;border:1px solid var(--line);border-radius:24px;background:var(--bg);padding:10px 16px 10px 40px;color:var(--text);font-size:14px;transition:border-color 0.2s}
 .search input:focus{border-color:var(--primary)}
@@ -112,7 +113,7 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
   .cart-panel{display:none}
   .bottom-nav{display:block}
   .top{padding:10px 12px}
-  .logo{font-size:18px}
+  .logo-img{height:30px}
   .search{order:3;width:100%;flex:1 1 100%;margin-top:4px}
   .cat-nav{top:102px;gap:16px;padding:0 12px}
 }
@@ -127,7 +128,10 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
 <!-- Login Overlay -->
 <div class="login-screen" id="loginScreen">
   <div class="login-card">
-    <div class="logo">VIP<span>MALL</span></div>
+    <div class="logo" style="margin-bottom:16px">
+      <!-- የመግቢያ ሎጎ (ከተቻለ በፋይል ስም ይተካ) -->
+      <img src="logo.png" alt="VIP MALL" style="height:80px;object-fit:contain" onerror="this.outerHTML='<h1 style=\'margin:0;font-weight:900;color:var(--primary)\'>VIP MALL</h1>'">
+    </div>
     <p style="color:#94a3b8;margin-bottom:20px" data-i18n="welcome">የእርስዎ ምርጥ የግዥ ቦታ</p>
     <div id="loginForm">
       <input type="email" id="loginEmail" placeholder="ኢሜይል / Email" data-i18n-placeholder="email">
@@ -149,7 +153,9 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
 
 <!-- Header -->
 <header class="top">
-  <div class="logo">VIP MALL <span style="font-size:9px;background:var(--primary);color:white;padding:2px 5px;border-radius:4px;vertical-align:middle">PRO</span></div>
+  <!-- እዚህ ጋር ሎጎውን እናስገባለን -->
+  <img src="logo.png" alt="VIP MALL" class="logo-img" onerror="this.outerHTML='<div class=\'logo\' style=\'font-size:20px;font-weight:900;color:var(--primary)\'>VIP MALL <span style=\'font-size:9px;background:var(--primary);color:white;padding:2px 5px;border-radius:4px;vertical-align:middle\'>PRO</span></div>'">
+  
   <div class="search"><input id="search" placeholder="ምርቶችን ይፈልጉ..." data-i18n-placeholder="searchPlaceholder"></div>
   <div class="top-actions">
     <button class="circle" id="msgBtn" style="font-size:18px">💬</button>
