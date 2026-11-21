@@ -19,7 +19,6 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
 
 /* Header */
 .top{position:sticky;top:0;z-index:40;background:var(--surface);box-shadow:0 1px 3px rgb(0 0 0 / 0.05);display:flex;align-items:center;gap:12px;padding:10px max(16px,calc((100vw - 1240px)/2));border-bottom:1px solid var(--line);min-height:var(--header-h);flex-wrap:wrap}
-/* ሎጎው ለመግቢያ ራስጌ */
 .logo-img{height:38px;object-fit:contain;border-radius:6px}
 .search{flex:1;min-width:200px;position:relative}
 .search input{width:100%;border:1px solid var(--line);border-radius:24px;background:var(--bg);padding:10px 16px 10px 40px;color:var(--text);font-size:14px;transition:border-color 0.2s}
@@ -129,7 +128,6 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
 <div class="login-screen" id="loginScreen">
   <div class="login-card">
     <div class="logo" style="margin-bottom:16px">
-      <!-- የመግቢያ ሎጎ (ከተቻለ በፋይል ስም ይተካ) -->
       <img src="logo.png" alt="VIP MALL" style="height:80px;object-fit:contain" onerror="this.outerHTML='<h1 style=\'margin:0;font-weight:900;color:var(--primary)\'>VIP MALL</h1>'">
     </div>
     <p style="color:#94a3b8;margin-bottom:20px" data-i18n="welcome">የእርስዎ ምርጥ የግዥ ቦታ</p>
@@ -153,9 +151,7 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
 
 <!-- Header -->
 <header class="top">
-  <!-- እዚህ ጋር ሎጎውን እናስገባለን -->
   <img src="logo.png" alt="VIP MALL" class="logo-img" onerror="this.outerHTML='<div class=\'logo\' style=\'font-size:20px;font-weight:900;color:var(--primary)\'>VIP MALL <span style=\'font-size:9px;background:var(--primary);color:white;padding:2px 5px;border-radius:4px;vertical-align:middle\'>PRO</span></div>'">
-  
   <div class="search"><input id="search" placeholder="ምርቶችን ይፈልጉ..." data-i18n-placeholder="searchPlaceholder"></div>
   <div class="top-actions">
     <button class="circle" id="msgBtn" style="font-size:18px">💬</button>
@@ -491,10 +487,11 @@ function openWallet() {
     </div>
     <h4 style="margin:0 0 12px;color:var(--muted);font-size:14px">${t('paymentMethods')}</h4>
     
-    <button class="pay-btn" onclick="window.open('https://t.me/telebirr_official', '_blank')">
+    <!-- እውነተኛ የክፍያ ሊንኮች -->
+    <button class="pay-btn" onclick="window.open('https://play.google.com/store/apps/details?id=com.ethiotelecom.telebirr', '_blank')">
       <span style="font-size:22px">📱</span> Telebirr
     </button>
-    <button class="pay-btn" onclick="window.open('https://cbe.com.et', '_blank')">
+    <button class="pay-btn" onclick="window.open('https://play.google.com/store/apps/details?id=com.cbe.cbebirr', '_blank')">
       <span style="font-size:22px">🏦</span> CBE Birr
     </button>
     <button class="pay-btn" onclick="window.open('https://www.awashbank.com', '_blank')">
