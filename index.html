@@ -74,7 +74,6 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
 /* Payment Options */
 .pay-btn{display:flex;align-items:center;gap:12px;width:100%;padding:16px;border-radius:12px;background:var(--bg);border:1px solid var(--line);margin-bottom:10px;font-weight:700;color:var(--text);cursor:pointer;transition:0.2s}
 .pay-btn:hover{border-color:var(--primary);background:var(--surface)}
-.pay-btn img{width:32px;height:32px;border-radius:8px;object-fit:contain}
 
 /* Modals */
 .modalback{display:none;position:fixed;inset:0;background:#000a;backdrop-filter:blur(4px);z-index:100;align-items:flex-end;justify-content:center;padding:0}
@@ -126,20 +125,20 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
 <div class="login-screen" id="loginScreen">
   <div class="login-card">
     <div class="logo">VIP<span>MALL</span></div>
-    <p style="color:#94a3b8;margin-bottom:24px">የእርስዎ ምርጥ የግዥ ቦታ</p>
+    <p style="color:#94a3b8;margin-bottom:24px" data-i18n="welcome">የእርስዎ ምርጥ የግዥ ቦታ</p>
     <div id="loginForm">
-      <input type="email" id="loginEmail" placeholder="ኢሜይል / Email">
-      <input type="password" id="loginPassword" placeholder="የይለፍ ቃል / Password">
-      <button onclick="doLogin()">ግባ / Login</button>
-      <div class="switch">መለያ የለህም? <span onclick="showSignup()">ተመዝገብ / Sign Up</span></div>
+      <input type="email" id="loginEmail" placeholder="ኢሜይል / Email" data-i18n-placeholder="email">
+      <input type="password" id="loginPassword" placeholder="የይለፍ ቃል / Password" data-i18n-placeholder="password">
+      <button onclick="doLogin()" data-i18n="loginBtn">ግባ / Login</button>
+      <div class="switch"><span data-i18n="noAccount">መለያ የለህም?</span> <span onclick="showSignup()" data-i18n="signup">ተመዝገብ / Sign Up</span></div>
     </div>
     <div id="signupForm" style="display:none">
-      <input type="text" id="signupName" placeholder="ሙሉ ስም / Full Name">
-      <input type="email" id="signupEmail" placeholder="ኢሜይል / Email">
-      <input type="password" id="signupPassword" placeholder="የይለፍ ቃል / Password">
-      <input type="tel" id="signupPhone" placeholder="ስልክ ቁጥር / Phone (09...)">
-      <button onclick="doSignup()">ተመዝገብ / Sign Up</button>
-      <div class="switch">መለያ አለህ? <span onclick="showLogin()">ግባ / Login</span></div>
+      <input type="text" id="signupName" placeholder="ሙሉ ስም / Full Name" data-i18n-placeholder="fullName">
+      <input type="email" id="signupEmail" placeholder="ኢሜይል / Email" data-i18n-placeholder="email">
+      <input type="password" id="signupPassword" placeholder="የይለፍ ቃል / Password" data-i18n-placeholder="password">
+      <input type="tel" id="signupPhone" placeholder="ስልክ ቁጥር / Phone (09...)" data-i18n-placeholder="phone">
+      <button onclick="doSignup()" data-i18n="signupBtn">ተመዝገብ / Sign Up</button>
+      <div class="switch"><span data-i18n="haveAccount">መለያ አለህ?</span> <span onclick="showLogin()" data-i18n="login">ግባ / Login</span></div>
     </div>
     <div id="loginError" style="color:#ef4444;font-size:13px;margin-top:12px;font-weight:bold"></div>
   </div>
@@ -148,7 +147,7 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
 <!-- Header -->
 <header class="top">
   <div class="logo">VIP MALL <span style="font-size:10px;background:var(--primary);color:white;padding:2px 6px;border-radius:4px;vertical-align:middle">PRO</span></div>
-  <div class="search"><input id="search" placeholder="ምርቶችን ይፈልጉ..."></div>
+  <div class="search"><input id="search" placeholder="ምርቶችን ይፈልጉ..." data-i18n-placeholder="searchPlaceholder"></div>
   <div class="top-actions">
     <button class="circle" id="msgBtn" style="font-size:20px">💬</button>
     <button class="circle" id="settingsBtn">☰</button>
@@ -156,18 +155,18 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
 </header>
 
 <nav class="cat-nav">
-  <div class="cat-item active" data-filter="All">🏠 ሁሉም</div>
-  <div class="cat-item" data-filter="Electronics">📱 ኤሌክትሮኒክስ</div>
-  <div class="cat-item" data-filter="Fashion">👕 ልብስ</div>
-  <div class="cat-item" data-filter="Home">🛋️ የቤት ዕቃ</div>
-  <div class="cat-item" data-filter="Vehicles">🚗 መኪና</div>
+  <div class="cat-item active" data-filter="All"><span data-i18n="catAll">🏠 ሁሉም</span></div>
+  <div class="cat-item" data-filter="Electronics"><span data-i18n="catElec">📱 ኤሌክትሮኒክስ</span></div>
+  <div class="cat-item" data-filter="Fashion"><span data-i18n="catFash">👕 ልብስ</span></div>
+  <div class="cat-item" data-filter="Home"><span data-i18n="catHome">🛋️ የቤት ዕቃ</span></div>
+  <div class="cat-item" data-filter="Vehicles"><span data-i18n="catVeh">🚗 መኪና</span></div>
 </nav>
 
 <div class="wrap">
   <main>
     <div class="sectionhead">
-      <h2>የተመረጡ ምርቶች</h2>
-      <span class="meta" id="count">0 ምርቶች</span>
+      <h2 data-i18n="featured">የተመረጡ ምርቶች</h2>
+      <span class="meta" id="count">0</span>
     </div>
     <div class="grid" id="products"></div>
   </main>
@@ -176,11 +175,11 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
 <!-- Mobile Bottom Nav -->
 <div class="bottom-nav">
   <div class="bottom-nav-inner">
-    <div class="b-nav-item active" onclick="window.scrollTo(0,0)"><span>🏠</span>መነሻ</div>
-    <div class="b-nav-item" onclick="document.getElementById('search').focus()"><span>🔍</span>ፍለጋ</div>
-    <div class="b-nav-item" onclick="openModal('sell')"><span>➕</span>ሽጥ</div>
-    <div class="b-nav-item" onclick="openModal('wallet')"><span>💳</span>ዋሌት</div>
-    <div class="b-nav-item" onclick="openModal('menu')"><span>☰</span>ሜኑ</div>
+    <div class="b-nav-item active" onclick="window.scrollTo(0,0)"><span>🏠</span><span data-i18n="navHome">መነሻ</span></div>
+    <div class="b-nav-item" onclick="document.getElementById('search').focus()"><span>🔍</span><span data-i18n="navSearch">ፍለጋ</span></div>
+    <div class="b-nav-item" onclick="openModal('sell')"><span>➕</span><span data-i18n="navSell">ሽጥ</span></div>
+    <div class="b-nav-item" onclick="openModal('wallet')"><span>💳</span><span data-i18n="navWallet">ዋሌት</span></div>
+    <div class="b-nav-item" onclick="openModal('menu')"><span>☰</span><span data-i18n="navMenu">ሜኑ</span></div>
   </div>
 </div>
 
@@ -196,24 +195,66 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
 </div>
 
 <script>
-// ==================== DATA & STATE ====================
+// ==================== TRANSLATIONS ====================
+const i18n = {
+  am: {
+    welcome: "የእርስዎ ምርጥ የግዥ ቦታ", email: "ኢሜይል", password: "የይለፍ ቃል",
+    loginBtn: "ግባ", noAccount: "መለያ የለህም?", signup: "ተመዝገብ",
+    fullName: "ሙሉ ስም", phone: "ስልክ ቁጥር (09...)", signupBtn: "ተመዝገብ", haveAccount: "መለያ አለህ?", login: "ግባ",
+    searchPlaceholder: "ምርቶችን ይፈልጉ...",
+    catAll: "ሁሉም", catElec: "ኤሌክትሮኒክስ", catFash: "ልብስ", catHome: "የቤት ዕቃ", catVeh: "መኪና",
+    featured: "የተመረጡ ምርቶች", items: "ምርቶች",
+    navHome: "መነሻ", navSearch: "ፍለጋ", navSell: "ሽጥ", navWallet: "ዋሌት", navMenu: "ሜኑ",
+    menuInbox: "የመልእክት ሳጥን", menuSell: "እቃ ሽጥ", menuWallet: "የገንዘብ ቦርሳ", menuLang: "ቋንቋ", menuDark: "ጨለማ ሁነታ", menuLogout: "ውጣ",
+    sellTitle: "አዲስ እቃ ሽጥ", prodName: "የእቃው ስም", category: "ምድብ", price: "ዋጋ (ብር)", location: "አካባቢ", desc: "መግለጫ", photo: "ፎቶ (ከስልክዎ ይምረጡ)", publish: "እቃውን አሳይ",
+    walletTitle: "የገንዘብ ቦርሳ", balance: "ያለህ ቀሪ ሂሳብ", paymentMethods: "የክፍያ መንገድ ምረጥ", manualDep: "ወይም በእጅ ያስገቡ", amount: "መጠን (ብር)", deposit: "አስገባ",
+    prodDetail: "የምርት ዝርዝር", description: "መግለጫ", place: "ቦታ", verifiedSeller: "የተረጋገጠ ሻጭ", msgSeller: "💬 ሻጩን አግኝ", callSeller: "📞 ይደውሉ",
+    chatTitle: "ጋር ተወያይ", typeMsg: "መልእክት ይጻፉ...", send: "ላክ", noMsgs: "ምንም መልእክት የለም",
+    langTitle: "ቋንቋ ቀይር", selectLang: "ቋንቋ ምረጥ", savedMsg: "በተሳካ ሁኔታ ተቀይሯል!"
+  },
+  en: {
+    welcome: "Your Best Shopping Destination", email: "Email", password: "Password",
+    loginBtn: "Login", noAccount: "No account?", signup: "Sign Up",
+    fullName: "Full Name", phone: "Phone (09...)", signupBtn: "Sign Up", haveAccount: "Have an account?", login: "Login",
+    searchPlaceholder: "Search products...",
+    catAll: "All", catElec: "Electronics", catFash: "Fashion", catHome: "Home", catVeh: "Vehicles",
+    featured: "Featured Products", items: "items",
+    navHome: "Home", navSearch: "Search", navSell: "Sell", navWallet: "Wallet", navMenu: "Menu",
+    menuInbox: "Inbox", menuSell: "Sell Item", menuWallet: "Wallet", menuLang: "Language", menuDark: "Dark Mode", menuLogout: "Logout",
+    sellTitle: "Sell New Item", prodName: "Product Name", category: "Category", price: "Price (ETB)", location: "Location", desc: "Description", photo: "Photo (Select from phone)", publish: "Publish Item",
+    walletTitle: "Wallet", balance: "Your Balance", paymentMethods: "Select Payment Method", manualDep: "Or Deposit Manually", amount: "Amount (ETB)", deposit: "Deposit",
+    prodDetail: "Product Details", description: "Description", place: "Location", verifiedSeller: "Verified Seller", msgSeller: "💬 Message Seller", callSeller: "📞 Call",
+    chatTitle: "Chat with", typeMsg: "Type a message...", send: "Send", noMsgs: "No messages yet",
+    langTitle: "Change Language", selectLang: "Select Language", savedMsg: "Changed successfully!"
+  }
+};
+
+let currentLang = localStorage.getItem('vip-lang') || 'am';
 let currentUser = JSON.parse(localStorage.getItem('vip-user')) || null;
 let users = JSON.parse(localStorage.getItem('vip-users')) || {};
 let products = JSON.parse(localStorage.getItem('vip-products')) || [
-  { id: 1, name: 'Smartphone X Pro', cat: 'Electronics', price: 12500, loc: 'አዲስ አበባ', desc: 'Brand new smartphone with 128GB storage and 48MP camera.', img: '', seller: 'SMART Store', phone: '0911223344' },
-  { id: 2, name: 'Fashion Sneakers', cat: 'Fashion', price: 2300, loc: 'ጅማ', desc: 'Original leather sneakers, size 42. Very comfortable.', img: '', seller: 'Abebe Store', phone: '0911556677' },
-  { id: 3, name: 'Modern Sofa', cat: 'Home', price: 8000, loc: 'ባህር ዳር', desc: '3-seater modern sofa, excellent condition.', img: '', seller: 'Meron Shop', phone: '0911889900' },
-  { id: 4, name: 'Car Spare Parts', cat: 'Vehicles', price: 5600, loc: 'ሀዋሳ', desc: 'Toyota Corolla spare parts. Brand new.', img: '', seller: 'Tadesse Auto', phone: '0912112233' }
+  { id: 1, name: 'Smartphone X Pro', cat: 'Electronics', price: 12500, loc: 'Addis Ababa', desc: 'Brand new smartphone with 128GB storage and 48MP camera.', img: '', seller: 'SMART Store', phone: '0911223344' },
+  { id: 2, name: 'Fashion Sneakers', cat: 'Fashion', price: 2300, loc: 'Jimma', desc: 'Original leather sneakers, size 42. Very comfortable.', img: '', seller: 'Abebe Store', phone: '0911556677' },
+  { id: 3, name: 'Modern Sofa', cat: 'Home', price: 8000, loc: 'Bahir Dar', desc: '3-seater modern sofa, excellent condition.', img: '', seller: 'Meron Shop', phone: '0911889900' },
+  { id: 4, name: 'Car Spare Parts', cat: 'Vehicles', price: 5600, loc: 'Hawassa', desc: 'Toyota Corolla spare parts. Brand new.', img: '', seller: 'Tadesse Auto', phone: '0912112233' }
 ];
 let messages = JSON.parse(localStorage.getItem('vip-messages')) || {};
 let currentFilter = 'All';
 
 const $ = id => document.getElementById(id);
+const t = key => i18n[currentLang][key] || i18n['en'][key] || key;
+
+function applyTranslations() {
+  document.querySelectorAll('[data-i18n]').forEach(el => el.innerText = t(el.dataset.i18n));
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => el.placeholder = t(el.dataset.i18nPlaceholder));
+  renderProducts();
+}
 
 function saveData() {
   localStorage.setItem('vip-products', JSON.stringify(products));
   localStorage.setItem('vip-messages', JSON.stringify(messages));
   localStorage.setItem('vip-users', JSON.stringify(users));
+  localStorage.setItem('vip-lang', currentLang);
 }
 
 // ==================== RENDER PRODUCTS ====================
@@ -239,17 +280,17 @@ function renderProducts() {
       </div>
       <div class="pbody">
         <h3>${p.name}</h3>
-        <div class="price">${p.price.toLocaleString()} ብር</div>
+        <div class="price">${p.price.toLocaleString()} ETB</div>
         <div class="meta">📍 ${p.loc}</div>
         <div class="seller">
           <div style="display:flex;align-items:center"><span class="avatar">${p.seller[0]}</span> ${p.seller}</div>
-          <span style="color:var(--primary);font-weight:bold">ይመልከቱ →</span>
+          <span style="color:var(--primary);font-weight:bold">→</span>
         </div>
       </div>
     `;
     grid.appendChild(card);
   });
-  $('count').innerText = count + ' ምርቶች';
+  $('count').innerText = count + ' ' + t('items');
 }
 
 // ==================== PRODUCT DETAIL ====================
@@ -257,16 +298,16 @@ function openProductDetail(id) {
   const p = products.find(x => x.id === id);
   if (!p) return;
 
-  $('modalTitle').innerText = 'የምርት ዝርዝር';
+  $('modalTitle').innerText = t('prodDetail');
   $('modalContent').innerHTML = `
     <div class="detail-img">
       ${p.img ? `<img src="${p.img}" alt="${p.name}">` : '📦'}
     </div>
     <h1 class="detail-title">${p.name}</h1>
-    <div class="detail-price">${p.price.toLocaleString()} ብር</div>
+    <div class="detail-price">${p.price.toLocaleString()} ETB</div>
     <div class="detail-desc">
-      <strong>መግለጫ፦</strong><br>${p.desc}<br><br>
-      <strong>📍 ቦታ፦</strong> ${p.loc}
+      <strong>${t('description')}:</strong><br>${p.desc}<br><br>
+      <strong>📍 ${t('place')}:</strong> ${p.loc}
     </div>
     
     <div class="detail-seller">
@@ -274,14 +315,14 @@ function openProductDetail(id) {
         <div class="avatar">${p.seller[0]}</div>
         <div>
           <div style="font-weight:bold;font-size:16px">${p.seller}</div>
-          <div style="font-size:12px;color:var(--muted)">የተረጋገጠ ሻጭ</div>
+          <div style="font-size:12px;color:var(--muted)">${t('verifiedSeller')}</div>
         </div>
       </div>
     </div>
 
-    <button class="primary full" style="margin-bottom:12px;font-size:18px" onclick="contactSeller(${p.id})">💬 ሻጩን አግኝ (Message)</button>
+    <button class="primary full" style="margin-bottom:12px;font-size:18px" onclick="contactSeller(${p.id})">${t('msgSeller')}</button>
     <a href="tel:${p.phone}" style="text-decoration:none;display:block">
-      <button class="soft full" style="font-size:16px;background:var(--line);color:var(--text)">📞 ይደውሉ (${p.phone})</button>
+      <button class="soft full" style="font-size:16px;background:var(--line);color:var(--text)">${t('callSeller')} (${p.phone})</button>
     </a>
   `;
   $('modalBack').classList.add('show');
@@ -295,12 +336,12 @@ function contactSeller(productId) {
 
   if (!messages[chatId]) {
     messages[chatId] = [
-      { sender: p.seller, text: `ሰላም! ስለ "${p.name}" ጠይቀዋል። እንዴት ልርዳዎት?`, time: new Date().toLocaleTimeString() }
+      { sender: p.seller, text: `Hello! You asked about "${p.name}". How can I help you?`, time: new Date().toLocaleTimeString() }
     ];
     saveData();
   }
 
-  $('modalTitle').innerText = `💬 ${p.seller} ጋር ተወያይ`;
+  $('modalTitle').innerText = `${t('chatTitle')} ${p.seller}`;
   $('modalContent').innerHTML = `
     <div class="chat-box">
       <div class="chat-messages" id="chatMsgs">
@@ -312,8 +353,8 @@ function contactSeller(productId) {
         `).join('')}
       </div>
       <div class="chat-input">
-        <input type="text" id="chatInput" placeholder="መልእክት ይጻፉ..." onkeypress="if(event.key==='Enter') sendMsg('${chatId}', '${p.seller}', ${p.id})">
-        <button class="primary" onclick="sendMsg('${chatId}', '${p.seller}', ${p.id})">ላክ</button>
+        <input type="text" id="chatInput" placeholder="${t('typeMsg')}" onkeypress="if(event.key==='Enter') sendMsg('${chatId}', '${p.seller}', ${p.id})">
+        <button class="primary" onclick="sendMsg('${chatId}', '${p.seller}', ${p.id})">${t('send')}</button>
       </div>
     </div>
   `;
@@ -340,13 +381,12 @@ function sendMsg(chatId, sellerName, productId) {
   msgs.appendChild(div);
   msgs.scrollTop = msgs.scrollHeight;
 
-  // Simulate Reply
   setTimeout(() => {
-    messages[chatId].push({ sender: sellerName, text: "እሺ፣ ተረዳሁ። በቅርቡ እናገኝዎታለን።", time: new Date().toLocaleTimeString() });
+    messages[chatId].push({ sender: sellerName, text: "Ok, I understand. We will contact you soon.", time: new Date().toLocaleTimeString() });
     saveData();
     const replyDiv = document.createElement('div');
     replyDiv.className = 'msg received';
-    replyDiv.innerHTML = `እሺ፣ ተረዳሁ። በቅርቡ እናገኝዎታለን።<div style="font-size:10px;opacity:0.7;margin-top:4px">${new Date().toLocaleTimeString()}</div>`;
+    replyDiv.innerHTML = `Ok, I understand. We will contact you soon.<div style="font-size:10px;opacity:0.7;margin-top:4px">${new Date().toLocaleTimeString()}</div>`;
     msgs.appendChild(replyDiv);
     msgs.scrollTop = msgs.scrollHeight;
   }, 1500);
@@ -355,9 +395,9 @@ function sendMsg(chatId, sellerName, productId) {
 function openInbox() {
   if (!currentUser) { checkAuth(); return; }
   const chatIds = Object.keys(messages);
-  $('modalTitle').innerText = '💬 የመልእክት ሳጥን';
+  $('modalTitle').innerText = t('menuInbox');
   if (chatIds.length === 0) {
-    $('modalContent').innerHTML = '<div style="text-align:center;padding:40px;color:var(--muted)">ምንም መልእክት የለም</div>';
+    $('modalContent').innerHTML = `<div style="text-align:center;padding:40px;color:var(--muted)">${t('noMsgs')}</div>`;
   } else {
     $('modalContent').innerHTML = chatIds.map(id => {
       const parts = id.split('_');
@@ -381,17 +421,22 @@ function openInbox() {
 // ==================== SELL PRODUCT ====================
 function openSellModal() {
   if (!currentUser) { checkAuth(); return; }
-  $('modalTitle').innerText = '➕ አዲስ እቃ ሽጥ';
+  $('modalTitle').innerText = t('sellTitle');
   $('modalContent').innerHTML = `
-    <div class="field"><label>የእቃው ስም</label><input id="sellName" placeholder="ለምሳሌ፡ iPhone 13"></div>
-    <div class="field"><label>ምድብ</label>
-      <select id="sellCat"><option value="Electronics">📱 ኤሌክትሮኒክስ</option><option value="Fashion">👕 ልብስ</option><option value="Home">🛋️ የቤት ዕቃ</option><option value="Vehicles">🚗 መኪና</option></select>
+    <div class="field"><label>${t('prodName')}</label><input id="sellName" placeholder="e.g. iPhone 13"></div>
+    <div class="field"><label>${t('category')}</label>
+      <select id="sellCat">
+        <option value="Electronics">${t('catElec')}</option>
+        <option value="Fashion">${t('catFash')}</option>
+        <option value="Home">${t('catHome')}</option>
+        <option value="Vehicles">${t('catVeh')}</option>
+      </select>
     </div>
-    <div class="field"><label>ዋጋ (ብር)</label><input id="sellPrice" type="number" placeholder="0"></div>
-    <div class="field"><label>አካባቢ (Location)</label><input id="sellLoc" placeholder="ለምሳሌ፡ አዲስ አበባ"></div>
-    <div class="field"><label>መግለጫ</label><textarea id="sellDesc" placeholder="ስለ እቃው አጭር መግለጫ ይጻፉ..."></textarea></div>
-    <div class="field"><label>ፎቶ (ከስልክዎ ይምረጡ)</label><input type="file" id="sellImg" accept="image/*" style="padding:10px"></div>
-    <button class="primary full" onclick="publishProduct()">እቃውን አሳይ</button>
+    <div class="field"><label>${t('price')}</label><input id="sellPrice" type="number" placeholder="0"></div>
+    <div class="field"><label>${t('location')}</label><input id="sellLoc" placeholder="Addis Ababa"></div>
+    <div class="field"><label>${t('desc')}</label><textarea id="sellDesc" placeholder="..."></textarea></div>
+    <div class="field"><label>${t('photo')}</label><input type="file" id="sellImg" accept="image/*" style="padding:10px"></div>
+    <button class="primary full" onclick="publishProduct()">${t('publish')}</button>
   `;
   $('modalBack').classList.add('show');
 }
@@ -400,12 +445,12 @@ function publishProduct() {
   const name = $('sellName').value.trim();
   const cat = $('sellCat').value;
   const price = Number($('sellPrice').value);
-  const loc = $('sellLoc').value.trim() || 'አዲስ አበባ';
-  const desc = $('sellDesc').value.trim() || 'ምንም መግለጫ የለም።';
+  const loc = $('sellLoc').value.trim() || 'Addis Ababa';
+  const desc = $('sellDesc').value.trim() || 'No description';
   const phone = users[currentUser].phone || '0900000000';
   const imgFile = $('sellImg').files[0];
 
-  if (!name || !price) { alert('ስም እና ዋጋ ያስፈልጋሉ!'); return; }
+  if (!name || !price) { alert('Name & Price required!'); return; }
 
   const saveProduct = (imgData) => {
     const newProduct = {
@@ -415,7 +460,7 @@ function publishProduct() {
     saveData();
     closeModal();
     renderProducts();
-    alert('✅ እቃው በተሳካ ሁኔታ ተለጥፏል!');
+    alert('✅ Item published successfully!');
   };
 
   if (imgFile) {
@@ -427,32 +472,32 @@ function publishProduct() {
   }
 }
 
-// ==================== WALLET & PAYMENTS ====================
+// ==================== WALLET ====================
 function openWallet() {
   if (!currentUser) { checkAuth(); return; }
   const bal = users[currentUser].balance;
-  $('modalTitle').innerText = '💳 የገንዘብ ቦርሳ';
+  $('modalTitle').innerText = t('walletTitle');
   $('modalContent').innerHTML = `
     <div style="text-align:center;padding:24px;background:var(--bg);border-radius:16px;margin-bottom:20px">
-      <div style="font-size:14px;color:var(--muted);margin-bottom:8px">ያለህ ቀሪ ሂሳብ</div>
-      <div style="font-size:36px;font-weight:900;color:var(--blue)">${bal.toLocaleString()} ብር</div>
+      <div style="font-size:14px;color:var(--muted);margin-bottom:8px">${t('balance')}</div>
+      <div style="font-size:36px;font-weight:900;color:var(--blue)">${bal.toLocaleString()} ETB</div>
     </div>
-    <h4 style="margin:0 0 12px;color:var(--muted)">የክፍያ መንገድ ምረጥ</h4>
+    <h4 style="margin:0 0 12px;color:var(--muted)">${t('paymentMethods')}</h4>
     
     <button class="pay-btn" onclick="window.open('https://t.me/telebirr_official', '_blank')">
-      <span style="font-size:24px">📱</span> Telebirr (ቴሌብር)
+      <span style="font-size:24px">📱</span> Telebirr
     </button>
     <button class="pay-btn" onclick="window.open('https://cbe.com.et', '_blank')">
-      <span style="font-size:24px">🏦</span> CBE Birr (የኢትዮጵያ ንግድ ባንክ)
+      <span style="font-size:24px">🏦</span> CBE Birr
     </button>
     <button class="pay-btn" onclick="window.open('https://www.awashbank.com', '_blank')">
-      <span style="font-size:24px">🏛️</span> Awash Bank (አዋሽ ባንክ)
+      <span style="font-size:24px">🏛️</span> Awash Bank
     </button>
     
     <div style="margin-top:24px;border-top:1px solid var(--line);padding-top:24px">
-      <h4 style="margin:0 0 12px;color:var(--muted)">ወይም በእጅ ያስገቡ (አስመስሎ)</h4>
-      <div class="field"><label>መጠን (ብር)</label><input id="walletAmt" type="number" placeholder="0" min="10"></div>
-      <button class="primary full" onclick="simulateDeposit()">አስገባ</button>
+      <h4 style="margin:0 0 12px;color:var(--muted)">${t('manualDep')}</h4>
+      <div class="field"><label>${t('amount')}</label><input id="walletAmt" type="number" placeholder="0" min="10"></div>
+      <button class="primary full" onclick="simulateDeposit()">${t('deposit')}</button>
     </div>
   `;
   $('modalBack').classList.add('show');
@@ -460,10 +505,10 @@ function openWallet() {
 
 function simulateDeposit() {
   const amt = Number($('walletAmt').value);
-  if (!amt || amt < 10) { alert('ትክክለኛ መጠን ያስገቡ!'); return; }
+  if (!amt || amt < 10) { alert('Enter valid amount!'); return; }
   users[currentUser].balance += amt;
   saveData();
-  alert('✅ ገንዘብ በተሳካ ሁኔታ ገብቷል! (ለሙከራ ብቻ)');
+  alert('✅ Deposited successfully!');
   openWallet();
 }
 
@@ -491,8 +536,8 @@ function doSignup() {
   const pass = $('signupPassword').value;
   const phone = $('signupPhone').value.trim();
   
-  if (!name || !email || !pass || !phone) { $('loginError').innerText = 'ሁሉንም መረጃ ያስገቡ!'; return; }
-  if (users[email]) { $('loginError').innerText = 'ይህ ኢሜይል ተመዝግቧል!'; return; }
+  if (!name || !email || !pass || !phone) { $('loginError').innerText = 'Fill all fields!'; return; }
+  if (users[email]) { $('loginError').innerText = 'Email exists!'; return; }
   
   users[email] = { name, pass, phone, balance: 0 };
   currentUser = email;
@@ -509,7 +554,7 @@ function doLogin() {
     localStorage.setItem('vip-user', JSON.stringify(currentUser));
     checkAuth();
   } else {
-    $('loginError').innerText = 'ኢሜይል ወይም የይለፍ ቃል ስህተት ነው!';
+    $('loginError').innerText = 'Wrong email or password!';
   }
 }
 
@@ -525,44 +570,41 @@ function openModal(type) {
   if (type === 'sell') openSellModal();
   else if (type === 'wallet') openWallet();
   else if (type === 'menu') {
-    $('modalTitle').innerText = '☰ ሜኑ';
+    $('modalTitle').innerText = t('navMenu');
     $('modalContent').innerHTML = `
-      <button class="menu-item" onclick="openInbox()"><div class="menu-icon">💬</div> የመልእክት ሳጥን (Inbox)</button>
-      <button class="menu-item" onclick="openSellModal()"><div class="menu-icon">➕</div> እቃ ሽጥ (Sell Item)</button>
-      <button class="menu-item" onclick="openWallet()"><div class="menu-icon">💳</div> የገንዘብ ቦርሳ (Wallet)</button>
+      <button class="menu-item" onclick="openInbox()"><div class="menu-icon">💬</div> ${t('menuInbox')}</button>
+      <button class="menu-item" onclick="openSellModal()"><div class="menu-icon">➕</div> ${t('menuSell')}</button>
+      <button class="menu-item" onclick="openWallet()"><div class="menu-icon">💳</div> ${t('menuWallet')}</button>
       <div style="height:1px;background:var(--line);margin:12px 0"></div>
-      <button class="menu-item" onclick="openLanguageModal()"><div class="menu-icon">🌐</div> ቋንቋ (Language)</button>
-      <button class="menu-item" onclick="toggleTheme()"><div class="menu-icon">🌙</div> ጨለማ ሁነታ (Dark Mode)</button>
+      <button class="menu-item" onclick="openLanguageModal()"><div class="menu-icon">🌐</div> ${t('menuLang')}</button>
+      <button class="menu-item" onclick="toggleTheme()"><div class="menu-icon">🌙</div> ${t('menuDark')}</button>
       <div style="height:1px;background:var(--line);margin:12px 0"></div>
-      <button class="menu-item" onclick="logout()" style="color:var(--primary)"><div class="menu-icon" style="background:#fee2e2;color:var(--primary)">🚪</div> ውጣ (Logout)</button>
+      <button class="menu-item" onclick="logout()" style="color:var(--primary)"><div class="menu-icon" style="background:#fee2e2;color:var(--primary)">🚪</div> ${t('menuLogout')}</button>
     `;
     $('modalBack').classList.add('show');
   }
 }
 
 function openLanguageModal() {
-  $('modalTitle').innerText = '🌐 ቋንቋ ቀይር';
+  $('modalTitle').innerText = t('langTitle');
   $('modalContent').innerHTML = `
     <div class="field">
-      <label>ቋንቋ ምረጥ (Select Language)</label>
+      <label>${t('selectLang')}</label>
       <select id="langSelect" style="padding:16px;font-size:16px" onchange="changeLanguage(this.value)">
-        <option value="am">🇪🇹 አማርኛ</option>
-        <option value="en">🇺🇸 English</option>
-        <option value="ar">🇸🇦 العربية</option>
-        <option value="fr">🇫🇷 Français</option>
-        <option value="zh">🇨🇳 中文</option>
-        <option value="hi">🇮🇳 हिन्दी</option>
-        <option value="es">🇪🇸 Español</option>
+        <option value="am" ${currentLang==='am'?'selected':''}>🇪🇹 አማርኛ (Amharic)</option>
+        <option value="en" ${currentLang==='en'?'selected':''}>🇺🇸 English</option>
       </select>
     </div>
-    <p style="color:var(--muted);font-size:12px;text-align:center;margin-top:12px">ቋንቋውን ሲቀይሩ በራሱ ይተረጎማል!</p>
   `;
   $('modalBack').classList.add('show');
 }
 
 function changeLanguage(lang) {
-  alert('ቋንቋ ወደ ' + lang.toUpperCase() + ' ተቀይሯል! (ለሙከራ)');
-  // Real translation logic would go here
+  currentLang = lang;
+  saveData();
+  applyTranslations();
+  alert(t('savedMsg'));
+  closeModal();
 }
 
 function closeModal() { $('modalBack').classList.remove('show'); }
@@ -593,7 +635,7 @@ $('closeModal').onclick = closeModal;
 $('modalBack').onclick = (e) => { if (e.target === $('modalBack')) closeModal(); };
 
 // INIT
-renderProducts();
+applyTranslations();
 checkAuth();
 </script>
 </body></html>
