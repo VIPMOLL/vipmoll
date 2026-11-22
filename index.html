@@ -2,7 +2,7 @@
 <html lang="am">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#0f172a">
+<meta name="theme-color" content="#e0e5ec">
 <title>VIP MALL | Premium Marketplace</title>
 <link rel="manifest" href='data:application/manifest+json,{"name":"VIP MALL","short_name":"VIPMALL","start_url":"./index.html","display":"standalone","background_color":"#0f172a","theme_color":"#0f172a","icons":[{"src":"logo.png","sizes":"512x512","type":"image/png"}]}'>
 <script type="module">
@@ -27,112 +27,142 @@
   window.fbSignOut = signOut;
 </script>
 <style>
-:root{--bg:#f8fafc;--surface:#ffffff;--text:#0f172a;--muted:#64748b;--line:#e2e8f0;--primary:#e11d48;--primary-hover:#be123c;--blue:#2563eb;--shadow:0 4px 6px -1px rgb(0 0 0 / 0.05);--radius:16px;--header-h:64px;--neumorphic-bg:#e0e5ec;--neumorphic-light:#ffffff;--neumorphic-dark:#a3b1c6}
-body.dark{--bg:#0f172a;--surface:#1e293b;--text:#f8fafc;--muted:#94a3b8;--line:#334155;--primary:#f43f5e;--primary-hover:#e11d48;--blue:#3b82f6;--shadow:0 4px 6px -1px rgb(0 0 0 / 0.5);--neumorphic-bg:#1e293b;--neumorphic-light:#2a3a4e;--neumorphic-dark:#111827}
+:root {
+  --bg: #e0e5ec;
+  --surface: #e0e5ec;
+  --text: #2d3748;
+  --muted: #718096;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --blue: #4f46e5;
+  --shadow-dark: #a3b1c6;
+  --shadow-light: #ffffff;
+  --shadow: 9px 9px 16px var(--shadow-dark), -9px -9px 16px var(--shadow-light);
+  --shadow-inset: inset 6px 6px 10px var(--shadow-dark), inset -6px -6px 10px var(--shadow-light);
+  --radius: 20px;
+}
+
+body.dark {
+  --bg: #1a202c;
+  --surface: #1a202c;
+  --text: #f7fafc;
+  --muted: #a0aec0;
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --blue: #6366f1;
+  --shadow-dark: #12151c;
+  --shadow-light: #222a38;
+  --shadow: 9px 9px 16px var(--shadow-dark), -9px -9px 16px var(--shadow-light);
+  --shadow-inset: inset 6px 6px 10px var(--shadow-dark), inset -6px -6px 10px var(--shadow-light);
+}
 
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0;background:var(--bg);color:var(--text);font:15px system-ui,-apple-system,"Noto Sans Ethiopic",Arial,sans-serif;transition:background 0.3s,color 0.3s;padding-bottom:70px}
-button,input,select,textarea{font:inherit;outline:none;border:none}
-button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;transition:all 0.2s}
-.primary{background:var(--primary);color:white}
-.primary:hover{background:var(--primary-hover);transform:translateY(-1px)}
-.soft{background:var(--line);color:var(--text)}
-.circle{width:42px;height:42px;border-radius:50%;padding:0;background:var(--surface);color:var(--text);font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);border:1px solid var(--line);position:relative;flex-shrink:0}
+body{margin:0;background:var(--bg);color:var(--text);font:15px system-ui,-apple-system,"Noto Sans Ethiopic",Arial,sans-serif;transition:background 0.3s,color 0.3s;padding-bottom:80px}
+button,input,select,textarea{font:inherit;outline:none;border:none;background:transparent}
+button{cursor:pointer;border-radius:12px;padding:14px 20px;font-weight:700;transition:all 0.2s}
+.primary{background:var(--primary);color:white;box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light);border:none}
+.primary:hover{background:var(--primary-hover);transform:translateY(-2px);box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light)}
+.primary:active{box-shadow: var(--shadow-inset);transform:translateY(0)}
+.soft{background:var(--bg);color:var(--text);box-shadow: var(--shadow);border:none}
+.soft:active{box-shadow: var(--shadow-inset)}
+.circle{width:46px;height:46px;border-radius:50%;padding:0;background:var(--bg);color:var(--text);font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);border:none;flex-shrink:0}
+.circle:active{box-shadow:var(--shadow-inset)}
 
 /* Header */
-.top{position:sticky;top:0;z-index:40;background:var(--surface);box-shadow:0 1px 3px rgb(0 0 0 / 0.05);display:flex;align-items:center;gap:12px;padding:10px max(16px,calc((100vw - 1240px)/2));border-bottom:1px solid var(--line);min-height:var(--header-h);flex-wrap:wrap}
-.logo-img{height:38px;object-fit:contain;border-radius:6px}
+.top{position:sticky;top:0;z-index:40;background:var(--bg);display:flex;align-items:center;gap:12px;padding:12px max(16px,calc((100vw - 1240px)/2));min-height:70px;flex-wrap:wrap}
+.logo-img{height:40px;object-fit:contain;border-radius:8px}
 .search{flex:1;min-width:200px;position:relative}
-.search input{width:100%;border:1px solid var(--line);border-radius:24px;background:var(--bg);padding:10px 16px 10px 40px;color:var(--text);font-size:14px;transition:border-color 0.2s}
-.search input:focus{border-color:var(--primary)}
-.search::before{content:'🔍';position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px;opacity:0.5}
-.top-actions{display:flex;gap:8px;align-items:center;margin-left:auto}
+.search input{width:100%;border-radius:24px;background:var(--bg);padding:14px 16px 14px 44px;color:var(--text);font-size:14px;box-shadow:var(--shadow-inset);border:none}
+.search::before{content:'🔍';position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:16px;opacity:0.5}
+.top-actions{display:flex;gap:12px;align-items:center;margin-left:auto}
 
 /* Categories */
-.cat-nav{background:var(--surface);border-bottom:1px solid var(--line);padding:0 max(16px,calc((100vw - 1240px)/2));display:flex;overflow-x:auto;gap:20px;scrollbar-width:none;position:sticky;top:64px;z-index:35}
+.cat-nav{background:var(--bg);padding:0 max(16px,calc((100vw - 1240px)/2));display:flex;overflow-x:auto;gap:16px;scrollbar-width:none;position:sticky;top:70px;z-index:35;padding-bottom:12px}
 .cat-nav::-webkit-scrollbar{display:none}
-.cat-item{white-space:nowrap;padding:14px 0;color:var(--muted);font-weight:600;cursor:pointer;border-bottom:2px solid transparent;transition:0.2s;display:flex;align-items:center;gap:6px;font-size:14px}
-.cat-item.active{color:var(--primary);border-bottom-color:var(--primary)}
+.cat-item{white-space:nowrap;padding:12px 20px;color:var(--muted);font-weight:700;cursor:pointer;border-radius:16px;transition:0.2s;display:flex;align-items:center;gap:8px;font-size:14px;background:var(--bg);box-shadow:var(--shadow);border:none}
+.cat-item.active{color:var(--primary);box-shadow:var(--shadow-inset)}
+.cat-item:active{box-shadow:var(--shadow-inset)}
 
 /* Layout */
 .wrap{max-width:1240px;margin:16px auto;padding:0 16px;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px}
-.sectionhead{display:flex;justify-content:space-between;align-items:center;margin:0 0 16px}
-.sectionhead h2{font-size:20px;margin:0;font-weight:800;color:var(--text)}
+.sectionhead{display:flex;justify-content:space-between;align-items:center;margin:0 0 20px;padding:0 8px}
+.sectionhead h2{font-size:20px;margin:0;font-weight:900;color:var(--text)}
 
-/* Product Grid */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px}
-.product{background:var(--surface);border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);transition:transform 0.2s,box-shadow 0.2s;position:relative;display:flex;flex-direction:column;cursor:pointer}
-.product:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.photo{aspect-ratio:1;background:linear-gradient(135deg,var(--bg),var(--line));display:grid;place-items:center;font-size:50px;position:relative;overflow:hidden}
-.photo img,.photo video{width:100%;height:100%;object-fit:cover;transition:transform 0.3s}
-.tag{position:absolute;top:10px;left:10px;background:var(--primary);color:#fff;border-radius:6px;padding:3px 8px;font-size:10px;font-weight:800;z-index:2}
-.pbody{padding:12px;flex:1;display:flex;flex-direction:column;justify-content:space-between}
-.pbody h3{margin:0 0 6px;font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
-.price{font-size:16px;font-weight:900;color:var(--blue);margin:4px 0}
-.meta{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px;margin-bottom:8px}
-.seller{display:flex;align-items:center;justify-content:space-between;margin-top:auto;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
-.avatar{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--line);color:var(--text);font-weight:800;font-size:10px;margin-right:6px}
+/* Product Grid (3D Cards) */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:20px}
+.product{background:var(--bg);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform 0.2s,box-shadow 0.2s;position:relative;display:flex;flex-direction:column;cursor:pointer;border:none}
+.product:active{box-shadow:var(--shadow-inset)}
+.photo{aspect-ratio:1;background:var(--bg);display:grid;place-items:center;font-size:50px;position:relative;overflow:hidden;margin:12px;border-radius:16px;box-shadow:var(--shadow-inset)}
+.photo img,.photo video{width:100%;height:100%;object-fit:cover}
+.tag{position:absolute;top:10px;left:10px;background:var(--primary);color:#fff;border-radius:8px;padding:4px 10px;font-size:10px;font-weight:800;z-index:2;box-shadow:0 4px 10px rgba(79,70,229,0.4)}
+.pbody{padding:16px;flex:1;display:flex;flex-direction:column;justify-content:space-between}
+.pbody h3{margin:0 0 8px;font-size:15px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+.price{font-size:18px;font-weight:900;color:var(--primary);margin:4px 0}
+.meta{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px;margin-bottom:12px;font-weight:600}
+.seller{display:flex;align-items:center;justify-content:space-between;margin-top:auto;font-size:12px;color:var(--muted);padding-top:12px;border-top:1px solid var(--shadow-dark);font-weight:600}
+.avatar{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bg);color:var(--primary);font-weight:900;font-size:12px;margin-right:8px;box-shadow:var(--shadow)}
 
 /* Product Detail Modal */
-.detail-img{width:100%;height:250px;background:var(--bg);border-radius:16px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;font-size:80px;border:1px solid var(--line);overflow:hidden}
+.detail-img{width:100%;height:280px;background:var(--bg);border-radius:20px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;font-size:80px;box-shadow:var(--shadow-inset);overflow:hidden}
 .detail-img img,.detail-img video{width:100%;height:100%;object-fit:contain}
-.detail-title{font-size:22px;font-weight:900;margin:0 0 8px}
-.detail-price{font-size:24px;font-weight:900;color:var(--blue);margin:0 0 16px}
-.detail-desc{color:var(--muted);line-height:1.6;margin-bottom:24px;font-size:14px}
-.detail-seller{background:var(--bg);padding:16px;border-radius:16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
-.seller-info{display:flex;align-items:center;gap:12px}
-.seller-info .avatar{width:40px;height:40px;font-size:18px}
+.detail-title{font-size:24px;font-weight:900;margin:0 0 8px}
+.detail-price{font-size:28px;font-weight:900;color:var(--primary);margin:0 0 16px}
+.detail-desc{color:var(--muted);line-height:1.6;margin-bottom:24px;font-size:14px;font-weight:500}
+.detail-seller{background:var(--bg);padding:20px;border-radius:20px;display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;box-shadow:var(--shadow)}
+.seller-info{display:flex;align-items:center;gap:16px}
+.seller-info .avatar{width:48px;height:48px;font-size:20px}
 
 /* Chat System */
-.chat-box{display:flex;flex-direction:column;height:350px;background:var(--bg);border-radius:16px;border:1px solid var(--line);overflow:hidden}
-.chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
-.msg{max-width:85%;padding:10px 14px;border-radius:16px;font-size:14px;line-height:1.4}
-.msg.sent{background:var(--primary);color:white;align-self:flex-end;border-bottom-right-radius:4px}
-.msg.received{background:var(--surface);color:var(--text);align-self:flex-start;border-bottom-left-radius:4px;border:1px solid var(--line)}
-.chat-input{display:flex;gap:8px;padding:10px;background:var(--surface);border-top:1px solid var(--line)}
-.chat-input input{flex:1;padding:10px;border-radius:20px;border:1px solid var(--line);background:var(--bg);color:var(--text);font-size:14px}
-.chat-input button{padding:10px 16px;border-radius:20px;font-size:14px}
+.chat-box{display:flex;flex-direction:column;height:350px;background:var(--bg);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-inset)}
+.chat-messages{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:16px}
+.msg{max-width:85%;padding:14px 18px;border-radius:20px;font-size:14px;line-height:1.5;font-weight:600}
+.msg.sent{background:var(--primary);color:white;align-self:flex-end;border-bottom-right-radius:6px;box-shadow:4px 4px 10px rgba(79,70,229,0.3)}
+.msg.received{background:var(--bg);color:var(--text);align-self:flex-start;border-bottom-left-radius:6px;box-shadow:var(--shadow)}
+.chat-input{display:flex;gap:12px;padding:16px;background:var(--bg);border-top:1px solid var(--shadow-dark)}
+.chat-input input{flex:1;padding:14px;border-radius:24px;background:var(--bg);color:var(--text);font-size:14px;box-shadow:var(--shadow-inset);border:none}
+.chat-input button{padding:14px 24px;border-radius:24px;font-size:14px}
 
 /* Payment Options */
-.pay-btn{display:flex;align-items:center;gap:12px;width:100%;padding:16px;border-radius:12px;background:var(--bg);border:1px solid var(--line);margin-bottom:10px;font-weight:700;color:var(--text);cursor:pointer;transition:0.2s}
+.pay-btn{display:flex;align-items:center;gap:16px;width:100%;padding:20px;border-radius:20px;background:var(--bg);margin-bottom:16px;font-weight:800;color:var(--text);cursor:pointer;transition:0.2s;box-shadow:var(--shadow);border:none;font-size:16px}
+.pay-btn:active{box-shadow:var(--shadow-inset)}
 .pay-btn:hover{border-color:var(--primary);background:var(--surface)}
 
 /* Modals */
-.modalback{display:none;position:fixed;inset:0;background:#000a;backdrop-filter:blur(4px);z-index:100;align-items:flex-end;justify-content:center;padding:0}
+.modalback{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);backdrop-filter:blur(5px);z-index:100;align-items:flex-end;justify-content:center;padding:0}
 .modalback.show{display:flex}
-.modal{width:100%;max-width:520px;max-height:90vh;overflow:auto;background:var(--surface);color:var(--text);border-radius:24px 24px 0 0;padding:20px;animation:slideUp 0.3s;box-shadow:0 -10px 40px #0004}
-.modalhead{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:16px}
-.modalhead h2{font-size:18px;font-weight:800;margin:0}
-.field{display:grid;gap:6px;margin:12px 0;position:relative}
-.field label{font-size:13px;font-weight:700;color:var(--muted)}
-.field input,.field select,.field textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font-size:14px}
-.field input[type="password"]{padding-right:40px}
-.eye-icon{position:absolute;right:12px;bottom:12px;cursor:pointer;font-size:18px;color:var(--muted);user-select:none}
-.full{width:100%;padding:14px;font-size:15px}
+.modal{width:100%;max-width:540px;max-height:92vh;overflow:auto;background:var(--bg);color:var(--text);border-radius:30px 30px 0 0;padding:30px;animation:slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);box-shadow:0 -10px 40px rgba(0,0,0,0.2)}
+.modalhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.modalhead h2{font-size:22px;font-weight:900;margin:0}
+.field{display:grid;gap:8px;margin:16px 0;position:relative}
+.field label{font-size:14px;font-weight:800;color:var(--muted);margin-left:4px}
+.field input,.field select,.field textarea{width:100%;padding:16px;border:none;border-radius:16px;background:var(--bg);color:var(--text);font-size:15px;box-shadow:var(--shadow-inset);font-weight:600}
+.field input[type="password"]{padding-right:50px}
+.eye-icon{position:absolute;right:16px;bottom:16px;cursor:pointer;font-size:20px;user-select:none;opacity:0.7}
+.full{width:100%;padding:18px;font-size:16px;border-radius:16px}
 
-.menu-item{display:flex;align-items:center;gap:14px;padding:14px;border-radius:10px;cursor:pointer;font-weight:700;color:var(--text);background:transparent;width:100%;text-align:left;font-size:15px;margin-bottom:4px;border:1px solid transparent}
-.menu-item:hover{background:var(--bg);border-color:var(--line)}
-.menu-icon{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--line);flex-shrink:0}
+.menu-item{display:flex;align-items:center;gap:16px;padding:18px;border-radius:16px;cursor:pointer;font-weight:800;color:var(--text);background:var(--bg);width:100%;text-align:left;font-size:16px;margin-bottom:12px;border:none;box-shadow:var(--shadow);transition:0.2s}
+.menu-item:active{box-shadow:var(--shadow-inset)}
+.menu-icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;background:var(--bg);box-shadow:var(--shadow);flex-shrink:0}
 
-/* Login Screen & Tabs (Neumorphism) */
-.login-screen{position:fixed;inset:0;background:var(--neumorphic-bg);z-index:200;display:none;align-items:center;justify-content:center;padding:20px;color:var(--text)}
+/* Login Screen (Neumorphism 3D) */
+.login-screen{position:fixed;inset:0;background:var(--bg);z-index:200;display:none;align-items:center;justify-content:center;padding:20px;color:var(--text)}
 .login-screen.active{display:flex}
-.login-card{width:100%;max-width:400px;background:var(--neumorphic-bg);border-radius:24px;padding:30px;box-shadow: 10px 10px 20px var(--neumorphic-dark), -10px -10px 20px var(--neumorphic-light);text-align:center;position:relative}
-.login-card .logo{font-size:30px;margin-bottom:8px;justify-content:center;display:block}
-.login-tabs{display:flex;background:var(--neumorphic-bg);border-radius:12px;padding:4px;margin-bottom:20px;box-shadow: inset 4px 4px 8px var(--neumorphic-dark), inset -4px -4px 8px var(--neumorphic-light)}
-.login-tabs button{flex:1;padding:10px;border-radius:8px;background:transparent;color:var(--muted);font-size:14px;font-weight:700;transition:0.2s;box-shadow:none}
-.login-tabs button.active{background:var(--neumorphic-bg);color:var(--primary);box-shadow: 4px 4px 8px var(--neumorphic-dark), -4px -4px 8px var(--neumorphic-light)}
-.login-card input{width:100%;padding:14px;margin-bottom:16px;border-radius:12px;border:none;background:var(--neumorphic-bg);color:var(--text);font-size:14px;box-shadow: inset 4px 4px 8px var(--neumorphic-dark), inset -4px -4px 8px var(--neumorphic-light)}
-.login-card button.primary{width:100%;padding:14px;font-size:15px;margin-top:4px;border-radius:12px;box-shadow: 4px 4px 8px var(--neumorphic-dark), -4px -4px 8px var(--neumorphic-light);border:none}
-.login-card .switch{font-size:13px;color:var(--muted);margin-top:20px}
+.login-card{width:100%;max-width:400px;background:var(--bg);border-radius:32px;padding:36px;box-shadow:var(--shadow);text-align:center;position:relative}
+.login-card .logo{font-size:30px;margin-bottom:12px;justify-content:center;display:block}
+.login-tabs{display:flex;background:var(--bg);border-radius:16px;padding:6px;margin-bottom:24px;box-shadow:var(--shadow-inset)}
+.login-tabs button{flex:1;padding:12px;border-radius:12px;background:transparent;color:var(--muted);font-size:14px;font-weight:800;transition:0.2s;box-shadow:none;border:none}
+.login-tabs button.active{background:var(--bg);color:var(--primary);box-shadow:var(--shadow)}
+.login-card input{width:100%;padding:16px;margin-bottom:16px;border-radius:16px;border:none;background:var(--bg);color:var(--text);font-size:15px;box-shadow:var(--shadow-inset);font-weight:600}
+.login-card button.primary{width:100%;padding:16px;font-size:16px;margin-top:8px;border-radius:16px}
+.login-card .switch{font-size:14px;color:var(--muted);margin-top:24px;font-weight:600}
 .login-card .switch span{color:var(--primary);cursor:pointer;font-weight:bold}
 #recaptcha-container{display:none;margin-bottom:10px}
 
-.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--line);z-index:50;padding:6px 0;box-shadow:0 -2px 10px #0001}
-.bottom-nav-inner{display:flex;justify-content:space-around;align-items:center}
-.b-nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--muted);font-size:10px;font-weight:600;padding:6px 10px;cursor:pointer}
-.b-nav-item.active{color:var(--primary)}
-.b-nav-item span:first-child{font-size:20px}
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--bg);z-index:50;padding:12px 0;box-shadow:0 -4px 20px rgba(0,0,0,0.1);border-top:none}
+.bottom-nav-inner{display:flex;justify-content:space-around;align-items:center;max-width:500px;margin:0 auto}
+.b-nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--muted);font-size:11px;font-weight:700;padding:8px 12px;cursor:pointer;border-radius:16px;transition:0.2s;background:var(--bg);box-shadow:none}
+.b-nav-item.active{color:var(--primary);box-shadow:var(--shadow-inset);padding:8px 16px}
+.b-nav-item span:first-child{font-size:22px}
 
 @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
 
@@ -140,15 +170,16 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
   .wrap{grid-template-columns:1fr}
   .cart-panel{display:none}
   .bottom-nav{display:block}
-  .top{padding:10px 12px}
-  .logo-img{height:30px}
-  .search{order:3;width:100%;flex:1 1 100%;margin-top:4px}
-  .cat-nav{top:102px;gap:16px;padding:0 12px}
+  .top{padding:12px 16px;min-height:auto}
+  .logo-img{height:32px}
+  .search{order:3;width:100%;flex:1 1 100%;margin-top:8px}
+  .cat-nav{top:122px;gap:12px;padding:0 16px 12px}
 }
 @media(max-width:600px){
-  .grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .grid{grid-template-columns:repeat(2,1fr);gap:16px}
+  .pbody{padding:12px}
   .pbody h3{font-size:13px}
-  .price{font-size:15px}
+  .price{font-size:16px}
 }
 </style></head>
 <body>
@@ -156,10 +187,10 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
 <!-- Login Overlay -->
 <div class="login-screen" id="loginScreen">
   <div class="login-card">
-    <div class="logo" style="margin-bottom:16px">
-      <img src="logo.png" alt="VIP MALL" style="height:70px;object-fit:contain" onerror="this.outerHTML='<h1 style=\'margin:0;font-weight:900;color:var(--primary)\'>VIP MALL</h1>'">
+    <div class="logo" style="margin-bottom:20px">
+      <img src="logo.png" alt="VIP MALL" style="height:80px;object-fit:contain;border-radius:16px;box-shadow:var(--shadow)" onerror="this.outerHTML='<h1 style=\'margin:0;font-weight:900;color:var(--primary)\'>VIP MALL</h1>'">
     </div>
-    <p style="color:var(--muted);margin-bottom:16px;font-size:14px" data-i18n="welcome">የእርስዎ ምርጥ የግዥ ቦታ</p>
+    <p style="color:var(--muted);margin-bottom:24px;font-size:15px;font-weight:600" data-i18n="welcome">የእርስዎ ምርጥ የግዥ ቦታ</p>
     
     <div class="login-tabs" id="loginTabs">
       <button class="active" onclick="switchAuthTab('email')" data-i18n="tabEmail">📧 Email</button>
@@ -169,8 +200,8 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
     <div id="loginForm">
       <div id="emailForm">
         <input type="email" id="loginEmail" placeholder="ኢሜይል / Email" data-i18n-placeholder="email">
-        <div class="field" style="margin:0 0 12px 0;text-align:left">
-          <input type="password" id="loginPassword" placeholder="የይለፍ ቃል / Password" data-i18n-placeholder="password" style="padding-right:40px">
+        <div class="field" style="margin:0 0 16px 0">
+          <input type="password" id="loginPassword" placeholder="የይለፍ ቃል / Password" data-i18n-placeholder="password" style="padding-right:50px;margin-bottom:0">
           <span class="eye-icon" onclick="togglePass('loginPassword', this)">👁️</span>
         </div>
         <button class="primary" onclick="doEmailLogin()" data-i18n="loginBtn">ግባ / Login</button>
@@ -179,14 +210,14 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
       <div id="phoneForm" style="display:none">
         <input type="tel" id="loginPhone" placeholder="+2519XXXXXXXX">
         <button class="primary" onclick="doPhoneLogin()" id="sendSmsBtn" data-i18n="sendCode">SMS ኮድ ላክ</button>
-        <div id="otpDiv" style="display:none;margin-top:12px">
-          <input type="text" id="loginOtp" placeholder="6-digit Code" maxlength="6" style="text-align:center;letter-spacing:4px;font-weight:bold;font-size:18px">
+        <div id="otpDiv" style="display:none;margin-top:16px">
+          <input type="text" id="loginOtp" placeholder="6-digit Code" maxlength="6" style="text-align:center;letter-spacing:6px;font-weight:900;font-size:20px">
           <button class="primary" onclick="verifyPhoneCode()" data-i18n="verify">አረጋግጥ</button>
         </div>
         <div id="recaptcha-container"></div>
       </div>
       
-      <div class="switch" style="margin-top:16px">
+      <div class="switch" style="margin-top:24px">
         <span data-i18n="noAccount">መለያ የለህም?</span> 
         <span onclick="showSignup()" data-i18n="signup">ተመዝገብ</span>
       </div>
@@ -195,28 +226,28 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
     <div id="signupForm" style="display:none">
       <input type="text" id="signupName" placeholder="ሙሉ ስም / Full Name" data-i18n-placeholder="fullName">
       <input type="email" id="signupEmail" placeholder="ኢሜይል / Email" data-i18n-placeholder="email">
-      <div class="field" style="margin:0 0 12px 0;text-align:left">
-        <input type="password" id="signupPassword" placeholder="የይለፍ ቃል / Password" data-i18n-placeholder="password" style="padding-right:40px">
+      <div class="field" style="margin:0 0 16px 0">
+        <input type="password" id="signupPassword" placeholder="የይለፍ ቃል / Password" data-i18n-placeholder="password" style="padding-right:50px;margin-bottom:0">
         <span class="eye-icon" onclick="togglePass('signupPassword', this)">👁️</span>
       </div>
       <input type="tel" id="signupPhone" placeholder="ስልክ ቁጥር / Phone (09...)" data-i18n-placeholder="phone">
       <button class="primary" onclick="doSignup()" data-i18n="signupBtn">ተመዝገብ / Sign Up</button>
-      <div class="switch" style="margin-top:16px">
+      <div class="switch" style="margin-top:24px">
         <span data-i18n="haveAccount">መለያ አለህ?</span> 
         <span onclick="showLogin()" data-i18n="login">ግባ</span>
       </div>
     </div>
     
-    <div id="loginError" style="color:#ef4444;font-size:12px;margin-top:10px;font-weight:bold"></div>
+    <div id="loginError" style="color:#ef4444;font-size:13px;margin-top:16px;font-weight:800"></div>
   </div>
 </div>
 
 <!-- Header -->
 <header class="top">
-  <img src="logo.png" alt="VIP MALL" class="logo-img" onerror="this.outerHTML='<div class=\'logo\' style=\'font-size:20px;font-weight:900;color:var(--primary)\'>VIP MALL <span style=\'font-size:9px;background:var(--primary);color:white;padding:2px 5px;border-radius:4px;vertical-align:middle\'>PRO</span></div>'">
+  <img src="logo.png" alt="VIP MALL" class="logo-img" onerror="this.outerHTML='<div class=\'logo\' style=\'font-size:22px;font-weight:900;color:var(--primary)\'>VIP MALL</div>'">
   <div class="search"><input id="search" placeholder="ምርቶችን ይፈልጉ..." data-i18n-placeholder="searchPlaceholder"></div>
   <div class="top-actions">
-    <button class="circle" id="msgBtn" style="font-size:18px; margin-left:auto">💬</button>
+    <button class="circle" id="msgBtn" style="font-size:20px;">💬</button>
   </div>
 </header>
 
@@ -254,7 +285,7 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
   <section class="modal">
     <div class="modalhead">
       <h2 id="modalTitle">VIP MALL</h2>
-      <button class="circle" id="closeModal" style="width:30px;height:30px;font-size:14px">✕</button>
+      <button class="circle" id="closeModal" style="width:36px;height:36px;font-size:16px">✕</button>
     </div>
     <div id="modalContent"></div>
   </section>
@@ -273,7 +304,7 @@ const i18n = {
     featured: "የተመረጡ ምርቶች", items: "ምርቶች",
     navHome: "መነሻ", navSearch: "ፍለጋ", navSell: "ሽጥ", navWallet: "ዋሌት", navMenu: "ሜኑ",
     menuInbox: "መልእክት", menuSell: "እቃ ሽጥ", menuWallet: "ዋሌት", menuLang: "ቋንቋ", menuDark: "ናይት ሙድ", menuLogout: "ውጣ",
-    sellTitle: "አዲስ እቃ ሽጥ", prodName: "የእቃው ስም", category: "ምድብ", price: "ዋጋ (ብር)", location: "አካባቢ", desc: "መግለጫ", photo: "ፎቶ/ቪዲዮ", publish: "እቃውን አሳይ",
+    sellTitle: "አዲስ እቃ ሽጥ", prodName: "የእቃው ስም", category: "ምድብ", price: "ዋጋ (ብር)", location: "አካባቢ", desc: "መግለጫ", photo: "ፎቶ / ቪዲዮ", publish: "እቃውን አሳይ",
     walletTitle: "ዋሌት", balance: "ቀሪ ሂሳብ", paymentMethods: "የክፍያ መንገድ", manualDep: "በእጅ ማስገቢያ (ሙከራ)", amount: "መጠን", deposit: "አስገባ",
     prodDetail: "የምርት ዝርዝር", description: "መግለጫ", place: "ቦታ", verifiedSeller: "የተረጋገጠ ሻጭ", msgSeller: "💬 ሻጩን አግኝ", callSeller: "📞 ይደውሉ",
     chatTitle: "ከ ጋር ተወያይ", typeMsg: "መልእክት ይጻፉ...", send: "ላክ", noMsgs: "ምንም መልእክት የለም",
@@ -289,7 +320,7 @@ const i18n = {
     featured: "Featured Products", items: "items",
     navHome: "Home", navSearch: "Search", navSell: "Sell", navWallet: "Wallet", navMenu: "Menu",
     menuInbox: "Inbox", menuSell: "Sell Item", menuWallet: "Wallet", menuLang: "Language", menuDark: "Dark Mode", menuLogout: "Logout",
-    sellTitle: "Sell New Item", prodName: "Product Name", category: "Category", price: "Price (ETB)", location: "Location", desc: "Description", photo: "Photo/Video", publish: "Publish",
+    sellTitle: "Sell New Item", prodName: "Product Name", category: "Category", price: "Price (ETB)", location: "Location", desc: "Description", photo: "Photo / Video", publish: "Publish",
     walletTitle: "Wallet", balance: "Balance", paymentMethods: "Payment Method", manualDep: "Manual Deposit (Test)", amount: "Amount", deposit: "Deposit",
     prodDetail: "Product Details", description: "Description", place: "Location", verifiedSeller: "Verified Seller", msgSeller: "💬 Message Seller", callSeller: "📞 Call",
     chatTitle: "Chat with", typeMsg: "Type a message...", send: "Send", noMsgs: "No messages yet",
@@ -612,7 +643,7 @@ function openInbox() {
   $('modalBack').classList.add('show');
 }
 
-// ==================== SELL PRODUCT (Now with Video Support) ====================
+// ==================== SELL PRODUCT (Video Support) ====================
 function openSellModal() {
   if (!currentUser) { checkAuth(); return; }
   $('modalTitle').innerText = t('sellTitle');
