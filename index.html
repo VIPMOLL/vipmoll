@@ -2,189 +2,319 @@
 <html lang="am">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#0f172a">
-<title>VIP MALL | Premium Marketplace</title>
-<style>
-:root{--bg:#f8fafc;--surface:#ffffff;--text:#0f172a;--muted:#64748b;--line:#e2e8f0;--primary:#e11d48;--primary-hover:#be123c;--blue:#2563eb;--shadow:0 4px 6px -1px rgb(0 0 0 / 0.05);--radius:16px;--header-h:64px}
-body.dark{--bg:#0f172a;--surface:#1e293b;--text:#f8fafc;--muted:#94a3b8;--line:#334155;--primary:#f43f5e;--primary-hover:#e11d48;--blue:#3b82f6;--shadow:0 4px 6px -1px rgb(0 0 0 / 0.5)}
+<meta name="theme-color" content="#e0e5ec">
+<title>VIP MALL | Secure Access</title>
 
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0;background:var(--bg);color:var(--text);font:15px system-ui,-apple-system,"Noto Sans Ethiopic",Arial,sans-serif;transition:background 0.3s,color 0.3s;padding-bottom:70px}
-button,input,select,textarea{font:inherit;outline:none;border:none}
-button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;transition:all 0.2s}
-.primary{background:var(--primary);color:white}
-.primary:hover{background:var(--primary-hover);transform:translateY(-1px)}
-.soft{background:var(--line);color:var(--text)}
-.circle{width:42px;height:42px;border-radius:50%;padding:0;background:var(--surface);color:var(--text);font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);border:1px solid var(--line);position:relative;flex-shrink:0}
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPhoneNumber, RecaptchaVerifier, signOut } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+  
+  const firebaseConfig = {
+    apiKey: "AIzaSyB3Tlmdy7inGamQwb0CW_RbvBVo3-jCk7U",
+    authDomain: "smart-trading-number-1.firebaseapp.com",
+    projectId: "smart-trading-number-1",
+    storageBucket: "smart-trading-number-1.firebasestorage.app",
+    messagingSenderId: "1049167837633",
+    appId: "1:1049167837633:web:9e57f4ad25613988a1d740"
+  };
+  
+  const app = initializeApp(firebaseConfig);
+  window.auth = getAuth(app);
+  window.fbCreateUser = createUserWithEmailAndPassword;
+  window.fbSignIn = signInWithEmailAndPassword;
+  window.fbPhoneSignIn = signInWithPhoneNumber;
+  window.fbRecaptcha = RecaptchaVerifier;
+  window.fbSignOut = signOut;
+</script>
+
+<style>
+/* 3D Neumorphism Design System */
+:root {
+  --bg: #e0e5ec;
+  --text: #2d3748;
+  --text-light: #718096;
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --shadow-light: #ffffff;
+  --shadow-dark: #a3b1c6;
+  --radius: 20px;
+  --header-h: 70px;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans Ethiopic", Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  padding-bottom: 70px;
+  overflow-x: hidden;
+}
+
+/* Global 3D Elements */
+.neu-card {
+  background: var(--bg);
+  border-radius: var(--radius);
+  box-shadow: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
+  padding: 24px;
+}
+
+.neu-input {
+  width: 100%;
+  padding: 16px 20px;
+  border: none;
+  outline: none;
+  background: var(--bg);
+  border-radius: 12px;
+  box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+  color: var(--text);
+  font-size: 15px;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+.neu-input:focus {
+  box-shadow: inset 6px 6px 10px var(--shadow-dark), inset -6px -6px 10px var(--shadow-light);
+}
+
+.neu-btn {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  outline: none;
+  background: var(--primary);
+  color: white;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light);
+}
+.neu-btn:active {
+  box-shadow: inset 4px 4px 8px var(--primary-hover), inset -4px -4px 8px rgba(255,255,255,0.2);
+  transform: translateY(2px);
+}
+.neu-btn.secondary {
+  background: var(--bg);
+  color: var(--text-light);
+  box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light);
+}
+.neu-btn.secondary:active {
+  box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+}
 
 /* Header */
-.top{position:sticky;top:0;z-index:40;background:var(--surface);box-shadow:0 1px 3px rgb(0 0 0 / 0.05);display:flex;align-items:center;gap:12px;padding:10px max(16px,calc((100vw - 1240px)/2));border-bottom:1px solid var(--line);min-height:var(--header-h);flex-wrap:wrap}
-.logo-img{height:38px;object-fit:contain;border-radius:6px}
-.search{flex:1;min-width:200px;position:relative}
-.search input{width:100%;border:1px solid var(--line);border-radius:24px;background:var(--bg);padding:10px 16px 10px 40px;color:var(--text);font-size:14px;transition:border-color 0.2s}
-.search input:focus{border-color:var(--primary)}
-.search::before{content:'🔍';position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px;opacity:0.5}
-.top-actions{display:flex;gap:8px;align-items:center;margin-left:auto}
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px max(16px, calc((100vw - 1240px)/2));
+  height: var(--header-h);
+  box-shadow: 0 4px 12px rgba(163, 177, 198, 0.2);
+}
+.logo-img { height: 40px; object-fit: contain; border-radius: 8px; }
+.search { flex: 1; position: relative; }
+.search input {
+  width: 100%; border: none; border-radius: 24px; background: var(--bg);
+  padding: 12px 20px 12px 44px; color: var(--text);
+  box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+  font-size: 14px; transition: 0.2s;
+}
+.search::before { content: '🔍'; position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 14px; color: var(--text-light); }
+.top-actions { display: flex; gap: 10px; margin-left: auto; }
+.circle-btn {
+  width: 44px; height: 44px; border-radius: 50%; border: none; background: var(--bg);
+  box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+  cursor: pointer; color: var(--text); transition: 0.2s;
+}
+.circle-btn:active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); }
 
-/* Categories */
-.cat-nav{background:var(--surface);border-bottom:1px solid var(--line);padding:0 max(16px,calc((100vw - 1240px)/2));display:flex;overflow-x:auto;gap:20px;scrollbar-width:none;position:sticky;top:64px;z-index:35}
-.cat-nav::-webkit-scrollbar{display:none}
-.cat-item{white-space:nowrap;padding:14px 0;color:var(--muted);font-weight:600;cursor:pointer;border-bottom:2px solid transparent;transition:0.2s;display:flex;align-items:center;gap:6px;font-size:14px}
-.cat-item.active{color:var(--primary);border-bottom-color:var(--primary)}
+/* Categories & Products (Keep old layout for shop) */
+.cat-nav { background: var(--bg); padding: 10px max(16px, calc((100vw - 1240px)/2)); display: flex; overflow-x: auto; gap: 12px; scrollbar-width: none; border-bottom: 1px solid var(--shadow-dark); }
+.cat-nav::-webkit-scrollbar { display: none; }
+.cat-item { white-space: nowrap; padding: 10px 16px; background: var(--bg); border-radius: 20px; box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); color: var(--text-light); font-weight: 600; cursor: pointer; transition: 0.2s; font-size: 13px; }
+.cat-item.active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); color: var(--primary); }
 
-/* Layout */
-.wrap{max-width:1240px;margin:16px auto;padding:0 16px;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px}
-.sectionhead{display:flex;justify-content:space-between;align-items:center;margin:0 0 16px}
-.sectionhead h2{font-size:20px;margin:0;font-weight:800;color:var(--text)}
-
-/* Product Grid */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px}
-.product{background:var(--surface);border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);transition:transform 0.2s,box-shadow 0.2s;position:relative;display:flex;flex-direction:column;cursor:pointer}
-.product:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.photo{aspect-ratio:1;background:linear-gradient(135deg,var(--bg),var(--line));display:grid;place-items:center;font-size:50px;position:relative;overflow:hidden}
-.photo img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s}
-.tag{position:absolute;top:10px;left:10px;background:var(--primary);color:#fff;border-radius:6px;padding:3px 8px;font-size:10px;font-weight:800;z-index:2}
-.pbody{padding:12px;flex:1;display:flex;flex-direction:column;justify-content:space-between}
-.pbody h3{margin:0 0 6px;font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
-.price{font-size:16px;font-weight:900;color:var(--blue);margin:4px 0}
-.meta{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px;margin-bottom:8px}
-.seller{display:flex;align-items:center;justify-content:space-between;margin-top:auto;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
-.avatar{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--line);color:var(--text);font-weight:800;font-size:10px;margin-right:6px}
-
-/* Product Detail Modal */
-.detail-img{width:100%;height:250px;background:var(--bg);border-radius:16px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;font-size:80px;border:1px solid var(--line);overflow:hidden}
-.detail-img img{width:100%;height:100%;object-fit:contain}
-.detail-title{font-size:22px;font-weight:900;margin:0 0 8px}
-.detail-price{font-size:24px;font-weight:900;color:var(--blue);margin:0 0 16px}
-.detail-desc{color:var(--muted);line-height:1.6;margin-bottom:24px;font-size:14px}
-.detail-seller{background:var(--bg);padding:16px;border-radius:16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
-.seller-info{display:flex;align-items:center;gap:12px}
-.seller-info .avatar{width:40px;height:40px;font-size:18px}
-
-/* Chat System */
-.chat-box{display:flex;flex-direction:column;height:350px;background:var(--bg);border-radius:16px;border:1px solid var(--line);overflow:hidden}
-.chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
-.msg{max-width:85%;padding:10px 14px;border-radius:16px;font-size:14px;line-height:1.4}
-.msg.sent{background:var(--primary);color:white;align-self:flex-end;border-bottom-right-radius:4px}
-.msg.received{background:var(--surface);color:var(--text);align-self:flex-start;border-bottom-left-radius:4px;border:1px solid var(--line)}
-.chat-input{display:flex;gap:8px;padding:10px;background:var(--surface);border-top:1px solid var(--line)}
-.chat-input input{flex:1;padding:10px;border-radius:20px;border:1px solid var(--line);background:var(--bg);color:var(--text);font-size:14px}
-.chat-input button{padding:10px 16px;border-radius:20px;font-size:14px}
-
-/* Payment Options */
-.pay-btn{display:flex;align-items:center;gap:12px;width:100%;padding:16px;border-radius:12px;background:var(--bg);border:1px solid var(--line);margin-bottom:10px;font-weight:700;color:var(--text);cursor:pointer;transition:0.2s}
-.pay-btn:hover{border-color:var(--primary);background:var(--surface)}
+.wrap { max-width: 1240px; margin: 20px auto; padding: 0 16px; }
+.sectionhead { display: flex; justify-content: space-between; align-items: center; margin: 0 0 16px; }
+.sectionhead h2 { font-size: 20px; margin: 0; font-weight: 800; color: var(--text); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; }
+.product { background: var(--bg); border-radius: var(--radius); overflow: hidden; box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light); padding: 12px; cursor: pointer; transition: 0.2s; position: relative; }
+.product:hover { transform: translateY(-2px); }
+.photo { aspect-ratio: 1; background: var(--bg); border-radius: 12px; box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); display: grid; place-items: center; font-size: 50px; margin-bottom: 12px; overflow: hidden; }
+.photo img { width: 100%; height: 100%; object-fit: cover; }
+.tag { position: absolute; top: 20px; left: 20px; background: var(--primary); color: white; font-size: 10px; font-weight: 800; padding: 4px 8px; border-radius: 6px; }
+.pbody h3 { margin: 0 0 6px; font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.price { font-size: 16px; font-weight: 900; color: var(--primary); }
+.meta { font-size: 11px; color: var(--text-light); margin-top: 4px; }
 
 /* Modals */
-.modalback{display:none;position:fixed;inset:0;background:#000a;backdrop-filter:blur(4px);z-index:100;align-items:flex-end;justify-content:center;padding:0}
-.modalback.show{display:flex}
-.modal{width:100%;max-width:520px;max-height:90vh;overflow:auto;background:var(--surface);color:var(--text);border-radius:24px 24px 0 0;padding:20px;animation:slideUp 0.3s;box-shadow:0 -10px 40px #0004}
-.modalhead{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:16px}
-.modalhead h2{font-size:18px;font-weight:800;margin:0}
-.field{display:grid;gap:6px;margin:12px 0}
-.field label{font-size:13px;font-weight:700;color:var(--muted)}
-.field input,.field select,.field textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font-size:14px}
-.full{width:100%;padding:14px;font-size:15px}
+.modalback { display: none; position: fixed; inset: 0; background: rgba(224, 229, 236, 0.8); backdrop-filter: blur(5px); z-index: 100; align-items: flex-end; justify-content: center; padding: 0; }
+.modalback.show { display: flex; }
+.modal { width: 100%; max-width: 520px; max-height: 90vh; overflow: auto; background: var(--bg); border-radius: 30px 30px 0 0; padding: 24px; box-shadow: 0 -10px 40px rgba(0,0,0,0.1); animation: slideUp 0.3s; }
+.modalhead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.modalhead h2 { font-size: 20px; font-weight: 800; margin: 0; }
+.field { margin-bottom: 16px; position: relative; }
+.field label { display: block; font-size: 13px; font-weight: 700; color: var(--text-light); margin-bottom: 8px; }
+.eye-icon { position: absolute; right: 16px; bottom: 16px; cursor: pointer; font-size: 18px; color: var(--text-light); user-select: none; }
+.menu-item { display: flex; align-items: center; gap: 16px; padding: 16px; border-radius: 16px; cursor: pointer; font-weight: 700; color: var(--text); background: var(--bg); width: 100%; text-align: left; font-size: 15px; margin-bottom: 10px; border: none; box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); transition: 0.2s; }
+.menu-item:active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); }
 
-.menu-item{display:flex;align-items:center;gap:14px;padding:14px;border-radius:10px;cursor:pointer;font-weight:700;color:var(--text);background:transparent;width:100%;text-align:left;font-size:15px;margin-bottom:4px;border:1px solid transparent}
-.menu-item:hover{background:var(--bg);border-color:var(--line)}
-.menu-icon{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--line);flex-shrink:0}
+/* Auth Screen (3D Neumorphism) */
+.auth-screen { position: fixed; inset: 0; background: var(--bg); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
+.auth-screen.active { display: flex; }
+.auth-card { width: 100%; max-width: 380px; text-align: center; position: relative; padding: 40px 30px; }
+.auth-icon { width: 70px; height: 70px; background: var(--bg); border-radius: 50%; box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light); display: flex; align-items: center; justify-content: center; font-size: 30px; margin: 0 auto 20px; color: var(--primary); }
+.auth-title { font-size: 24px; font-weight: 900; margin: 0 0 8px; }
+.auth-sub { font-size: 14px; color: var(--text-light); margin: 0 0 30px; }
+.auth-switch { margin-top: 24px; font-size: 14px; color: var(--text-light); font-weight: 600; }
+.auth-switch span { color: var(--primary); cursor: pointer; font-weight: 800; }
+.auth-error { color: #ef4444; font-size: 13px; font-weight: 700; margin-top: 15px; min-height: 20px; }
+.login-tabs { display: flex; background: var(--bg); padding: 6px; border-radius: 16px; box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); margin-bottom: 24px; }
+.login-tabs button { flex: 1; padding: 12px; border-radius: 12px; border: none; background: transparent; color: var(--text-light); font-weight: 700; font-size: 14px; cursor: pointer; transition: 0.2s; }
+.login-tabs button.active { background: var(--bg); color: var(--primary); box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); }
+#recaptcha-container { display: none; margin-bottom: 16px; }
 
-.login-screen{position:fixed;inset:0;background:linear-gradient(135deg,#0f172a,#1e293b);z-index:200;display:none;align-items:center;justify-content:center;padding:20px;color:#fff}
-.login-screen.active{display:flex}
-.login-card{width:100%;max-width:400px;background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:24px;box-shadow:0 20px 50px rgba(0,0,0,0.5);text-align:center}
-.login-card .logo{font-size:30px;margin-bottom:8px;color:#fff;justify-content:center;display:block}
-.login-card input{width:100%;padding:14px;margin-bottom:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.2);background:rgba(0,0,0,0.2);color:#fff;font-size:14px}
-.login-card button{width:100%;padding:14px;background:var(--primary);color:#fff;font-size:15px;border-radius:10px;margin-top:4px}
-.login-card .switch{font-size:13px;color:#94a3b8;margin-top:20px}
-.login-card .switch span{color:var(--primary);cursor:pointer;font-weight:bold}
+/* Bottom Nav */
+.bottom-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg); z-index: 50; padding: 10px 0; box-shadow: 0 -4px 12px rgba(163, 177, 198, 0.4); }
+.bottom-nav-inner { display: flex; justify-content: space-around; align-items: center; }
+.b-nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-light); font-size: 10px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+.b-nav-item.active { color: var(--primary); }
+.b-nav-item span:first-child { font-size: 22px; }
 
-.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--line);z-index:50;padding:6px 0;box-shadow:0 -2px 10px #0001}
-.bottom-nav-inner{display:flex;justify-content:space-around;align-items:center}
-.b-nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--muted);font-size:10px;font-weight:600;padding:6px 10px;cursor:pointer}
-.b-nav-item.active{color:var(--primary)}
-.b-nav-item span:first-child{font-size:20px}
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
 
-@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
-
-@media(max-width:900px){
-  .wrap{grid-template-columns:1fr}
-  .cart-panel{display:none}
-  .bottom-nav{display:block}
-  .top{padding:10px 12px}
-  .logo-img{height:30px}
-  .search{order:3;width:100%;flex:1 1 100%;margin-top:4px}
-  .cat-nav{top:102px;gap:16px;padding:0 12px}
+@media (max-width: 900px) {
+  .bottom-nav { display: block; }
+  .top { padding: 10px 16px; height: auto; flex-wrap: wrap; }
+  .search { order: 3; width: 100%; margin-top: 8px; }
+  .cat-nav { top: 110px; }
 }
-@media(max-width:600px){
-  .grid{grid-template-columns:repeat(2,1fr);gap:12px}
-  .pbody h3{font-size:13px}
-  .price{font-size:15px}
-}
-</style></head>
+</style>
+</head>
 <body>
 
-<!-- Login Overlay -->
-<div class="login-screen" id="loginScreen">
-  <div class="login-card">
-    <div class="logo" style="margin-bottom:16px">
-      <img src="logo.png" alt="VIP MALL" style="height:80px;object-fit:contain" onerror="this.outerHTML='<h1 style=\'margin:0;font-weight:900;color:var(--primary)\'>VIP MALL</h1>'">
+<!-- ================= AUTH SCREEN (3D NEUMORPHISM) ================= -->
+<div class="auth-screen active" id="authScreen">
+  <div class="auth-card neu-card">
+    
+    <!-- Login Form -->
+    <div id="loginView">
+      <div class="auth-icon">🔒</div>
+      <h1 class="auth-title">Welcome Back</h1>
+      <p class="auth-sub">ወደ VIP MALL እንኳን ደህና መጡ</p>
+      
+      <div class="login-tabs" id="loginTabs">
+        <button class="active" onclick="switchAuthTab('email')">Email</button>
+        <button onclick="switchAuthTab('phone')">Phone</button>
+      </div>
+
+      <div id="emailLoginForm">
+        <div class="field">
+          <input type="email" id="loginEmail" class="neu-input" placeholder="Email Address">
+        </div>
+        <div class="field">
+          <input type="password" id="loginPassword" class="neu-input" placeholder="Password">
+          <span class="eye-icon" onclick="togglePass('loginPassword', this)">👁️</span>
+        </div>
+        <button class="neu-btn" onclick="doEmailLogin()">Login</button>
+      </div>
+
+      <div id="phoneLoginForm" style="display:none">
+        <div class="field">
+          <input type="tel" id="loginPhone" class="neu-input" placeholder="+2519XXXXXXXX">
+        </div>
+        <button class="neu-btn" onclick="doPhoneLogin()" id="sendSmsBtn">Send SMS Code</button>
+        <div id="otpInputDiv" style="display:none; margin-top:16px;">
+          <div class="field">
+            <input type="text" id="loginOtp" class="neu-input" placeholder="6-digit Code" maxlength="6" style="text-align:center; letter-spacing:8px; font-weight:900; font-size:20px;">
+          </div>
+          <button class="neu-btn" onclick="verifyPhoneCode()">Verify Access</button>
+        </div>
+        <div id="recaptcha-container"></div>
+      </div>
+
+      <div class="auth-switch">
+        Don't have an account? <span onclick="toggleAuthView('signup')">Create Account</span>
+      </div>
     </div>
-    <p style="color:#94a3b8;margin-bottom:20px" data-i18n="welcome">የእርስዎ ምርጥ የግዥ ቦታ</p>
-    <div id="loginForm">
-      <input type="email" id="loginEmail" placeholder="ኢሜይል / Email" data-i18n-placeholder="email">
-      <input type="password" id="loginPassword" placeholder="የይለፍ ቃል / Password" data-i18n-placeholder="password">
-      <button onclick="doLogin()" data-i18n="loginBtn">ግባ / Login</button>
-      <div class="switch"><span data-i18n="noAccount">መለያ የለህም?</span> <span onclick="showSignup()" data-i18n="signup">ተመዝገብ</span></div>
+
+    <!-- Signup Form -->
+    <div id="signupView" style="display:none">
+      <div class="auth-icon">👤</div>
+      <h1 class="auth-title">Create Account</h1>
+      <p class="auth-sub">የእርስዎን መለያ ይፍጠሩ</p>
+      
+      <div class="field">
+        <input type="text" id="signupName" class="neu-input" placeholder="Full Name">
+      </div>
+      <div class="field">
+        <input type="email" id="signupEmail" class="neu-input" placeholder="Email Address">
+      </div>
+      <div class="field">
+        <input type="password" id="signupPassword" class="neu-input" placeholder="Password (min 6 chars)">
+        <span class="eye-icon" onclick="togglePass('signupPassword', this)">👁️</span>
+      </div>
+      <div class="field">
+        <input type="tel" id="signupPhone" class="neu-input" placeholder="Phone Number (09...)">
+      </div>
+      
+      <button class="neu-btn" onclick="doSignup()">Create Account</button>
+      
+      <div class="auth-switch">
+        Already have an account? <span onclick="toggleAuthView('login')">Login</span>
+      </div>
     </div>
-    <div id="signupForm" style="display:none">
-      <input type="text" id="signupName" placeholder="ሙሉ ስም / Full Name" data-i18n-placeholder="fullName">
-      <input type="email" id="signupEmail" placeholder="ኢሜይል / Email" data-i18n-placeholder="email">
-      <input type="password" id="signupPassword" placeholder="የይለፍ ቃል / Password" data-i18n-placeholder="password">
-      <input type="tel" id="signupPhone" placeholder="ስልክ ቁጥር / Phone (09...)" data-i18n-placeholder="phone">
-      <button onclick="doSignup()" data-i18n="signupBtn">ተመዝገብ</button>
-      <div class="switch"><span data-i18n="haveAccount">መለያ አለህ?</span> <span onclick="showLogin()" data-i18n="login">ግባ</span></div>
-    </div>
-    <div id="loginError" style="color:#ef4444;font-size:12px;margin-top:10px;font-weight:bold"></div>
+
+    <div class="auth-error" id="authError"></div>
   </div>
 </div>
 
-<!-- Header -->
+
+<!-- ================= MAIN APP HEADER & CONTENT ================= -->
 <header class="top">
-  <img src="logo.png" alt="VIP MALL" class="logo-img" onerror="this.outerHTML='<div class=\'logo\' style=\'font-size:20px;font-weight:900;color:var(--primary)\'>VIP MALL <span style=\'font-size:9px;background:var(--primary);color:white;padding:2px 5px;border-radius:4px;vertical-align:middle\'>PRO</span></div>'">
-  <div class="search"><input id="search" placeholder="ምርቶችን ይፈልጉ..." data-i18n-placeholder="searchPlaceholder"></div>
+  <img src="logo.png" alt="VIP MALL" class="logo-img" onerror="this.outerHTML='<div style=\'font-size:20px;font-weight:900;color:var(--primary)\'>VIP MALL</div>'">
+  <div class="search"><input id="search" placeholder="ምርቶችን ይፈልጉ..."></div>
   <div class="top-actions">
-    <button class="circle" id="msgBtn" style="font-size:18px">💬</button>
-    <button class="circle" id="settingsBtn" style="font-size:18px">☰</button>
+    <button class="circle-btn" id="msgBtn">💬</button>
+    <button class="circle-btn" id="settingsBtn">☰</button>
   </div>
 </header>
 
 <nav class="cat-nav">
-  <div class="cat-item active" data-filter="All"><span data-i18n="catAll">🏠 ሁሉም</span></div>
-  <div class="cat-item" data-filter="Electronics"><span data-i18n="catElec">📱 ኤሌክትሮኒክስ</span></div>
-  <div class="cat-item" data-filter="Fashion"><span data-i18n="catFash">👕 ልብስ</span></div>
-  <div class="cat-item" data-filter="Home"><span data-i18n="catHome">🛋️ የቤት ዕቃ</span></div>
-  <div class="cat-item" data-filter="Vehicles"><span data-i18n="catVeh">🚗 መኪና</span></div>
+  <div class="cat-item active" data-filter="All">🏠 ሁሉም</div>
+  <div class="cat-item" data-filter="Electronics">📱 ኤሌክትሮኒክስ</div>
+  <div class="cat-item" data-filter="Fashion">👕 ልብስ</div>
+  <div class="cat-item" data-filter="Home">🛋️ የቤት ዕቃ</div>
+  <div class="cat-item" data-filter="Vehicles">🚗 መኪና</div>
 </nav>
 
 <div class="wrap">
-  <main>
-    <div class="sectionhead">
-      <h2 data-i18n="featured">የተመረጡ ምርቶች</h2>
-      <span class="meta" id="count">0</span>
-    </div>
-    <div class="grid" id="products"></div>
-  </main>
+  <div class="sectionhead">
+    <h2>Featured Products</h2>
+    <span style="font-size:13px; color:var(--text-light); font-weight:600" id="count">0 items</span>
+  </div>
+  <div class="grid" id="products"></div>
 </div>
 
 <!-- Mobile Bottom Nav -->
 <div class="bottom-nav">
   <div class="bottom-nav-inner">
-    <div class="b-nav-item active" onclick="window.scrollTo(0,0)"><span>🏠</span><span data-i18n="navHome">መነሻ</span></div>
-    <div class="b-nav-item" onclick="document.getElementById('search').focus()"><span>🔍</span><span data-i18n="navSearch">ፍለጋ</span></div>
-    <div class="b-nav-item" onclick="openModal('sell')"><span>➕</span><span data-i18n="navSell">ሽጥ</span></div>
-    <div class="b-nav-item" onclick="openModal('wallet')"><span>💳</span><span data-i18n="navWallet">ዋሌት</span></div>
-    <div class="b-nav-item" onclick="openModal('menu')"><span>☰</span><span data-i18n="navMenu">ሜኑ</span></div>
+    <div class="b-nav-item active" onclick="window.scrollTo(0,0)"><span>🏠</span>Home</div>
+    <div class="b-nav-item" onclick="document.getElementById('search').focus()"><span>🔍</span>Search</div>
+    <div class="b-nav-item" onclick="openModal('sell')"><span>➕</span>Sell</div>
+    <div class="b-nav-item" onclick="openModal('wallet')"><span>💳</span>Wallet</div>
+    <div class="b-nav-item" onclick="openModal('menu')"><span>☰</span>Menu</div>
   </div>
 </div>
 
@@ -193,74 +323,151 @@ button{cursor:pointer;border-radius:12px;padding:12px 20px;font-weight:700;trans
   <section class="modal">
     <div class="modalhead">
       <h2 id="modalTitle">VIP MALL</h2>
-      <button class="circle" id="closeModal" style="width:30px;height:30px;font-size:14px">✕</button>
+      <button class="circle-btn" id="closeModal" style="width:36px;height:36px;font-size:16px;box-shadow:none;background:var(--bg);">✕</button>
     </div>
     <div id="modalContent"></div>
   </section>
 </div>
 
-<script>
-// ==================== TRANSLATIONS ====================
-const i18n = {
-  am: {
-    welcome: "የእርስዎ ምርጥ የግዥ ቦታ", email: "ኢሜይል", password: "የይለፍ ቃል",
-    loginBtn: "ግባ", noAccount: "መለያ የለህም?", signup: "ተመዝገብ",
-    fullName: "ሙሉ ስም", phone: "ስልክ ቁጥር", signupBtn: "ተመዝገብ", haveAccount: "መለያ አለህ?", login: "ግባ",
-    searchPlaceholder: "ምርቶችን ይፈልጉ...",
-    catAll: "ሁሉም", catElec: "ኤሌክትሮኒክስ", catFash: "ልብስ", catHome: "የቤት ዕቃ", catVeh: "መኪና",
-    featured: "የተመረጡ ምርቶች", items: "ምርቶች",
-    navHome: "መነሻ", navSearch: "ፍለጋ", navSell: "ሽጥ", navWallet: "ዋሌት", navMenu: "ሜኑ",
-    menuInbox: "መልእክት", menuSell: "እቃ ሽጥ", menuWallet: "ዋሌት", menuLang: "ቋንቋ", menuDark: "ናይት ሙድ", menuLogout: "ውጣ",
-    sellTitle: "አዲስ እቃ ሽጥ", prodName: "የእቃው ስም", category: "ምድብ", price: "ዋጋ (ብር)", location: "አካባቢ", desc: "መግለጫ", photo: "ፎቶ", publish: "እቃውን አሳይ",
-    walletTitle: "ዋሌት", balance: "ቀሪ ሂሳብ", paymentMethods: "የክፍያ መንገድ", manualDep: "በእጅ ማስገቢያ (ሙከራ)", amount: "መጠን", deposit: "አስገባ",
-    prodDetail: "የምርት ዝርዝር", description: "መግለጫ", place: "ቦታ", verifiedSeller: "የተረጋገጠ ሻጭ", msgSeller: "💬 ሻጩን አግኝ", callSeller: "📞 ይደውሉ",
-    chatTitle: "ከ ጋር ተወያይ", typeMsg: "መልእክት ይጻፉ...", send: "ላክ", noMsgs: "ምንም መልእክት የለም",
-    langTitle: "ቋንቋ ቀይር", selectLang: "ቋንቋ ምረጥ", savedMsg: "ተቀይሯል!"
-  },
-  en: {
-    welcome: "Your Best Shopping Destination", email: "Email", password: "Password",
-    loginBtn: "Login", noAccount: "No account?", signup: "Sign Up",
-    fullName: "Full Name", phone: "Phone", signupBtn: "Sign Up", haveAccount: "Have an account?", login: "Login",
-    searchPlaceholder: "Search products...",
-    catAll: "All", catElec: "Electronics", catFash: "Fashion", catHome: "Home", catVeh: "Vehicles",
-    featured: "Featured Products", items: "items",
-    navHome: "Home", navSearch: "Search", navSell: "Sell", navWallet: "Wallet", navMenu: "Menu",
-    menuInbox: "Inbox", menuSell: "Sell Item", menuWallet: "Wallet", menuLang: "Language", menuDark: "Dark Mode", menuLogout: "Logout",
-    sellTitle: "Sell New Item", prodName: "Product Name", category: "Category", price: "Price (ETB)", location: "Location", desc: "Description", photo: "Photo", publish: "Publish",
-    walletTitle: "Wallet", balance: "Balance", paymentMethods: "Payment Method", manualDep: "Manual Deposit (Test)", amount: "Amount", deposit: "Deposit",
-    prodDetail: "Product Details", description: "Description", place: "Location", verifiedSeller: "Verified Seller", msgSeller: "💬 Message Seller", callSeller: "📞 Call",
-    chatTitle: "Chat with", typeMsg: "Type a message...", send: "Send", noMsgs: "No messages yet",
-    langTitle: "Change Language", selectLang: "Select Language", savedMsg: "Changed successfully!"
-  }
-};
 
-let currentLang = localStorage.getItem('vip-lang') || 'am';
+<script>
+// ==================== GLOBAL STATE ====================
 let currentUser = JSON.parse(localStorage.getItem('vip-user')) || null;
 let users = JSON.parse(localStorage.getItem('vip-users')) || {};
 let products = JSON.parse(localStorage.getItem('vip-products')) || [
-  { id: 1, name: 'Smartphone X Pro', cat: 'Electronics', price: 12500, loc: 'Addis Ababa', desc: 'Brand new smartphone with 128GB storage.', img: '', seller: 'SMART Store', phone: '0911223344' },
-  { id: 2, name: 'Fashion Sneakers', cat: 'Fashion', price: 2300, loc: 'Jimma', desc: 'Original leather sneakers.', img: '', seller: 'Abebe Store', phone: '0911556677' }
+  { id: 1, name: 'Smartphone X Pro', cat: 'Electronics', price: 12500, loc: 'Addis Ababa', desc: 'Brand new 128GB.', img: '', seller: 'SMART Store', phone: '0911223344' },
+  { id: 2, name: 'Fashion Sneakers', cat: 'Fashion', price: 2300, loc: 'Jimma', desc: 'Original leather.', img: '', seller: 'Abebe Store', phone: '0911556677' }
 ];
 let messages = JSON.parse(localStorage.getItem('vip-messages')) || {};
 let currentFilter = 'All';
+let confirmationResult = null;
 
 const $ = id => document.getElementById(id);
-const t = key => i18n[currentLang][key] || i18n['en'][key] || key;
-
-function applyTranslations() {
-  document.querySelectorAll('[data-i18n]').forEach(el => el.innerText = t(el.dataset.i18n));
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => el.placeholder = t(el.dataset.i18nPlaceholder));
-  renderProducts();
-}
 
 function saveData() {
   localStorage.setItem('vip-products', JSON.stringify(products));
   localStorage.setItem('vip-messages', JSON.stringify(messages));
   localStorage.setItem('vip-users', JSON.stringify(users));
-  localStorage.setItem('vip-lang', currentLang);
 }
 
-// ==================== RENDER PRODUCTS ====================
+// ==================== 3D AUTH SYSTEM ====================
+function togglePass(id, icon) {
+  const input = document.getElementById(id);
+  if (input.type === "password") { input.type = "text"; icon.innerText = "🙈"; }
+  else { input.type = "password"; icon.innerText = "👁️"; }
+}
+
+function toggleAuthView(view) {
+  $('authError').innerText = '';
+  if(view === 'signup') {
+    $('loginView').style.display = 'none';
+    $('signupView').style.display = 'block';
+  } else {
+    $('signupView').style.display = 'none';
+    $('loginView').style.display = 'block';
+  }
+}
+
+function switchAuthTab(type) {
+  document.querySelectorAll('#loginTabs button').forEach(b => b.classList.remove('active'));
+  if (type === 'email') {
+    document.querySelectorAll('#loginTabs button')[0].classList.add('active');
+    $('emailLoginForm').style.display = 'block';
+    $('phoneLoginForm').style.display = 'none';
+  } else {
+    document.querySelectorAll('#loginTabs button')[1].classList.add('active');
+    $('emailLoginForm').style.display = 'none';
+    $('phoneLoginForm').style.display = 'block';
+  }
+}
+
+async function doEmailLogin() {
+  const email = $('loginEmail').value.trim();
+  const pass = $('loginPassword').value;
+  if (!email || !pass) { $('authError').innerText = 'Fill all fields!'; return; }
+  
+  try {
+    await window.fbSignIn(window.auth, email, pass);
+    loginSuccess(email);
+  } catch(e) {
+    $('authError').innerText = e.message.replace('Firebase: ', '');
+  }
+}
+
+async function doSignup() {
+  const name = $('signupName').value.trim();
+  const email = $('signupEmail').value.trim();
+  const pass = $('signupPassword').value;
+  const phone = $('signupPhone').value.trim();
+  
+  if (!name || !email || !pass || !phone) { $('authError').innerText = 'Fill all fields!'; return; }
+  if (pass.length < 6) { $('authError').innerText = 'Password must be 6+ chars!'; return; }
+  
+  try {
+    await window.fbCreateUser(window.auth, email, pass);
+    users[email] = { name, phone, balance: 0 };
+    saveData();
+    loginSuccess(email);
+  } catch(e) {
+    $('authError').innerText = e.message.replace('Firebase: ', '');
+  }
+}
+
+async function doPhoneLogin() {
+  const phone = $('loginPhone').value.trim();
+  if (!phone) { $('authError').innerText = 'Enter phone number!'; return; }
+  
+  $('authError').innerText = 'Sending SMS...';
+  $('recaptcha-container').style.display = 'block';
+  
+  try {
+    if (!window.recaptchaVerifier) {
+      window.recaptchaVerifier = new window.fbRecaptcha(window.auth, 'recaptcha-container', { size: 'invisible' });
+    }
+    confirmationResult = await window.fbPhoneSignIn(window.auth, phone, window.recaptchaVerifier);
+    $('authError').innerText = '';
+    $('otpInputDiv').style.display = 'block';
+    $('sendSmsBtn').innerText = 'Resend Code';
+  } catch(e) {
+    $('authError').innerText = e.message.replace('Firebase: ', '');
+    $('recaptcha-container').style.display = 'none';
+  }
+}
+
+async function verifyPhoneCode() {
+  const code = $('loginOtp').value.trim();
+  if (!code) return;
+  
+  try {
+    const result = await confirmationResult.confirm(code);
+    loginSuccess(result.user.phoneNumber);
+  } catch(e) {
+    $('authError').innerText = 'Invalid code!';
+  }
+}
+
+function loginSuccess(identifier) {
+  currentUser = identifier;
+  localStorage.setItem('vip-user', JSON.stringify(currentUser));
+  if (!users[identifier]) users[identifier] = { name: identifier.split('@')[0] || 'User', phone: identifier, balance: 0 };
+  saveData();
+  checkAuth();
+}
+
+function doLogout() {
+  window.fbSignOut(window.auth).catch(()=>{});
+  currentUser = null;
+  localStorage.removeItem('vip-user');
+  checkAuth();
+  closeModal();
+}
+
+function checkAuth() {
+  if (!currentUser) $('authScreen').classList.add('active');
+  else $('authScreen').classList.remove('active');
+}
+
+// ==================== PRODUCT RENDER ====================
 function renderProducts() {
   const q = $('search').value.toLowerCase();
   const grid = $('products');
@@ -278,170 +485,139 @@ function renderProducts() {
     card.onclick = () => openProductDetail(p.id);
     card.innerHTML = `
       <div class="photo">
-        ${p.img ? `<img src="${p.img}" alt="${p.name}">` : `📦`}
+        ${p.img ? `<img src="${p.img}">` : `📦`}
         <span class="tag">NEW</span>
       </div>
       <div class="pbody">
         <h3>${p.name}</h3>
         <div class="price">${p.price.toLocaleString()} ETB</div>
         <div class="meta">📍 ${p.loc}</div>
-        <div class="seller">
-          <div style="display:flex;align-items:center"><span class="avatar">${p.seller[0]}</span> ${p.seller}</div>
-          <span style="color:var(--primary);font-weight:bold">→</span>
-        </div>
       </div>
     `;
     grid.appendChild(card);
   });
-  $('count').innerText = count + ' ' + t('items');
+  $('count').innerText = count + ' items';
 }
 
-// ==================== PRODUCT DETAIL ====================
+// ==================== MODALS & ACTIONS ====================
 function openProductDetail(id) {
   const p = products.find(x => x.id === id);
   if (!p) return;
 
-  $('modalTitle').innerText = t('prodDetail');
+  $('modalTitle').innerText = 'Product Details';
   $('modalContent').innerHTML = `
-    <div class="detail-img">
-      ${p.img ? `<img src="${p.img}" alt="${p.name}">` : '📦'}
+    <div style="width:100%;height:250px;background:var(--bg);border-radius:16px;box-shadow:inset 4px 4px 8px var(--shadow-dark);margin-bottom:20px;display:flex;align-items:center;justify-content:center;font-size:80px;overflow:hidden">
+      ${p.img ? `<img src="${p.img}" style="width:100%;height:100%;object-fit:contain">` : '📦'}
     </div>
-    <h1 class="detail-title">${p.name}</h1>
-    <div class="detail-price">${p.price.toLocaleString()} ETB</div>
-    <div class="detail-desc">
-      <strong>${t('description')}:</strong><br>${p.desc}<br><br>
-      <strong>📍 ${t('place')}:</strong> ${p.loc}
+    <h1 style="font-size:22px;margin:0 0 8px">${p.name}</h1>
+    <div style="font-size:24px;font-weight:900;color:var(--primary);margin-bottom:16px">${p.price.toLocaleString()} ETB</div>
+    <div style="color:var(--text-light);line-height:1.6;margin-bottom:20px;font-size:14px">
+      ${p.desc}<br><br><strong>📍 Location:</strong> ${p.loc}
     </div>
-    
-    <div class="detail-seller">
-      <div class="seller-info">
-        <div class="avatar">${p.seller[0]}</div>
-        <div>
-          <div style="font-weight:bold;font-size:15px">${p.seller}</div>
-          <div style="font-size:11px;color:var(--muted)">${t('verifiedSeller')}</div>
-        </div>
+    <div style="background:var(--bg);padding:16px;border-radius:16px;box-shadow:4px 4px 8px var(--shadow-dark);display:flex;align-items:center;gap:12px;margin-bottom:20px">
+      <div style="width:40px;height:40px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px">${p.seller[0]}</div>
+      <div>
+        <div style="font-weight:800">${p.seller}</div>
+        <div style="font-size:11px;color:var(--text-light)">Verified Seller</div>
       </div>
     </div>
-
-    <button class="primary full" style="margin-bottom:10px;font-size:16px" onclick="contactSeller(${p.id})">${t('msgSeller')}</button>
-    <a href="tel:${p.phone}" style="text-decoration:none;display:block">
-      <button class="soft full" style="font-size:14px;background:var(--line);color:var(--text)">${t('callSeller')} (${p.phone})</button>
-    </a>
+    <button class="neu-btn" style="margin-bottom:12px" onclick="contactSeller(${p.id})">💬 Message Seller</button>
+    <a href="tel:${p.phone}" style="text-decoration:none"><button class="neu-btn secondary">📞 Call (${p.phone})</button></a>
   `;
   $('modalBack').classList.add('show');
 }
 
-// ==================== CHAT SYSTEM ====================
 function contactSeller(productId) {
   if (!currentUser) { checkAuth(); return; }
   const p = products.find(x => x.id === productId);
   const chatId = `chat_${productId}_${currentUser}`;
 
   if (!messages[chatId]) {
-    messages[chatId] = [
-      { sender: p.seller, text: `Hello! You asked about "${p.name}". How can I help you?`, time: new Date().toLocaleTimeString() }
-    ];
+    messages[chatId] = [{ sender: p.seller, text: `Hello! You asked about "${p.name}".`, time: new Date().toLocaleTimeString() }];
     saveData();
   }
 
-  $('modalTitle').innerText = `${t('chatTitle')} ${p.seller}`;
+  $('modalTitle').innerText = `Chat with ${p.seller}`;
   $('modalContent').innerHTML = `
-    <div class="chat-box">
-      <div class="chat-messages" id="chatMsgs">
+    <div style="display:flex;flex-direction:column;height:350px;background:var(--bg);border-radius:16px;box-shadow:inset 4px 4px 8px var(--shadow-dark);overflow:hidden">
+      <div class="chat-messages" id="chatMsgs" style="flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px">
         ${messages[chatId].map(m => `
-          <div class="msg ${m.sender === currentUser ? 'sent' : 'received'}">
+          <div style="max-width:85%;padding:12px 16px;border-radius:16px;font-size:14px;line-height:1.4;${m.sender === currentUser ? 'background:var(--primary);color:white;align-self:flex-end;border-bottom-right-radius:4px;box-shadow:4px 4px 10px rgba(59,130,246,0.3)' : 'background:var(--bg);color:var(--text);align-self:flex-start;border-bottom-left-radius:4px;box-shadow:4px 4px 8px var(--shadow-dark)'}">
             ${m.text}
-            <div style="font-size:9px;opacity:0.7;margin-top:4px;text-align:right">${m.time}</div>
           </div>
         `).join('')}
       </div>
-      <div class="chat-input">
-        <input type="text" id="chatInput" placeholder="${t('typeMsg')}" onkeypress="if(event.key==='Enter') sendMsg('${chatId}', '${p.seller}', ${p.id})">
-        <button class="primary" onclick="sendMsg('${chatId}', '${p.seller}', ${p.id})">${t('send')}</button>
+      <div style="display:flex;gap:8px;padding:12px;background:var(--bg);border-top:1px solid var(--shadow-dark)">
+        <input type="text" id="chatInput" class="neu-input" placeholder="Type a message..." style="padding:12px;flex:1" onkeypress="if(event.key==='Enter') sendMsg('${chatId}', '${p.seller}', ${p.id})">
+        <button class="neu-btn" style="width:auto;padding:12px 20px" onclick="sendMsg('${chatId}', '${p.seller}', ${p.id})">Send</button>
       </div>
     </div>
   `;
-  
-  setTimeout(() => {
-    const msgs = $('chatMsgs');
-    if (msgs) msgs.scrollTop = msgs.scrollHeight;
-  }, 100);
+  setTimeout(() => { const m = $('chatMsgs'); if(m) m.scrollTop = m.scrollHeight; }, 100);
 }
 
 function sendMsg(chatId, sellerName, productId) {
   const input = $('chatInput');
   const text = input.value.trim();
   if (!text) return;
-
   messages[chatId].push({ sender: currentUser, text, time: new Date().toLocaleTimeString() });
   saveData();
-  input.value = '';
-  
-  const msgs = $('chatMsgs');
-  const div = document.createElement('div');
-  div.className = 'msg sent';
-  div.innerHTML = `${text}<div style="font-size:9px;opacity:0.7;margin-top:4px;text-align:right">${new Date().toLocaleTimeString()}</div>`;
-  msgs.appendChild(div);
-  msgs.scrollTop = msgs.scrollHeight;
-
-  setTimeout(() => {
-    messages[chatId].push({ sender: sellerName, text: "Ok, I understand. We will contact you soon.", time: new Date().toLocaleTimeString() });
-    saveData();
-    const replyDiv = document.createElement('div');
-    replyDiv.className = 'msg received';
-    replyDiv.innerHTML = `Ok, I understand. We will contact you soon.<div style="font-size:9px;opacity:0.7;margin-top:4px">${new Date().toLocaleTimeString()}</div>`;
-    msgs.appendChild(replyDiv);
-    msgs.scrollTop = msgs.scrollHeight;
-  }, 1500);
+  contactSeller(productId); // Re-render
 }
 
-function openInbox() {
-  if (!currentUser) { checkAuth(); return; }
-  const chatIds = Object.keys(messages);
-  $('modalTitle').innerText = t('menuInbox');
-  if (chatIds.length === 0) {
-    $('modalContent').innerHTML = `<div style="text-align:center;padding:40px;color:var(--muted)">${t('noMsgs')}</div>`;
-  } else {
-    $('modalContent').innerHTML = chatIds.map(id => {
-      const parts = id.split('_');
-      const prodId = parts[1];
-      const prod = products.find(x => x.id == prodId) || { name: 'Unknown', seller: 'Seller' };
-      const lastMsg = messages[id][messages[id].length - 1];
-      return `
-        <div class="menu-item" onclick="contactSeller(${prodId})">
-          <div class="menu-icon">💬</div>
-          <div style="flex:1;overflow:hidden">
-            <div style="font-weight:bold">${prod.seller}</div>
-            <div style="font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${lastMsg.text}</div>
-          </div>
-        </div>
-      `;
-    }).join('');
+function openModal(type) {
+  if (type === 'sell') {
+    if (!currentUser) { checkAuth(); return; }
+    $('modalTitle').innerText = 'Sell New Item';
+    $('modalContent').innerHTML = `
+      <div class="field"><label>Product Name</label><input id="sellName" class="neu-input" placeholder="iPhone 13"></div>
+      <div class="field"><label>Category</label>
+        <select id="sellCat" class="neu-input">
+          <option value="Electronics">📱 Electronics</option><option value="Fashion">👕 Fashion</option><option value="Home">🛋️ Home</option><option value="Vehicles">🚗 Vehicles</option>
+        </select>
+      </div>
+      <div class="field"><label>Price (ETB)</label><input id="sellPrice" type="number" class="neu-input" placeholder="0"></div>
+      <div class="field"><label>Location</label><input id="sellLoc" class="neu-input" placeholder="Addis Ababa"></div>
+      <div class="field"><label>Description</label><textarea id="sellDesc" class="neu-input" placeholder="..."></textarea></div>
+      <div class="field"><label>Photo</label><input type="file" id="sellImg" accept="image/*" class="neu-input" style="padding:10px"></div>
+      <button class="neu-btn" onclick="publishProduct()">Publish Item</button>
+    `;
+    $('modalBack').classList.add('show');
   }
-  $('modalBack').classList.add('show');
-}
-
-// ==================== SELL PRODUCT ====================
-function openSellModal() {
-  if (!currentUser) { checkAuth(); return; }
-  $('modalTitle').innerText = t('sellTitle');
-  $('modalContent').innerHTML = `
-    <div class="field"><label>${t('prodName')}</label><input id="sellName" placeholder="iPhone 13"></div>
-    <div class="field"><label>${t('category')}</label>
-      <select id="sellCat">
-        <option value="Electronics">${t('catElec')}</option>
-        <option value="Fashion">${t('catFash')}</option>
-        <option value="Home">${t('catHome')}</option>
-        <option value="Vehicles">${t('catVeh')}</option>
-      </select>
-    </div>
-    <div class="field"><label>${t('price')}</label><input id="sellPrice" type="number" placeholder="0"></div>
-    <div class="field"><label>${t('location')}</label><input id="sellLoc" placeholder="Addis Ababa"></div>
-    <div class="field"><label>${t('desc')}</label><textarea id="sellDesc" placeholder="..."></textarea></div>
-    <div class="field"><label>${t('photo')}</label><input type="file" id="sellImg" accept="image/*" style="padding:10px"></div>
-    <button class="primary full" onclick="publishProduct()">${t('publish')}</button>
-  `;
-  $('modalBack').classList.add('show');
+  else if (type === 'wallet') {
+    if (!currentUser) { checkAuth(); return; }
+    const bal = users[currentUser]?.balance || 0;
+    $('modalTitle').innerText = 'My Wallet';
+    $('modalContent').innerHTML = `
+      <div style="text-align:center;padding:24px;background:var(--bg);border-radius:16px;box-shadow:inset 4px 4px 8px var(--shadow-dark);margin-bottom:20px">
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:4px;font-weight:700">Available Balance</div>
+        <div style="font-size:32px;font-weight:900;color:var(--primary)">${bal.toLocaleString()} ETB</div>
+      </div>
+      <h4 style="margin:0 0 12px;color:var(--text-light);font-size:14px">Payment Methods</h4>
+      <button class="menu-item" onclick="window.open('https://play.google.com/store/apps/details?id=com.ethiotelecom.telebirr', '_blank')">
+        <div style="width:40px;height:40px;background:#00a651;color:white;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px">📱</div> Telebirr
+      </button>
+      <button class="menu-item" onclick="window.open('https://play.google.com/store/apps/details?id=com.cbe.cbebirr', '_blank')">
+        <div style="width:40px;height:40px;background:#4a148c;color:white;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px">🏦</div> CBE Birr
+      </button>
+      <div style="margin-top:20px">
+        <h4 style="margin:0 0 12px;color:var(--text-light);font-size:14px">Manual Deposit (Test)</h4>
+        <div class="field"><input id="walletAmt" type="number" class="neu-input" placeholder="Amount (ETB)" min="10"></div>
+        <button class="neu-btn" onclick="simulateDeposit()">Deposit</button>
+      </div>
+    `;
+    $('modalBack').classList.add('show');
+  }
+  else if (type === 'menu') {
+    $('modalTitle').innerText = 'Menu';
+    $('modalContent').innerHTML = `
+      <button class="menu-item" onclick="openModal('sell')">➕ Sell Item</button>
+      <button class="menu-item" onclick="openModal('wallet')">💳 Wallet</button>
+      <button class="menu-item" onclick="alert('Dark mode not fully ready in 3D theme.')">🌙 Dark Mode</button>
+      <button class="menu-item" onclick="doLogout()" style="color:var(--primary)">🚪 Logout</button>
+    `;
+    $('modalBack').classList.add('show');
+  }
 }
 
 function publishProduct() {
@@ -450,170 +626,32 @@ function publishProduct() {
   const price = Number($('sellPrice').value);
   const loc = $('sellLoc').value.trim() || 'Addis Ababa';
   const desc = $('sellDesc').value.trim() || 'No description';
-  const phone = users[currentUser].phone || '0900000000';
+  const phone = users[currentUser]?.phone || '0900000000';
   const imgFile = $('sellImg').files[0];
 
   if (!name || !price) { alert('Name & Price required!'); return; }
-
   const saveProduct = (imgData) => {
-    const newProduct = {
-      id: Date.now(), name, cat, price, loc, desc, img: imgData, seller: users[currentUser].name, phone
-    };
-    products.unshift(newProduct);
-    saveData();
-    closeModal();
-    renderProducts();
-    alert('✅ Item published!');
+    products.unshift({ id: Date.now(), name, cat, price, loc, desc, img: imgData, seller: users[currentUser]?.name || 'User', phone });
+    saveData(); closeModal(); renderProducts(); alert('✅ Item published!');
   };
 
   if (imgFile) {
     const reader = new FileReader();
     reader.onload = (e) => saveProduct(e.target.result);
     reader.readAsDataURL(imgFile);
-  } else {
-    saveProduct('');
-  }
-}
-
-// ==================== WALLET ====================
-function openWallet() {
-  if (!currentUser) { checkAuth(); return; }
-  const bal = users[currentUser].balance;
-  $('modalTitle').innerText = t('walletTitle');
-  $('modalContent').innerHTML = `
-    <div style="text-align:center;padding:20px;background:var(--bg);border-radius:16px;margin-bottom:20px">
-      <div style="font-size:13px;color:var(--muted);margin-bottom:4px">${t('balance')}</div>
-      <div style="font-size:30px;font-weight:900;color:var(--blue)">${bal.toLocaleString()} ETB</div>
-    </div>
-    <h4 style="margin:0 0 12px;color:var(--muted);font-size:14px">${t('paymentMethods')}</h4>
-    
-    <!-- እውነተኛ የክፍያ ሊንኮች -->
-    <button class="pay-btn" onclick="window.open('https://play.google.com/store/apps/details?id=com.ethiotelecom.telebirr', '_blank')">
-      <span style="font-size:22px">📱</span> Telebirr
-    </button>
-    <button class="pay-btn" onclick="window.open('https://play.google.com/store/apps/details?id=com.cbe.cbebirr', '_blank')">
-      <span style="font-size:22px">🏦</span> CBE Birr
-    </button>
-    <button class="pay-btn" onclick="window.open('https://www.awashbank.com', '_blank')">
-      <span style="font-size:22px">🏛️</span> Awash Bank
-    </button>
-    
-    <div style="margin-top:20px;border-top:1px solid var(--line);padding-top:20px">
-      <h4 style="margin:0 0 10px;color:var(--muted);font-size:14px">${t('manualDep')}</h4>
-      <div class="field"><label>${t('amount')}</label><input id="walletAmt" type="number" placeholder="0" min="10"></div>
-      <button class="primary full" onclick="simulateDeposit()">${t('deposit')}</button>
-    </div>
-  `;
-  $('modalBack').classList.add('show');
+  } else saveProduct('');
 }
 
 function simulateDeposit() {
   const amt = Number($('walletAmt').value);
   if (!amt || amt < 10) { alert('Enter valid amount!'); return; }
   users[currentUser].balance += amt;
-  saveData();
-  alert('✅ Deposited successfully!');
-  openWallet();
-}
-
-// ==================== AUTH SYSTEM ====================
-function checkAuth() {
-  if (!currentUser) $('loginScreen').classList.add('active');
-  else $('loginScreen').classList.remove('active');
-}
-
-function showSignup() {
-  $('loginForm').style.display = 'none';
-  $('signupForm').style.display = 'block';
-  $('loginError').innerText = '';
-}
-
-function showLogin() {
-  $('signupForm').style.display = 'none';
-  $('loginForm').style.display = 'block';
-  $('loginError').innerText = '';
-}
-
-function doSignup() {
-  const name = $('signupName').value.trim();
-  const email = $('signupEmail').value.trim();
-  const pass = $('signupPassword').value;
-  const phone = $('signupPhone').value.trim();
-  
-  if (!name || !email || !pass || !phone) { $('loginError').innerText = 'Fill all fields!'; return; }
-  if (users[email]) { $('loginError').innerText = 'Email exists!'; return; }
-  
-  users[email] = { name, pass, phone, balance: 0 };
-  currentUser = email;
-  localStorage.setItem('vip-user', JSON.stringify(currentUser));
-  saveData();
-  checkAuth();
-}
-
-function doLogin() {
-  const email = $('loginEmail').value.trim();
-  const pass = $('loginPassword').value;
-  if (users[email] && users[email].pass === pass) {
-    currentUser = email;
-    localStorage.setItem('vip-user', JSON.stringify(currentUser));
-    checkAuth();
-  } else {
-    $('loginError').innerText = 'Wrong email or password!';
-  }
-}
-
-function logout() {
-  currentUser = null;
-  localStorage.removeItem('vip-user');
-  checkAuth();
-  closeModal();
-}
-
-// ==================== MENU & LANGUAGE ====================
-function openModal(type) {
-  if (type === 'sell') openSellModal();
-  else if (type === 'wallet') openWallet();
-  else if (type === 'menu') {
-    $('modalTitle').innerText = t('navMenu');
-    $('modalContent').innerHTML = `
-      <button class="menu-item" onclick="openInbox()"><div class="menu-icon">💬</div> ${t('menuInbox')}</button>
-      <button class="menu-item" onclick="openSellModal()"><div class="menu-icon">➕</div> ${t('menuSell')}</button>
-      <button class="menu-item" onclick="openWallet()"><div class="menu-icon">💳</div> ${t('menuWallet')}</button>
-      <div style="height:1px;background:var(--line);margin:10px 0"></div>
-      <button class="menu-item" onclick="openLanguageModal()"><div class="menu-icon">🌐</div> ${t('menuLang')}</button>
-      <button class="menu-item" onclick="toggleTheme()"><div class="menu-icon">🌙</div> ${t('menuDark')}</button>
-      <div style="height:1px;background:var(--line);margin:10px 0"></div>
-      <button class="menu-item" onclick="logout()" style="color:var(--primary)"><div class="menu-icon" style="background:#fee2e2;color:var(--primary)">🚪</div> ${t('menuLogout')}</button>
-    `;
-    $('modalBack').classList.add('show');
-  }
-}
-
-function openLanguageModal() {
-  $('modalTitle').innerText = t('langTitle');
-  $('modalContent').innerHTML = `
-    <div class="field">
-      <label>${t('selectLang')}</label>
-      <select id="langSelect" style="padding:14px;font-size:15px" onchange="changeLanguage(this.value)">
-        <option value="am" ${currentLang==='am'?'selected':''}>🇪🇹 አማርኛ</option>
-        <option value="en" ${currentLang==='en'?'selected':''}>🇺🇸 English</option>
-      </select>
-    </div>
-  `;
-  $('modalBack').classList.add('show');
-}
-
-function changeLanguage(lang) {
-  currentLang = lang;
-  saveData();
-  applyTranslations();
-  alert(t('savedMsg'));
-  closeModal();
+  saveData(); alert('✅ Deposited!'); openModal('wallet');
 }
 
 function closeModal() { $('modalBack').classList.remove('show'); }
 
-// Search & Filter
+// ==================== INIT & EVENTS ====================
 $('search').addEventListener('input', renderProducts);
 document.querySelectorAll('.cat-item').forEach(item => {
   item.addEventListener('click', () => {
@@ -623,23 +661,11 @@ document.querySelectorAll('.cat-item').forEach(item => {
     renderProducts();
   });
 });
-
-// Theme
-function toggleTheme() {
-  document.body.classList.toggle('dark');
-  localStorage.setItem('vip-dark', document.body.classList.contains('dark') ? '1' : '0');
-  closeModal();
-}
-if (localStorage.getItem('vip-dark') === '1') document.body.classList.add('dark');
-
-// Events
 $('settingsBtn').onclick = () => openModal('menu');
-$('msgBtn').onclick = () => openInbox();
 $('closeModal').onclick = closeModal;
 $('modalBack').onclick = (e) => { if (e.target === $('modalBack')) closeModal(); };
 
-// INIT
-applyTranslations();
+renderProducts();
 checkAuth();
 </script>
 </body></html>
