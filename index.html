@@ -42,6 +42,17 @@
   --header-h: 70px;
 }
 
+/* Dark Mode Variables */
+body.dark-mode {
+  --bg: #1a202c;
+  --text: #e2e8f0;
+  --text-light: #a0aec0;
+  --primary: #63b3ed;
+  --primary-hover: #4299e1;
+  --shadow-light: #2d3748;
+  --shadow-dark: #0f1115;
+}
+
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
@@ -54,6 +65,7 @@ body {
   color: var(--text);
   padding-bottom: 70px;
   overflow-x: hidden;
+  transition: background 0.3s, color 0.3s;
 }
 
 /* Global 3D Elements */
@@ -120,9 +132,10 @@ body {
   padding: 12px max(16px, calc((100vw - 1240px)/2));
   height: var(--header-h);
   box-shadow: 0 4px 12px rgba(163, 177, 198, 0.2);
+  transition: background 0.3s;
 }
 .logo-img { height: 40px; object-fit: contain; border-radius: 8px; }
-.search { flex: 1; position: relative; }
+.search { flex: 1; position: relative; width: 100%; max-width: none; }
 .search input {
   width: 100%; border: none; border-radius: 24px; background: var(--bg);
   padding: 12px 20px 12px 44px; color: var(--text);
@@ -130,7 +143,7 @@ body {
   font-size: 14px; transition: 0.2s;
 }
 .search::before { content: '🔍'; position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 14px; color: var(--text-light); }
-.top-actions { display: flex; gap: 10px; margin-left: auto; }
+.top-actions { display: flex; gap: 8px; margin-left: auto; }
 .circle-btn {
   width: 44px; height: 44px; border-radius: 50%; border: none; background: var(--bg);
   box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
@@ -139,8 +152,8 @@ body {
 }
 .circle-btn:active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); }
 
-/* Categories & Products (Keep old layout for shop) */
-.cat-nav { background: var(--bg); padding: 10px max(16px, calc((100vw - 1240px)/2)); display: flex; overflow-x: auto; gap: 12px; scrollbar-width: none; border-bottom: 1px solid var(--shadow-dark); }
+/* Categories & Products */
+.cat-nav { background: var(--bg); padding: 10px max(16px, calc((100vw - 1240px)/2)); display: flex; overflow-x: auto; gap: 12px; scrollbar-width: none; border-bottom: 1px solid var(--shadow-dark); transition: background 0.3s; }
 .cat-nav::-webkit-scrollbar { display: none; }
 .cat-item { white-space: nowrap; padding: 10px 16px; background: var(--bg); border-radius: 20px; box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); color: var(--text-light); font-weight: 600; cursor: pointer; transition: 0.2s; font-size: 13px; }
 .cat-item.active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); color: var(--primary); }
@@ -159,9 +172,9 @@ body {
 .meta { font-size: 11px; color: var(--text-light); margin-top: 4px; }
 
 /* Modals */
-.modalback { display: none; position: fixed; inset: 0; background: rgba(224, 229, 236, 0.8); backdrop-filter: blur(5px); z-index: 100; align-items: flex-end; justify-content: center; padding: 0; }
+.modalback { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(5px); z-index: 100; align-items: flex-end; justify-content: center; padding: 0; }
 .modalback.show { display: flex; }
-.modal { width: 100%; max-width: 520px; max-height: 90vh; overflow: auto; background: var(--bg); border-radius: 30px 30px 0 0; padding: 24px; box-shadow: 0 -10px 40px rgba(0,0,0,0.1); animation: slideUp 0.3s; }
+.modal { width: 100%; max-width: 520px; max-height: 90vh; overflow: auto; background: var(--bg); border-radius: 30px 30px 0 0; padding: 24px; box-shadow: 0 -10px 40px rgba(0,0,0,0.1); animation: slideUp 0.3s; transition: background 0.3s; }
 .modalhead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
 .modalhead h2 { font-size: 20px; font-weight: 800; margin: 0; }
 .field { margin-bottom: 16px; position: relative; }
@@ -170,8 +183,8 @@ body {
 .menu-item { display: flex; align-items: center; gap: 16px; padding: 16px; border-radius: 16px; cursor: pointer; font-weight: 700; color: var(--text); background: var(--bg); width: 100%; text-align: left; font-size: 15px; margin-bottom: 10px; border: none; box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); transition: 0.2s; }
 .menu-item:active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); }
 
-/* Auth Screen (3D Neumorphism) */
-.auth-screen { position: fixed; inset: 0; background: var(--bg); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
+/* Auth Screen */
+.auth-screen { position: fixed; inset: 0; background: var(--bg); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; transition: background 0.3s; }
 .auth-screen.active { display: flex; }
 .auth-card { width: 100%; max-width: 380px; text-align: center; position: relative; padding: 40px 30px; }
 .auth-icon { width: 70px; height: 70px; background: var(--bg); border-radius: 50%; box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light); display: flex; align-items: center; justify-content: center; font-size: 30px; margin: 0 auto 20px; color: var(--primary); }
@@ -186,7 +199,7 @@ body {
 #recaptcha-container { display: none; margin-bottom: 16px; }
 
 /* Bottom Nav */
-.bottom-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg); z-index: 50; padding: 10px 0; box-shadow: 0 -4px 12px rgba(163, 177, 198, 0.4); }
+.bottom-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg); z-index: 50; padding: 10px 0; box-shadow: 0 -4px 12px rgba(163, 177, 198, 0.4); transition: background 0.3s; }
 .bottom-nav-inner { display: flex; justify-content: space-around; align-items: center; }
 .b-nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-light); font-size: 10px; font-weight: 700; cursor: pointer; transition: 0.2s; }
 .b-nav-item.active { color: var(--primary); }
@@ -204,10 +217,9 @@ body {
 </head>
 <body>
 
-<!-- ================= AUTH SCREEN (3D NEUMORPHISM) ================= -->
+<!-- AUTH SCREEN -->
 <div class="auth-screen active" id="authScreen">
   <div class="auth-card neu-card">
-    
     <!-- Login Form -->
     <div id="loginView">
       <div class="auth-icon">🔒</div>
@@ -220,9 +232,7 @@ body {
       </div>
 
       <div id="emailLoginForm">
-        <div class="field">
-          <input type="email" id="loginEmail" class="neu-input" placeholder="Email Address">
-        </div>
+        <div class="field"><input type="email" id="loginEmail" class="neu-input" placeholder="Email Address"></div>
         <div class="field">
           <input type="password" id="loginPassword" class="neu-input" placeholder="Password">
           <span class="eye-icon" onclick="togglePass('loginPassword', this)">👁️</span>
@@ -231,22 +241,15 @@ body {
       </div>
 
       <div id="phoneLoginForm" style="display:none">
-        <div class="field">
-          <input type="tel" id="loginPhone" class="neu-input" placeholder="+2519XXXXXXXX">
-        </div>
+        <div class="field"><input type="tel" id="loginPhone" class="neu-input" placeholder="+2519XXXXXXXX"></div>
         <button class="neu-btn" onclick="doPhoneLogin()" id="sendSmsBtn">Send SMS Code</button>
         <div id="otpInputDiv" style="display:none; margin-top:16px;">
-          <div class="field">
-            <input type="text" id="loginOtp" class="neu-input" placeholder="6-digit Code" maxlength="6" style="text-align:center; letter-spacing:8px; font-weight:900; font-size:20px;">
-          </div>
+          <div class="field"><input type="text" id="loginOtp" class="neu-input" placeholder="6-digit Code" maxlength="6" style="text-align:center; letter-spacing:8px; font-weight:900; font-size:20px;"></div>
           <button class="neu-btn" onclick="verifyPhoneCode()">Verify Access</button>
         </div>
         <div id="recaptcha-container"></div>
       </div>
-
-      <div class="auth-switch">
-        Don't have an account? <span onclick="toggleAuthView('signup')">Create Account</span>
-      </div>
+      <div class="auth-switch">Don't have an account? <span onclick="toggleAuthView('signup')">Create Account</span></div>
     </div>
 
     <!-- Signup Form -->
@@ -254,34 +257,21 @@ body {
       <div class="auth-icon">👤</div>
       <h1 class="auth-title">Create Account</h1>
       <p class="auth-sub">የእርስዎን መለያ ይፍጠሩ</p>
-      
-      <div class="field">
-        <input type="text" id="signupName" class="neu-input" placeholder="Full Name">
-      </div>
-      <div class="field">
-        <input type="email" id="signupEmail" class="neu-input" placeholder="Email Address">
-      </div>
+      <div class="field"><input type="text" id="signupName" class="neu-input" placeholder="Full Name"></div>
+      <div class="field"><input type="email" id="signupEmail" class="neu-input" placeholder="Email Address"></div>
       <div class="field">
         <input type="password" id="signupPassword" class="neu-input" placeholder="Password (min 6 chars)">
         <span class="eye-icon" onclick="togglePass('signupPassword', this)">👁️</span>
       </div>
-      <div class="field">
-        <input type="tel" id="signupPhone" class="neu-input" placeholder="Phone Number (09...)">
-      </div>
-      
+      <div class="field"><input type="tel" id="signupPhone" class="neu-input" placeholder="Phone Number (09...)"></div>
       <button class="neu-btn" onclick="doSignup()">Create Account</button>
-      
-      <div class="auth-switch">
-        Already have an account? <span onclick="toggleAuthView('login')">Login</span>
-      </div>
+      <div class="auth-switch">Already have an account? <span onclick="toggleAuthView('login')">Login</span></div>
     </div>
-
     <div class="auth-error" id="authError"></div>
   </div>
 </div>
 
-
-<!-- ================= MAIN APP HEADER & CONTENT ================= -->
+<!-- HEADER -->
 <header class="top">
   <img src="logo.png" alt="VIP MALL" class="logo-img" onerror="this.outerHTML='<div style=\'font-size:20px;font-weight:900;color:var(--primary)\'>VIP MALL</div>'">
   <div class="search"><input id="search" placeholder="ምርቶችን ይፈልጉ..."></div>
@@ -329,7 +319,6 @@ body {
   </section>
 </div>
 
-
 <script>
 // ==================== GLOBAL STATE ====================
 let currentUser = JSON.parse(localStorage.getItem('vip-user')) || null;
@@ -350,7 +339,26 @@ function saveData() {
   localStorage.setItem('vip-users', JSON.stringify(users));
 }
 
-// ==================== 3D AUTH SYSTEM ====================
+// ==================== DARK MODE LOGIC ====================
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  const isDark = document.body.classList.contains('dark-mode');
+  localStorage.setItem('vip-dark-mode', isDark ? 'true' : 'false');
+  
+  // Update meta theme-color
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', isDark ? '#1a202c' : '#e0e5ec');
+  
+  closeModal();
+  setTimeout(() => openModal('menu'), 100); // Refresh menu to show correct text
+}
+
+// Apply saved theme on load
+if (localStorage.getItem('vip-dark-mode') === 'true') {
+  document.body.classList.add('dark-mode');
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', '#1a202c');
+}
+
+// ==================== AUTH SYSTEM ====================
 function togglePass(id, icon) {
   const input = document.getElementById(id);
   if (input.type === "password") { input.type = "text"; icon.innerText = "🙈"; }
@@ -562,7 +570,7 @@ function sendMsg(chatId, sellerName, productId) {
   if (!text) return;
   messages[chatId].push({ sender: currentUser, text, time: new Date().toLocaleTimeString() });
   saveData();
-  contactSeller(productId); // Re-render
+  contactSeller(productId);
 }
 
 function openModal(type) {
@@ -613,7 +621,9 @@ function openModal(type) {
     $('modalContent').innerHTML = `
       <button class="menu-item" onclick="openModal('sell')">➕ Sell Item</button>
       <button class="menu-item" onclick="openModal('wallet')">💳 Wallet</button>
-      <button class="menu-item" onclick="alert('Dark mode not fully ready in 3D theme.')">🌙 Dark Mode</button>
+      <button class="menu-item" onclick="toggleDarkMode()" id="darkModeBtn">
+        ${document.body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode'}
+      </button>
       <button class="menu-item" onclick="doLogout()" style="color:var(--primary)">🚪 Logout</button>
     `;
     $('modalBack').classList.add('show');
@@ -661,7 +671,11 @@ document.querySelectorAll('.cat-item').forEach(item => {
     renderProducts();
   });
 });
+
 $('settingsBtn').onclick = () => openModal('menu');
+$('msgBtn').onclick = () => {
+    alert('የመልእክት ሳጥን በቅርቡ ይመጣል! (Message feature coming soon)');
+};
 $('closeModal').onclick = closeModal;
 $('modalBack').onclick = (e) => { if (e.target === $('modalBack')) closeModal(); };
 
