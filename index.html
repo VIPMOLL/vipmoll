@@ -275,10 +275,6 @@ body {
 <header class="top">
   <img src="logo.png" alt="VIP MALL" class="logo-img" onerror="this.outerHTML='<div style=\'font-size:20px;font-weight:900;color:var(--primary)\'>VIP MALL</div>'">
   <div class="search"><input id="search" placeholder="ምርቶችን ይፈልጉ..."></div>
-  <div class="top-actions">
-    <button class="circle-btn" id="msgBtn">💬</button>
-    <button class="circle-btn" id="settingsBtn">☰</button>
-  </div>
 </header>
 
 <nav class="cat-nav">
@@ -301,7 +297,7 @@ body {
 <div class="bottom-nav">
   <div class="bottom-nav-inner">
     <div class="b-nav-item active" onclick="window.scrollTo(0,0)"><span>🏠</span>Home</div>
-    <div class="b-nav-item" onclick="document.getElementById('search').focus()"><span>🔍</span>Search</div>
+    <div class="b-nav-item" id="msgBtn" onclick="openModal('menu')"><span>💬</span>Message</div>
     <div class="b-nav-item" onclick="openModal('sell')"><span>➕</span>Sell</div>
     <div class="b-nav-item" onclick="openModal('wallet')"><span>💳</span>Wallet</div>
     <div class="b-nav-item" onclick="openModal('menu')"><span>☰</span>Menu</div>
@@ -344,15 +340,11 @@ function toggleDarkMode() {
   document.body.classList.toggle('dark-mode');
   const isDark = document.body.classList.contains('dark-mode');
   localStorage.setItem('vip-dark-mode', isDark ? 'true' : 'false');
-  
-  // Update meta theme-color
   document.querySelector('meta[name="theme-color"]').setAttribute('content', isDark ? '#1a202c' : '#e0e5ec');
-  
   closeModal();
-  setTimeout(() => openModal('menu'), 100); // Refresh menu to show correct text
+  setTimeout(() => openModal('menu'), 100);
 }
 
-// Apply saved theme on load
 if (localStorage.getItem('vip-dark-mode') === 'true') {
   document.body.classList.add('dark-mode');
   document.querySelector('meta[name="theme-color"]').setAttribute('content', '#1a202c');
@@ -672,10 +664,7 @@ document.querySelectorAll('.cat-item').forEach(item => {
   });
 });
 
-$('settingsBtn').onclick = () => openModal('menu');
-$('msgBtn').onclick = () => {
-    alert('የመልእክት ሳጥን በቅርቡ ይመጣል! (Message feature coming soon)');
-};
+// የላይኛው ሜኑ ስለሌለ የሜኑ አዝራር ማስተናገጃው ተወግዷል
 $('closeModal').onclick = closeModal;
 $('modalBack').onclick = (e) => { if (e.target === $('modalBack')) closeModal(); };
 
