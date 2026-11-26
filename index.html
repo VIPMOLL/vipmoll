@@ -9,7 +9,7 @@
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
   import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPhoneNumber, RecaptchaVerifier, signOut } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
-  
+
   const firebaseConfig = {
     apiKey: "AIzaSyB3Tlmdy7inGamQwb0CW_RbvBVo3-jCk7U",
     authDomain: "smart-trading-number-1.firebaseapp.com",
@@ -18,7 +18,7 @@
     messagingSenderId: "1049167837633",
     appId: "1:1049167837633:web:9e57f4ad25613988a1d740"
   };
-  
+
   const app = initializeApp(firebaseConfig);
   window.auth = getAuth(app);
   window.fbCreateUser = createUserWithEmailAndPassword;
@@ -29,7 +29,6 @@
 </script>
 
 <style>
-/* 3D Neumorphism Design System */
 :root {
   --bg: #e0e5ec;
   --text: #2d3748;
@@ -40,10 +39,11 @@
   --shadow-dark: #a3b1c6;
   --radius: 20px;
   --header-h: 70px;
-  /* Ananas style profile colors */
   --profile-bg: #f8fafc;
   --profile-card: #ffffff;
   --profile-text: #1e293b;
+  --card-bg: #e0e5ec;
+  --modal-card: #ffffff;
 }
 
 body.dark-mode {
@@ -57,31 +57,29 @@ body.dark-mode {
   --profile-bg: #1a202c;
   --profile-card: #2d3748;
   --profile-text: #e2e8f0;
+  --card-bg: #1a202c;
+  --modal-card: #2d3748;
 }
 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Ethiopic", Arial, sans-serif; }
 body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80px; overflow-x: hidden; transition: 0.3s; }
 
-/* General 3D Classes */
 .neu-input { width: 100%; padding: 16px 20px; border: none; outline: none; background: var(--bg); border-radius: 12px; box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); color: var(--text); font-size: 15px; font-weight: 500; }
 .neu-btn { width: 100%; padding: 16px; border: none; outline: none; background: var(--primary); color: white; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light); transition: 0.2s; }
 .neu-btn:active { box-shadow: inset 4px 4px 8px var(--primary-hover); transform: translateY(2px); }
 .neu-btn.secondary { background: var(--bg); color: var(--text-light); }
 
-/* Top Header (Same as VIP MALL) */
 .top { position: sticky; top: 0; z-index: 40; background: var(--bg); display: flex; align-items: center; gap: 12px; padding: 12px max(16px, calc((100vw - 1240px)/2)); height: var(--header-h); box-shadow: 0 4px 12px rgba(163, 177, 198, 0.2); }
 .logo-img { height: 40px; object-fit: contain; border-radius: 8px; }
 .search { flex: 1; position: relative; }
 .search input { width: 100%; border: none; border-radius: 24px; background: var(--bg); padding: 12px 20px 12px 44px; color: var(--text); box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); font-size: 14px; }
 .search::before { content: '🔍'; position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 14px; color: var(--text-light); }
 
-/* Category Nav (Same as VIP MALL) */
 .cat-nav { background: var(--bg); padding: 10px max(16px, calc((100vw - 1240px)/2)); display: flex; overflow-x: auto; gap: 12px; scrollbar-width: none; border-bottom: 1px solid var(--shadow-dark); }
 .cat-nav::-webkit-scrollbar { display: none; }
 .cat-item { white-space: nowrap; padding: 10px 16px; background: var(--bg); border-radius: 20px; box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); color: var(--text-light); font-weight: 600; cursor: pointer; font-size: 13px; }
 .cat-item.active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); color: var(--primary); }
 
-/* Products (Same as VIP MALL) */
 .wrap { max-width: 1240px; margin: 20px auto; padding: 0 16px; }
 .sectionhead { display: flex; justify-content: space-between; align-items: center; margin: 0 0 16px; }
 .sectionhead h2 { font-size: 20px; margin: 0; font-weight: 800; color: var(--text); }
@@ -94,15 +92,13 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 .price { font-size: 16px; font-weight: 900; color: var(--primary); }
 .meta { font-size: 11px; color: var(--text-light); margin-top: 4px; }
 
-/* Modals & Auth */
 .modalback { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); z-index: 100; align-items: flex-end; justify-content: center; }
 .modalback.show { display: flex; }
-.modal { width: 100%; max-width: 520px; max-height: 90vh; overflow: auto; background: var(--bg); border-radius: 30px 30px 0 0; padding: 24px; animation: slideUp 0.3s; }
+.modal { width: 100%; max-width: 520px; max-height: 90vh; overflow: auto; background: var(--bg); border-radius: 30px 30px 0 0; padding: 24px; animation: slideUp 0.3s; position: relative; }
 .modalhead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
 .field { margin-bottom: 16px; position: relative; }
 .eye-icon { position: absolute; right: 16px; bottom: 16px; cursor: pointer; font-size: 18px; color: var(--text-light); }
 
-/* Auth Screen */
 .auth-screen { position: fixed; inset: 0; background: var(--bg); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
 .auth-screen.active { display: flex; }
 .auth-card { width: 100%; max-width: 380px; text-align: center; padding: 40px 30px; background: var(--bg); border-radius: var(--radius); box-shadow: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light); }
@@ -116,7 +112,6 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 .login-tabs button { flex: 1; padding: 12px; border-radius: 12px; border: none; background: transparent; color: var(--text-light); font-weight: 700; font-size: 14px; cursor: pointer; }
 .login-tabs button.active { background: var(--bg); color: var(--primary); box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); }
 
-/* ANANAS BOTTOM NAV */
 .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg); border-top: 1px solid var(--shadow-dark); display: flex; justify-content: space-around; align-items: center; padding: 8px 0; z-index: 50; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); }
 .b-nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-light); font-size: 10px; font-weight: 600; cursor: pointer; }
 .b-nav-item.active { color: var(--primary); }
@@ -124,17 +119,15 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 .b-nav-item.special { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #fbbf24); color: white; margin-top: -20px; box-shadow: 0 4px 12px rgba(245,158,11,0.4); justify-content: center; align-items: center; display: flex; }
 .b-nav-item.special span { font-size: 24px; }
 
-/* ANANAS PROFILE PAGE */
 .profile-page { display: none; background: #f8fafc; min-height: 100vh; position: fixed; inset: 0; z-index: 60; overflow-y: auto; padding-bottom: 80px; }
 .dark-mode .profile-page { background: #1a202c; }
 .profile-page.active { display: block; }
-.profile-header { padding: 20px 16px; display: flex; align-items: center; gap: 16px; }
 .profile-welcome { background: white; margin: 0 16px 20px; border-radius: 16px; padding: 24px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
 .dark-mode .profile-welcome { background: #2d3748; }
 .profile-welcome h2 { margin: 0 0 8px; font-size: 20px; font-weight: 900; color: var(--profile-text); }
 .profile-welcome p { margin: 0 0 20px; font-size: 14px; color: var(--text-light); line-height: 1.5; }
-.btn-phone { background: #1e293b; color: white; padding: 16px; border-radius: 12px; width: 100%; font-size: 16px; font-weight: 700; border: none; margin-bottom: 12px; }
-.sell-ananas { background: #1e293b; margin: 0 16px 20px; padding: 20px; border-radius: 16px; display: flex; align-items: center; justify-content: space-between; color: white; }
+.btn-phone { background: #1e293b; color: white; padding: 16px; border-radius: 12px; width: 100%; font-size: 16px; font-weight: 700; border: none; margin-bottom: 12px; cursor: pointer; }
+.sell-ananas { background: #1e293b; margin: 0 16px 20px; padding: 20px; border-radius: 16px; display: flex; align-items: center; justify-content: space-between; color: white; cursor: pointer; }
 .sell-ananas div { display: flex; align-items: center; gap: 12px; }
 .sell-ananas .icon { background: #f59e0b; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; }
 .profile-list { margin: 0 16px 20px; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
@@ -215,14 +208,14 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
   </div>
 </div>
 
-<!-- ANANAS PROFILE PAGE -->
+<!-- PROFILE PAGE -->
 <div class="profile-page" id="profilePage">
   <div style="padding: 16px; display: flex; align-items: center; gap: 16px;">
-    <button onclick="closeProfile()" style="background:none; border:none; font-size:24px; cursor:pointer;">←</button>
+    <button onclick="closeProfile()" style="background:none; border:none; font-size:24px; cursor:pointer; color:var(--text);">←</button>
     <h2 style="margin:0; font-size:20px; font-weight:900; color:var(--profile-text)">Profile</h2>
   </div>
 
-  <div class="profile-welcome">
+  <div class="profile-welcome" id="profileWelcome">
     <h2>Welcome to VIP MALL</h2>
     <p>Sign in with your phone to track orders, save wishlists and get support.</p>
     <button class="btn-phone" onclick="checkAuth()">Continue with phone</button>
@@ -243,7 +236,7 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
   <div style="margin: 0 16px 8px; font-size:12px; font-weight:800; color:var(--text-light); letter-spacing:1px;">PREFERENCES</div>
   <div class="profile-list">
     <div class="profile-list-item" onclick="toggleDarkMode()">
-      <span>🔔</span> Notification settings
+      <span>🌙</span> Dark mode
       <span style="margin-left:auto">›</span>
     </div>
   </div>
@@ -262,12 +255,16 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
     <div class="profile-list-item"><span>📄</span> Terms and conditions <span style="margin-left:auto">›</span></div>
     <div class="profile-list-item"><span>ℹ️</span> App version <span style="margin-left:auto; font-size:13px; color:var(--text-light);">1.0.0</span></div>
   </div>
+
+  <div id="logoutBtnWrap" style="display:none; margin: 0 16px 20px;">
+    <button class="neu-btn secondary" onclick="doLogout()">Logout</button>
+  </div>
 </div>
 
-<!-- ANANAS BOTTOM NAV -->
+<!-- BOTTOM NAV -->
 <div class="bottom-nav">
-  <div class="b-nav-item active" onclick="window.scrollTo(0,0); closeProfile()"><span>🏠</span>Home</div>
-  <div class="b-nav-item" onclick="document.getElementById('search').focus()"><span>🔍</span>Search</div>
+  <div class="b-nav-item active" onclick="goHome()"><span>🏠</span>Home</div>
+  <div class="b-nav-item" onclick="focusSearch()"><span>🔍</span>Search</div>
   <div class="b-nav-item special" onclick="openVideo()"><span>▶️</span></div>
   <div class="b-nav-item" onclick="openModal('cart')"><span>🛒</span>Cart</div>
   <div class="b-nav-item" onclick="openProfile()"><span>👤</span>Profile</div>
@@ -278,13 +275,14 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
   <section class="modal">
     <div class="modalhead">
       <h2 id="modalTitle">VIP MALL</h2>
-      <button style="background:none;border:none;font-size:24px;cursor:pointer;" id="closeModal">✕</button>
+      <button style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--text);" id="closeModal">✕</button>
     </div>
     <div id="modalContent"></div>
   </section>
 </div>
 
 <script>
+// ==================== STATE ====================
 let currentUser = JSON.parse(localStorage.getItem('vip-user')) || null;
 let users = JSON.parse(localStorage.getItem('vip-users')) || {};
 let products = JSON.parse(localStorage.getItem('vip-products')) || [
@@ -294,8 +292,10 @@ let products = JSON.parse(localStorage.getItem('vip-products')) || [
   { id: 4, name: 'ሳልካል', cat: 'Home', price: 1000, loc: 'Goro', desc: 'Good condition.', img: '', seller: 'Meron Shop', phone: '0911889900' }
 ];
 let messages = JSON.parse(localStorage.getItem('vip-messages')) || {};
+let cart = JSON.parse(localStorage.getItem('vip-cart')) || [];
 let currentFilter = 'All';
 let confirmationResult = null;
+let recaptchaVerifier = null;
 
 const $ = id => document.getElementById(id);
 
@@ -303,27 +303,51 @@ function saveData() {
   localStorage.setItem('vip-products', JSON.stringify(products));
   localStorage.setItem('vip-messages', JSON.stringify(messages));
   localStorage.setItem('vip-users', JSON.stringify(users));
+  localStorage.setItem('vip-cart', JSON.stringify(cart));
 }
 
-// ==================== PROFILE PAGE TOGGLE ====================
+// ==================== NAVIGATION ====================
 function openProfile() {
   $('profilePage').classList.add('active');
   window.scrollTo(0,0);
+  updateProfileUI();
 }
-function closeProfile() {
-  $('profilePage').classList.remove('active');
+function closeProfile() { $('profilePage').classList.remove('active'); }
+function goHome() { window.scrollTo(0,0); closeProfile(); }
+function focusSearch() { closeProfile(); setTimeout(() => $('search').focus(), 100); }
+
+function updateProfileUI() {
+  const welcome = $('profileWelcome');
+  const logoutWrap = $('logoutBtnWrap');
+  if (currentUser) {
+    const u = users[currentUser] || {};
+    welcome.innerHTML = `
+      <h2>👋 ${u.name || 'Welcome'}</h2>
+      <p>${currentUser}</p>
+      <button class="btn-phone" onclick="openModal('cart')">My Orders</button>
+      <p style="font-size: 12px; color: #94a3b8;">Member since 2024</p>
+    `;
+    logoutWrap.style.display = 'block';
+  } else {
+    welcome.innerHTML = `
+      <h2>Welcome to VIP MALL</h2>
+      <p>Sign in with your phone to track orders, save wishlists and get support.</p>
+      <button class="btn-phone" onclick="checkAuth()">Continue with phone</button>
+      <p style="font-size: 12px; color: #94a3b8;">We'll text a verification code to your number.</p>
+    `;
+    logoutWrap.style.display = 'none';
+  }
 }
 
 // ==================== DARK MODE ====================
 function toggleDarkMode() {
   document.body.classList.toggle('dark-mode');
-  const isDark = document.body.classList.contains('dark-mode');
-  localStorage.setItem('vip-dark-mode', isDark ? 'true' : 'false');
+  localStorage.setItem('vip-dark-mode', document.body.classList.contains('dark-mode') ? 'true' : 'false');
 }
 
 // ==================== AUTH ====================
 function togglePass(id, icon) {
-  const input = document.getElementById(id);
+  const input = $(id);
   if (input.type === "password") { input.type = "text"; icon.innerText = "🙈"; }
   else { input.type = "password"; icon.innerText = "👁️"; }
 }
@@ -342,41 +366,64 @@ function switchAuthTab(type) {
     $('emailLoginForm').style.display = 'none'; $('phoneLoginForm').style.display = 'block';
   }
 }
+
 async function doEmailLogin() {
   const email = $('loginEmail').value.trim(); const pass = $('loginPassword').value;
   if (!email || !pass) { $('authError').innerText = 'Fill all fields!'; return; }
-  try { await window.fbSignIn(window.auth, email, pass); loginSuccess(email); } catch(e) { $('authError').innerText = e.message; }
+  try { await window.fbSignIn(window.auth, email, pass); loginSuccess(email); }
+  catch(e) { $('authError').innerText = e.message; }
 }
+
 async function doSignup() {
   const name = $('signupName').value.trim(); const email = $('signupEmail').value.trim();
   const pass = $('signupPassword').value; const phone = $('signupPhone').value.trim();
   if (!name || !email || !pass || !phone) { $('authError').innerText = 'Fill all fields!'; return; }
+  if (pass.length < 6) { $('authError').innerText = 'Password must be at least 6 characters'; return; }
   try {
     await window.fbCreateUser(window.auth, email, pass);
     users[email] = { name, phone, balance: 0 }; saveData(); loginSuccess(email);
   } catch(e) { $('authError').innerText = e.message; }
 }
-async function doPhoneLogin() {
-  const phone = $('loginPhone').value.trim();
-  if (!phone) { $('authError').innerText = 'Enter phone number!'; return; }
-  $('authError').innerText = 'Sending SMS...';
-  $('recaptcha-container').style.display = 'block';
-  try {
-    if (!window.recaptchaVerifier) window.recaptchaVerifier = new window.fbRecaptcha(window.auth, 'recaptcha-container', { size: 'invisible' });
-    confirmationResult = await window.fbPhoneSignIn(window.auth, phone, window.recaptchaVerifier);
-    $('authError').innerText = ''; $('otpInputDiv').style.display = 'block'; $('sendSmsBtn').innerText = 'Resend Code';
-  } catch(e) { $('authError').innerText = e.message; }
+
+function normalizePhone(phone) {
+  phone = phone.replace(/[\s\-()]/g, '');
+  if (phone.startsWith('0')) return '+251' + phone.slice(1);
+  if (phone.startsWith('+')) return phone;
+  if (phone.startsWith('251')) return '+' + phone;
+  return '+251' + phone;
 }
+
+async function doPhoneLogin() {
+  const rawPhone = $('loginPhone').value.trim();
+  if (!rawPhone) { $('authError').innerText = 'Enter phone number!'; return; }
+  const phone = normalizePhone(rawPhone);
+  $('authError').innerText = 'Sending SMS...';
+  try {
+    if (!recaptchaVerifier) {
+      recaptchaVerifier = new window.fbRecaptcha(window.auth, 'recaptcha-container', { size: 'invisible' });
+    }
+    confirmationResult = await window.fbPhoneSignIn(window.auth, phone, recaptchaVerifier);
+    $('authError').innerText = ''; $('otpInputDiv').style.display = 'block'; $('sendSmsBtn').innerText = 'Resend Code';
+  } catch(e) {
+    $('authError').innerText = e.message;
+    recaptchaVerifier = null;
+  }
+}
+
 async function verifyPhoneCode() {
   const code = $('loginOtp').value.trim();
-  try { const result = await confirmationResult.confirm(code); loginSuccess(result.user.phoneNumber); }
-  catch(e) { $('authError').innerText = 'Invalid code!'; }
+  if (!confirmationResult) { $('authError').innerText = 'Request code first'; return; }
+  try {
+    const result = await confirmationResult.confirm(code);
+    loginSuccess(result.user.phoneNumber);
+  } catch(e) { $('authError').innerText = 'Invalid code!'; }
 }
+
 function loginSuccess(identifier) {
   currentUser = identifier;
   localStorage.setItem('vip-user', JSON.stringify(currentUser));
   if (!users[identifier]) users[identifier] = { name: 'User', phone: identifier, balance: 0 };
-  saveData(); checkAuth();
+  saveData(); checkAuth(); updateProfileUI();
 }
 function checkAuth() {
   if (!currentUser) $('authScreen').classList.add('active');
@@ -384,11 +431,11 @@ function checkAuth() {
 }
 function doLogout() {
   window.fbSignOut(window.auth).catch(()=>{});
-  currentUser = null; localStorage.removeItem('vip-user'); checkAuth(); closeModal(); closeProfile();
+  currentUser = null; localStorage.removeItem('vip-user'); checkAuth(); closeModal(); closeProfile(); updateProfileUI();
 }
 function closeModal() { $('modalBack').classList.remove('show'); }
 
-// ==================== PRODUCT RENDER ====================
+// ==================== PRODUCTS ====================
 function renderProducts() {
   const q = $('search').value.toLowerCase();
   const grid = $('products'); grid.innerHTML = ''; let count = 0;
@@ -397,7 +444,7 @@ function renderProducts() {
     const card = document.createElement('article');
     card.className = 'product'; card.onclick = () => openProductDetail(p.id);
     card.innerHTML = `
-      <div class="photo">${p.img ? `<img src="${p.img}">` : `📦`}<span class="tag">NEW</span></div>
+      <div class="photo">${p.img ? `<img src="${p.img}" alt="">` : `📦`}<span class="tag">NEW</span></div>
       <div class="pbody"><h3>${p.name}</h3><div class="price">${p.price.toLocaleString()} ETB</div><div class="meta">📍 ${p.loc}</div></div>
     `;
     grid.appendChild(card);
@@ -405,22 +452,16 @@ function renderProducts() {
   $('count').innerText = count + ' items';
 }
 
-// ==================== PRODUCT DETAIL (ANANAS STYLE) ====================
+// ==================== PRODUCT DETAIL ====================
 function openProductDetail(id) {
   const p = products.find(x => x.id === id);
   if (!p) return;
   $('modalTitle').innerText = 'Product Details';
-  
-  // ANANAS style detail page
+
   $('modalContent').innerHTML = `
-    <div style="background:#fff; border-radius:16px; overflow:hidden; margin-bottom:20px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
-      <div style="height:250px; background:#f8fafc; display:flex; align-items:center; justify-content:center; position:relative;">
+    <div style="background:var(--modal-card); border-radius:16px; overflow:hidden; margin-bottom:16px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+      <div style="height:240px; background:#f1f5f9; display:flex; align-items:center; justify-content:center; position:relative;">
         ${p.img ? `<img src="${p.img}" style="width:100%;height:100%;object-fit:contain;">` : '<span style="font-size:80px">📦</span>'}
-        <button style="position:absolute; top:16px; left:16px; width:36px; height:36px; border-radius:50%; background:white; border:none; box-shadow:0 2px 8px rgba(0,0,0,0.1); font-size:18px; cursor:pointer;" onclick="closeModal()">←</button>
-        <div style="position:absolute; top:16px; right:16px; display:flex; gap:10px;">
-          <button style="width:36px; height:36px; border-radius:50%; background:white; border:none; box-shadow:0 2px 8px rgba(0,0,0,0.1); font-size:18px; cursor:pointer;">🛒</button>
-          <button style="width:36px; height:36px; border-radius:50%; background:white; border:none; box-shadow:0 2px 8px rgba(0,0,0,0.1); font-size:18px; cursor:pointer;">🤍</button>
-        </div>
       </div>
       <div style="padding:16px;">
         <h2 style="margin:0 0 8px; font-size:20px; font-weight:900; color:var(--text);">${p.name}</h2>
@@ -428,48 +469,73 @@ function openProductDetail(id) {
           ⭐⭐⭐⭐⭐ <span style="color:#94a3b8;">No reviews yet</span>
         </div>
         <div style="font-size:24px; font-weight:900; color:var(--text);">
-          Br ${p.price.toLocaleString()} <span style="font-size:14px; color:#94a3b8; text-decoration:line-through; margin-left:8px;">Br ${(p.price * 1.15).toFixed(0)}</span>
+          Br ${p.price.toLocaleString()}
+          <span style="font-size:14px; color:#94a3b8; text-decoration:line-through; margin-left:8px;">Br ${(p.price * 1.15).toFixed(0)}</span>
           <span style="font-size:12px; color:#ef4444; background:#fee2e2; padding:2px 8px; border-radius:12px; margin-left:8px;">Save Br ${(p.price * 0.15).toFixed(0)}</span>
         </div>
       </div>
     </div>
 
-    <div style="background:#fff; border-radius:16px; padding:16px; margin-bottom:16px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
-      <h3 style="margin:0 0 8px; font-size:16px; font-weight:800; color:var(--text);">Description</h3>
-      <p style="margin:0; font-size:14px; color:#64748b; line-height:1.6;">${p.desc} ... <span style="color:#f59e0b; font-weight:700;">See more</span></p>
+    <div style="background:var(--modal-card); border-radius:16px; padding:16px; margin-bottom:12px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+      <h3 style="margin:0 0 8px; font-size:15px; font-weight:800; color:var(--text);">Description</h3>
+      <p style="margin:0; font-size:14px; color:var(--text-light); line-height:1.6;">${p.desc}</p>
     </div>
 
-    <div style="background:#fff; border-radius:16px; padding:16px; margin-bottom:16px; display:flex; align-items:center; justify-content:space-between; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+    <div style="background:var(--modal-card); border-radius:16px; padding:16px; margin-bottom:12px; display:flex; align-items:center; justify-content:space-between; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
       <div style="display:flex; align-items:center; gap:12px;">
-        <span style="font-size:24px;">🛡️</span> <span style="font-weight:700; color:var(--text);">Return policy</span>
+        <span style="font-size:22px;">🛡️</span> <span style="font-weight:700; color:var(--text);">Return policy</span>
       </div>
       <span style="font-size:20px; color:#94a3b8;">›</span>
     </div>
 
-    <div style="background:#fff; border-radius:16px; padding:16px; margin-bottom:20px; display:flex; align-items:center; gap:12px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
-      <div style="width:40px; height:40px; border-radius:50%; background:#1e293b; display:flex; align-items:center; justify-content:center; font-size:18px; color:white; font-weight:900;">${p.seller[0]}</div>
+    <div style="background:var(--modal-card); border-radius:16px; padding:16px; margin-bottom:12px; display:flex; align-items:center; gap:12px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+      <div style="width:40px; height:40px; border-radius:50%; background:#1e293b; display:flex; align-items:center; justify-content:center; font-size:16px; color:white; font-weight:900; flex-shrink:0;">${(p.seller || 'S')[0]}</div>
       <div>
-        <div style="font-size:12px; color:#94a3b8;">Sold by</div>
+        <div style="font-size:12px; color:var(--text-light);">Sold by</div>
         <div style="font-weight:800; color:#f59e0b;">${p.seller}</div>
-        <div style="font-size:11px; color:#94a3b8;">⭐ 3.0 · Partner since 2024</div>
+        <div style="font-size:11px; color:var(--text-light);">⭐ 3.0 · Partner since 2024</div>
       </div>
     </div>
 
-    <div style="position:fixed; bottom:0; left:0; right:0; background:var(--bg); padding:12px 16px; display:flex; gap:12px; box-shadow:0 -4px 12px rgba(0,0,0,0.05); border-radius:20px 20px 0 0; z-index:10;">
-      <div style="display:flex; align-items:center; background:#fff; border-radius:12px; border:1px solid #e2e8f0; padding:0 8px;">
-        <button style="background:none; border:none; font-size:20px; padding:8px; cursor:pointer;" onclick="alert('Quantity decreased')">−</button>
-        <span style="font-weight:700; padding:0 8px;">1</span>
-        <button style="background:none; border:none; font-size:20px; padding:8px; cursor:pointer;" onclick="alert('Quantity increased')">+</button>
+    <div style="background:var(--modal-card); border-radius:16px; padding:16px; margin-bottom:16px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+        <span style="font-weight:700; color:var(--text);">Quantity</span>
+        <div style="display:flex; align-items:center; background:var(--bg); border-radius:10px; padding:4px;">
+          <button style="background:none; border:none; font-size:20px; padding:4px 12px; cursor:pointer; color:var(--text);" onclick="changeQty(-1)">−</button>
+          <span style="font-weight:800; padding:0 8px; color:var(--text);" id="qtyDisplay">1</span>
+          <button style="background:none; border:none; font-size:20px; padding:4px 12px; cursor:pointer; color:var(--text);" onclick="changeQty(1)">+</button>
+        </div>
       </div>
-      <button style="flex:1; background:linear-gradient(135deg, #f59e0b, #d97706); color:white; border:none; border-radius:12px; font-size:15px; font-weight:700; padding:14px; cursor:pointer; box-shadow:0 4px 10px rgba(245,158,11,0.3);" onclick="alert('Added to Cart!')">Add to Cart</button>
-      <button style="flex:1; background:linear-gradient(135deg, #f59e0b, #d97706); color:white; border:none; border-radius:12px; font-size:15px; font-weight:700; padding:14px; cursor:pointer; box-shadow:0 4px 10px rgba(245,158,11,0.3);" onclick="alert('Proceeding to Checkout')">Buy Now</button>
     </div>
-    <div style="height:80px;"></div> <!-- Padding for bottom bar -->
+
+    <div style="display:flex; gap:12px; margin-bottom:16px;">
+      <button style="flex:1; background:var(--bg); color:var(--text); border:2px solid var(--primary); border-radius:12px; font-size:15px; font-weight:700; padding:14px; cursor:pointer;" onclick="addToCart(${p.id})">Add to Cart</button>
+      <button style="flex:1; background:linear-gradient(135deg, #f59e0b, #d97706); color:white; border:none; border-radius:12px; font-size:15px; font-weight:700; padding:14px; cursor:pointer; box-shadow:0 4px 10px rgba(245,158,11,0.3);" onclick="addToCart(${p.id}, true)">Buy Now</button>
+    </div>
   `;
+  window._detailQty = 1;
   $('modalBack').classList.add('show');
 }
 
-// ==================== OTHER MODALS ====================
+function changeQty(delta) {
+  window._detailQty = Math.max(1, (window._detailQty || 1) + delta);
+  const el = $('qtyDisplay');
+  if (el) el.innerText = window._detailQty;
+}
+
+function addToCart(productId, buyNow) {
+  const p = products.find(x => x.id === productId);
+  if (!p) return;
+  const qty = window._detailQty || 1;
+  const existing = cart.find(c => c.id === productId);
+  if (existing) existing.qty += qty;
+  else cart.push({ id: productId, name: p.name, price: p.price, img: p.img, qty });
+  saveData();
+  if (buyNow) { closeModal(); openModal('cart'); }
+  else { alert(`✅ ${qty} × ${p.name} added to cart`); }
+}
+
+// ==================== MODALS ====================
 function openModal(type) {
   if (type === 'sell') {
     if (!currentUser) { checkAuth(); return; }
@@ -478,23 +544,56 @@ function openModal(type) {
       <div class="field"><input id="sellName" class="neu-input" placeholder="Product Name"></div>
       <div class="field"><input id="sellPrice" type="number" class="neu-input" placeholder="Price (ETB)"></div>
       <div class="field"><input id="sellLoc" class="neu-input" placeholder="Location"></div>
-      <div class="field"><textarea id="sellDesc" class="neu-input" placeholder="Description..."></textarea></div>
-      <div class="field"><input type="file" id="sellImg" accept="image/*" class="neu-input"></div>
+      <div class="field"><textarea id="sellDesc" class="neu-input" placeholder="Description..." rows="3"></textarea></div>
+      <div class="field"><input type="file" id="sellImg" accept="image/*" class="neu-input" style="padding:12px;"></div>
       <button class="neu-btn" onclick="publishProduct()">Publish Item</button>
     `;
     $('modalBack').classList.add('show');
   }
   else if (type === 'cart') {
     $('modalTitle').innerText = 'My Cart';
-    $('modalContent').innerHTML = `
-      <div style="text-align:center; padding:40px 20px;">
-        <div style="font-size:60px; margin-bottom:16px;">🛒</div>
-        <h3 style="margin:0 0 8px; color:var(--text);">Your cart is empty</h3>
-        <p style="color:var(--text-light); font-size:14px;">Looks like you haven't added anything yet.</p>
-      </div>
-    `;
+    if (cart.length === 0) {
+      $('modalContent').innerHTML = `
+        <div style="text-align:center; padding:40px 20px;">
+          <div style="font-size:60px; margin-bottom:16px;">🛒</div>
+          <h3 style="margin:0 0 8px; color:var(--text);">Your cart is empty</h3>
+          <p style="color:var(--text-light); font-size:14px;">Looks like you haven't added anything yet.</p>
+        </div>
+      `;
+    } else {
+      const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
+      $('modalContent').innerHTML = `
+        ${cart.map((c, i) => `
+          <div style="display:flex; gap:12px; align-items:center; background:var(--modal-card); border-radius:12px; padding:12px; margin-bottom:10px;">
+            <div style="width:50px; height:50px; border-radius:8px; background:var(--bg); display:flex; align-items:center; justify-content:center; font-size:24px; overflow:hidden; flex-shrink:0;">
+              ${c.img ? `<img src="${c.img}" style="width:100%;height:100%;object-fit:cover;">` : '📦'}
+            </div>
+            <div style="flex:1; min-width:0;">
+              <div style="font-weight:700; font-size:14px; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${c.name}</div>
+              <div style="font-size:12px; color:var(--text-light);">${c.price.toLocaleString()} ETB × ${c.qty}</div>
+            </div>
+            <button style="background:none; border:none; font-size:18px; cursor:pointer; color:#ef4444;" onclick="removeFromCart(${i})">🗑️</button>
+          </div>
+        `).join('')}
+        <div style="display:flex; justify-content:space-between; padding:16px 0; font-weight:900; font-size:18px; color:var(--text);">
+          <span>Total</span><span>${total.toLocaleString()} ETB</span>
+        </div>
+        <button class="neu-btn" onclick="checkout()">Checkout</button>
+      `;
+    }
     $('modalBack').classList.add('show');
   }
+}
+
+function removeFromCart(index) {
+  cart.splice(index, 1); saveData(); openModal('cart');
+}
+
+function checkout() {
+  if (!currentUser) { closeModal(); checkAuth(); return; }
+  if (cart.length === 0) return;
+  cart = []; saveData(); closeModal();
+  alert('✅ Order placed successfully! We will contact you soon.');
 }
 
 function publishProduct() {
@@ -504,10 +603,14 @@ function publishProduct() {
   if (!name || !price) { alert('Name & Price required!'); return; }
 
   const saveProduct = (imgData) => {
-    products.unshift({ id: Date.now(), name, cat: 'Other', price, loc, desc, img: imgData, seller: currentUser, phone: '0900000000' });
+    const sellerName = users[currentUser]?.name || currentUser;
+    products.unshift({ id: Date.now(), name, cat: 'Other', price, loc, desc, img: imgData, seller: sellerName, phone: '0900000000' });
     saveData(); closeModal(); renderProducts(); alert('✅ Item published!');
   };
-  if (imgFile) { const reader = new FileReader(); reader.onload = (e) => saveProduct(e.target.result); reader.readAsDataURL(imgFile); }
+  if (imgFile) {
+    if (imgFile.size > 500000) { alert('Image too large (max 500KB)'); return; }
+    const reader = new FileReader(); reader.onload = (e) => saveProduct(e.target.result); reader.readAsDataURL(imgFile);
+  }
   else saveProduct('');
 }
 
@@ -535,9 +638,10 @@ document.querySelectorAll('.cat-item').forEach(item => {
 $('closeModal').onclick = closeModal;
 $('modalBack').onclick = (e) => { if (e.target === $('modalBack')) closeModal(); };
 
-// INIT
+// ==================== INIT ====================
 if (localStorage.getItem('vip-dark-mode') === 'true') document.body.classList.add('dark-mode');
 renderProducts();
 checkAuth();
+updateProfileUI();
 </script>
 </body></html>
