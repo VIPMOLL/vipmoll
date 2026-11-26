@@ -30,57 +30,80 @@
 </script>
 
 <style>
+/* Base Variables - Light Mode (Neumorphism) */
 :root {
-  --bg: #f2f2f2;
-  --text: #1e293b;
-  --text-light: #64748b;
-  --primary: #f59e0b;
-  --primary-hover: #d97706;
+  --bg: #e0e5ec;
+  --text: #2d3748;
+  --text-light: #718096;
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
   --shadow-light: #ffffff;
-  --shadow-dark: #d1d9e6;
+  --shadow-dark: #a3b1c6;
   --radius: 24px;
   --header-h: 70px;
+  
+  /* Profile Specific */
   --profile-bg: #f8fafc;
   --profile-card: #ffffff;
   --profile-text: #1e293b;
   --modal-card: #ffffff;
-  --input-bg: #f8fafc;
+  --input-bg: #e0e5ec;
+  
+  /* Toggle Colors */
+  --toggle-bg: #cbd5e1;
+  --toggle-active: #f59e0b;
 }
 
+/* Dark Mode (Red & Black theme from screenshot 6) */
 body.dark-mode {
-  --bg: #1a202c;
-  --text: #e2e8f0;
-  --text-light: #a0aec0;
-  --primary: #fbbf24;
-  --primary-hover: #f59e0b;
-  --shadow-light: #2d3748;
-  --shadow-dark: #0f1115;
-  --profile-bg: #111827;
-  --profile-card: #1f2937;
-  --profile-text: #e2e8f0;
-  --modal-card: #2d3748;
-  --input-bg: #2d3748;
+  --bg: #0f0f0f;
+  --text: #f8fafc;
+  --text-light: #94a3b8;
+  --primary: #ef4444; /* Red */
+  --primary-hover: #dc2626;
+  --shadow-light: #1a1a1a;
+  --shadow-dark: #000000;
+  
+  --profile-bg: #000000;
+  --profile-card: #1a1a1a;
+  --profile-text: #f8fafc;
+  --modal-card: #1a1a1a;
+  --input-bg: #0f0f0f;
+  
+  --toggle-bg: #333333;
+  --toggle-active: #ef4444;
 }
 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Ethiopic", Arial, sans-serif; }
-body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80px; overflow-x: hidden; transition: 0.3s; }
+body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80px; overflow-x: hidden; transition: 0.3s ease; }
 
-/* General 3D Classes */
-.neu-input { width: 100%; padding: 16px 20px; border: none; outline: none; background: var(--input-bg); border-radius: 16px; box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); color: var(--text); font-size: 15px; font-weight: 500; margin-bottom: 12px; }
-.neu-btn { width: 100%; padding: 16px; border: none; outline: none; background: var(--primary); color: #1e293b; border-radius: 16px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light); transition: 0.2s; }
-.neu-btn:active { box-shadow: inset 4px 4px 8px var(--shadow-dark); transform: translateY(2px); }
+/* 3D Neumorphism Classes */
+.neu-input { 
+  width: 100%; padding: 16px 20px; border: none; outline: none; 
+  background: var(--input-bg); border-radius: 12px; 
+  box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); 
+  color: var(--text); font-size: 15px; font-weight: 500; margin-bottom: 12px; transition: 0.3s;
+}
+.neu-btn { 
+  width: 100%; padding: 16px; border: none; outline: none; 
+  background: var(--primary); color: white; border-radius: 12px; 
+  font-size: 16px; font-weight: 700; cursor: pointer; 
+  box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light); 
+  transition: 0.2s; 
+}
+.neu-btn:active { box-shadow: inset 4px 4px 8px var(--primary-hover); transform: translateY(2px); }
 
 /* Top Header */
-.top { position: sticky; top: 0; z-index: 40; background: var(--bg); display: flex; align-items: center; gap: 12px; padding: 12px max(16px, calc((100vw - 1240px)/2)); height: var(--header-h); }
+.top { position: sticky; top: 0; z-index: 40; background: var(--bg); display: flex; align-items: center; gap: 12px; padding: 12px max(16px, calc((100vw - 1240px)/2)); height: var(--header-h); transition: 0.3s; }
 .logo-img { height: 40px; object-fit: contain; border-radius: 8px; }
 .search { flex: 1; position: relative; }
 .search input { width: 100%; border: none; border-radius: 24px; background: var(--input-bg); padding: 12px 20px 12px 44px; color: var(--text); box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); font-size: 14px; }
 .search::before { content: '🔍'; position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 14px; color: var(--text-light); }
 
 /* Category Nav */
-.cat-nav { background: var(--bg); padding: 10px max(16px, calc((100vw - 1240px)/2)); display: flex; overflow-x: auto; gap: 12px; scrollbar-width: none; }
+.cat-nav { background: var(--bg); padding: 10px max(16px, calc((100vw - 1240px)/2)); display: flex; overflow-x: auto; gap: 12px; scrollbar-width: none; transition: 0.3s; }
 .cat-nav::-webkit-scrollbar { display: none; }
-.cat-item { white-space: nowrap; padding: 10px 16px; background: var(--input-bg); border-radius: 20px; box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); color: var(--text-light); font-weight: 600; cursor: pointer; font-size: 13px; }
+.cat-item { white-space: nowrap; padding: 10px 16px; background: var(--input-bg); border-radius: 20px; box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); color: var(--text-light); font-weight: 600; cursor: pointer; font-size: 13px; transition: 0.3s;}
 .cat-item.active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); color: var(--primary); }
 
 /* Products */
@@ -88,57 +111,67 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 .sectionhead { display: flex; justify-content: space-between; align-items: center; margin: 0 0 16px; }
 .sectionhead h2 { font-size: 20px; margin: 0; font-weight: 800; color: var(--text); }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; }
-.product { background: var(--bg); border-radius: var(--radius); overflow: hidden; box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light); padding: 12px; cursor: pointer; position: relative; display: flex; flex-direction: column; }
+.product { background: var(--bg); border-radius: var(--radius); overflow: hidden; box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light); padding: 12px; cursor: pointer; position: relative; display: flex; flex-direction: column; transition: 0.3s;}
 .photo { aspect-ratio: 1; background: var(--input-bg); border-radius: 16px; box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); display: grid; place-items: center; font-size: 50px; margin-bottom: 12px; overflow: hidden; position: relative; }
 .photo img { width: 100%; height: 100%; object-fit: cover; }
 .tag { position: absolute; top: 8px; left: 8px; background: var(--primary); color: white; font-size: 10px; font-weight: 800; padding: 4px 8px; border-radius: 6px; z-index: 2; }
 .pbody { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
 .pbody h3 { margin: 0 0 6px; font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text); }
-.price { font-size: 16px; font-weight: 900; color: #3b82f6; }
+.price { font-size: 16px; font-weight: 900; color: var(--primary); }
 .meta { font-size: 11px; color: var(--text-light); margin-top: 4px; }
 
-/* Modals & Auth */
-.modalback { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); z-index: 100; align-items: flex-end; justify-content: center; }
-.modalback.show { display: flex; }
-.modal { width: 100%; max-width: 520px; max-height: 90vh; overflow: auto; background: var(--bg); border-radius: 30px 30px 0 0; padding: 24px; animation: slideUp 0.3s; position: relative; }
-.modalhead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-.field { margin-bottom: 16px; position: relative; }
-.eye-icon { position: absolute; right: 16px; bottom: 28px; cursor: pointer; font-size: 18px; color: var(--text-light); }
-
-/* Auth Screen */
-.auth-screen { position: fixed; inset: 0; background: var(--bg); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
+/* Auth Screen - 3D Neumorphism */
+.auth-screen { position: fixed; inset: 0; background: var(--bg); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; transition: background 0.3s; }
 .auth-screen.active { display: flex; }
-.auth-card { width: 100%; max-width: 380px; text-align: center; padding: 40px 30px; background: var(--bg); border-radius: var(--radius); box-shadow: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light); }
-.auth-icon { width: 70px; height: 70px; background: var(--input-bg); border-radius: 50%; box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light); display: flex; align-items: center; justify-content: center; font-size: 30px; margin: 0 auto 20px; color: var(--primary); }
+.auth-card { 
+  width: 100%; max-width: 380px; text-align: center; padding: 40px 30px; 
+  background: var(--bg); border-radius: var(--radius); 
+  box-shadow: 12px 12px 24px var(--shadow-dark), -12px -12px 24px var(--shadow-light); 
+  transition: 0.3s;
+}
+.auth-icon { 
+  width: 70px; height: 70px; background: var(--bg); border-radius: 50%; 
+  box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light); 
+  display: flex; align-items: center; justify-content: center; 
+  font-size: 30px; margin: 0 auto 20px; color: var(--primary); 
+}
 .auth-title { font-size: 24px; font-weight: 900; margin: 0 0 8px; color: var(--text); }
 .auth-sub { font-size: 14px; color: var(--text-light); margin: 0 0 30px; }
 .auth-switch { margin-top: 24px; font-size: 14px; color: var(--text-light); }
 .auth-switch span { color: var(--primary); cursor: pointer; font-weight: 800; }
 .auth-error { color: #ef4444; font-size: 13px; font-weight: 700; margin-top: 15px; }
-.login-tabs { display: flex; background: var(--input-bg); padding: 6px; border-radius: 16px; box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); margin-bottom: 24px; }
-.login-tabs button { flex: 1; padding: 12px; border-radius: 12px; border: none; background: transparent; color: var(--text-light); font-weight: 700; font-size: 14px; cursor: pointer; }
-.login-tabs button.active { background: var(--bg); color: var(--primary); box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); }
+.field { margin-bottom: 16px; position: relative; }
+.eye-icon { position: absolute; right: 16px; bottom: 28px; cursor: pointer; font-size: 18px; color: var(--text-light); }
+
+/* Modals */
+.modalback { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 100; align-items: flex-end; justify-content: center; }
+.modalback.show { display: flex; }
+.modal { width: 100%; max-width: 520px; max-height: 90vh; overflow: auto; background: var(--bg); border-radius: 30px 30px 0 0; padding: 24px; animation: slideUp 0.3s; position: relative; transition: 0.3s; }
+.modalhead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
 
 /* BOTTOM NAV */
-.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg); display: flex; justify-content: space-around; align-items: center; padding: 8px 0; z-index: 50; box-shadow: 0 -4px 12px rgba(0,0,0,0.05); }
+.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg); display: flex; justify-content: space-around; align-items: center; padding: 8px 0; z-index: 50; box-shadow: 0 -4px 12px rgba(0,0,0,0.1); transition: 0.3s; }
 .b-nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-light); font-size: 10px; font-weight: 600; cursor: pointer; width: 60px; }
 .b-nav-item.active { color: var(--primary); }
 .b-nav-item span:first-child { font-size: 22px; }
-.b-nav-item.special { width: 52px; height: 52px; border-radius: 16px; background: linear-gradient(135deg, #f59e0b, #fbbf24); color: white; margin-top: -20px; box-shadow: 0 4px 12px rgba(245,158,11,0.4); justify-content: center; align-items: center; display: flex; }
+.b-nav-item.special { width: 52px; height: 52px; border-radius: 16px; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; margin-top: -20px; box-shadow: 0 4px 12px rgba(245,158,11,0.4); justify-content: center; align-items: center; display: flex; }
 .b-nav-item.special span { font-size: 24px; }
 
 /* PROFILE PAGE */
-.profile-page { display: none; background: var(--profile-bg); min-height: 100vh; position: fixed; inset: 0; z-index: 60; overflow-y: auto; padding-bottom: 80px; }
+.profile-page { display: none; background: var(--profile-bg); min-height: 100vh; position: fixed; inset: 0; z-index: 60; overflow-y: auto; padding-bottom: 80px; transition: background 0.3s; }
 .profile-page.active { display: block; }
-.profile-header { padding: 20px 16px; display: flex; align-items: center; gap: 16px; background: var(--profile-bg); }
-.profile-welcome { background: var(--profile-card); margin: 0 16px 20px; border-radius: 16px; padding: 24px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
+.profile-header { padding: 20px 16px; display: flex; align-items: center; gap: 16px; background: var(--profile-bg); transition: 0.3s; }
+.profile-header h2 { margin:0; font-size:24px; font-weight:900; color: var(--profile-text); }
+.profile-welcome { background: var(--profile-card); margin: 0 16px 20px; border-radius: 16px; padding: 24px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s; }
 .profile-welcome h2 { margin: 0 0 8px; font-size: 20px; font-weight: 900; color: var(--profile-text); }
 .profile-welcome p { margin: 0 0 20px; font-size: 14px; color: var(--text-light); line-height: 1.5; }
 .btn-phone { background: #1e293b; color: white; padding: 16px; border-radius: 30px; width: 100%; font-size: 16px; font-weight: 700; border: none; margin-bottom: 12px; cursor: pointer; }
+body.dark-mode .btn-phone { background: var(--primary); }
 .sell-ananas { background: #1e293b; margin: 0 16px 20px; padding: 16px; border-radius: 16px; display: flex; align-items: center; justify-content: space-between; color: white; cursor: pointer; }
+body.dark-mode .sell-ananas { background: var(--profile-card); border: 1px solid var(--primary); }
 .sell-ananas div { display: flex; align-items: center; gap: 12px; }
 .sell-ananas .icon { background: #f59e0b; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; }
-.profile-list { margin: 0 16px 20px; background: var(--profile-card); border-radius: 16px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
+.profile-list { margin: 0 16px 20px; background: var(--profile-card); border-radius: 16px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.03); transition: 0.3s; }
 .profile-list-item { padding: 16px; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 15px; font-weight: 600; color: var(--profile-text); cursor: pointer; }
 body.dark-mode .profile-list-item { border-bottom: 1px solid rgba(255,255,255,0.05); }
 .profile-list-item:last-child { border-bottom: none; }
@@ -147,9 +180,9 @@ body.dark-mode .profile-list-item { border-bottom: 1px solid rgba(255,255,255,0.
 /* Toggle Switch */
 .switch { position: relative; display: inline-block; width: 44px; height: 24px; margin-left: auto; }
 .switch input { opacity: 0; width: 0; height: 0; }
-.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--toggle-bg); transition: .4s; border-radius: 24px; }
 .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
-input:checked + .slider { background-color: var(--primary); }
+input:checked + .slider { background-color: var(--toggle-active); }
 input:checked + .slider:before { transform: translateX(20px); }
 
 @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
@@ -157,44 +190,44 @@ input:checked + .slider:before { transform: translateX(20px); }
 </head>
 <body>
 
-<!-- AUTH SCREEN -->
+<!-- AUTH SCREEN (3D Neumorphism) -->
 <div class="auth-screen" id="authScreen">
   <div class="auth-card">
+    <!-- LOGIN VIEW -->
     <div id="loginView">
       <div class="auth-icon">🔒</div>
-      <h1 class="auth-title">Welcome Back</h1>
-      <p class="auth-sub">ወደ VIP MALL እንኳን ደህና መጡ</p>
-      <div class="login-tabs" id="loginTabs">
-        <button class="active" onclick="switchAuthTab('email')">Email</button>
-        <button onclick="switchAuthTab('phone')">Phone</button>
+      <h1 class="auth-title">Welcome</h1>
+      <p class="auth-sub">Login to continue your journey</p>
+      
+      <div class="field"><input type="email" id="loginEmail" class="neu-input" placeholder="Email Address"></div>
+      <div class="field">
+        <input type="password" id="loginPassword" class="neu-input" placeholder="Password">
+        <span class="eye-icon" onclick="togglePass('loginPassword', this)">👁️</span>
       </div>
-      <div id="emailLoginForm">
-        <div class="field"><input type="email" id="loginEmail" class="neu-input" placeholder="Email Address"></div>
-        <div class="field"><input type="password" id="loginPassword" class="neu-input" placeholder="Password"><span class="eye-icon" onclick="togglePass('loginPassword', this)">👁️</span></div>
-        <button class="neu-btn" onclick="doEmailLogin()">Login</button>
-      </div>
-      <div id="phoneLoginForm" style="display:none">
-        <div class="field"><input type="tel" id="loginPhone" class="neu-input" placeholder="09XXXXXXXX"></div>
-        <button class="neu-btn" onclick="doPhoneLogin()" id="sendSmsBtn">Send SMS Code</button>
-        <div id="otpInputDiv" style="display:none; margin-top:16px;">
-          <div class="field"><input type="text" id="loginOtp" class="neu-input" placeholder="6-digit Code" maxlength="6" style="text-align:center; letter-spacing:8px; font-weight:900; font-size:20px;"></div>
-          <button class="neu-btn" onclick="verifyPhoneCode()">Verify Access</button>
-        </div>
-        <div id="recaptcha-container"></div>
-      </div>
+      <button class="neu-btn" onclick="doEmailLogin()">Login</button>
+      
       <div class="auth-switch">Don't have an account? <span onclick="toggleAuthView('signup')">Create Account</span></div>
     </div>
+
+    <!-- SIGNUP VIEW -->
     <div id="signupView" style="display:none">
       <div class="auth-icon">👤</div>
       <h1 class="auth-title">Create Account</h1>
       <p class="auth-sub">የእርስዎን መለያ ይፍጠሩ</p>
+      
       <div class="field"><input type="text" id="signupName" class="neu-input" placeholder="Full Name"></div>
       <div class="field"><input type="email" id="signupEmail" class="neu-input" placeholder="Email Address"></div>
-      <div class="field"><input type="password" id="signupPassword" class="neu-input" placeholder="Password (min 6 chars)"><span class="eye-icon" onclick="togglePass('signupPassword', this)">👁️</span></div>
+      <div class="field">
+        <input type="password" id="signupPassword" class="neu-input" placeholder="Password (min 6 chars)">
+        <span class="eye-icon" onclick="togglePass('signupPassword', this)">👁️</span>
+      </div>
       <div class="field"><input type="tel" id="signupPhone" class="neu-input" placeholder="Phone Number (09...)"></div>
+      
       <button class="neu-btn" onclick="doSignup()">Create Account</button>
+      
       <div class="auth-switch">Already have an account? <span onclick="toggleAuthView('login')">Login</span></div>
     </div>
+    
     <div class="auth-error" id="authError"></div>
   </div>
 </div>
@@ -223,13 +256,12 @@ input:checked + .slider:before { transform: translateX(20px); }
   </div>
 </div>
 
-<!-- PROFILE PAGE (Like the first screenshot) -->
+<!-- PROFILE PAGE -->
 <div class="profile-page" id="profilePage">
   <div class="profile-header">
-    <h2 style="margin:0; font-size:24px; font-weight:900; color:var(--profile-text)">Profile</h2>
+    <h2>Profile</h2>
   </div>
 
-  <!-- Login/Welcome Box -->
   <div class="profile-welcome" id="profileWelcome">
     <h2>Welcome to VIP MALL</h2>
     <p>Sign in with your phone to track orders, save wishlists and get support.</p>
@@ -257,7 +289,6 @@ input:checked + .slider:before { transform: translateX(20px); }
         <span class="slider"></span>
       </label>
     </div>
-    <!-- Night Mode Added Here -->
     <div class="profile-list-item" onclick="toggleDarkMode()">
       <span>🌙</span> Night mode
       <label class="switch">
@@ -269,12 +300,10 @@ input:checked + .slider:before { transform: translateX(20px); }
 
   <div style="margin: 0 16px 8px; font-size:12px; font-weight:800; color:var(--text-light); letter-spacing:1px;">SUPPORT</div>
   <div class="profile-list">
-    <!-- Phone number updated -->
     <div class="profile-list-item" onclick="window.location.href='tel:0900684074'">
       <span>📞</span> Call us
       <span style="margin-left:auto; font-size:13px; color:var(--text-light);">09 00 68 40 74</span>
     </div>
-    <!-- Telegram Added -->
     <div class="profile-list-item" onclick="window.location.href='https://t.me/your_telegram'">
       <span>✈️</span> Telegram
       <span style="margin-left:auto; font-size:13px; color:var(--text-light);">@vipmall</span>
@@ -289,7 +318,7 @@ input:checked + .slider:before { transform: translateX(20px); }
   </div>
 
   <div id="logoutBtnWrap" style="display:none; margin: 0 16px 20px;">
-    <button class="neu-btn secondary" onclick="doLogout()" style="background:#ef4444; color:white;">Logout</button>
+    <button class="neu-btn" onclick="doLogout()" style="background:#ef4444; color:white; box-shadow:none;">Logout</button>
   </div>
 </div>
 
@@ -306,7 +335,7 @@ input:checked + .slider:before { transform: translateX(20px); }
 <div class="modalback" id="modalBack">
   <section class="modal">
     <div class="modalhead">
-      <h2 id="modalTitle">VIP MALL</h2>
+      <h2 id="modalTitle" style="color:var(--text);">VIP MALL</h2>
       <button style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--text);" id="closeModal">✕</button>
     </div>
     <div id="modalContent"></div>
@@ -322,11 +351,8 @@ let products = JSON.parse(localStorage.getItem('vip-products')) || [
   { id: 3, name: 'Bicycle', cat: 'Vehicles', price: 26000, loc: 'መድሃኒያለም', desc: 'Mountain bike, good condition.', img: '', seller: 'Bike Shop', phone: '0900684074' },
   { id: 4, name: 'ሳልካል', cat: 'Home', price: 1000, loc: 'Goro', desc: 'Good condition.', img: '', seller: 'Meron Shop', phone: '0900684074' }
 ];
-let messages = JSON.parse(localStorage.getItem('vip-messages')) || {};
 let cart = JSON.parse(localStorage.getItem('vip-cart')) || [];
 let currentFilter = 'All';
-let confirmationResult = null;
-let recaptchaVerifier = null;
 
 const $ = id => document.getElementById(id);
 
@@ -368,22 +394,16 @@ function updateProfileUI() {
   }
 }
 
-// ==================== SETTINGS ====================
+// ==================== SETTINGS (DARK MODE FIX) ====================
 function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
-  const isDark = document.body.classList.contains('dark-mode');
-  localStorage.setItem('vip-dark-mode', isDark ? 'true' : 'false');
+  const isDark = document.body.classList.toggle('dark-mode');
+  localStorage.setItem('vip-dark-mode', isDark);
   $('darkModeToggle').checked = isDark;
 }
 
 function toggleNotifications() {
   const toggle = $('notifToggle');
   toggle.checked = !toggle.checked;
-  if(toggle.checked) {
-    alert('✅ Notifications enabled');
-  } else {
-    alert('🔕 Notifications disabled');
-  }
 }
 
 // ==================== AUTH ====================
@@ -397,20 +417,11 @@ function toggleAuthView(view) {
   if(view === 'signup') { $('loginView').style.display = 'none'; $('signupView').style.display = 'block'; }
   else { $('signupView').style.display = 'none'; $('loginView').style.display = 'block'; }
 }
-function switchAuthTab(type) {
-  document.querySelectorAll('#loginTabs button').forEach(b => b.classList.remove('active'));
-  if (type === 'email') {
-    document.querySelectorAll('#loginTabs button')[0].classList.add('active');
-    $('emailLoginForm').style.display = 'block'; $('phoneLoginForm').style.display = 'none';
-  } else {
-    document.querySelectorAll('#loginTabs button')[1].classList.add('active');
-    $('emailLoginForm').style.display = 'none'; $('phoneLoginForm').style.display = 'block';
-  }
-}
 async function doEmailLogin() {
   const email = $('loginEmail').value.trim(); const pass = $('loginPassword').value;
   if (!email || !pass) { $('authError').innerText = 'Fill all fields!'; return; }
-  try { await window.fbSignIn(window.auth, email, pass); loginSuccess(email); } catch(e) { $('authError').innerText = e.message; }
+  try { await window.fbSignIn(window.auth, email, pass); loginSuccess(email); } 
+  catch(e) { $('authError').innerText = e.message; }
 }
 async function doSignup() {
   const name = $('signupName').value.trim(); const email = $('signupEmail').value.trim();
@@ -421,38 +432,6 @@ async function doSignup() {
     users[email] = { name, phone, balance: 0 }; saveData(); loginSuccess(email);
   } catch(e) { $('authError').innerText = e.message; }
 }
-
-function normalizePhone(phone) {
-  phone = phone.replace(/[\s\-()]/g, '');
-  if (phone.startsWith('0')) return '+251' + phone.slice(1);
-  if (phone.startsWith('+')) return phone;
-  if (phone.startsWith('251')) return '+' + phone;
-  return '+251' + phone;
-}
-
-async function doPhoneLogin() {
-  const rawPhone = $('loginPhone').value.trim();
-  if (!rawPhone) { $('authError').innerText = 'Enter phone number!'; return; }
-  const phone = normalizePhone(rawPhone);
-  $('authError').innerText = 'Sending SMS...';
-  try {
-    if (!recaptchaVerifier) {
-      recaptchaVerifier = new window.fbRecaptcha(window.auth, 'recaptcha-container', { size: 'invisible' });
-    }
-    confirmationResult = await window.fbPhoneSignIn(window.auth, phone, recaptchaVerifier);
-    $('authError').innerText = ''; $('otpInputDiv').style.display = 'block'; $('sendSmsBtn').innerText = 'Resend Code';
-  } catch(e) { $('authError').innerText = e.message; recaptchaVerifier = null; }
-}
-
-async function verifyPhoneCode() {
-  const code = $('loginOtp').value.trim();
-  if (!confirmationResult) { $('authError').innerText = 'Request code first'; return; }
-  try {
-    const result = await confirmationResult.confirm(code);
-    loginSuccess(result.user.phoneNumber);
-  } catch(e) { $('authError').innerText = 'Invalid code!'; }
-}
-
 function loginSuccess(identifier) {
   currentUser = identifier;
   localStorage.setItem('vip-user', JSON.stringify(currentUser));
@@ -492,73 +471,38 @@ function openProductDetail(id) {
   const p = products.find(x => x.id === id);
   if (!p) return;
   $('modalTitle').innerText = 'Product Details';
-  
   $('modalContent').innerHTML = `
     <div style="background:var(--modal-card); border-radius:16px; overflow:hidden; margin-bottom:16px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
-      <div style="height:240px; background:#f1f5f9; display:flex; align-items:center; justify-content:center; position:relative;">
+      <div style="height:240px; background:var(--input-bg); display:flex; align-items:center; justify-content:center; position:relative;">
         ${p.img ? `<img src="${p.img}" style="width:100%;height:100%;object-fit:contain;">` : '<span style="font-size:80px">📦</span>'}
       </div>
       <div style="padding:16px;">
         <h2 style="margin:0 0 8px; font-size:20px; font-weight:900; color:var(--text);">${p.name}</h2>
-        <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:#f59e0b; margin-bottom:12px;">
-          ⭐⭐⭐⭐⭐ <span style="color:#94a3b8;">No reviews yet</span>
-        </div>
-        <div style="font-size:24px; font-weight:900; color:var(--text);">
-          Br ${p.price.toLocaleString()}
-          <span style="font-size:14px; color:#94a3b8; text-decoration:line-through; margin-left:8px;">Br ${(p.price * 1.15).toFixed(0)}</span>
-        </div>
+        <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:#f59e0b; margin-bottom:12px;">⭐⭐⭐⭐⭐ <span style="color:var(--text-light);">No reviews yet</span></div>
+        <div style="font-size:24px; font-weight:900; color:var(--text);">Br ${p.price.toLocaleString()}</div>
       </div>
     </div>
-
     <div style="background:var(--modal-card); border-radius:16px; padding:16px; margin-bottom:12px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
       <h3 style="margin:0 0 8px; font-size:15px; font-weight:800; color:var(--text);">Description</h3>
       <p style="margin:0; font-size:14px; color:var(--text-light); line-height:1.6;">${p.desc}</p>
     </div>
-
-    <div style="background:var(--modal-card); border-radius:16px; padding:16px; margin-bottom:16px; display:flex; align-items:center; gap:12px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
-      <div style="width:40px; height:40px; border-radius:50%; background:#1e293b; display:flex; align-items:center; justify-content:center; font-size:16px; color:white; font-weight:900; flex-shrink:0;">${(p.seller || 'S')[0]}</div>
-      <div>
-        <div style="font-size:12px; color:var(--text-light);">Sold by</div>
-        <div style="font-weight:800; color:#f59e0b;">${p.seller}</div>
-      </div>
-    </div>
-
-    <div style="background:var(--modal-card); border-radius:16px; padding:16px; margin-bottom:16px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
-      <div style="display:flex; align-items:center; justify-content:space-between;">
-        <span style="font-weight:700; color:var(--text);">Quantity</span>
-        <div style="display:flex; align-items:center; background:var(--input-bg); border-radius:10px; padding:4px;">
-          <button style="background:none; border:none; font-size:20px; padding:4px 12px; cursor:pointer; color:var(--text);" onclick="changeQty(-1)">−</button>
-          <span style="font-weight:800; padding:0 8px; color:var(--text);" id="qtyDisplay">1</span>
-          <button style="background:none; border:none; font-size:20px; padding:4px 12px; cursor:pointer; color:var(--text);" onclick="changeQty(1)">+</button>
-        </div>
-      </div>
-    </div>
-
     <div style="display:flex; gap:12px; margin-bottom:16px;">
       <button style="flex:1; background:var(--input-bg); color:var(--text); border:2px solid var(--primary); border-radius:16px; font-size:15px; font-weight:700; padding:14px; cursor:pointer;" onclick="addToCart(${p.id})">Add to Cart</button>
-      <button style="flex:1; background:linear-gradient(135deg, #f59e0b, #d97706); color:white; border:none; border-radius:16px; font-size:15px; font-weight:700; padding:14px; cursor:pointer; box-shadow:0 4px 10px rgba(245,158,11,0.3);" onclick="addToCart(${p.id}, true)">Buy Now</button>
+      <button style="flex:1; background:var(--primary); color:white; border:none; border-radius:16px; font-size:15px; font-weight:700; padding:14px; cursor:pointer;" onclick="addToCart(${p.id}, true)">Buy Now</button>
     </div>
   `;
-  window._detailQty = 1;
   $('modalBack').classList.add('show');
-}
-
-function changeQty(delta) {
-  window._detailQty = Math.max(1, (window._detailQty || 1) + delta);
-  const el = $('qtyDisplay');
-  if (el) el.innerText = window._detailQty;
 }
 
 function addToCart(productId, buyNow) {
   const p = products.find(x => x.id === productId);
   if (!p) return;
-  const qty = window._detailQty || 1;
   const existing = cart.find(c => c.id === productId);
-  if (existing) existing.qty += qty;
-  else cart.push({ id: productId, name: p.name, price: p.price, img: p.img, qty });
+  if (existing) existing.qty += 1;
+  else cart.push({ id: productId, name: p.name, price: p.price, img: p.img, qty: 1 });
   saveData();
   if (buyNow) { closeModal(); openModal('cart'); }
-  else { alert(`✅ ${qty} × ${p.name} added to cart`); }
+  else { alert(`✅ Added to cart`); }
 }
 
 // ==================== OTHER MODALS ====================
@@ -571,7 +515,6 @@ function openModal(type) {
       <div class="field"><input id="sellPrice" type="number" class="neu-input" placeholder="Price (ETB)"></div>
       <div class="field"><input id="sellLoc" class="neu-input" placeholder="Location"></div>
       <div class="field"><textarea id="sellDesc" class="neu-input" placeholder="Description..." rows="3"></textarea></div>
-      <div class="field"><input type="file" id="sellImg" accept="image/*" class="neu-input" style="padding:12px;"></div>
       <button class="neu-btn" onclick="publishProduct()">Publish Item</button>
     `;
     $('modalBack').classList.add('show');
@@ -579,13 +522,7 @@ function openModal(type) {
   else if (type === 'cart') {
     $('modalTitle').innerText = 'My Cart';
     if (cart.length === 0) {
-      $('modalContent').innerHTML = `
-        <div style="text-align:center; padding:40px 20px;">
-          <div style="font-size:60px; margin-bottom:16px;">🛒</div>
-          <h3 style="margin:0 0 8px; color:var(--text);">Your cart is empty</h3>
-          <p style="color:var(--text-light); font-size:14px;">Looks like you haven't added anything yet.</p>
-        </div>
-      `;
+      $('modalContent').innerHTML = `<div style="text-align:center; padding:40px 20px;"><div style="font-size:60px; margin-bottom:16px;">🛒</div><h3 style="margin:0 0 8px; color:var(--text);">Your cart is empty</h3></div>`;
     } else {
       const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
       $('modalContent').innerHTML = `
@@ -595,7 +532,7 @@ function openModal(type) {
               ${c.img ? `<img src="${c.img}" style="width:100%;height:100%;object-fit:cover;">` : '📦'}
             </div>
             <div style="flex:1; min-width:0;">
-              <div style="font-weight:700; font-size:14px; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${c.name}</div>
+              <div style="font-weight:700; font-size:14px; color:var(--text);">${c.name}</div>
               <div style="font-size:12px; color:var(--text-light);">${c.price.toLocaleString()} ETB × ${c.qty}</div>
             </div>
             <button style="background:none; border:none; font-size:18px; cursor:pointer; color:#ef4444;" onclick="removeFromCart(${i})">🗑️</button>
@@ -619,33 +556,19 @@ function checkout() {
   if (!currentUser) { closeModal(); checkAuth(); return; }
   if (cart.length === 0) return;
   cart = []; saveData(); closeModal();
-  alert('✅ Order placed successfully! We will contact you soon.');
+  alert('✅ Order placed successfully!');
 }
 
 function publishProduct() {
   const name = $('sellName').value.trim(); const price = Number($('sellPrice').value);
-  const loc = $('sellLoc').value.trim() || 'Addis Ababa'; const desc = $('sellDesc').value.trim() || 'No description';
-  const imgFile = $('sellImg').files[0];
   if (!name || !price) { alert('Name & Price required!'); return; }
-
-  const saveProduct = (imgData) => {
-    const sellerName = users[currentUser]?.name || currentUser;
-    products.unshift({ id: Date.now(), name, cat: 'Other', price, loc, desc, img: imgData, seller: sellerName, phone: '0900684074' });
-    saveData(); closeModal(); renderProducts(); alert('✅ Item published!');
-  };
-  if (imgFile) { const reader = new FileReader(); reader.onload = (e) => saveProduct(e.target.result); reader.readAsDataURL(imgFile); }
-  else saveProduct('');
+  products.unshift({ id: Date.now(), name, cat: 'Other', price, loc: $('sellLoc').value || 'Addis Ababa', desc: $('sellDesc').value || 'No description', img: '', seller: currentUser, phone: '0900684074' });
+  saveData(); closeModal(); renderProducts(); alert('✅ Item published!');
 }
 
 function openVideo() {
   $('modalTitle').innerText = 'VIP Videos';
-  $('modalContent').innerHTML = `
-    <div style="text-align:center; padding:40px 20px;">
-      <div style="font-size:60px; margin-bottom:16px;">🎬</div>
-      <h3 style="margin:0 0 8px; color:var(--text);">Coming Soon</h3>
-      <p style="color:var(--text-light); font-size:14px;">Video content is currently being prepared.</p>
-    </div>
-  `;
+  $('modalContent').innerHTML = `<div style="text-align:center; padding:40px 20px;"><div style="font-size:60px; margin-bottom:16px;">🎬</div><h3 style="margin:0 0 8px; color:var(--text);">Coming Soon</h3></div>`;
   $('modalBack').classList.add('show');
 }
 
@@ -661,13 +584,14 @@ document.querySelectorAll('.cat-item').forEach(item => {
 $('closeModal').onclick = closeModal;
 $('modalBack').onclick = (e) => { if (e.target === $('modalBack')) closeModal(); };
 
-// Init
+// Init Dark Mode State
 if (localStorage.getItem('vip-dark-mode') === 'true') {
   document.body.classList.add('dark-mode');
   $('darkModeToggle').checked = true;
 }
 renderProducts();
 checkAuth();
-updateProfileUI();
+updateProfilePanel();
+function updateProfilePanel() { updateProfileUI(); }
 </script>
 </body></html>
