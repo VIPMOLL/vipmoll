@@ -1,10 +1,9 @@
 <!doctype html>
 <html lang="am">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="theme-color" content="#e0e5ec">
-<title>VIP MALL | Premium Marketplace</title>
+<title>VIP MALL | Secure Access</title>
 
 <!-- Firebase SDK -->
 <script type="module">
@@ -30,7 +29,7 @@
 </script>
 
 <style>
-/* Base Variables - Light Mode (Neumorphism) */
+/* 3D Neumorphism Design System */
 :root {
   --bg: #e0e5ec;
   --text: #2d3748;
@@ -39,182 +38,225 @@
   --primary-hover: #2563eb;
   --shadow-light: #ffffff;
   --shadow-dark: #a3b1c6;
-  --radius: 24px;
+  --radius: 20px;
   --header-h: 70px;
-  
-  /* Profile Specific */
-  --profile-bg: #f8fafc;
-  --profile-card: #ffffff;
-  --profile-text: #1e293b;
-  --modal-card: #ffffff;
-  --input-bg: #e0e5ec;
-  
-  /* Toggle Colors */
-  --toggle-bg: #cbd5e1;
-  --toggle-active: #f59e0b;
 }
 
-/* Dark Mode (Red & Black theme from screenshot 6) */
+/* Dark Mode Variables */
 body.dark-mode {
-  --bg: #0f0f0f;
-  --text: #f8fafc;
-  --text-light: #94a3b8;
-  --primary: #ef4444; /* Red */
-  --primary-hover: #dc2626;
-  --shadow-light: #1a1a1a;
-  --shadow-dark: #000000;
-  
-  --profile-bg: #000000;
-  --profile-card: #1a1a1a;
-  --profile-text: #f8fafc;
-  --modal-card: #1a1a1a;
-  --input-bg: #0f0f0f;
-  
-  --toggle-bg: #333333;
-  --toggle-active: #ef4444;
+  --bg: #1a202c;
+  --text: #e2e8f0;
+  --text-light: #a0aec0;
+  --primary: #63b3ed;
+  --primary-hover: #4299e1;
+  --shadow-light: #2d3748;
+  --shadow-dark: #0f1115;
 }
 
-* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Ethiopic", Arial, sans-serif; }
-body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80px; overflow-x: hidden; transition: 0.3s ease; }
-
-/* 3D Neumorphism Classes */
-.neu-input { 
-  width: 100%; padding: 16px 20px; border: none; outline: none; 
-  background: var(--input-bg); border-radius: 12px; 
-  box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); 
-  color: var(--text); font-size: 15px; font-weight: 500; margin-bottom: 12px; transition: 0.3s;
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans Ethiopic", Arial, sans-serif;
 }
-.neu-btn { 
-  width: 100%; padding: 16px; border: none; outline: none; 
-  background: var(--primary); color: white; border-radius: 12px; 
-  font-size: 16px; font-weight: 700; cursor: pointer; 
-  box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light); 
-  transition: 0.2s; 
-}
-.neu-btn:active { box-shadow: inset 4px 4px 8px var(--primary-hover); transform: translateY(2px); }
 
-/* Top Header */
-.top { position: sticky; top: 0; z-index: 40; background: var(--bg); display: flex; align-items: center; gap: 12px; padding: 12px max(16px, calc((100vw - 1240px)/2)); height: var(--header-h); transition: 0.3s; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  padding-bottom: 70px;
+  overflow-x: hidden;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Global 3D Elements */
+.neu-card {
+  background: var(--bg);
+  border-radius: var(--radius);
+  box-shadow: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
+  padding: 24px;
+}
+
+.neu-input {
+  width: 100%;
+  padding: 16px 20px;
+  border: none;
+  outline: none;
+  background: var(--bg);
+  border-radius: 12px;
+  box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+  color: var(--text);
+  font-size: 15px;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+.neu-input:focus {
+  box-shadow: inset 6px 6px 10px var(--shadow-dark), inset -6px -6px 10px var(--shadow-light);
+}
+
+.neu-btn {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  outline: none;
+  background: var(--primary);
+  color: white;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light);
+}
+.neu-btn:active {
+  box-shadow: inset 4px 4px 8px var(--primary-hover), inset -4px -4px 8px rgba(255,255,255,0.2);
+  transform: translateY(2px);
+}
+.neu-btn.secondary {
+  background: var(--bg);
+  color: var(--text-light);
+  box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light);
+}
+.neu-btn.secondary:active {
+  box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+}
+
+/* Header */
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px max(16px, calc((100vw - 1240px)/2));
+  height: var(--header-h);
+  box-shadow: 0 4px 12px rgba(163, 177, 198, 0.2);
+  transition: background 0.3s;
+}
 .logo-img { height: 40px; object-fit: contain; border-radius: 8px; }
-.search { flex: 1; position: relative; }
-.search input { width: 100%; border: none; border-radius: 24px; background: var(--input-bg); padding: 12px 20px 12px 44px; color: var(--text); box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); font-size: 14px; }
+.search { flex: 1; position: relative; width: 100%; max-width: none; }
+.search input {
+  width: 100%; border: none; border-radius: 24px; background: var(--bg);
+  padding: 12px 20px 12px 44px; color: var(--text);
+  box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+  font-size: 14px; transition: 0.2s;
+}
 .search::before { content: '🔍'; position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 14px; color: var(--text-light); }
+.top-actions { display: flex; gap: 8px; margin-left: auto; }
+.circle-btn {
+  width: 44px; height: 44px; border-radius: 50%; border: none; background: var(--bg);
+  box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+  cursor: pointer; color: var(--text); transition: 0.2s;
+}
+.circle-btn:active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); }
 
-/* Category Nav */
-.cat-nav { background: var(--bg); padding: 10px max(16px, calc((100vw - 1240px)/2)); display: flex; overflow-x: auto; gap: 12px; scrollbar-width: none; transition: 0.3s; }
+/* Categories & Products */
+.cat-nav { background: var(--bg); padding: 10px max(16px, calc((100vw - 1240px)/2)); display: flex; overflow-x: auto; gap: 12px; scrollbar-width: none; border-bottom: 1px solid var(--shadow-dark); transition: background 0.3s; }
 .cat-nav::-webkit-scrollbar { display: none; }
-.cat-item { white-space: nowrap; padding: 10px 16px; background: var(--input-bg); border-radius: 20px; box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); color: var(--text-light); font-weight: 600; cursor: pointer; font-size: 13px; transition: 0.3s;}
+.cat-item { white-space: nowrap; padding: 10px 16px; background: var(--bg); border-radius: 20px; box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); color: var(--text-light); font-weight: 600; cursor: pointer; transition: 0.2s; font-size: 13px; }
 .cat-item.active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); color: var(--primary); }
 
-/* Products */
 .wrap { max-width: 1240px; margin: 20px auto; padding: 0 16px; }
 .sectionhead { display: flex; justify-content: space-between; align-items: center; margin: 0 0 16px; }
 .sectionhead h2 { font-size: 20px; margin: 0; font-weight: 800; color: var(--text); }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; }
-.product { background: var(--bg); border-radius: var(--radius); overflow: hidden; box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light); padding: 12px; cursor: pointer; position: relative; display: flex; flex-direction: column; transition: 0.3s;}
-.photo { aspect-ratio: 1; background: var(--input-bg); border-radius: 16px; box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); display: grid; place-items: center; font-size: 50px; margin-bottom: 12px; overflow: hidden; position: relative; }
+.product { background: var(--bg); border-radius: var(--radius); overflow: hidden; box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light); padding: 12px; cursor: pointer; transition: 0.2s; position: relative; }
+.product:hover { transform: translateY(-2px); }
+.photo { aspect-ratio: 1; background: var(--bg); border-radius: 12px; box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); display: grid; place-items: center; font-size: 50px; margin-bottom: 12px; overflow: hidden; }
 .photo img { width: 100%; height: 100%; object-fit: cover; }
-.tag { position: absolute; top: 8px; left: 8px; background: var(--primary); color: white; font-size: 10px; font-weight: 800; padding: 4px 8px; border-radius: 6px; z-index: 2; }
-.pbody { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
-.pbody h3 { margin: 0 0 6px; font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text); }
+.tag { position: absolute; top: 20px; left: 20px; background: var(--primary); color: white; font-size: 10px; font-weight: 800; padding: 4px 8px; border-radius: 6px; }
+.pbody h3 { margin: 0 0 6px; font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .price { font-size: 16px; font-weight: 900; color: var(--primary); }
 .meta { font-size: 11px; color: var(--text-light); margin-top: 4px; }
 
-/* Auth Screen - 3D Neumorphism */
+/* Modals */
+.modalback { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(5px); z-index: 100; align-items: flex-end; justify-content: center; padding: 0; }
+.modalback.show { display: flex; }
+.modal { width: 100%; max-width: 520px; max-height: 90vh; overflow: auto; background: var(--bg); border-radius: 30px 30px 0 0; padding: 24px; box-shadow: 0 -10px 40px rgba(0,0,0,0.1); animation: slideUp 0.3s; transition: background 0.3s; }
+.modalhead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.modalhead h2 { font-size: 20px; font-weight: 800; margin: 0; }
+.field { margin-bottom: 16px; position: relative; }
+.field label { display: block; font-size: 13px; font-weight: 700; color: var(--text-light); margin-bottom: 8px; }
+.eye-icon { position: absolute; right: 16px; bottom: 16px; cursor: pointer; font-size: 18px; color: var(--text-light); user-select: none; }
+.menu-item { display: flex; align-items: center; gap: 16px; padding: 16px; border-radius: 16px; cursor: pointer; font-weight: 700; color: var(--text); background: var(--bg); width: 100%; text-align: left; font-size: 15px; margin-bottom: 10px; border: none; box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); transition: 0.2s; }
+.menu-item:active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); }
+
+/* Auth Screen */
 .auth-screen { position: fixed; inset: 0; background: var(--bg); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; transition: background 0.3s; }
 .auth-screen.active { display: flex; }
-.auth-card { 
-  width: 100%; max-width: 380px; text-align: center; padding: 40px 30px; 
-  background: var(--bg); border-radius: var(--radius); 
-  box-shadow: 12px 12px 24px var(--shadow-dark), -12px -12px 24px var(--shadow-light); 
-  transition: 0.3s;
-}
-.auth-icon { 
-  width: 70px; height: 70px; background: var(--bg); border-radius: 50%; 
-  box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light); 
-  display: flex; align-items: center; justify-content: center; 
-  font-size: 30px; margin: 0 auto 20px; color: var(--primary); 
-}
-.auth-title { font-size: 24px; font-weight: 900; margin: 0 0 8px; color: var(--text); }
+.auth-card { width: 100%; max-width: 380px; text-align: center; position: relative; padding: 40px 30px; }
+.auth-icon { width: 70px; height: 70px; background: var(--bg); border-radius: 50%; box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light); display: flex; align-items: center; justify-content: center; font-size: 30px; margin: 0 auto 20px; color: var(--primary); }
+.auth-title { font-size: 24px; font-weight: 900; margin: 0 0 8px; }
 .auth-sub { font-size: 14px; color: var(--text-light); margin: 0 0 30px; }
-.auth-switch { margin-top: 24px; font-size: 14px; color: var(--text-light); }
+.auth-switch { margin-top: 24px; font-size: 14px; color: var(--text-light); font-weight: 600; }
 .auth-switch span { color: var(--primary); cursor: pointer; font-weight: 800; }
-.auth-error { color: #ef4444; font-size: 13px; font-weight: 700; margin-top: 15px; }
-.field { margin-bottom: 16px; position: relative; }
-.eye-icon { position: absolute; right: 16px; bottom: 28px; cursor: pointer; font-size: 18px; color: var(--text-light); }
+.auth-error { color: #ef4444; font-size: 13px; font-weight: 700; margin-top: 15px; min-height: 20px; }
+.login-tabs { display: flex; background: var(--bg); padding: 6px; border-radius: 16px; box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); margin-bottom: 24px; }
+.login-tabs button { flex: 1; padding: 12px; border-radius: 12px; border: none; background: transparent; color: var(--text-light); font-weight: 700; font-size: 14px; cursor: pointer; transition: 0.2s; }
+.login-tabs button.active { background: var(--bg); color: var(--primary); box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); }
+#recaptcha-container { display: none; margin-bottom: 16px; }
 
-/* Modals */
-.modalback { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 100; align-items: flex-end; justify-content: center; }
-.modalback.show { display: flex; }
-.modal { width: 100%; max-width: 520px; max-height: 90vh; overflow: auto; background: var(--bg); border-radius: 30px 30px 0 0; padding: 24px; animation: slideUp 0.3s; position: relative; transition: 0.3s; }
-.modalhead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-
-/* BOTTOM NAV */
-.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg); display: flex; justify-content: space-around; align-items: center; padding: 8px 0; z-index: 50; box-shadow: 0 -4px 12px rgba(0,0,0,0.1); transition: 0.3s; }
-.b-nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-light); font-size: 10px; font-weight: 600; cursor: pointer; width: 60px; }
+/* Bottom Nav */
+.bottom-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg); z-index: 50; padding: 10px 0; box-shadow: 0 -4px 12px rgba(163, 177, 198, 0.4); transition: background 0.3s; }
+.bottom-nav-inner { display: flex; justify-content: space-around; align-items: center; }
+.b-nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-light); font-size: 10px; font-weight: 700; cursor: pointer; transition: 0.2s; }
 .b-nav-item.active { color: var(--primary); }
 .b-nav-item span:first-child { font-size: 22px; }
-.b-nav-item.special { width: 52px; height: 52px; border-radius: 16px; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; margin-top: -20px; box-shadow: 0 4px 12px rgba(245,158,11,0.4); justify-content: center; align-items: center; display: flex; }
-.b-nav-item.special span { font-size: 24px; }
-
-/* PROFILE PAGE */
-.profile-page { display: none; background: var(--profile-bg); min-height: 100vh; position: fixed; inset: 0; z-index: 60; overflow-y: auto; padding-bottom: 80px; transition: background 0.3s; }
-.profile-page.active { display: block; }
-.profile-header { padding: 20px 16px; display: flex; align-items: center; gap: 16px; background: var(--profile-bg); transition: 0.3s; }
-.profile-header h2 { margin:0; font-size:24px; font-weight:900; color: var(--profile-text); }
-.profile-welcome { background: var(--profile-card); margin: 0 16px 20px; border-radius: 16px; padding: 24px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s; }
-.profile-welcome h2 { margin: 0 0 8px; font-size: 20px; font-weight: 900; color: var(--profile-text); }
-.profile-welcome p { margin: 0 0 20px; font-size: 14px; color: var(--text-light); line-height: 1.5; }
-.btn-phone { background: #1e293b; color: white; padding: 16px; border-radius: 30px; width: 100%; font-size: 16px; font-weight: 700; border: none; margin-bottom: 12px; cursor: pointer; }
-body.dark-mode .btn-phone { background: var(--primary); }
-.sell-ananas { background: #1e293b; margin: 0 16px 20px; padding: 16px; border-radius: 16px; display: flex; align-items: center; justify-content: space-between; color: white; cursor: pointer; }
-body.dark-mode .sell-ananas { background: var(--profile-card); border: 1px solid var(--primary); }
-.sell-ananas div { display: flex; align-items: center; gap: 12px; }
-.sell-ananas .icon { background: #f59e0b; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; }
-.profile-list { margin: 0 16px 20px; background: var(--profile-card); border-radius: 16px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.03); transition: 0.3s; }
-.profile-list-item { padding: 16px; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 15px; font-weight: 600; color: var(--profile-text); cursor: pointer; }
-body.dark-mode .profile-list-item { border-bottom: 1px solid rgba(255,255,255,0.05); }
-.profile-list-item:last-child { border-bottom: none; }
-.profile-list-item span:first-child { font-size: 20px; color: var(--text-light); }
-
-/* Toggle Switch */
-.switch { position: relative; display: inline-block; width: 44px; height: 24px; margin-left: auto; }
-.switch input { opacity: 0; width: 0; height: 0; }
-.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--toggle-bg); transition: .4s; border-radius: 24px; }
-.slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
-input:checked + .slider { background-color: var(--toggle-active); }
-input:checked + .slider:before { transform: translateX(20px); }
 
 @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+@media (max-width: 900px) {
+  .bottom-nav { display: block; }
+  .top { padding: 10px 16px; height: auto; flex-wrap: wrap; }
+  .search { order: 3; width: 100%; margin-top: 8px; }
+  .cat-nav { top: 110px; }
+}
 </style>
 </head>
 <body>
 
-<!-- AUTH SCREEN (3D Neumorphism) -->
-<div class="auth-screen" id="authScreen">
-  <div class="auth-card">
-    <!-- LOGIN VIEW -->
+<!-- AUTH SCREEN -->
+<div class="auth-screen active" id="authScreen">
+  <div class="auth-card neu-card">
+    <!-- Login Form -->
     <div id="loginView">
       <div class="auth-icon">🔒</div>
-      <h1 class="auth-title">Welcome</h1>
-      <p class="auth-sub">Login to continue your journey</p>
+      <h1 class="auth-title">Welcome Back</h1>
+      <p class="auth-sub">ወደ VIP MALL እንኳን ደህና መጡ</p>
       
-      <div class="field"><input type="email" id="loginEmail" class="neu-input" placeholder="Email Address"></div>
-      <div class="field">
-        <input type="password" id="loginPassword" class="neu-input" placeholder="Password">
-        <span class="eye-icon" onclick="togglePass('loginPassword', this)">👁️</span>
+      <div class="login-tabs" id="loginTabs">
+        <button class="active" onclick="switchAuthTab('email')">Email</button>
+        <button onclick="switchAuthTab('phone')">Phone</button>
       </div>
-      <button class="neu-btn" onclick="doEmailLogin()">Login</button>
-      
+
+      <div id="emailLoginForm">
+        <div class="field"><input type="email" id="loginEmail" class="neu-input" placeholder="Email Address"></div>
+        <div class="field">
+          <input type="password" id="loginPassword" class="neu-input" placeholder="Password">
+          <span class="eye-icon" onclick="togglePass('loginPassword', this)">👁️</span>
+        </div>
+        <button class="neu-btn" onclick="doEmailLogin()">Login</button>
+      </div>
+
+      <div id="phoneLoginForm" style="display:none">
+        <div class="field"><input type="tel" id="loginPhone" class="neu-input" placeholder="+2519XXXXXXXX"></div>
+        <button class="neu-btn" onclick="doPhoneLogin()" id="sendSmsBtn">Send SMS Code</button>
+        <div id="otpInputDiv" style="display:none; margin-top:16px;">
+          <div class="field"><input type="text" id="loginOtp" class="neu-input" placeholder="6-digit Code" maxlength="6" style="text-align:center; letter-spacing:8px; font-weight:900; font-size:20px;"></div>
+          <button class="neu-btn" onclick="verifyPhoneCode()">Verify Access</button>
+        </div>
+        <div id="recaptcha-container"></div>
+      </div>
       <div class="auth-switch">Don't have an account? <span onclick="toggleAuthView('signup')">Create Account</span></div>
     </div>
 
-    <!-- SIGNUP VIEW -->
+    <!-- Signup Form -->
     <div id="signupView" style="display:none">
       <div class="auth-icon">👤</div>
       <h1 class="auth-title">Create Account</h1>
       <p class="auth-sub">የእርስዎን መለያ ይፍጠሩ</p>
-      
       <div class="field"><input type="text" id="signupName" class="neu-input" placeholder="Full Name"></div>
       <div class="field"><input type="email" id="signupEmail" class="neu-input" placeholder="Email Address"></div>
       <div class="field">
@@ -222,377 +264,461 @@ input:checked + .slider:before { transform: translateX(20px); }
         <span class="eye-icon" onclick="togglePass('signupPassword', this)">👁️</span>
       </div>
       <div class="field"><input type="tel" id="signupPhone" class="neu-input" placeholder="Phone Number (09...)"></div>
-      
       <button class="neu-btn" onclick="doSignup()">Create Account</button>
-      
       <div class="auth-switch">Already have an account? <span onclick="toggleAuthView('login')">Login</span></div>
     </div>
-    
     <div class="auth-error" id="authError"></div>
   </div>
 </div>
 
-<!-- MAIN APP CONTENT -->
-<div id="mainApp">
-  <header class="top">
-    <img src="logo.png" alt="VIP MALL" class="logo-img" onerror="this.outerHTML='<div style=\'font-size:20px;font-weight:900;color:var(--primary)\'>VIP MALL</div>'">
-    <div class="search"><input id="search" placeholder="ምርቶችን ይፈልጉ..."></div>
-  </header>
+<!-- HEADER -->
+<header class="top">
+  <img src="logo.png" alt="VIP MALL" class="logo-img" onerror="this.outerHTML='<div style=\'font-size:20px;font-weight:900;color:var(--primary)\'>VIP MALL</div>'">
+  <div class="search"><input id="search" placeholder="ምርቶችን ይፈልጉ..."></div>
+</header>
 
-  <nav class="cat-nav">
-    <div class="cat-item active" data-filter="All">🏠 ሁሉም</div>
-    <div class="cat-item" data-filter="Electronics">📱 ኤሌክትሮኒክስ</div>
-    <div class="cat-item" data-filter="Fashion">👕 ልብስ</div>
-    <div class="cat-item" data-filter="Home">🛋️ የቤት ዕቃ</div>
-    <div class="cat-item" data-filter="Vehicles">🚗 መኪና</div>
-  </nav>
+<nav class="cat-nav">
+  <div class="cat-item active" data-filter="All">🏠 ሁሉም</div>
+  <div class="cat-item" data-filter="Electronics">📱 ኤሌክትሮኒክስ</div>
+  <div class="cat-item" data-filter="Fashion">👕 ልብስ</div>
+  <div class="cat-item" data-filter="Home">🛋️ የቤት ዕቃ</div>
+  <div class="cat-item" data-filter="Vehicles">🚗 መኪና</div>
+</nav>
 
-  <div class="wrap">
-    <div class="sectionhead">
-      <h2>Featured Products</h2>
-      <span style="font-size:13px; color:var(--text-light); font-weight:600" id="count">0 items</span>
-    </div>
-    <div class="grid" id="products"></div>
+<div class="wrap">
+  <div class="sectionhead">
+    <h2>Featured Products</h2>
+    <span style="font-size:13px; color:var(--text-light); font-weight:600" id="count">0 items</span>
   </div>
+  <div class="grid" id="products"></div>
 </div>
 
-<!-- PROFILE PAGE -->
-<div class="profile-page" id="profilePage">
-  <div class="profile-header">
-    <h2>Profile</h2>
-  </div>
-
-  <div class="profile-welcome" id="profileWelcome">
-    <h2>Welcome to VIP MALL</h2>
-    <p>Sign in with your phone to track orders, save wishlists and get support.</p>
-    <button class="btn-phone" onclick="checkAuth()">Continue with phone</button>
-    <p style="font-size: 12px; color: #94a3b8;">We'll text a verification code to your number.</p>
-  </div>
-
-  <div class="sell-ananas" onclick="openModal('sell')">
-    <div>
-      <div class="icon">🏪</div>
-      <div>
-        <div style="font-weight:800;font-size:16px">Sell on VIP MALL</div>
-        <div style="font-size:12px;opacity:0.8">Register your shop and start selling</div>
-      </div>
-    </div>
-    <span style="font-size:20px">›</span>
-  </div>
-
-  <div style="margin: 0 16px 8px; font-size:12px; font-weight:800; color:var(--text-light); letter-spacing:1px;">PREFERENCES</div>
-  <div class="profile-list">
-    <div class="profile-list-item" onclick="toggleNotifications()">
-      <span>🔔</span> Notification settings
-      <label class="switch">
-        <input type="checkbox" id="notifToggle" checked>
-        <span class="slider"></span>
-      </label>
-    </div>
-    <div class="profile-list-item" onclick="toggleDarkMode()">
-      <span>🌙</span> Night mode
-      <label class="switch">
-        <input type="checkbox" id="darkModeToggle">
-        <span class="slider"></span>
-      </label>
-    </div>
-  </div>
-
-  <div style="margin: 0 16px 8px; font-size:12px; font-weight:800; color:var(--text-light); letter-spacing:1px;">SUPPORT</div>
-  <div class="profile-list">
-    <div class="profile-list-item" onclick="window.location.href='tel:0900684074'">
-      <span>📞</span> Call us
-      <span style="margin-left:auto; font-size:13px; color:var(--text-light);">09 00 68 40 74</span>
-    </div>
-    <!-- TELEGRAM LINK UPDATED -->
-    <div class="profile-list-item" onclick="window.location.href='https://t.me/vip_mall1'">
-      <span>✈️</span> Telegram
-      <span style="margin-left:auto; font-size:13px; color:var(--text-light);">@vip_mall1</span>
-    </div>
-  </div>
-
-  <div style="margin: 0 16px 8px; font-size:12px; font-weight:800; color:var(--text-light); letter-spacing:1px;">LEGAL & ABOUT</div>
-  <div class="profile-list">
-    <div class="profile-list-item"><span>🔒</span> Privacy policy <span style="margin-left:auto">›</span></div>
-    <div class="profile-list-item"><span>📄</span> Terms and conditions <span style="margin-left:auto">›</span></div>
-    <div class="profile-list-item"><span>ℹ️</span> App version <span style="margin-left:auto; font-size:13px; color:var(--text-light);">1.0.0</span></div>
-  </div>
-
-  <div id="logoutBtnWrap" style="display:none; margin: 0 16px 20px;">
-    <button class="neu-btn" onclick="doLogout()" style="background:#ef4444; color:white; box-shadow:none;">Logout</button>
-  </div>
-</div>
-
-<!-- BOTTOM NAV -->
+<!-- Mobile Bottom Nav -->
 <div class="bottom-nav">
-  <div class="b-nav-item active" onclick="goHome()"><span>🏠</span>Home</div>
-  <div class="b-nav-item" onclick="focusSearch()"><span>🔍</span>Search</div>
-  <div class="b-nav-item special" onclick="openVideo()"><span>▶️</span></div>
-  <div class="b-nav-item" onclick="openModal('cart')"><span>🛒</span>Cart</div>
-  <div class="b-nav-item" onclick="openProfile()"><span>👤</span>Profile</div>
+  <div class="bottom-nav-inner">
+    <div class="b-nav-item active" onclick="window.scrollTo(0,0)"><span>🏠</span>Home</div>
+    <div class="b-nav-item" onclick="openInbox()"><span>💬</span>Message</div>
+    <div class="b-nav-item" onclick="openModal('sell')"><span>➕</span>Sell</div>
+    <div class="b-nav-item" onclick="openModal('wallet')"><span>💳</span>Wallet</div>
+    <div class="b-nav-item" onclick="openModal('menu')"><span>☰</span>Menu</div>
+  </div>
 </div>
 
-<!-- MODAL CONTAINER -->
+<!-- Modal Container -->
 <div class="modalback" id="modalBack">
   <section class="modal">
     <div class="modalhead">
-      <h2 id="modalTitle" style="color:var(--text);">VIP MALL</h2>
-      <button style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--text);" id="closeModal">✕</button>
+      <h2 id="modalTitle">VIP MALL</h2>
+      <button class="circle-btn" id="closeModal" style="width:36px;height:36px;font-size:16px;box-shadow:none;background:var(--bg);">✕</button>
     </div>
     <div id="modalContent"></div>
   </section>
 </div>
 
 <script>
+// ==================== GLOBAL STATE ====================
 let currentUser = JSON.parse(localStorage.getItem('vip-user')) || null;
 let users = JSON.parse(localStorage.getItem('vip-users')) || {};
 let products = JSON.parse(localStorage.getItem('vip-products')) || [
-  { id: 1, name: 'Smartphone X Pro', cat: 'Electronics', price: 12500, loc: 'Addis Ababa', desc: 'Brand new 128GB. High performance camera.', img: '', seller: 'SMART Store', phone: '0900684074' },
-  { id: 2, name: 'Fashion Sneakers', cat: 'Fashion', price: 2300, loc: 'Jimma', desc: 'Original leather sneakers, size 42.', img: '', seller: 'Abebe Store', phone: '0900684074' },
-  { id: 3, name: 'Bicycle', cat: 'Vehicles', price: 26000, loc: 'መድሃኒያለም', desc: 'Mountain bike, good condition.', img: '', seller: 'Bike Shop', phone: '0900684074' },
-  { id: 4, name: 'ሳልካል', cat: 'Home', price: 1000, loc: 'Goro', desc: 'Good condition.', img: '', seller: 'Meron Shop', phone: '0900684074' }
+  { id: 1, name: 'Smartphone X Pro', cat: 'Electronics', price: 12500, loc: 'Addis Ababa', desc: 'Brand new 128GB.', img: '', seller: 'SMART Store', phone: '0911223344' },
+  { id: 2, name: 'Fashion Sneakers', cat: 'Fashion', price: 2300, loc: 'Jimma', desc: 'Original leather.', img: '', seller: 'Abebe Store', phone: '0911556677' }
 ];
-let cart = JSON.parse(localStorage.getItem('vip-cart')) || [];
+let messages = JSON.parse(localStorage.getItem('vip-messages')) || {};
 let currentFilter = 'All';
+let confirmationResult = null;
 
 const $ = id => document.getElementById(id);
 
 function saveData() {
   localStorage.setItem('vip-products', JSON.stringify(products));
+  localStorage.setItem('vip-messages', JSON.stringify(messages));
   localStorage.setItem('vip-users', JSON.stringify(users));
-  localStorage.setItem('vip-cart', JSON.stringify(cart));
 }
 
-// ==================== PROFILE PAGE ====================
-function openProfile() {
-  $('profilePage').classList.add('active');
-  window.scrollTo(0,0);
-  updateProfileUI();
-}
-function closeProfile() { $('profilePage').classList.remove('active'); }
-function goHome() { window.scrollTo(0,0); closeProfile(); }
-function focusSearch() { closeProfile(); setTimeout(() => $('search').focus(), 100); }
-
-function updateProfileUI() {
-  const welcome = $('profileWelcome');
-  const logoutWrap = $('logoutBtnWrap');
-  if (currentUser) {
-    const u = users[currentUser] || {};
-    welcome.innerHTML = `
-      <h2>👋 ${u.name || 'Welcome'}</h2>
-      <p>${currentUser}</p>
-      <button class="btn-phone" onclick="openModal('cart')">My Orders</button>
-    `;
-    logoutWrap.style.display = 'block';
-  } else {
-    welcome.innerHTML = `
-      <h2>Welcome to VIP MALL</h2>
-      <p>Sign in with your phone to track orders, save wishlists and get support.</p>
-      <button class="btn-phone" onclick="checkAuth()">Continue with phone</button>
-      <p style="font-size: 12px; color: #94a3b8;">We'll text a verification code to your number.</p>
-    `;
-    logoutWrap.style.display = 'none';
-  }
-}
-
-// ==================== SETTINGS (DARK MODE FIX) ====================
+// ==================== DARK MODE LOGIC ====================
 function toggleDarkMode() {
-  const isDark = document.body.classList.toggle('dark-mode');
-  localStorage.setItem('vip-dark-mode', isDark);
-  $('darkModeToggle').checked = isDark;
+  document.body.classList.toggle('dark-mode');
+  const isDark = document.body.classList.contains('dark-mode');
+  localStorage.setItem('vip-dark-mode', isDark ? 'true' : 'false');
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', isDark ? '#1a202c' : '#e0e5ec');
+  closeModal();
+  setTimeout(() => openModal('menu'), 100);
 }
 
-function toggleNotifications() {
-  const toggle = $('notifToggle');
-  toggle.checked = !toggle.checked;
+if (localStorage.getItem('vip-dark-mode') === 'true') {
+  document.body.classList.add('dark-mode');
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', '#1a202c');
 }
 
-// ==================== AUTH ====================
+// ==================== AUTH SYSTEM ====================
 function togglePass(id, icon) {
-  const input = $(id);
+  const input = document.getElementById(id);
   if (input.type === "password") { input.type = "text"; icon.innerText = "🙈"; }
   else { input.type = "password"; icon.innerText = "👁️"; }
 }
+
 function toggleAuthView(view) {
   $('authError').innerText = '';
-  if(view === 'signup') { $('loginView').style.display = 'none'; $('signupView').style.display = 'block'; }
-  else { $('signupView').style.display = 'none'; $('loginView').style.display = 'block'; }
+  if(view === 'signup') {
+    $('loginView').style.display = 'none';
+    $('signupView').style.display = 'block';
+  } else {
+    $('signupView').style.display = 'none';
+    $('loginView').style.display = 'block';
+  }
 }
+
+function switchAuthTab(type) {
+  document.querySelectorAll('#loginTabs button').forEach(b => b.classList.remove('active'));
+  if (type === 'email') {
+    document.querySelectorAll('#loginTabs button')[0].classList.add('active');
+    $('emailLoginForm').style.display = 'block';
+    $('phoneLoginForm').style.display = 'none';
+  } else {
+    document.querySelectorAll('#loginTabs button')[1].classList.add('active');
+    $('emailLoginForm').style.display = 'none';
+    $('phoneLoginForm').style.display = 'block';
+  }
+}
+
 async function doEmailLogin() {
-  const email = $('loginEmail').value.trim(); const pass = $('loginPassword').value;
+  const email = $('loginEmail').value.trim();
+  const pass = $('loginPassword').value;
   if (!email || !pass) { $('authError').innerText = 'Fill all fields!'; return; }
-  try { await window.fbSignIn(window.auth, email, pass); loginSuccess(email); } 
-  catch(e) { $('authError').innerText = e.message; }
+  
+  try {
+    await window.fbSignIn(window.auth, email, pass);
+    loginSuccess(email);
+  } catch(e) {
+    $('authError').innerText = e.message.replace('Firebase: ', '');
+  }
 }
+
 async function doSignup() {
-  const name = $('signupName').value.trim(); const email = $('signupEmail').value.trim();
-  const pass = $('signupPassword').value; const phone = $('signupPhone').value.trim();
+  const name = $('signupName').value.trim();
+  const email = $('signupEmail').value.trim();
+  const pass = $('signupPassword').value;
+  const phone = $('signupPhone').value.trim();
+  
   if (!name || !email || !pass || !phone) { $('authError').innerText = 'Fill all fields!'; return; }
+  if (pass.length < 6) { $('authError').innerText = 'Password must be 6+ chars!'; return; }
+  
   try {
     await window.fbCreateUser(window.auth, email, pass);
-    users[email] = { name, phone, balance: 0 }; saveData(); loginSuccess(email);
-  } catch(e) { $('authError').innerText = e.message; }
+    users[email] = { name, phone, balance: 0 };
+    saveData();
+    loginSuccess(email);
+  } catch(e) {
+    $('authError').innerText = e.message.replace('Firebase: ', '');
+  }
 }
+
+async function doPhoneLogin() {
+  const phone = $('loginPhone').value.trim();
+  if (!phone) { $('authError').innerText = 'Enter phone number!'; return; }
+  
+  $('authError').innerText = 'Sending SMS...';
+  $('recaptcha-container').style.display = 'block';
+  
+  try {
+    if (!window.recaptchaVerifier) {
+      window.recaptchaVerifier = new window.fbRecaptcha(window.auth, 'recaptcha-container', { size: 'invisible' });
+    }
+    confirmationResult = await window.fbPhoneSignIn(window.auth, phone, window.recaptchaVerifier);
+    $('authError').innerText = '';
+    $('otpInputDiv').style.display = 'block';
+    $('sendSmsBtn').innerText = 'Resend Code';
+  } catch(e) {
+    $('authError').innerText = e.message.replace('Firebase: ', '');
+    $('recaptcha-container').style.display = 'none';
+  }
+}
+
+async function verifyPhoneCode() {
+  const code = $('loginOtp').value.trim();
+  if (!code) return;
+  
+  try {
+    const result = await confirmationResult.confirm(code);
+    loginSuccess(result.user.phoneNumber);
+  } catch(e) {
+    $('authError').innerText = 'Invalid code!';
+  }
+}
+
 function loginSuccess(identifier) {
   currentUser = identifier;
   localStorage.setItem('vip-user', JSON.stringify(currentUser));
-  if (!users[identifier]) users[identifier] = { name: 'User', phone: identifier, balance: 0 };
-  saveData(); checkAuth(); updateProfileUI();
+  if (!users[identifier]) users[identifier] = { name: identifier.split('@')[0] || 'User', phone: identifier, balance: 0 };
+  saveData();
+  checkAuth();
 }
+
+function doLogout() {
+  window.fbSignOut(window.auth).catch(()=>{});
+  currentUser = null;
+  localStorage.removeItem('vip-user');
+  checkAuth();
+  closeModal();
+}
+
 function checkAuth() {
   if (!currentUser) $('authScreen').classList.add('active');
   else $('authScreen').classList.remove('active');
 }
-function doLogout() {
-  window.fbSignOut(window.auth).catch(()=>{});
-  currentUser = null; localStorage.removeItem('vip-user'); checkAuth(); closeProfile(); updateProfileUI();
-  setTimeout(() => openProfile(), 100);
-}
-function closeModal() { $('modalBack').classList.remove('show'); }
 
-// ==================== PRODUCTS ====================
+// ==================== PRODUCT RENDER ====================
 function renderProducts() {
   const q = $('search').value.toLowerCase();
-  const grid = $('products'); grid.innerHTML = ''; let count = 0;
-  products.filter(p => (currentFilter === 'All' || p.cat === currentFilter) && p.name.toLowerCase().includes(q)).forEach(p => {
+  const grid = $('products');
+  grid.innerHTML = '';
+  let count = 0;
+
+  products.filter(p => {
+    const matchCat = currentFilter === 'All' || p.cat === currentFilter;
+    const matchQ = p.name.toLowerCase().includes(q);
+    return matchCat && matchQ;
+  }).forEach(p => {
     count++;
     const card = document.createElement('article');
-    card.className = 'product'; card.onclick = () => openProductDetail(p.id);
+    card.className = 'product';
+    card.onclick = () => openProductDetail(p.id);
     card.innerHTML = `
-      <div class="photo">${p.img ? `<img src="${p.img}" alt="">` : `📦`}<span class="tag">NEW</span></div>
-      <div class="pbody"><h3>${p.name}</h3><div class="price">${p.price.toLocaleString()} ETB</div><div class="meta">📍 ${p.loc}</div></div>
+      <div class="photo">
+        ${p.img ? `<img src="${p.img}">` : `📦`}
+        <span class="tag">NEW</span>
+      </div>
+      <div class="pbody">
+        <h3>${p.name}</h3>
+        <div class="price">${p.price.toLocaleString()} ETB</div>
+        <div class="meta">📍 ${p.loc}</div>
+      </div>
     `;
     grid.appendChild(card);
   });
   $('count').innerText = count + ' items';
 }
 
-// ==================== PRODUCT DETAIL ====================
+// ==================== MODALS & ACTIONS ====================
 function openProductDetail(id) {
   const p = products.find(x => x.id === id);
   if (!p) return;
+
   $('modalTitle').innerText = 'Product Details';
   $('modalContent').innerHTML = `
-    <div style="background:var(--modal-card); border-radius:16px; overflow:hidden; margin-bottom:16px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
-      <div style="height:240px; background:var(--input-bg); display:flex; align-items:center; justify-content:center; position:relative;">
-        ${p.img ? `<img src="${p.img}" style="width:100%;height:100%;object-fit:contain;">` : '<span style="font-size:80px">📦</span>'}
+    <div style="width:100%;height:250px;background:var(--bg);border-radius:16px;box-shadow:inset 4px 4px 8px var(--shadow-dark);margin-bottom:20px;display:flex;align-items:center;justify-content:center;font-size:80px;overflow:hidden">
+      ${p.img ? `<img src="${p.img}" style="width:100%;height:100%;object-fit:contain">` : '📦'}
+    </div>
+    <h1 style="font-size:22px;margin:0 0 8px">${p.name}</h1>
+    <div style="font-size:24px;font-weight:900;color:var(--primary);margin-bottom:16px">${p.price.toLocaleString()} ETB</div>
+    <div style="color:var(--text-light);line-height:1.6;margin-bottom:20px;font-size:14px">
+      ${p.desc}<br><br><strong>📍 Location:</strong> ${p.loc}
+    </div>
+    <div style="background:var(--bg);padding:16px;border-radius:16px;box-shadow:4px 4px 8px var(--shadow-dark);display:flex;align-items:center;gap:12px;margin-bottom:20px">
+      <div style="width:40px;height:40px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px">${p.seller[0]}</div>
+      <div>
+        <div style="font-weight:800">${p.seller}</div>
+        <div style="font-size:11px;color:var(--text-light)">Verified Seller</div>
       </div>
-      <div style="padding:16px;">
-        <h2 style="margin:0 0 8px; font-size:20px; font-weight:900; color:var(--text);">${p.name}</h2>
-        <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:#f59e0b; margin-bottom:12px;">⭐⭐⭐⭐⭐ <span style="color:var(--text-light);">No reviews yet</span></div>
-        <div style="font-size:24px; font-weight:900; color:var(--text);">Br ${p.price.toLocaleString()}</div>
-      </div>
     </div>
-    <div style="background:var(--modal-card); border-radius:16px; padding:16px; margin-bottom:12px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
-      <h3 style="margin:0 0 8px; font-size:15px; font-weight:800; color:var(--text);">Description</h3>
-      <p style="margin:0; font-size:14px; color:var(--text-light); line-height:1.6;">${p.desc}</p>
-    </div>
-    <div style="display:flex; gap:12px; margin-bottom:16px;">
-      <button style="flex:1; background:var(--input-bg); color:var(--text); border:2px solid var(--primary); border-radius:16px; font-size:15px; font-weight:700; padding:14px; cursor:pointer;" onclick="addToCart(${p.id})">Add to Cart</button>
-      <button style="flex:1; background:var(--primary); color:white; border:none; border-radius:16px; font-size:15px; font-weight:700; padding:14px; cursor:pointer;" onclick="addToCart(${p.id}, true)">Buy Now</button>
-    </div>
+    <button class="neu-btn" style="margin-bottom:12px" onclick="contactSeller(${p.id})">💬 Message Seller</button>
+    <a href="tel:${p.phone}" style="text-decoration:none"><button class="neu-btn secondary">📞 Call (${p.phone})</button></a>
   `;
   $('modalBack').classList.add('show');
 }
 
-function addToCart(productId, buyNow) {
+function contactSeller(productId) {
+  if (!currentUser) { checkAuth(); return; }
   const p = products.find(x => x.id === productId);
-  if (!p) return;
-  const existing = cart.find(c => c.id === productId);
-  if (existing) existing.qty += 1;
-  else cart.push({ id: productId, name: p.name, price: p.price, img: p.img, qty: 1 });
-  saveData();
-  if (buyNow) { closeModal(); openModal('cart'); }
-  else { alert(`✅ Added to cart`); }
+  const chatId = `chat_${productId}_${currentUser}`;
+
+  if (!messages[chatId]) {
+    messages[chatId] = [{ sender: p.seller, text: `Hello! You asked about "${p.name}".`, time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) }];
+    saveData();
+  }
+  
+  openChat(chatId, p.seller);
 }
 
-// ==================== OTHER MODALS ====================
+// ==================== INBOX & CHAT SYSTEM ====================
+function openInbox() {
+  if (!currentUser) { checkAuth(); return; }
+  
+  const chatIds = Object.keys(messages);
+  $('modalTitle').innerText = 'Messages';
+  
+  if (chatIds.length === 0) {
+    $('modalContent').innerHTML = `<div style="text-align:center;padding:40px;color:var(--text-light);font-size:15px;">No messages yet.<br>Start a conversation by clicking "Message Seller" on any product.</div>`;
+  } else {
+    $('modalContent').innerHTML = chatIds.map(id => {
+      const parts = id.split('_');
+      const prodId = parts[1];
+      const buyer = parts[2];
+      
+      const prod = products.find(x => x.id == prodId) || { name: 'Unknown Product', seller: 'Seller' };
+      const lastMsg = messages[id][messages[id].length - 1];
+      
+      return `
+        <div class="menu-item" style="align-items:flex-start; padding:12px" onclick="openChat('${id}', '${prod.seller}')">
+          <div style="width:50px;height:50px;border-radius:50%;background:var(--primary);color:white;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:bold;flex-shrink:0;">
+            ${prod.seller[0]}
+          </div>
+          <div style="flex:1;overflow:hidden;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span style="font-weight:bold;font-size:16px;color:var(--text)">${prod.seller}</span>
+              <span style="font-size:11px;color:var(--text-light)">${lastMsg.time}</span>
+            </div>
+            <div style="font-size:13px;color:var(--text-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+              ${lastMsg.text}
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+  
+  $('modalBack').classList.add('show');
+}
+
+function openChat(chatId, sellerName) {
+  $('modalTitle').innerText = sellerName;
+  
+  $('modalContent').innerHTML = `
+    <div style="display:flex;flex-direction:column;height:450px;background:var(--bg);border-radius:16px;overflow:hidden">
+      <div class="chat-messages" id="chatMsgs" style="flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;">
+        ${messages[chatId].map(m => `
+          <div style="max-width:80%;padding:10px 14px;border-radius:18px;font-size:14px;line-height:1.4;
+            ${m.sender === currentUser ? 'background:var(--primary);color:white;align-self:flex-end;border-bottom-right-radius:4px;' : 'background:var(--bg);color:var(--text);align-self:flex-start;border-bottom-left-radius:4px;box-shadow:4px 4px 8px var(--shadow-dark), -2px -2px 6px var(--shadow-light);'}">
+            ${m.text}
+            <div style="font-size:9px;opacity:0.7;margin-top:4px;text-align:${m.sender === currentUser ? 'right' : 'left'}">${m.time}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div style="display:flex;gap:8px;padding:12px;background:var(--bg);border-top:1px solid var(--shadow-dark);">
+        <input type="text" id="chatInput" class="neu-input" placeholder="Message..." style="padding:14px;flex:1;font-size:15px;border-radius:24px;" onkeypress="if(event.key==='Enter') sendMsg('${chatId}')">
+        <button class="neu-btn" style="width:auto;padding:0 20px;border-radius:24px;" onclick="sendMsg('${chatId}')">Send</button>
+      </div>
+    </div>
+  `;
+  
+  setTimeout(() => { const m = $('chatMsgs'); if(m) m.scrollTop = m.scrollHeight; }, 100);
+}
+
+function sendMsg(chatId) {
+  const input = $('chatInput');
+  const text = input.value.trim();
+  if (!text) return;
+  
+  messages[chatId].push({ sender: currentUser, text, time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) });
+  saveData();
+  
+  const sellerName = $('modalTitle').innerText;
+  openChat(chatId, sellerName);
+}
+
 function openModal(type) {
   if (type === 'sell') {
     if (!currentUser) { checkAuth(); return; }
     $('modalTitle').innerText = 'Sell New Item';
     $('modalContent').innerHTML = `
-      <div class="field"><input id="sellName" class="neu-input" placeholder="Product Name"></div>
-      <div class="field"><input id="sellPrice" type="number" class="neu-input" placeholder="Price (ETB)"></div>
-      <div class="field"><input id="sellLoc" class="neu-input" placeholder="Location"></div>
-      <div class="field"><textarea id="sellDesc" class="neu-input" placeholder="Description..." rows="3"></textarea></div>
+      <div class="field"><label>Product Name</label><input id="sellName" class="neu-input" placeholder="iPhone 13"></div>
+      <div class="field"><label>Category</label>
+        <select id="sellCat" class="neu-input">
+          <option value="Electronics">📱 Electronics</option><option value="Fashion">👕 Fashion</option><option value="Home">🛋️ Home</option><option value="Vehicles">🚗 Vehicles</option>
+        </select>
+      </div>
+      <div class="field"><label>Price (ETB)</label><input id="sellPrice" type="number" class="neu-input" placeholder="0"></div>
+      <div class="field"><label>Location</label><input id="sellLoc" class="neu-input" placeholder="Addis Ababa"></div>
+      <div class="field"><label>Description</label><textarea id="sellDesc" class="neu-input" placeholder="..."></textarea></div>
+      <div class="field"><label>Photo</label><input type="file" id="sellImg" accept="image/*" class="neu-input" style="padding:10px"></div>
       <button class="neu-btn" onclick="publishProduct()">Publish Item</button>
     `;
     $('modalBack').classList.add('show');
   }
-  else if (type === 'cart') {
-    $('modalTitle').innerText = 'My Cart';
-    if (cart.length === 0) {
-      $('modalContent').innerHTML = `<div style="text-align:center; padding:40px 20px;"><div style="font-size:60px; margin-bottom:16px;">🛒</div><h3 style="margin:0 0 8px; color:var(--text);">Your cart is empty</h3></div>`;
-    } else {
-      const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
-      $('modalContent').innerHTML = `
-        ${cart.map((c, i) => `
-          <div style="display:flex; gap:12px; align-items:center; background:var(--modal-card); border-radius:12px; padding:12px; margin-bottom:10px;">
-            <div style="width:50px; height:50px; border-radius:8px; background:var(--input-bg); display:flex; align-items:center; justify-content:center; font-size:24px; overflow:hidden; flex-shrink:0;">
-              ${c.img ? `<img src="${c.img}" style="width:100%;height:100%;object-fit:cover;">` : '📦'}
-            </div>
-            <div style="flex:1; min-width:0;">
-              <div style="font-weight:700; font-size:14px; color:var(--text);">${c.name}</div>
-              <div style="font-size:12px; color:var(--text-light);">${c.price.toLocaleString()} ETB × ${c.qty}</div>
-            </div>
-            <button style="background:none; border:none; font-size:18px; cursor:pointer; color:#ef4444;" onclick="removeFromCart(${i})">🗑️</button>
-          </div>
-        `).join('')}
-        <div style="display:flex; justify-content:space-between; padding:16px 0; font-weight:900; font-size:18px; color:var(--text);">
-          <span>Total</span><span>${total.toLocaleString()} ETB</span>
-        </div>
-        <button class="neu-btn" onclick="checkout()">Checkout</button>
-      `;
-    }
+  else if (type === 'wallet') {
+    if (!currentUser) { checkAuth(); return; }
+    const bal = users[currentUser]?.balance || 0;
+    $('modalTitle').innerText = 'My Wallet';
+    $('modalContent').innerHTML = `
+      <div style="text-align:center;padding:24px;background:var(--bg);border-radius:16px;box-shadow:inset 4px 4px 8px var(--shadow-dark);margin-bottom:20px">
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:4px;font-weight:700">Available Balance</div>
+        <div style="font-size:32px;font-weight:900;color:var(--primary)">${bal.toLocaleString()} ETB</div>
+      </div>
+      <h4 style="margin:0 0 12px;color:var(--text-light);font-size:14px">Payment Methods</h4>
+      <button class="menu-item" onclick="window.open('https://play.google.com/store/apps/details?id=com.ethiotelecom.telebirr', '_blank')">
+        <div style="width:40px;height:40px;background:#00a651;color:white;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px">📱</div> Telebirr
+      </button>
+      <button class="menu-item" onclick="window.open('https://play.google.com/store/apps/details?id=com.cbe.cbebirr', '_blank')">
+        <div style="width:40px;height:40px;background:#4a148c;color:white;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px">🏦</div> CBE Birr
+      </button>
+      <div style="margin-top:20px">
+        <h4 style="margin:0 0 12px;color:var(--text-light);font-size:14px">Manual Deposit (Test)</h4>
+        <div class="field"><input id="walletAmt" type="number" class="neu-input" placeholder="Amount (ETB)" min="10"></div>
+        <button class="neu-btn" onclick="simulateDeposit()">Deposit</button>
+      </div>
+    `;
+    $('modalBack').classList.add('show');
+  }
+  else if (type === 'menu') {
+    $('modalTitle').innerText = 'Menu';
+    $('modalContent').innerHTML = `
+      <button class="menu-item" onclick="openModal('sell')">➕ Sell Item</button>
+      <button class="menu-item" onclick="openModal('wallet')">💳 Wallet</button>
+      <button class="menu-item" onclick="toggleDarkMode()" id="darkModeBtn">
+        ${document.body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode'}
+      </button>
+      <button class="menu-item" onclick="doLogout()" style="color:var(--primary)">🚪 Logout</button>
+    `;
     $('modalBack').classList.add('show');
   }
 }
 
-function removeFromCart(index) {
-  cart.splice(index, 1); saveData(); openModal('cart');
-}
-
-function checkout() {
-  if (!currentUser) { closeModal(); checkAuth(); return; }
-  if (cart.length === 0) return;
-  cart = []; saveData(); closeModal();
-  alert('✅ Order placed successfully!');
-}
-
 function publishProduct() {
-  const name = $('sellName').value.trim(); const price = Number($('sellPrice').value);
+  const name = $('sellName').value.trim();
+  const cat = $('sellCat').value;
+  const price = Number($('sellPrice').value);
+  const loc = $('sellLoc').value.trim() || 'Addis Ababa';
+  const desc = $('sellDesc').value.trim() || 'No description';
+  const phone = users[currentUser]?.phone || '0900000000';
+  const imgFile = $('sellImg').files[0];
+
   if (!name || !price) { alert('Name & Price required!'); return; }
-  products.unshift({ id: Date.now(), name, cat: 'Other', price, loc: $('sellLoc').value || 'Addis Ababa', desc: $('sellDesc').value || 'No description', img: '', seller: currentUser, phone: '0900684074' });
-  saveData(); closeModal(); renderProducts(); alert('✅ Item published!');
+  const saveProduct = (imgData) => {
+    products.unshift({ id: Date.now(), name, cat, price, loc, desc, img: imgData, seller: users[currentUser]?.name || 'User', phone });
+    saveData(); closeModal(); renderProducts(); alert('✅ Item published!');
+  };
+
+  if (imgFile) {
+    const reader = new FileReader();
+    reader.onload = (e) => saveProduct(e.target.result);
+    reader.readAsDataURL(imgFile);
+  } else saveProduct('');
 }
 
-function openVideo() {
-  $('modalTitle').innerText = 'VIP Videos';
-  $('modalContent').innerHTML = `<div style="text-align:center; padding:40px 20px;"><div style="font-size:60px; margin-bottom:16px;">🎬</div><h3 style="margin:0 0 8px; color:var(--text);">Coming Soon</h3></div>`;
-  $('modalBack').classList.add('show');
+function simulateDeposit() {
+  const amt = Number($('walletAmt').value);
+  if (!amt || amt < 10) { alert('Enter valid amount!'); return; }
+  users[currentUser].balance += amt;
+  saveData(); alert('✅ Deposited!'); openModal('wallet');
 }
 
-// ==================== EVENTS & INIT ====================
+function closeModal() { $('modalBack').classList.remove('show'); }
+
+// ==================== INIT & EVENTS ====================
 $('search').addEventListener('input', renderProducts);
 document.querySelectorAll('.cat-item').forEach(item => {
   item.addEventListener('click', () => {
     document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('active'));
-    item.classList.add('active'); currentFilter = item.dataset.filter; renderProducts();
+    item.classList.add('active');
+    currentFilter = item.dataset.filter;
+    renderProducts();
   });
 });
 
 $('closeModal').onclick = closeModal;
 $('modalBack').onclick = (e) => { if (e.target === $('modalBack')) closeModal(); };
 
-// Init Dark Mode State
-if (localStorage.getItem('vip-dark-mode') === 'true') {
-  document.body.classList.add('dark-mode');
-  $('darkModeToggle').checked = true;
-}
 renderProducts();
 checkAuth();
-updateProfilePanel();
-function updateProfilePanel() { updateProfileUI(); }
 </script>
 </body></html>
