@@ -29,32 +29,33 @@
 </script>
 
 <style>
-/* 3D Neumorphism Design System (Dark Theme based on your photo) */
+/* Default: Dark Theme (Photo 2 - Red/Black 3D) */
 :root {
-  --bg: #0f1115;
-  --surface: #1a1c23;
+  --bg: #0a0a0a;
+  --surface: #151515;
   --text: #ffffff;
-  --text-light: #94a3b8;
-  --primary: #ef4444; /* Red from the video */
+  --text-light: #a1a1aa;
+  --primary: #ef4444; 
   --primary-hover: #dc2626;
-  --shadow-light: #2d3748;
-  --shadow-dark: #050505;
+  --shadow-light: #2a2a2a;
+  --shadow-dark: #000000;
   --radius: 20px;
   --header-h: 70px;
-  --profile-bg: #0f1115;
-  --profile-card: #1a1c23;
+  --profile-bg: #0a0a0a;
+  --profile-card: #151515;
 }
 
-/* Light Mode Override (Optional) */
+/* Light Theme Override (Photo 1 - White/Grey 3D) */
 body.light-mode {
-  --bg: #f0f2f5;
-  --surface: #ffffff;
-  --text: #17202a;
-  --text-light: #667085;
-  --primary: #e11d48;
+  --bg: #e0e5ec;
+  --surface: #f0f2f5;
+  --text: #2d3748;
+  --text-light: #718096;
+  --primary: #3b82f6; 
+  --primary-hover: #2563eb;
   --shadow-light: #ffffff;
   --shadow-dark: #a3b1c6;
-  --profile-bg: #f8fafc;
+  --profile-bg: #e0e5ec;
   --profile-card: #ffffff;
 }
 
@@ -65,7 +66,7 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 .neu-input { 
   width: 100%; padding: 16px 20px; border: none; outline: none; background: var(--bg); border-radius: 12px; 
   box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); 
-  color: var(--text); font-size: 15px; font-weight: 500; 
+  color: var(--text); font-size: 15px; font-weight: 500; transition: 0.3s;
 }
 .neu-btn { 
   width: 100%; padding: 16px; border: none; outline: none; background: var(--primary); color: white; border-radius: 12px; 
@@ -75,16 +76,16 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 .neu-btn:active { box-shadow: inset 4px 4px 8px var(--primary-hover); transform: translateY(2px); }
 
 /* Top Header */
-.top { position: sticky; top: 0; z-index: 40; background: var(--bg); display: flex; align-items: center; gap: 12px; padding: 12px max(16px, calc((100vw - 1240px)/2)); height: var(--header-h); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+.top { position: sticky; top: 0; z-index: 40; background: var(--bg); display: flex; align-items: center; gap: 12px; padding: 12px max(16px, calc((100vw - 1240px)/2)); height: var(--header-h); box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: 0.3s; }
 .logo-img { height: 40px; object-fit: contain; border-radius: 8px; }
 .search { flex: 1; position: relative; }
-.search input { width: 100%; border: none; border-radius: 24px; background: var(--bg); padding: 12px 20px 12px 44px; color: var(--text); box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); font-size: 14px; }
+.search input { width: 100%; border: none; border-radius: 24px; background: var(--bg); padding: 12px 20px 12px 44px; color: var(--text); box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); font-size: 14px; transition: 0.3s;}
 .search::before { content: '🔍'; position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 14px; color: var(--text-light); }
 
 /* Category Nav */
-.cat-nav { background: var(--bg); padding: 10px max(16px, calc((100vw - 1240px)/2)); display: flex; overflow-x: auto; gap: 12px; scrollbar-width: none; border-bottom: 1px solid var(--surface); }
+.cat-nav { background: var(--bg); padding: 10px max(16px, calc((100vw - 1240px)/2)); display: flex; overflow-x: auto; gap: 12px; scrollbar-width: none; border-bottom: 1px solid var(--surface); transition: 0.3s;}
 .cat-nav::-webkit-scrollbar { display: none; }
-.cat-item { white-space: nowrap; padding: 10px 16px; background: var(--bg); border-radius: 20px; box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); color: var(--text-light); font-weight: 600; cursor: pointer; font-size: 13px; }
+.cat-item { white-space: nowrap; padding: 10px 16px; background: var(--bg); border-radius: 20px; box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); color: var(--text-light); font-weight: 600; cursor: pointer; font-size: 13px; transition: 0.3s;}
 .cat-item.active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); color: var(--primary); }
 
 /* Products */
@@ -92,7 +93,7 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 .sectionhead { display: flex; justify-content: space-between; align-items: center; margin: 0 0 16px; }
 .sectionhead h2 { font-size: 20px; margin: 0; font-weight: 800; color: var(--text); }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; }
-.product { background: var(--bg); border-radius: var(--radius); overflow: hidden; box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light); padding: 12px; cursor: pointer; position: relative; }
+.product { background: var(--bg); border-radius: var(--radius); overflow: hidden; box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light); padding: 12px; cursor: pointer; position: relative; transition: 0.3s;}
 .photo { aspect-ratio: 1; background: var(--bg); border-radius: 12px; box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); display: grid; place-items: center; font-size: 50px; margin-bottom: 12px; overflow: hidden; }
 .photo img { width: 100%; height: 100%; object-fit: cover; }
 .tag { position: absolute; top: 20px; left: 20px; background: var(--primary); color: white; font-size: 10px; font-weight: 800; padding: 4px 8px; border-radius: 6px; }
@@ -100,58 +101,59 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 .price { font-size: 16px; font-weight: 900; color: var(--primary); }
 .meta { font-size: 11px; color: var(--text-light); margin-top: 4px; }
 
-/* 3D Auth Screen (Strictly following the video style) */
-.auth-screen { position: fixed; inset: 0; background: var(--bg); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
+/* Auth Screen (Based on Photos) */
+.auth-screen { position: fixed; inset: 0; background: var(--bg); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; transition: 0.3s;}
 .auth-screen.active { display: flex; }
 .auth-card { 
   width: 100%; max-width: 380px; text-align: center; padding: 40px 30px; 
   background: var(--bg); border-radius: var(--radius); 
   box-shadow: 12px 12px 24px var(--shadow-dark), -12px -12px 24px var(--shadow-light); 
-  border: 1px solid rgba(255,255,255,0.05);
+  border: 1px solid rgba(128,128,128,0.1); transition: 0.3s;
 }
 .auth-title { font-size: 24px; font-weight: 900; margin: 0 0 8px; color: var(--text); }
 .auth-sub { font-size: 14px; color: var(--text-light); margin: 0 0 30px; }
 .auth-switch { margin-top: 24px; font-size: 14px; color: var(--text-light); }
 .auth-switch span { color: var(--primary); cursor: pointer; font-weight: 800; }
-.auth-error { color: #ef4444; font-size: 13px; font-weight: 700; margin-top: 15px; }
+.auth-error { color: var(--primary); font-size: 13px; font-weight: 700; margin-top: 15px; }
 .field { position: relative; margin-bottom: 16px; }
 .eye-icon { position: absolute; right: 16px; bottom: 16px; cursor: pointer; font-size: 18px; color: var(--text-light); }
-.login-tabs { display: flex; background: var(--bg); padding: 6px; border-radius: 16px; box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); margin-bottom: 24px; }
-.login-tabs button { flex: 1; padding: 12px; border-radius: 12px; border: none; background: transparent; color: var(--text-light); font-weight: 700; font-size: 14px; cursor: pointer; }
+.login-tabs { display: flex; background: var(--bg); padding: 6px; border-radius: 16px; box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); margin-bottom: 24px; transition: 0.3s;}
+.login-tabs button { flex: 1; padding: 12px; border-radius: 12px; border: none; background: transparent; color: var(--text-light); font-weight: 700; font-size: 14px; cursor: pointer; transition: 0.2s;}
 .login-tabs button.active { background: var(--bg); color: var(--primary); box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); }
 
 /* Profile Page */
-.profile-page { display: none; background: var(--profile-bg); min-height: 100vh; position: fixed; inset: 0; z-index: 60; overflow-y: auto; padding-bottom: 80px; }
+.profile-page { display: none; background: var(--profile-bg); min-height: 100vh; position: fixed; inset: 0; z-index: 60; overflow-y: auto; padding-bottom: 80px; transition: 0.3s;}
 .profile-page.active { display: block; }
-.profile-header { padding: 20px 16px; display: flex; align-items: center; gap: 16px; background: var(--profile-bg); position: sticky; top: 0; z-index: 10; }
+.profile-header { padding: 20px 16px; display: flex; align-items: center; gap: 16px; background: var(--profile-bg); position: sticky; top: 0; z-index: 10; transition: 0.3s;}
 .profile-header h2 { margin: 0; font-size: 20px; font-weight: 900; color: var(--text); }
-.profile-welcome { background: var(--profile-card); margin: 0 16px 20px; border-radius: 16px; padding: 24px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.profile-welcome { background: var(--profile-card); margin: 0 16px 20px; border-radius: 16px; padding: 24px; text-align: center; box-shadow: 4px 4px 12px var(--shadow-dark), -4px -4px 12px var(--shadow-light); transition: 0.3s; border: 1px solid rgba(128,128,128,0.1);}
 .profile-welcome h2 { margin: 0 0 8px; font-size: 20px; font-weight: 900; color: var(--text); }
 .profile-welcome p { margin: 0 0 20px; font-size: 14px; color: var(--text-light); line-height: 1.5; }
-.btn-phone { background: var(--primary); color: white; padding: 16px; border-radius: 12px; width: 100%; font-size: 16px; font-weight: 700; border: none; margin-bottom: 12px; cursor: pointer; }
-.sell-ananas { background: #1e293b; margin: 0 16px 20px; padding: 20px; border-radius: 16px; display: flex; align-items: center; justify-content: space-between; color: white; cursor: pointer; }
+.btn-phone { background: var(--primary); color: white; padding: 16px; border-radius: 12px; width: 100%; font-size: 16px; font-weight: 700; border: none; margin-bottom: 12px; cursor: pointer; box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light); }
+.sell-ananas { background: var(--surface); margin: 0 16px 20px; padding: 20px; border-radius: 16px; display: flex; align-items: center; justify-content: space-between; color: var(--text); cursor: pointer; box-shadow: 4px 4px 12px var(--shadow-dark), -4px -4px 12px var(--shadow-light); transition: 0.3s; border: 1px solid rgba(128,128,128,0.1);}
 .sell-ananas div { display: flex; align-items: center; gap: 12px; }
-.sell-ananas .icon { background: #f59e0b; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; }
-.profile-list { margin: 0 16px 20px; background: var(--profile-card); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-.profile-list-item { padding: 16px; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 15px; font-weight: 600; color: var(--text); cursor: pointer; }
+.sell-ananas .icon { background: var(--primary); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+.profile-list { margin: 0 16px 20px; background: var(--profile-card); border-radius: 16px; overflow: hidden; box-shadow: 4px 4px 12px var(--shadow-dark), -4px -4px 12px var(--shadow-light); transition: 0.3s; border: 1px solid rgba(128,128,128,0.1);}
+.profile-list-item { padding: 16px; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid var(--surface); font-size: 15px; font-weight: 600; color: var(--text); cursor: pointer; transition: 0.3s;}
 .profile-list-item:last-child { border-bottom: none; }
 .profile-list-item span:first-child { font-size: 20px; color: var(--text-light); }
 
-/* Bottom Nav (Fixed from previous layout, now 3D) */
-.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg); border-top: 1px solid var(--surface); display: flex; justify-content: space-around; align-items: center; padding: 8px 0; z-index: 50; box-shadow: 0 -4px 12px rgba(0,0,0,0.3); }
+/* Bottom Nav (Fixed to match photo exactly) */
+.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg); border-top: 1px solid var(--surface); display: flex; justify-content: space-around; align-items: center; padding: 8px 0 16px 0; z-index: 50; box-shadow: 0 -4px 12px var(--shadow-dark); transition: 0.3s;}
 .b-nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-light); font-size: 10px; font-weight: 600; cursor: pointer; transition: 0.2s; }
 .b-nav-item.active { color: var(--primary); }
 .b-nav-item span:first-child { font-size: 22px; }
-.b-nav-item.special { width: 50px; height: 50px; border-radius: 50%; background: var(--primary); color: white; margin-top: -20px; box-shadow: 0 4px 12px rgba(239,68,68,0.4); justify-content: center; align-items: center; display: flex; }
+.b-nav-item.special { width: 60px; height: 60px; border-radius: 50%; background: var(--primary); color: white; margin-top: -24px; box-shadow: 0 4px 12px var(--shadow-dark), 0 0 20px var(--primary); justify-content: center; align-items: center; display: flex; border: 4px solid var(--bg); }
 .b-nav-item.special span { font-size: 24px; }
 
 /* Modals */
-.modalback { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 100; align-items: flex-end; justify-content: center; padding: 0; }
+.modalback { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 100; align-items: flex-end; justify-content: center; padding: 0; }
 .modalback.show { display: flex; }
-.modal { width: 100%; max-width: 520px; max-height: 90vh; overflow: auto; background: var(--bg); border-radius: 30px 30px 0 0; padding: 24px; box-shadow: 0 -10px 40px rgba(0,0,0,0.3); animation: slideUp 0.3s; transition: background 0.3s; }
+.modal { width: 100%; max-width: 520px; max-height: 90vh; overflow: auto; background: var(--bg); border-radius: 30px 30px 0 0; padding: 24px; box-shadow: 0 -10px 40px var(--shadow-dark); animation: slideUp 0.3s; transition: background 0.3s; }
 .modalhead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
 .modalhead h2 { font-size: 20px; font-weight: 800; margin: 0; color: var(--text); }
-.modalhead button { background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text); }
+.close-x-btn { background: var(--bg); border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 18px; font-weight: bold; cursor: pointer; color: var(--text); box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); display: flex; align-items: center; justify-content: center; transition: 0.2s;}
+.close-x-btn:active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); }
 .field { margin-bottom: 16px; position: relative; }
 .menu-item { display: flex; align-items: center; gap: 16px; padding: 16px; border-radius: 16px; cursor: pointer; font-weight: 700; color: var(--text); background: var(--bg); width: 100%; text-align: left; font-size: 15px; margin-bottom: 10px; border: none; box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); transition: 0.2s; }
 .menu-item:active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); }
@@ -238,17 +240,17 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
     <h2>Welcome to VIP MALL</h2>
     <p>Sign in with your phone to track orders, save wishlists and get support.</p>
     <button class="btn-phone" onclick="openAuthModal()">Continue with phone</button>
-    <p style="font-size: 12px; color: #94a3b8;">We'll text a verification code to your number.</p>
+    <p style="font-size: 12px; color: var(--text-light);">We'll text a verification code to your number.</p>
   </div>
 
   <div class="profile-welcome" id="userInfo" style="display:none;">
-    <div style="width:60px; height:60px; border-radius:50%; background:var(--primary); color:white; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:bold; margin:0 auto 12px;">
+    <div style="width:60px; height:60px; border-radius:50%; background:var(--primary); color:white; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:bold; margin:0 auto 12px; box-shadow: 4px 4px 8px var(--shadow-dark);">
       <span id="userAvatar">U</span>
     </div>
     <h2 id="userNameDisplay" style="margin:0 0 4px; font-size:18px;">User Name</h2>
     <p id="userEmailDisplay" style="margin:0 0 4px; font-size:13px; color:var(--text-light);">bezabhmolaye4@gmail.com</p>
     <p id="userPhoneDisplay" style="margin:0 0 16px; font-size:13px; color:var(--text-light);">0900684074</p>
-    <button class="neu-btn secondary" onclick="doLogout()" style="color:#ef4444; background:var(--bg); box-shadow:inset 2px 2px 5px var(--shadow-dark);">Logout</button>
+    <button class="neu-btn secondary" onclick="doLogout()" style="color:var(--primary); background:var(--bg); box-shadow:inset 2px 2px 5px var(--shadow-dark);">Logout</button>
   </div>
 
   <div class="sell-ananas" onclick="openModal('sell')">
@@ -256,17 +258,17 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
       <div class="icon">🏪</div>
       <div>
         <div style="font-weight:800;font-size:16px">Sell on VIP MALL</div>
-        <div style="font-size:12px;opacity:0.8">Register your shop and start selling</div>
+        <div style="font-size:12px;color:var(--text-light)">Register your shop and start selling</div>
       </div>
     </div>
-    <span style="font-size:20px">›</span>
+    <span style="font-size:20px; color:var(--text-light)">›</span>
   </div>
 
   <div style="margin: 0 16px 8px; font-size:12px; font-weight:800; color:var(--text-light); letter-spacing:1px;">PREFERENCES</div>
   <div class="profile-list">
     <div class="profile-list-item" onclick="openSettingsModal()">
       <span>⚙️</span> Settings
-      <span style="margin-left:auto">›</span>
+      <span style="margin-left:auto; color:var(--text-light)">›</span>
     </div>
   </div>
 
@@ -280,12 +282,12 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 
   <div style="margin: 0 16px 8px; font-size:12px; font-weight:800; color:var(--text-light); letter-spacing:1px;">LEGAL & ABOUT</div>
   <div class="profile-list">
-    <div class="profile-list-item"><span>🔒</span> Privacy policy <span style="margin-left:auto">›</span></div>
+    <div class="profile-list-item"><span>🔒</span> Privacy policy <span style="margin-left:auto; color:var(--text-light)">›</span></div>
     <div class="profile-list-item"><span>ℹ️</span> App version <span style="margin-left:auto; font-size:13px; color:var(--text-light);">1.0.0</span></div>
   </div>
 </div>
 
-<!-- BOTTOM NAV (3D Neumorphism Style) -->
+<!-- BOTTOM NAV (3D Neumorphism Style - Based on Photo) -->
 <div class="bottom-nav">
   <div class="b-nav-item active" onclick="window.scrollTo(0,0); closeProfile()"><span>🏠</span>Home</div>
   <div class="b-nav-item" onclick="document.getElementById('search').focus()"><span>🔍</span>Search</div>
@@ -299,7 +301,7 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
   <section class="modal">
     <div class="modalhead">
       <h2 id="modalTitle">VIP MALL</h2>
-      <button id="closeModal" style="background:none;border:none;font-size:24px;cursor:pointer;color:var(--text);">✕</button>
+      <button class="close-x-btn" id="closeModal">✕</button>
     </div>
     <div id="modalContent"></div>
   </section>
@@ -461,7 +463,7 @@ function doLogout() {
   currentUser = null;
   localStorage.removeItem('vip-user');
   closeProfile();
-  openProfile(); // Refresh profile view
+  openProfile(); 
 }
 
 // ==================== PRODUCT RENDER ====================
@@ -496,7 +498,7 @@ function renderProducts() {
   $('count').innerText = count + ' items';
 }
 
-// ==================== PRODUCT DETAIL (FIXED CLOSE X) ====================
+// ==================== MODALS (FIXED X BUTTON) ====================
 function openProductDetail(id) {
   const p = products.find(x => x.id === id);
   if (!p) return;
@@ -506,7 +508,6 @@ function openProductDetail(id) {
     <div style="background:var(--surface); border-radius:16px; overflow:hidden; margin-bottom:20px; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
       <div style="height:250px; background:var(--bg); display:flex; align-items:center; justify-content:center; position:relative;">
         ${p.img ? `<img src="${p.img}" style="width:100%;height:100%;object-fit:contain;">` : '<span style="font-size:80px">📦</span>'}
-        <button style="position:absolute; top:16px; left:16px; width:36px; height:36px; border-radius:50%; background:var(--surface); border:none; color:var(--text); box-shadow:0 2px 8px rgba(0,0,0,0.2); font-size:18px; cursor:pointer; z-index:10;" onclick="closeModal()">←</button>
       </div>
       <div style="padding:16px;">
         <h2 style="margin:0 0 8px; font-size:20px; font-weight:900; color:var(--text);">${p.name}</h2>
@@ -521,7 +522,7 @@ function openProductDetail(id) {
 
     <div style="background:var(--surface); border-radius:16px; padding:16px; margin-bottom:16px; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
       <h3 style="margin:0 0 8px; font-size:16px; font-weight:800; color:var(--text);">Description</h3>
-      <p style="margin:0; font-size:14px; color:var(--text-light); line-height:1.6;">${p.desc} ... <span style="color:var(--primary); font-weight:700;">See more</span></p>
+      <p style="margin:0; font-size:14px; color:var(--text-light); line-height:1.6;">${p.desc}</p>
     </div>
 
     <div style="background:var(--surface); border-radius:16px; padding:16px; margin-bottom:20px; display:flex; align-items:center; gap:12px; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
@@ -541,7 +542,6 @@ function openProductDetail(id) {
   $('modalBack').classList.add('show');
 }
 
-// ==================== SETTINGS MODAL ====================
 function openSettingsModal() {
   $('modalTitle').innerText = 'Settings';
   $('modalContent').innerHTML = `
@@ -571,11 +571,11 @@ function openNotificationsModal() {
 function openSupportModal() {
   $('modalTitle').innerText = 'Contact Support';
   $('modalContent').innerHTML = `
-    <div style="background:var(--surface); padding:20px; border-radius:16px; margin-bottom:16px;">
+    <div style="background:var(--surface); padding:20px; border-radius:16px; margin-bottom:16px; box-shadow: inset 2px 2px 5px var(--shadow-dark);">
       <div style="font-weight:800; font-size:16px; margin-bottom:8px;">Email Support</div>
       <a href="mailto:bezabhmolaye4@gmail.com" style="color:var(--primary); font-weight:700; text-decoration:none;">bezabhmolaye4@gmail.com</a>
     </div>
-    <div style="background:var(--surface); padding:20px; border-radius:16px;">
+    <div style="background:var(--surface); padding:20px; border-radius:16px; box-shadow: inset 2px 2px 5px var(--shadow-dark);">
       <div style="font-weight:800; font-size:16px; margin-bottom:8px;">Phone Support</div>
       <a href="tel:0900684074" style="color:var(--primary); font-weight:700; text-decoration:none;">0900 684 074</a>
     </div>
@@ -587,10 +587,9 @@ function toggleDarkMode() {
   document.body.classList.toggle('light-mode');
   const isLight = document.body.classList.contains('light-mode');
   localStorage.setItem('vip-theme', isLight ? 'light' : 'dark');
-  document.querySelector('meta[name="theme-color"]').setAttribute('content', isLight ? '#f0f2f5' : '#111111');
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', isLight ? '#e0e5ec' : '#0a0a0a');
 }
 
-// ==================== OTHER MODALS ====================
 function openModal(type) {
   if (type === 'sell') {
     if (!currentUser) { openAuthModal(); return; }
@@ -655,8 +654,13 @@ document.querySelectorAll('.cat-item').forEach(item => {
   });
 });
 
-$('closeModal').onclick = closeModal;
-$('modalBack').onclick = (e) => { if (e.target === $('modalBack')) closeModal(); };
+// Working Close Button
+$('closeModal').onclick = function() {
+  $('modalBack').classList.remove('show');
+};
+$('modalBack').onclick = function(e) { 
+  if (e.target === $('modalBack')) $('modalBack').classList.remove('show'); 
+};
 
 if (localStorage.getItem('vip-theme') === 'light') document.body.classList.add('light-mode');
 renderProducts();
