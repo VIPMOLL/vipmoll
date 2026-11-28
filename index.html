@@ -2,7 +2,7 @@
 <html lang="am">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#0a0a0a">
+<meta name="theme-color" content="#e0e5ec">
 <title>VIP MALL | Premium Marketplace</title>
 
 <script type="module">
@@ -19,8 +19,23 @@
 </script>
 
 <style>
-/* DEFAULT: 3D Dark/Red Theme (Photo 2) */
 :root {
+  --bg: #e0e5ec;
+  --surface: #ffffff;
+  --text: #2d3748;
+  --text-light: #718096;
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --shadow-light: #ffffff;
+  --shadow-dark: #a3b1c6;
+  --radius: 20px;
+  --header-h: 70px;
+  --profile-bg: #e0e5ec;
+  --profile-card: #ffffff;
+  --font-size: 15px;
+}
+
+body.dark-mode {
   --bg: #0a0a0a;
   --surface: #151515;
   --text: #ffffff;
@@ -29,45 +44,39 @@
   --primary-hover: #dc2626;
   --shadow-light: #2a2a2a;
   --shadow-dark: #000000;
-  --radius: 20px;
-  --header-h: 70px;
   --profile-bg: #0a0a0a;
   --profile-card: #151515;
-  --font-size: 15px;
-}
-
-/* LIGHT MODE OVERRIDE (Photo 1) */
-body.light-mode {
-  --bg: #e0e5ec;
-  --surface: #f0f2f5;
-  --text: #2d3748;
-  --text-light: #718096;
-  --primary: #3b82f6; 
-  --primary-hover: #2563eb;
-  --shadow-light: #ffffff;
-  --shadow-dark: #a3b1c6;
-  --profile-bg: #e0e5ec;
-  --profile-card: #ffffff;
 }
 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Ethiopic", Arial, sans-serif; }
 body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80px; overflow-x: hidden; transition: 0.3s; font-size: var(--font-size); }
 
+/* Global 3D Classes */
 .neu-input { width: 100%; padding: 16px 20px; border: none; outline: none; background: var(--bg); border-radius: 12px; box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); color: var(--text); font-size: var(--font-size); font-weight: 500; transition: 0.3s; }
 .neu-btn { width: 100%; padding: 16px; border: none; outline: none; background: var(--primary); color: white; border-radius: 12px; font-size: calc(var(--font-size) + 1px); font-weight: 700; cursor: pointer; box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light); transition: 0.2s; }
 .neu-btn:active { box-shadow: inset 4px 4px 8px var(--primary-hover); transform: translateY(2px); }
 
+/* Top Header */
 .top { position: sticky; top: 0; z-index: 40; background: var(--bg); display: flex; align-items: center; gap: 12px; padding: 12px max(16px, calc((100vw - 1240px)/2)); height: var(--header-h); box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: 0.3s; }
 .logo-img { height: 40px; object-fit: contain; border-radius: 8px; }
 .search { flex: 1; position: relative; }
 .search input { width: 100%; border: none; border-radius: 24px; background: var(--bg); padding: 12px 20px 12px 44px; color: var(--text); box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); font-size: var(--font-size); transition: 0.3s;}
 .search::before { content: '🔍'; position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 14px; color: var(--text-light); }
 
+/* Category Nav */
 .cat-nav { background: var(--bg); padding: 10px max(16px, calc((100vw - 1240px)/2)); display: flex; overflow-x: auto; gap: 12px; scrollbar-width: none; border-bottom: 1px solid var(--surface); transition: 0.3s;}
 .cat-nav::-webkit-scrollbar { display: none; }
 .cat-item { white-space: nowrap; padding: 10px 16px; background: var(--bg); border-radius: 20px; box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); color: var(--text-light); font-weight: 600; cursor: pointer; font-size: 13px; transition: 0.3s;}
 .cat-item.active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); color: var(--primary); }
 
+/* Home Welcome Card (Based on your photo) */
+.home-welcome { margin: 20px max(16px, calc((100vw - 1240px)/2)); background: var(--profile-card); border-radius: 20px; padding: 30px 24px; text-align: center; box-shadow: 4px 4px 12px var(--shadow-dark), -4px -4px 12px var(--shadow-light); }
+.home-welcome h2 { font-size: 22px; font-weight: 900; margin: 0 0 12px; color: var(--text); }
+.home-welcome p { font-size: 14px; color: var(--text-light); line-height: 1.5; margin: 0 0 24px; }
+.btn-phone-home { background: var(--primary); color: white; padding: 16px; border-radius: 12px; width: 100%; font-size: 16px; font-weight: 700; border: none; margin-bottom: 12px; cursor: pointer; box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light); }
+.home-welcome .small-text { font-size: 12px; color: var(--text-light); }
+
+/* Products */
 .wrap { max-width: 1240px; margin: 20px auto; padding: 0 16px; }
 .sectionhead { display: flex; justify-content: space-between; align-items: center; margin: 0 0 16px; }
 .sectionhead h2 { font-size: 20px; margin: 0; font-weight: 800; color: var(--text); }
@@ -80,6 +89,7 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 .price { font-size: 16px; font-weight: 900; color: var(--primary); }
 .meta { font-size: 11px; color: var(--text-light); margin-top: 4px; }
 
+/* Auth Screen */
 .auth-screen { position: fixed; inset: 0; background: var(--bg); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; transition: 0.3s;}
 .auth-screen.active { display: flex; }
 .auth-card { width: 100%; max-width: 380px; text-align: center; padding: 40px 30px; background: var(--bg); border-radius: var(--radius); box-shadow: 12px 12px 24px var(--shadow-dark), -12px -12px 24px var(--shadow-light); border: 1px solid rgba(128,128,128,0.1); transition: 0.3s; }
@@ -94,6 +104,7 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 .login-tabs button { flex: 1; padding: 12px; border-radius: 12px; border: none; background: transparent; color: var(--text-light); font-weight: 700; font-size: 14px; cursor: pointer; transition: 0.2s;}
 .login-tabs button.active { background: var(--bg); color: var(--primary); box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); }
 
+/* Profile Page */
 .profile-page { display: none; background: var(--profile-bg); min-height: 100vh; position: fixed; inset: 0; z-index: 60; overflow-y: auto; padding-bottom: 80px; transition: 0.3s;}
 .profile-page.active { display: block; }
 .profile-header { padding: 20px 16px; display: flex; align-items: center; gap: 16px; background: var(--profile-bg); position: sticky; top: 0; z-index: 10; transition: 0.3s;}
@@ -110,7 +121,7 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 .profile-list-item:last-child { border-bottom: none; }
 .profile-list-item span:first-child { font-size: 20px; color: var(--text-light); }
 
-/* BOTTOM NAV (3D Dark/Red Style matching Photo 2) */
+/* Bottom Nav */
 .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg); border-top: 1px solid var(--surface); display: flex; justify-content: space-around; align-items: center; padding: 8px 0 16px 0; z-index: 50; box-shadow: 0 -4px 12px var(--shadow-dark); transition: 0.3s;}
 .b-nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-light); font-size: 10px; font-weight: 600; cursor: pointer; transition: 0.2s; }
 .b-nav-item.active { color: var(--primary); }
@@ -118,6 +129,7 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 .b-nav-item.special { width: 64px; height: 64px; border-radius: 50%; background: var(--bg); color: var(--primary); margin-top: -28px; box-shadow: 4px 4px 12px var(--shadow-dark), -4px -4px 12px var(--shadow-light); justify-content: center; align-items: center; display: flex; border: none; position: relative; }
 .b-nav-item.special .icon-inner { width: 50px; height: 50px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px var(--primary); color: white; font-size: 24px; }
 
+/* Modals */
 .modalback { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 100; align-items: flex-end; justify-content: center; padding: 0; }
 .modalback.show { display: flex; }
 .modal { width: 100%; max-width: 520px; max-height: 90vh; overflow: auto; background: var(--bg); border-radius: 30px 30px 0 0; padding: 24px; box-shadow: 0 -10px 40px var(--shadow-dark); animation: slideUp 0.3s; transition: background 0.3s; }
@@ -138,38 +150,38 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 <div class="auth-screen" id="authScreen">
   <div class="auth-card">
     <div id="loginView">
-      <div class="auth-title">Welcome Back</div>
-      <div class="auth-sub">ወደ VIP MALL እንኳን ደህና መጡ</div>
+      <div class="auth-title" data-i18n="welcome">Welcome Back</div>
+      <div class="auth-sub" data-i18n="welcomeSub">ወደ VIP MALL እንኳን ደህና መጡ</div>
       <div class="login-tabs" id="loginTabs">
         <button class="active" onclick="switchAuthTab('email')">Email</button>
         <button onclick="switchAuthTab('phone')">Phone</button>
       </div>
       <div id="emailLoginForm">
-        <div class="field"><input type="email" id="loginEmail" class="neu-input" placeholder="Email Address"></div>
-        <div class="field"><input type="password" id="loginPassword" class="neu-input" placeholder="Password"><span class="eye-icon" onclick="togglePass('loginPassword', this)">👁️</span></div>
-        <button class="neu-btn" onclick="doEmailLogin()">Login</button>
+        <div class="field"><input type="email" id="loginEmail" class="neu-input" placeholder="Email Address" data-i18n-placeholder="email"></div>
+        <div class="field"><input type="password" id="loginPassword" class="neu-input" placeholder="Password" data-i18n-placeholder="password"><span class="eye-icon" onclick="togglePass('loginPassword', this)">👁️</span></div>
+        <button class="neu-btn" onclick="doEmailLogin()" data-i18n="loginBtn">Login</button>
       </div>
       <div id="phoneLoginForm" style="display:none">
         <div class="field"><input type="tel" id="loginPhone" class="neu-input" placeholder="+2519XXXXXXXX"></div>
-        <button class="neu-btn" onclick="doPhoneLogin()" id="sendSmsBtn">Send SMS Code</button>
+        <button class="neu-btn" onclick="doPhoneLogin()" id="sendSmsBtn" data-i18n="sendSms">Send SMS Code</button>
         <div id="otpInputDiv" style="display:none; margin-top:16px;">
           <div class="field"><input type="text" id="loginOtp" class="neu-input" placeholder="6-digit Code" maxlength="6" style="text-align:center; letter-spacing:8px; font-weight:900; font-size:20px;"></div>
-          <button class="neu-btn" onclick="verifyPhoneCode()">Verify Access</button>
+          <button class="neu-btn" onclick="verifyPhoneCode()" data-i18n="verify">Verify Access</button>
         </div>
         <div id="recaptcha-container"></div>
       </div>
-      <div class="auth-switch">Don't have an account? <span onclick="toggleAuthView('signup')">Create Account</span></div>
+      <div class="auth-switch"><span data-i18n="noAccount">Don't have an account?</span> <span onclick="toggleAuthView('signup')" data-i18n="signup">Create Account</span></div>
     </div>
 
     <div id="signupView" style="display:none">
-      <div class="auth-title">Create Account</div>
-      <div class="auth-sub">የእርስዎን መለያ ይፍጠሩ</div>
-      <div class="field"><input type="text" id="signupName" class="neu-input" placeholder="Full Name"></div>
-      <div class="field"><input type="email" id="signupEmail" class="neu-input" placeholder="Email Address"></div>
-      <div class="field"><input type="password" id="signupPassword" class="neu-input" placeholder="Password (min 6 chars)"><span class="eye-icon" onclick="togglePass('signupPassword', this)">👁️</span></div>
-      <div class="field"><input type="tel" id="signupPhone" class="neu-input" placeholder="Phone Number (09...)"></div>
-      <button class="neu-btn" onclick="doSignup()">Create Account</button>
-      <div class="auth-switch">Already have an account? <span onclick="toggleAuthView('login')">Login</span></div>
+      <div class="auth-title" data-i18n="createAccount">Create Account</div>
+      <div class="auth-sub" data-i18n="createSub">የእርስዎን መለያ ይፍጠሩ</div>
+      <div class="field"><input type="text" id="signupName" class="neu-input" placeholder="Full Name" data-i18n-placeholder="fullName"></div>
+      <div class="field"><input type="email" id="signupEmail" class="neu-input" placeholder="Email Address" data-i18n-placeholder="email"></div>
+      <div class="field"><input type="password" id="signupPassword" class="neu-input" placeholder="Password (min 6 chars)" data-i18n-placeholder="password"><span class="eye-icon" onclick="togglePass('signupPassword', this)">👁️</span></div>
+      <div class="field"><input type="tel" id="signupPhone" class="neu-input" placeholder="Phone Number (09...)" data-i18n-placeholder="phone"></div>
+      <button class="neu-btn" onclick="doSignup()" data-i18n="signupBtn">Create Account</button>
+      <div class="auth-switch"><span data-i18n="haveAccount">Already have an account?</span> <span onclick="toggleAuthView('login')" data-i18n="login">Login</span></div>
     </div>
     <div class="auth-error" id="authError"></div>
   </div>
@@ -179,21 +191,29 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 <div id="mainApp">
   <header class="top">
     <img src="logo.png" alt="VIP MALL" class="logo-img" onerror="this.outerHTML='<div style=\'font-size:20px;font-weight:900;color:var(--primary)\'>VIP MALL</div>'">
-    <div class="search"><input id="search" placeholder="ምርቶችን ይፈልጉ..."></div>
+    <div class="search"><input id="search" placeholder="ምርቶችን ይፈልጉ..." data-i18n-placeholder="searchPlaceholder"></div>
   </header>
 
   <nav class="cat-nav">
-    <div class="cat-item active" data-filter="All">🏠 ሁሉም</div>
-    <div class="cat-item" data-filter="Electronics">📱 ኤሌክትሮኒክስ</div>
-    <div class="cat-item" data-filter="Fashion">👕 ልብስ</div>
-    <div class="cat-item" data-filter="Home">🛋️ የቤት ዕቃ</div>
-    <div class="cat-item" data-filter="Vehicles">🚗 መኪና</div>
-    <div class="cat-item" data-filter="Sport">⚽ ስፖርት</div>
+    <div class="cat-item active" data-filter="All">🏠 <span data-i18n="catAll">ሁሉም</span></div>
+    <div class="cat-item" data-filter="Electronics">📱 <span data-i18n="catElec">ኤሌክትሮኒክስ</span></div>
+    <div class="cat-item" data-filter="Fashion">👕 <span data-i18n="catFash">ልብስ</span></div>
+    <div class="cat-item" data-filter="Home">🛋️ <span data-i18n="catHome">የቤት ዕቃ</span></div>
+    <div class="cat-item" data-filter="Vehicles">🚗 <span data-i18n="catVeh">መኪና</span></div>
+    <div class="cat-item" data-filter="Sport">⚽ <span data-i18n="catSport">ስፖርት</span></div>
   </nav>
+
+  <!-- HOME WELCOME CARD (Based on your photo) -->
+  <div class="home-welcome" id="homeWelcomeCard">
+    <h2 data-i18n="homeWelcomeTitle">Welcome to VIP MALL</h2>
+    <p data-i18n="homeWelcomeSub">Sign in with your phone to track orders, save wishlists and get support.</p>
+    <button class="btn-phone-home" onclick="openAuthModal()" data-i18n="continuePhone">Continue with phone</button>
+    <p class="small-text" data-i18n="smsInfo">We'll text a verification code to your number.</p>
+  </div>
 
   <div class="wrap">
     <div class="sectionhead">
-      <h2>Featured Products</h2>
+      <h2 data-i18n="featured">Featured Products</h2>
       <span style="font-size:13px; color:var(--text-light); font-weight:600" id="count">0 items</span>
     </div>
     <div class="grid" id="products"></div>
@@ -204,14 +224,14 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 <div class="profile-page" id="profilePage">
   <div class="profile-header">
     <button onclick="closeProfile()" style="background:none; border:none; font-size:24px; cursor:pointer; color:var(--text);">←</button>
-    <h2>Profile</h2>
+    <h2 data-i18n="profileTitle">Profile</h2>
   </div>
 
   <div class="profile-welcome" id="profileWelcome">
-    <h2>Welcome to VIP MALL</h2>
-    <p>Sign in with your phone to track orders, save wishlists and get support.</p>
-    <button class="btn-phone" onclick="openAuthModal()">Continue with phone</button>
-    <p style="font-size: 12px; color: var(--text-light);">We'll text a verification code to your number.</p>
+    <h2 data-i18n="homeWelcomeTitle">Welcome to VIP MALL</h2>
+    <p data-i18n="homeWelcomeSub">Sign in with your phone to track orders, save wishlists and get support.</p>
+    <button class="btn-phone" onclick="openAuthModal()" data-i18n="continuePhone">Continue with phone</button>
+    <p style="font-size: 12px; color: var(--text-light);" data-i18n="smsInfo">We'll text a verification code to your number.</p>
   </div>
 
   <div class="profile-welcome" id="userInfo" style="display:none;">
@@ -221,52 +241,52 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
     <h2 id="userNameDisplay" style="margin:0 0 4px; font-size:18px;">Bezabh Molaye</h2>
     <p id="userEmailDisplay" style="margin:0 0 4px; font-size:13px; color:var(--text-light);">molayedanel@gmail.com</p>
     <p id="userPhoneDisplay" style="margin:0 0 16px; font-size:13px; color:var(--text-light);">0900684074</p>
-    <button class="neu-btn secondary" onclick="doLogout()" style="color:var(--primary); background:var(--bg); box-shadow:inset 2px 2px 5px var(--shadow-dark);">Logout</button>
+    <button class="neu-btn secondary" onclick="doLogout()" style="color:var(--primary); background:var(--bg); box-shadow:inset 2px 2px 5px var(--shadow-dark);" data-i18n="logout">Logout</button>
   </div>
 
   <div class="sell-ananas" onclick="openModal('sell')">
     <div>
       <div class="icon">🏪</div>
       <div>
-        <div style="font-weight:800;font-size:16px">Sell on VIP MALL</div>
-        <div style="font-size:12px;color:var(--text-light)">Register your shop and start selling</div>
+        <div style="font-weight:800;font-size:16px" data-i18n="sellOn">Sell on VIP MALL</div>
+        <div style="font-size:12px;color:var(--text-light)" data-i18n="sellSub">Register your shop and start selling</div>
       </div>
     </div>
     <span style="font-size:20px; color:var(--text-light)">›</span>
   </div>
 
-  <div style="margin: 0 16px 8px; font-size:12px; font-weight:800; color:var(--text-light); letter-spacing:1px;">PREFERENCES</div>
+  <div style="margin: 0 16px 8px; font-size:12px; font-weight:800; color:var(--text-light); letter-spacing:1px;" data-i18n="preferences">PREFERENCES</div>
   <div class="profile-list">
     <div class="profile-list-item" onclick="openSettingsModal()">
-      <span>⚙️</span> Settings
+      <span>⚙️</span> <span data-i18n="settings">Settings</span>
       <span style="margin-left:auto; color:var(--text-light)">›</span>
     </div>
   </div>
 
-  <div style="margin: 0 16px 8px; font-size:12px; font-weight:800; color:var(--text-light); letter-spacing:1px;">SUPPORT</div>
+  <div style="margin: 0 16px 8px; font-size:12px; font-weight:800; color:var(--text-light); letter-spacing:1px;" data-i18n="support">SUPPORT</div>
   <div class="profile-list">
     <div class="profile-list-item" onclick="openSupportModal()">
-      <span>🛠️</span> Contact Support
+      <span>🛠️</span> <span data-i18n="contactSupport">Contact Support</span>
       <span style="margin-left:auto; font-size:13px; color:var(--text-light);">molayedanel@gmail.com</span>
     </div>
   </div>
 
-  <div style="margin: 0 16px 8px; font-size:12px; font-weight:800; color:var(--text-light); letter-spacing:1px;">LEGAL & ABOUT</div>
+  <div style="margin: 0 16px 8px; font-size:12px; font-weight:800; color:var(--text-light); letter-spacing:1px;" data-i18n="legal">LEGAL & ABOUT</div>
   <div class="profile-list">
-    <div class="profile-list-item"><span>🔒</span> Privacy policy <span style="margin-left:auto; color:var(--text-light)">›</span></div>
-    <div class="profile-list-item"><span>ℹ️</span> App version <span style="margin-left:auto; font-size:13px; color:var(--text-light);">1.0.0</span></div>
+    <div class="profile-list-item"><span>🔒</span> <span data-i18n="privacy">Privacy policy</span> <span style="margin-left:auto; color:var(--text-light)">›</span></div>
+    <div class="profile-list-item"><span>ℹ️</span> <span data-i18n="appVersion">App version</span> <span style="margin-left:auto; font-size:13px; color:var(--text-light);">1.0.0</span></div>
   </div>
 </div>
 
-<!-- BOTTOM NAV (3D Dark/Red Style matching Photo 2) -->
+<!-- BOTTOM NAV (3D Neumorphism Style) -->
 <div class="bottom-nav">
-  <div class="b-nav-item active" onclick="window.scrollTo(0,0); closeProfile()"><span>🏠</span>Home</div>
-  <div class="b-nav-item" onclick="document.getElementById('search').focus()"><span>🔍</span>Search</div>
+  <div class="b-nav-item active" onclick="window.scrollTo(0,0); closeProfile()"><span>🏠</span><span data-i18n="navHome">Home</span></div>
+  <div class="b-nav-item" onclick="document.getElementById('search').focus()"><span>🔍</span><span data-i18n="navSearch">Search</span></div>
   <div class="b-nav-item special" onclick="openVideo()">
     <div class="icon-inner">▶</div>
   </div>
-  <div class="b-nav-item" onclick="openModal('cart')"><span>🛒</span>Cart</div>
-  <div class="b-nav-item" onclick="openProfile()"><span>👤</span>Profile</div>
+  <div class="b-nav-item" onclick="openModal('cart')"><span>🛒</span><span data-i18n="navCart">Cart</span></div>
+  <div class="b-nav-item" onclick="openProfile()"><span>👤</span><span data-i18n="navProfile">Profile</span></div>
 </div>
 
 <!-- MODAL CONTAINER -->
@@ -281,6 +301,62 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 </div>
 
 <script>
+// ==================== TRANSLATIONS ====================
+const i18n = {
+  am: {
+    welcome: "Welcome Back", welcomeSub: "ወደ VIP MALL እንኳን ደህና መጡ",
+    email: "ኢሜይል", password: "የይለፍ ቃል", loginBtn: "ግባ", login: "ግባ",
+    noAccount: "መለያ የለህም?", signup: "ተመዝገብ", createAccount: "መለያ ፍጠር", createSub: "የእርስዎን መለያ ይፍጠሩ",
+    fullName: "ሙሉ ስም", phone: "ስልክ ቁጥር", signupBtn: "ተመዝገብ", haveAccount: "መለያ አለህ?",
+    sendSms: "SMS ኮድ ላክ", verify: "አረጋግጥ",
+    searchPlaceholder: "ምርቶችን ይፈልጉ...",
+    catAll: "ሁሉም", catElec: "ኤሌክትሮኒክስ", catFash: "ልብስ", catHome: "የቤት ዕቃ", catVeh: "መኪና", catSport: "ስፖርት",
+    homeWelcomeTitle: "Welcome to VIP MALL", homeWelcomeSub: "ለመግዛት፣ ለማስቀመጥ እና ድጋፍ ለማግኘት በስልክዎ ይግቡ።",
+    continuePhone: "Continue with phone", smsInfo: "የማረጋገጫ ኮድ በSMS ይላካል።",
+    featured: "Featured Products", items: "items",
+    profileTitle: "Profile", preferences: "PREFERENCES", settings: "Settings",
+    support: "SUPPORT", contactSupport: "Contact Support", legal: "LEGAL & ABOUT",
+    privacy: "Privacy policy", appVersion: "App version", logout: "Logout",
+    sellOn: "Sell on VIP MALL", sellSub: "ሱቅዎን ይመዝግቡ እና መሸጥ ይጀምሩ",
+    navHome: "መነሻ", navSearch: "ፍለጋ", navCart: "ጋሪ", navProfile: "መገለጫ"
+  },
+  en: {
+    welcome: "Welcome Back", welcomeSub: "Welcome to VIP MALL",
+    email: "Email", password: "Password", loginBtn: "Login", login: "Login",
+    noAccount: "Don't have an account?", signup: "Sign Up", createAccount: "Create Account", createSub: "Create your account",
+    fullName: "Full Name", phone: "Phone Number", signupBtn: "Sign Up", haveAccount: "Already have an account?",
+    sendSms: "Send SMS Code", verify: "Verify Access",
+    searchPlaceholder: "Search products...",
+    catAll: "All", catElec: "Electronics", catFash: "Fashion", catHome: "Home", catVeh: "Vehicles", catSport: "Sport",
+    homeWelcomeTitle: "Welcome to VIP MALL", homeWelcomeSub: "Sign in with your phone to track orders, save wishlists and get support.",
+    continuePhone: "Continue with phone", smsInfo: "We'll text a verification code to your number.",
+    featured: "Featured Products", items: "items",
+    profileTitle: "Profile", preferences: "PREFERENCES", settings: "Settings",
+    support: "SUPPORT", contactSupport: "Contact Support", legal: "LEGAL & ABOUT",
+    privacy: "Privacy policy", appVersion: "App version", logout: "Logout",
+    sellOn: "Sell on VIP MALL", sellSub: "Register your shop and start selling",
+    navHome: "Home", navSearch: "Search", navCart: "Cart", navProfile: "Profile"
+  }
+};
+
+let currentLang = localStorage.getItem('vip-lang') || 'am';
+const t = key => i18n[currentLang][key] || i18n['en'][key] || key;
+
+function applyLanguage() {
+  document.querySelectorAll('[data-i18n]').forEach(el => el.innerText = t(el.dataset.i18n));
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => el.placeholder = t(el.dataset.i18nPlaceholder));
+}
+
+function changeLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('vip-lang', lang);
+  applyLanguage();
+  alert(t('langChanged') || 'ቋንቋ ተቀይሯል!');
+  closeModal();
+  openSettingsModal(); // Refresh modal
+}
+
+// ==================== STATE ====================
 let currentUser = JSON.parse(localStorage.getItem('vip-user')) || null;
 let users = JSON.parse(localStorage.getItem('vip-users')) || {};
 let products = JSON.parse(localStorage.getItem('vip-products')) || [
@@ -300,6 +376,7 @@ function saveData() {
   localStorage.setItem('vip-users', JSON.stringify(users));
 }
 
+// ==================== PROFILE & AUTH ====================
 function openProfile() {
   $('profilePage').classList.add('active');
   window.scrollTo(0,0);
@@ -466,7 +543,7 @@ function renderProducts() {
     `;
     grid.appendChild(card);
   });
-  $('count').innerText = count + ' items';
+  $('count').innerText = count + ' ' + t('items');
 }
 
 function openProductDetail(id) {
@@ -476,7 +553,7 @@ function openProductDetail(id) {
   $('modalTitle').innerText = 'Product Details';
   $('modalContent').innerHTML = `
     <div style="background:var(--surface); border-radius:16px; overflow:hidden; margin-bottom:20px; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
-      <div style="height:250px; background:var(--bg); display:flex; align-items:center; justify-content:center; position:relative;">
+      <div style="height:250px; background:var(--bg); display:flex; align-items: center; justify-content:center; position:relative;">
         ${p.img ? `<img src="${p.img}" style="width:100%;height:100%;object-fit:contain;">` : '<span style="font-size:80px">📦</span>'}
       </div>
       <div style="padding:16px;">
@@ -557,11 +634,6 @@ function openLanguageModal() {
   $('modalBack').classList.add('show');
 }
 
-function changeLang(lang) {
-  alert('ቋንቋ ወደ ' + lang.toUpperCase() + ' ተቀይሯል! (Translation engine pending)');
-  closeModal();
-}
-
 function openFontSizeModal() {
   $('modalTitle').innerText = 'Font Size';
   $('modalContent').innerHTML = `
@@ -598,7 +670,7 @@ function toggleDarkMode() {
   document.body.classList.toggle('light-mode');
   const isLight = document.body.classList.contains('light-mode');
   localStorage.setItem('vip-theme', isLight ? 'light' : 'dark');
-  document.querySelector('meta[name="theme-color"]').setAttribute('content', isLight ? '#e0e5ec' : '#0a0a0a');
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', isLight ? '#e0e5ec' : '#111111');
 }
 
 function openModal(type) {
@@ -667,8 +739,9 @@ document.querySelectorAll('.cat-item').forEach(item => {
 $('closeModal').onclick = function() { $('modalBack').classList.remove('show'); };
 $('modalBack').onclick = function(e) { if (e.target === $('modalBack')) $('modalBack').classList.remove('show'); };
 
-if (localStorage.getItem('vip-theme') === 'light') document.body.classList.add('light-mode');
+if (localStorage.getItem('vip-theme') === 'dark') document.body.classList.add('dark-mode');
 if (localStorage.getItem('vip-font')) document.documentElement.style.setProperty('--font-size', localStorage.getItem('vip-font'));
+applyLanguage();
 renderProducts();
 if (currentUser) openProfile();
 </script>
