@@ -169,6 +169,10 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 .login-tabs button { flex: 1; padding: 12px; border-radius: 12px; border: none; background: transparent; color: var(--text-light); font-weight: 700; font-size: 14px; cursor: pointer; transition: 0.2s;}
 .login-tabs button.active { background: var(--bg); color: var(--primary); box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); }
 
+/* OTP Inputs (3D Style) */
+.otp-container { display: flex; gap: 8px; justify-content: center; margin: 20px 0; }
+.otp-input { width: 45px; height: 55px; border: none; border-radius: 12px; background: var(--bg); box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); text-align: center; font-size: 20px; font-weight: 900; color: var(--text); outline: none; transition: 0.3s; }
+
 /* Profile Page */
 .profile-page { display: none; background: var(--profile-bg); min-height: 100vh; position: fixed; inset: 0; z-index: 60; overflow-y: auto; padding-bottom: 80px; transition: 0.3s;}
 .profile-page.active { display: block; }
@@ -185,6 +189,14 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 .profile-list-item { padding: 16px; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid var(--surface); font-size: 15px; font-weight: 600; color: var(--text); cursor: pointer; transition: 0.3s;}
 .profile-list-item:last-child { border-bottom: none; }
 .profile-list-item span:first-child { font-size: 20px; color: var(--text-light); }
+
+/* Toggle Switch */
+.switch { position: relative; display: inline-block; width: 44px; height: 24px; margin-left: auto; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px; }
+.slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+input:checked + .slider { background-color: var(--primary); }
+input:checked + .slider:before { transform: translateX(20px); }
 
 /* BOTTOM NAV */
 .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg); display: flex; justify-content: space-around; align-items: center; padding: 8px 0 16px 0; z-index: 50; box-shadow: 0 -4px 12px var(--shadow-dark); transition: 0.3s;}
@@ -225,10 +237,20 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
         <button class="neu-btn" onclick="doEmailLogin()">Login</button>
       </div>
       <div id="phoneLoginForm" style="display:none">
-        <div class="field"><input type="tel" id="loginPhone" class="neu-input" placeholder="+2519XXXXXXXX"></div>
+        <div class="field"><input type="tel" id="loginPhone" class="neu-input" placeholder="09XXXXXXXX"></div>
         <button class="neu-btn" onclick="doPhoneLogin()" id="sendSmsBtn">Send SMS Code</button>
+        
+        <!-- 3D OTP Inputs -->
         <div id="otpInputDiv" style="display:none; margin-top:16px;">
-          <div class="field"><input type="text" id="loginOtp" class="neu-input" placeholder="6-digit Code" maxlength="6" style="text-align:center; letter-spacing:8px; font-weight:900; font-size:20px;"></div>
+          <p style="font-size:12px; color:var(--text-light); margin-bottom:10px;">Enter 6-digit code</p>
+          <div class="otp-container">
+            <input type="text" maxlength="1" class="otp-input" oninput="moveFocus(this, 1)">
+            <input type="text" maxlength="1" class="otp-input" oninput="moveFocus(this, 2)">
+            <input type="text" maxlength="1" class="otp-input" oninput="moveFocus(this, 3)">
+            <input type="text" maxlength="1" class="otp-input" oninput="moveFocus(this, 4)">
+            <input type="text" maxlength="1" class="otp-input" oninput="moveFocus(this, 5)">
+            <input type="text" maxlength="1" class="otp-input" oninput="moveFocus(this, 6)">
+          </div>
           <button class="neu-btn" onclick="verifyPhoneCode()">Verify Access</button>
         </div>
         <div id="recaptcha-container"></div>
@@ -265,7 +287,6 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
     <div class="cat-item" data-filter="Vehicles">🚗 መኪና</div>
   </nav>
 
-  <!-- SLIDER SECTION -->
   <div class="slider-section">
     <div class="home-welcome-3d" id="homeWelcomeCard">
       <h2>Welcome to VIP MALL</h2>
@@ -309,13 +330,12 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
     <div style="width:60px; height:60px; border-radius:50%; background:var(--primary); color:white; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:bold; margin:0 auto 12px; box-shadow: 4px 4px 8px var(--shadow-dark);">
       <span id="userAvatar">B</span>
     </div>
-    <h2 id="userNameDisplay" style="margin:0 0 4px; font-size:18px;">Bezabh Molaye</h2>
+    <h2 id="userNameDisplay" style="margin:0 0 4px; font-size:18px;">Bezabh</h2>
     <p id="userEmailDisplay" style="margin:0 0 4px; font-size:13px; color:var(--text-light);">molayedanel@gmail.com</p>
     <p id="userPhoneDisplay" style="margin:0 0 16px; font-size:13px; color:var(--text-light);">0900684074</p>
     <button class="neu-btn" onclick="doLogout()" style="color:var(--primary); background:var(--bg); box-shadow:inset 2px 2px 5px var(--shadow-dark);">Logout</button>
   </div>
 
-  <!-- Sell Section in Profile -->
   <div class="sell-ananas" onclick="openModal('sell')">
     <div>
       <div class="icon">🏪</div>
@@ -331,10 +351,10 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
   <div class="profile-list">
     <div class="profile-list-item" onclick="toggleDarkMode()">
       <span>🌙</span> Night mode
-    </div>
-    <div class="profile-list-item" onclick="openSettingsModal()">
-      <span>⚙️</span> Settings
-      <span style="margin-left:auto; color:var(--text-light)">›</span>
+      <label class="switch">
+        <input type="checkbox" id="darkModeToggle">
+        <span class="slider"></span>
+      </label>
     </div>
   </div>
 
@@ -351,16 +371,13 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
   </div>
 </div>
 
-<!-- BOTTOM NAV (የተስተካከለው) -->
+<!-- BOTTOM NAV -->
 <div class="bottom-nav">
   <div class="b-nav-item active" onclick="window.scrollTo(0,0); closeProfile()"><span>🏠</span>Home</div>
-  <!-- Search ተወግዶ Sell ተካቷል -->
   <div class="b-nav-item" onclick="openModal('sell')"><span>🏪</span>Sell</div>
-  
   <div class="b-nav-item special" onclick="openVideo()">
     <div class="icon-inner">▶</div>
   </div>
-  
   <div class="b-nav-item" onclick="openModal('cart')"><span>🛒</span>Cart</div>
   <div class="b-nav-item" onclick="openProfile()"><span>👤</span>Profile</div>
 </div>
@@ -444,6 +461,14 @@ function switchAuthTab(type) {
   }
 }
 
+// OTP Inputs Auto Focus
+function moveFocus(current, index) {
+  if (current.value.length === 1 && index < 6) {
+    const next = document.querySelectorAll('.otp-input')[index];
+    if (next) next.focus();
+  }
+}
+
 async function doEmailLogin() {
   const email = $('loginEmail').value.trim(); const pass = $('loginPassword').value;
   if (!email || !pass) { $('authError').innerText = 'Fill all fields!'; return; }
@@ -473,9 +498,14 @@ async function doPhoneLogin() {
 }
 
 async function verifyPhoneCode() {
-  const code = $('loginOtp').value.trim(); if (!code) return;
-  try { const result = await confirmationResult.confirm(code); loginSuccess(result.user.phoneNumber); } 
-  catch(e) { $('authError').innerText = 'Invalid code!'; }
+  let code = '';
+  document.querySelectorAll('.otp-input').forEach(input => code += input.value);
+  if (code.length < 6) { $('authError').innerText = 'Enter full 6-digit code'; return; }
+  
+  try {
+    const result = await confirmationResult.confirm(code);
+    loginSuccess(result.user.phoneNumber);
+  } catch(e) { $('authError').innerText = 'Invalid code!'; }
 }
 
 function loginSuccess(identifier) {
@@ -495,10 +525,10 @@ function openProfile() {
   $('profilePage').classList.add('active'); window.scrollTo(0,0);
   if (currentUser) {
     $('profileWelcome').style.display = 'none'; $('userInfo').style.display = 'block';
-    let user = users[currentUser] || { name: 'User', phone: '0900684074' };
-    $('userAvatar').innerText = user.name[0] || 'U';
+    let user = users[currentUser] || { name: 'Bezabh', phone: '0900684074' };
+    $('userAvatar').innerText = user.name[0] || 'B';
     $('userNameDisplay').innerText = user.name;
-    $('userEmailDisplay').innerText = currentUser.includes('@') ? currentUser : 'user@email.com';
+    $('userEmailDisplay').innerText = currentUser.includes('@') ? currentUser : 'molayedanel@gmail.com';
     $('userPhoneDisplay').innerText = user.phone;
   } else {
     $('profileWelcome').style.display = 'block'; $('userInfo').style.display = 'none';
@@ -542,7 +572,7 @@ function openProductDetail(id) {
   history.pushState({ page: "modal" }, "modal", window.location.href);
 }
 
-// ==================== SELL MODAL (የተሟላ) ====================
+// ==================== SELL MODAL ====================
 function openModal(type) {
   if (type === 'sell') {
     if (!currentUser) { openAuthModal(); return; }
@@ -567,21 +597,14 @@ function openModal(type) {
   }
 }
 
-function openSettingsModal() {
-  $('modalTitle').innerText = 'Settings';
-  $('modalContent').innerHTML = `<div class="profile-list-item" onclick="toggleDarkMode()"><span>🌙</span> Night Mode</div>`;
-  $('modalBack').classList.add('show');
-  history.pushState({ page: "modal" }, "modal", window.location.href);
-}
-
 function closeModal() { $('modalBack').classList.remove('show'); }
 
 function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
-  localStorage.setItem('vip-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+  const isDark = document.body.classList.toggle('dark-mode');
+  localStorage.setItem('vip-theme', isDark ? 'dark' : 'light');
+  $('darkModeToggle').checked = isDark;
 }
 
-// ==================== PUBLISH PRODUCT ====================
 function publishProduct() {
   const name = $('sellName').value.trim();
   const price = Number($('sellPrice').value);
@@ -637,7 +660,10 @@ $('closeModal').onclick = function() { closeModal(); history.back(); };
 $('modalBack').onclick = function(e) { if (e.target === $('modalBack')) { closeModal(); history.back(); } };
 
 // Init
-if (localStorage.getItem('vip-theme') === 'dark') document.body.classList.add('dark-mode');
+if (localStorage.getItem('vip-theme') === 'dark') {
+  document.body.classList.add('dark-mode');
+  $('darkModeToggle').checked = true;
+}
 renderProducts();
 if (currentUser) openProfile();
 </script>
