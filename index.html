@@ -61,11 +61,85 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 .search input { width: 100%; border: none; border-radius: 24px; background: var(--bg); padding: 12px 20px 12px 44px; color: var(--text); box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); font-size: 15px; transition: 0.3s;}
 .search::before { content: '🔍'; position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 14px; color: var(--text-light); }
 
-/* Category Nav (እንደ ስእሉ የራሱን ቀለም ያለው) */
+/* Category Nav */
 .cat-nav { background: var(--bg); padding: 10px max(16px, calc((100vw - 1240px)/2)); display: flex; overflow-x: auto; gap: 12px; scrollbar-width: none; border-bottom: 1px solid var(--surface); transition: 0.3s;}
 .cat-nav::-webkit-scrollbar { display: none; }
 .cat-item { white-space: nowrap; padding: 10px 16px; background: var(--bg); border-radius: 20px; box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); color: var(--text-light); font-weight: 600; cursor: pointer; font-size: 13px; transition: 0.3s;}
 .cat-item.active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); color: var(--primary); }
+
+/* ==================== SLIDER & 3D CARDS ==================== */
+.slider-section { 
+  margin: 20px max(16px, calc((100vw - 1240px)/2)); 
+  display: flex; 
+  overflow-x: auto; 
+  gap: 16px; 
+  scroll-snap-type: x mandatory; 
+  padding-bottom: 10px;
+  scrollbar-width: none;
+}
+.slider-section::-webkit-scrollbar { display: none; }
+
+/* The 3D Welcome Card */
+.home-welcome-3d { 
+  flex: 0 0 85%; 
+  max-width: 350px;
+  scroll-snap-align: center; 
+  background: var(--bg); 
+  border-radius: 24px; 
+  padding: 35px 24px; 
+  text-align: center; 
+  box-shadow: 12px 12px 24px var(--shadow-dark), -12px -12px 24px var(--shadow-light); 
+  border: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.home-welcome-3d h2 { font-size: 22px; font-weight: 900; margin: 0 0 12px; color: var(--text); }
+.home-welcome-3d p { font-size: 14px; color: var(--text-light); line-height: 1.5; margin: 0 0 24px; }
+.btn-phone-home { 
+  background: var(--primary); 
+  color: white; 
+  padding: 16px; 
+  border-radius: 16px; 
+  width: 100%; 
+  font-size: 16px; 
+  font-weight: 700; 
+  border: none; 
+  cursor: pointer; 
+  box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light); 
+}
+.home-welcome-3d .small-text { font-size: 12px; color: var(--text-light); margin-top: 12px; }
+
+/* Admin Ad/Banner Card */
+.admin-ad-card {
+  flex: 0 0 85%;
+  max-width: 350px;
+  scroll-snap-align: center;
+  background: linear-gradient(135deg, var(--primary), #8b5cf6);
+  border-radius: 24px;
+  padding: 24px;
+  color: white;
+  box-shadow: 8px 8px 16px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.admin-ad-card::before {
+  content: 'AD';
+  position: absolute; top: 10px; right: 10px;
+  background: rgba(255,255,255,0.2);
+  padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; letter-spacing: 1px;
+}
+.admin-ad-card h3 { margin: 0 0 8px; font-size: 20px; font-weight: 900; }
+.admin-ad-card p { margin: 0; font-size: 13px; opacity: 0.9; line-height: 1.4; }
+.admin-ad-card .btn-ad { 
+  background: white; color: var(--primary); 
+  border: none; padding: 10px 16px; border-radius: 10px; 
+  font-weight: 700; margin-top: 16px; cursor: pointer; width: fit-content;
+}
 
 /* Products */
 .wrap { max-width: 1240px; margin: 20px auto; padding: 0 16px; }
@@ -79,13 +153,6 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 .pbody h3 { margin: 0 0 6px; font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .price { font-size: 16px; font-weight: 900; color: var(--primary); }
 .meta { font-size: 11px; color: var(--text-light); margin-top: 4px; }
-
-/* Home Welcome Card */
-.home-welcome { margin: 20px max(16px, calc((100vw - 1240px)/2)); background: var(--profile-card); border-radius: 20px; padding: 30px 24px; text-align: center; box-shadow: 4px 4px 12px var(--shadow-dark), -4px -4px 12px var(--shadow-light); }
-.home-welcome h2 { font-size: 22px; font-weight: 900; margin: 0 0 12px; color: var(--text); }
-.home-welcome p { font-size: 14px; color: var(--text-light); line-height: 1.5; margin: 0 0 24px; }
-.btn-phone-home { background: var(--primary); color: white; padding: 16px; border-radius: 12px; width: 100%; font-size: 16px; font-weight: 700; border: none; margin-bottom: 12px; cursor: pointer; box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light); }
-.home-welcome .small-text { font-size: 12px; color: var(--text-light); }
 
 /* Auth Screen */
 .auth-screen { position: fixed; inset: 0; background: var(--bg); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; transition: 0.3s;}
@@ -119,61 +186,13 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 .profile-list-item:last-child { border-bottom: none; }
 .profile-list-item span:first-child { font-size: 20px; color: var(--text-light); }
 
-/* ==================== BOTTOM NAV (እንደ ስእሉ የተስተካከለ) ==================== */
-.bottom-nav { 
-  position: fixed; 
-  bottom: 0; 
-  left: 0; 
-  right: 0; 
-  background: var(--bg); 
-  display: flex; 
-  justify-content: space-around; 
-  align-items: center; 
-  padding: 8px 0 16px 0; 
-  z-index: 50; 
-  box-shadow: 0 -4px 12px var(--shadow-dark); 
-  transition: 0.3s;
-}
-.b-nav-item { 
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  gap: 4px; 
-  color: var(--text-light); 
-  font-size: 11px; 
-  font-weight: 600; 
-  cursor: pointer; 
-  transition: 0.2s; 
-  width: 60px;
-}
+/* BOTTOM NAV */
+.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg); display: flex; justify-content: space-around; align-items: center; padding: 8px 0 16px 0; z-index: 50; box-shadow: 0 -4px 12px var(--shadow-dark); transition: 0.3s;}
+.b-nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-light); font-size: 10px; font-weight: 600; cursor: pointer; transition: 0.2s; width: 60px; }
 .b-nav-item.active { color: var(--primary); }
-.b-nav-item i { font-size: 22px; font-style: normal; } /* FontAwesome icons */
-
-/* መሃሉ ላይ ያለው የ Play ቁልፍ (Play Button) */
-.b-nav-item.special { 
-  width: 60px; 
-  height: 60px; 
-  border-radius: 50%; 
-  background: var(--bg); 
-  margin-top: -30px; 
-  box-shadow: 4px 4px 12px var(--shadow-dark), -4px -4px 12px var(--shadow-light); 
-  justify-content: center; 
-  align-items: center; 
-  display: flex; 
-  position: relative; 
-}
-.b-nav-item.special .icon-inner { 
-  width: 48px; 
-  height: 48px; 
-  background: var(--primary); 
-  border-radius: 50%; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  color: white; 
-  font-size: 22px; 
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2); 
-}
+.b-nav-item span:first-child { font-size: 22px; }
+.b-nav-item.special { width: 60px; height: 60px; border-radius: 50%; background: var(--bg); margin-top: -30px; box-shadow: 4px 4px 12px var(--shadow-dark), -4px -4px 12px var(--shadow-light); justify-content: center; align-items: center; display: flex; position: relative; }
+.b-nav-item.special .icon-inner { width: 48px; height: 48px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 22px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
 
 /* Modals */
 .modalback { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 100; align-items: flex-end; justify-content: center; padding: 0; }
@@ -186,7 +205,6 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 
 @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
 </style>
-<!-- FontAwesome ለአይኮኖች -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -247,11 +265,24 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
     <div class="cat-item" data-filter="Vehicles">🚗 መኪና</div>
   </nav>
 
-  <div class="home-welcome" id="homeWelcomeCard">
-    <h2>Welcome to VIP MALL</h2>
-    <p>Sign in with your phone to track orders, save wishlists and get support.</p>
-    <button class="btn-phone-home" onclick="openAuthModal()">Continue with phone</button>
-    <p class="small-text">We'll text a verification code to your number.</p>
+  <!-- ==================== SLIDER SECTION (ወደ ጎን የሚንሸራተት) ==================== -->
+  <div class="slider-section">
+    <!-- 3D Welcome Card -->
+    <div class="home-welcome-3d" id="homeWelcomeCard">
+      <h2>Welcome to VIP MALL</h2>
+      <p>Sign in with your phone to track orders, save wishlists and get support.</p>
+      <button class="btn-phone-home" onclick="openAuthModal()">Continue with phone</button>
+      <p class="small-text">We'll text a verification code to your number.</p>
+    </div>
+
+    <!-- Admin Ad Space -->
+    <div class="admin-ad-card">
+      <div>
+        <h3>🚀 ልዩ ማስታወቂያ!</h3>
+        <p>አሁን VIP MALL ላይ ይመዝገቡ እና በእጅዎ ላይ ያለውን ምርት ይሽጡ። ለተጨማሪ መረጃ 0900684074 ይደውሉ።</p>
+      </div>
+      <button class="btn-ad" onclick="window.location.href='tel:0900684074'">Call Now</button>
+    </div>
   </div>
 
   <div class="wrap">
@@ -310,11 +341,6 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 
   <div style="margin: 0 16px 8px; font-size:12px; font-weight:800; color:var(--text-light); letter-spacing:1px;">SUPPORT</div>
   <div class="profile-list">
-    <div class="profile-list-item" onclick="openSupportModal()">
-      <span>🛠️</span> Contact Support
-      <span style="margin-left:auto; font-size:13px; color:var(--text-light);">molayedanel@gmail.com</span>
-    </div>
-    <!-- ስልክ ቁጥር እና ቴሌግራም እንደነበሩት ተመልሰዋል -->
     <div class="profile-list-item" onclick="window.location.href='tel:0900684074'">
       <span>📞</span> Call us
       <span style="margin-left:auto; font-size:13px; color:var(--text-light);">09 00 68 40 74</span>
@@ -326,17 +352,15 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
   </div>
 </div>
 
-<!-- ==================== BOTTOM NAV (የተስተካከለው) ==================== -->
+<!-- BOTTOM NAV -->
 <div class="bottom-nav">
-  <div class="b-nav-item active" onclick="window.scrollTo(0,0); closeProfile()"><i class="fa-solid fa-house"></i>Home</div>
-  <div class="b-nav-item" onclick="document.getElementById('search').focus()"><i class="fa-solid fa-magnifying-glass"></i>Search</div>
-  
+  <div class="b-nav-item active" onclick="window.scrollTo(0,0); closeProfile()"><span>🏠</span>Home</div>
+  <div class="b-nav-item" onclick="document.getElementById('search').focus()"><span>🔍</span>Search</div>
   <div class="b-nav-item special" onclick="openVideo()">
-    <div class="icon-inner"><i class="fa-solid fa-play"></i></div>
+    <div class="icon-inner">▶</div>
   </div>
-  
-  <div class="b-nav-item" onclick="openModal('cart')"><i class="fa-solid fa-cart-shopping"></i>Cart</div>
-  <div class="b-nav-item" onclick="openProfile()"><i class="fa-solid fa-user"></i>Profile</div>
+  <div class="b-nav-item" onclick="openModal('cart')"><span>🛒</span>Cart</div>
+  <div class="b-nav-item" onclick="openProfile()"><span>👤</span>Profile</div>
 </div>
 
 <!-- MODAL CONTAINER -->
@@ -539,13 +563,6 @@ function openModal(type) {
 function openSettingsModal() {
   $('modalTitle').innerText = 'Settings';
   $('modalContent').innerHTML = `<div class="profile-list-item" onclick="toggleDarkMode()"><span>🌙</span> Night Mode</div>`;
-  $('modalBack').classList.add('show');
-  history.pushState({ page: "modal" }, "modal", window.location.href);
-}
-
-function openSupportModal() {
-  $('modalTitle').innerText = 'Contact Support';
-  $('modalContent').innerHTML = `<div style="background:var(--profile-card); padding:20px; border-radius:16px;"><a href="mailto:molayedanel@gmail.com" style="color:var(--primary); font-weight:700; text-decoration:none;">molayedanel@gmail.com</a></div>`;
   $('modalBack').classList.add('show');
   history.pushState({ page: "modal" }, "modal", window.location.href);
 }
