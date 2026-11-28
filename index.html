@@ -19,9 +19,9 @@
 </script>
 
 <style>
-/* 3D Design System */
 :root {
   --bg: #e0e5ec;
+  --surface: #ffffff;
   --text: #2d3748;
   --text-light: #718096;
   --primary: #3b82f6;
@@ -32,12 +32,11 @@
   --header-h: 70px;
   --profile-bg: #f8fafc;
   --profile-card: #ffffff;
-  --profile-text: #1e293b;
-  --font-size: 15px;
 }
 
 body.dark-mode {
   --bg: #0a0a0a;
+  --surface: #151515;
   --text: #ffffff;
   --text-light: #a1a1aa;
   --primary: #ef4444; 
@@ -49,38 +48,26 @@ body.dark-mode {
 }
 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Ethiopic", Arial, sans-serif; }
-body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80px; overflow-x: hidden; transition: 0.3s; font-size: var(--font-size); }
+body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80px; overflow-x: hidden; transition: 0.3s; font-size: 15px; }
 
-/* Auth Screen - 3D Neumorphism (በስእሉ መሰረት) */
-.auth-screen { position: fixed; inset: 0; background: var(--bg); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; transition: background 0.3s; }
-.auth-screen.active { display: flex; }
-.auth-card { width: 100%; max-width: 400px; text-align: center; padding: 40px 30px; background: var(--bg); border-radius: 24px; box-shadow: 12px 12px 24px var(--shadow-dark), -12px -12px 24px var(--shadow-light); transition: 0.3s; }
-.auth-title { font-size: 26px; font-weight: 900; margin: 0 0 8px; color: var(--text); }
-.auth-sub { font-size: 14px; color: var(--text-light); margin: 0 0 30px; font-weight: 500; }
-.auth-switch { margin-top: 24px; font-size: 14px; color: var(--text-light); }
-.auth-switch span { color: var(--primary); cursor: pointer; font-weight: 800; }
-.auth-error { color: var(--primary); font-size: 13px; font-weight: 700; margin-top: 15px; }
-.field { position: relative; margin-bottom: 20px; }
-.neu-input { width: 100%; padding: 18px 20px; border: none; outline: none; background: var(--bg); border-radius: 14px; box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); color: var(--text); font-size: 15px; font-weight: 500; transition: 0.3s; }
-.eye-icon { position: absolute; right: 16px; bottom: 18px; cursor: pointer; font-size: 18px; color: var(--text-light); }
-.neu-btn { width: 100%; padding: 18px; border: none; outline: none; background: var(--primary); color: white; border-radius: 14px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light); transition: 0.2s; }
-.neu-btn:active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); transform: translateY(2px); }
+.neu-input { width: 100%; padding: 16px 20px; border: none; outline: none; background: var(--bg); border-radius: 12px; box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); color: var(--text); font-size: 15px; font-weight: 500; transition: 0.3s; }
+.neu-btn { width: 100%; padding: 16px; border: none; outline: none; background: var(--primary); color: white; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light); transition: 0.2s; }
+.neu-btn:active { box-shadow: inset 4px 4px 8px var(--primary-hover); transform: translateY(2px); }
 
-/* Tabs */
-.login-tabs { display: flex; background: var(--bg); padding: 6px; border-radius: 16px; box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); margin-bottom: 24px; transition: 0.3s; }
-.login-tabs button { flex: 1; padding: 14px; border-radius: 12px; border: none; background: transparent; color: var(--text-light); font-weight: 700; font-size: 14px; cursor: pointer; transition: 0.2s; }
-.login-tabs button.active { background: var(--bg); color: var(--primary); box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); }
-
-/* Other UI elements (እንዳሉ ቀርተዋል) */
+/* Top Header */
 .top { position: sticky; top: 0; z-index: 40; background: var(--bg); display: flex; align-items: center; gap: 12px; padding: 12px max(16px, calc((100vw - 1240px)/2)); height: var(--header-h); box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: 0.3s; }
 .logo-img { height: 40px; object-fit: contain; border-radius: 8px; }
 .search { flex: 1; position: relative; }
 .search input { width: 100%; border: none; border-radius: 24px; background: var(--bg); padding: 12px 20px 12px 44px; color: var(--text); box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); font-size: 15px; transition: 0.3s;}
 .search::before { content: '🔍'; position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 14px; color: var(--text-light); }
-.cat-nav { background: var(--bg); padding: 10px max(16px, calc((100vw - 1240px)/2)); display: flex; overflow-x: auto; gap: 12px; scrollbar-width: none; border-bottom: 1px solid var(--profile-card); transition: 0.3s;}
+
+/* Category Nav (እንደ ስእሉ የራሱን ቀለም ያለው) */
+.cat-nav { background: var(--bg); padding: 10px max(16px, calc((100vw - 1240px)/2)); display: flex; overflow-x: auto; gap: 12px; scrollbar-width: none; border-bottom: 1px solid var(--surface); transition: 0.3s;}
 .cat-nav::-webkit-scrollbar { display: none; }
 .cat-item { white-space: nowrap; padding: 10px 16px; background: var(--bg); border-radius: 20px; box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); color: var(--text-light); font-weight: 600; cursor: pointer; font-size: 13px; transition: 0.3s;}
 .cat-item.active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); color: var(--primary); }
+
+/* Products */
 .wrap { max-width: 1240px; margin: 20px auto; padding: 0 16px; }
 .sectionhead { display: flex; justify-content: space-between; align-items: center; margin: 0 0 16px; }
 .sectionhead h2 { font-size: 20px; margin: 0; font-weight: 800; color: var(--text); }
@@ -92,19 +79,30 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 .pbody h3 { margin: 0 0 6px; font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .price { font-size: 16px; font-weight: 900; color: var(--primary); }
 .meta { font-size: 11px; color: var(--text-light); margin-top: 4px; }
+
+/* Home Welcome Card */
 .home-welcome { margin: 20px max(16px, calc((100vw - 1240px)/2)); background: var(--profile-card); border-radius: 20px; padding: 30px 24px; text-align: center; box-shadow: 4px 4px 12px var(--shadow-dark), -4px -4px 12px var(--shadow-light); }
 .home-welcome h2 { font-size: 22px; font-weight: 900; margin: 0 0 12px; color: var(--text); }
 .home-welcome p { font-size: 14px; color: var(--text-light); line-height: 1.5; margin: 0 0 24px; }
 .btn-phone-home { background: var(--primary); color: white; padding: 16px; border-radius: 12px; width: 100%; font-size: 16px; font-weight: 700; border: none; margin-bottom: 12px; cursor: pointer; box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light); }
 .home-welcome .small-text { font-size: 12px; color: var(--text-light); }
 
-/* Modals & Profile */
-.modalback { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 100; align-items: flex-end; justify-content: center; padding: 0; }
-.modalback.show { display: flex; }
-.modal { width: 100%; max-width: 520px; max-height: 90vh; overflow: auto; background: var(--bg); border-radius: 30px 30px 0 0; padding: 24px; box-shadow: 0 -10px 40px var(--shadow-dark); animation: slideUp 0.3s; transition: background 0.3s; }
-.modalhead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-.modalhead h2 { font-size: 20px; font-weight: 800; margin: 0; color: var(--text); }
-.close-x-btn { background: var(--bg); border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 18px; font-weight: bold; cursor: pointer; color: var(--text); box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); display: flex; align-items: center; justify-content: center; transition: 0.2s;}
+/* Auth Screen */
+.auth-screen { position: fixed; inset: 0; background: var(--bg); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; transition: 0.3s;}
+.auth-screen.active { display: flex; }
+.auth-card { width: 100%; max-width: 380px; text-align: center; padding: 40px 30px; background: var(--bg); border-radius: var(--radius); box-shadow: 12px 12px 24px var(--shadow-dark), -12px -12px 24px var(--shadow-light); border: 1px solid rgba(128,128,128,0.1); transition: 0.3s; }
+.auth-title { font-size: 24px; font-weight: 900; margin: 0 0 8px; color: var(--text); }
+.auth-sub { font-size: 14px; color: var(--text-light); margin: 0 0 30px; }
+.auth-switch { margin-top: 24px; font-size: 14px; color: var(--text-light); }
+.auth-switch span { color: var(--primary); cursor: pointer; font-weight: 800; }
+.auth-error { color: var(--primary); font-size: 13px; font-weight: 700; margin-top: 15px; }
+.field { position: relative; margin-bottom: 16px; }
+.eye-icon { position: absolute; right: 16px; bottom: 16px; cursor: pointer; font-size: 18px; color: var(--text-light); }
+.login-tabs { display: flex; background: var(--bg); padding: 6px; border-radius: 16px; box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); margin-bottom: 24px; transition: 0.3s;}
+.login-tabs button { flex: 1; padding: 12px; border-radius: 12px; border: none; background: transparent; color: var(--text-light); font-weight: 700; font-size: 14px; cursor: pointer; transition: 0.2s;}
+.login-tabs button.active { background: var(--bg); color: var(--primary); box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); }
+
+/* Profile Page */
 .profile-page { display: none; background: var(--profile-bg); min-height: 100vh; position: fixed; inset: 0; z-index: 60; overflow-y: auto; padding-bottom: 80px; transition: 0.3s;}
 .profile-page.active { display: block; }
 .profile-header { padding: 20px 16px; display: flex; align-items: center; gap: 16px; background: var(--profile-bg); position: sticky; top: 0; z-index: 10; transition: 0.3s;}
@@ -117,38 +115,97 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 .sell-ananas div { display: flex; align-items: center; gap: 12px; }
 .sell-ananas .icon { background: var(--primary); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; }
 .profile-list { margin: 0 16px 20px; background: var(--profile-card); border-radius: 16px; overflow: hidden; box-shadow: 4px 4px 12px var(--shadow-dark), -4px -4px 12px var(--shadow-light); transition: 0.3s; border: 1px solid rgba(128,128,128,0.1);}
-.profile-list-item { padding: 16px; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid var(--bg); font-size: 15px; font-weight: 600; color: var(--text); cursor: pointer; transition: 0.3s;}
+.profile-list-item { padding: 16px; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid var(--surface); font-size: 15px; font-weight: 600; color: var(--text); cursor: pointer; transition: 0.3s;}
 .profile-list-item:last-child { border-bottom: none; }
 .profile-list-item span:first-child { font-size: 20px; color: var(--text-light); }
-.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg); border-top: 1px solid var(--profile-card); display: flex; justify-content: space-around; align-items: center; padding: 8px 0 16px 0; z-index: 50; box-shadow: 0 -4px 12px var(--shadow-dark); transition: 0.3s;}
-.b-nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-light); font-size: 10px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+
+/* ==================== BOTTOM NAV (እንደ ስእሉ የተስተካከለ) ==================== */
+.bottom-nav { 
+  position: fixed; 
+  bottom: 0; 
+  left: 0; 
+  right: 0; 
+  background: var(--bg); 
+  display: flex; 
+  justify-content: space-around; 
+  align-items: center; 
+  padding: 8px 0 16px 0; 
+  z-index: 50; 
+  box-shadow: 0 -4px 12px var(--shadow-dark); 
+  transition: 0.3s;
+}
+.b-nav-item { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  gap: 4px; 
+  color: var(--text-light); 
+  font-size: 11px; 
+  font-weight: 600; 
+  cursor: pointer; 
+  transition: 0.2s; 
+  width: 60px;
+}
 .b-nav-item.active { color: var(--primary); }
-.b-nav-item span:first-child { font-size: 22px; }
-.b-nav-item.special { width: 64px; height: 64px; border-radius: 50%; background: var(--bg); color: var(--primary); margin-top: -28px; box-shadow: 4px 4px 12px var(--shadow-dark), -4px -4px 12px var(--shadow-light); justify-content: center; align-items: center; display: flex; border: none; position: relative; }
-.b-nav-item.special .icon-inner { width: 50px; height: 50px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px var(--primary); color: white; font-size: 24px; }
+.b-nav-item i { font-size: 22px; font-style: normal; } /* FontAwesome icons */
+
+/* መሃሉ ላይ ያለው የ Play ቁልፍ (Play Button) */
+.b-nav-item.special { 
+  width: 60px; 
+  height: 60px; 
+  border-radius: 50%; 
+  background: var(--bg); 
+  margin-top: -30px; 
+  box-shadow: 4px 4px 12px var(--shadow-dark), -4px -4px 12px var(--shadow-light); 
+  justify-content: center; 
+  align-items: center; 
+  display: flex; 
+  position: relative; 
+}
+.b-nav-item.special .icon-inner { 
+  width: 48px; 
+  height: 48px; 
+  background: var(--primary); 
+  border-radius: 50%; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  color: white; 
+  font-size: 22px; 
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2); 
+}
+
+/* Modals */
+.modalback { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 100; align-items: flex-end; justify-content: center; padding: 0; }
+.modalback.show { display: flex; }
+.modal { width: 100%; max-width: 520px; max-height: 90vh; overflow: auto; background: var(--bg); border-radius: 30px 30px 0 0; padding: 24px; box-shadow: 0 -10px 40px var(--shadow-dark); animation: slideUp 0.3s; transition: background 0.3s; }
+.modalhead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.modalhead h2 { font-size: 20px; font-weight: 800; margin: 0; color: var(--text); }
+.close-x-btn { background: var(--bg); border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 18px; font-weight: bold; cursor: pointer; color: var(--text); box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); display: flex; align-items: center; justify-content: center; transition: 0.2s;}
+.close-x-btn:active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); }
+
 @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
 </style>
+<!-- FontAwesome ለአይኮኖች -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-<!-- AUTH SCREEN (አዲሱ 3D ዲዛይን) -->
+<!-- AUTH SCREEN -->
 <div class="auth-screen" id="authScreen">
   <div class="auth-card">
     <div id="loginView">
-      <h1 class="auth-title">Welcome Back</h1>
+      <div class="auth-title">Welcome Back</div>
       <div class="auth-sub">ወደ VIP MALL እንኳን ደህና መጡ</div>
-      
       <div class="login-tabs" id="loginTabs">
         <button class="active" onclick="switchAuthTab('email')">Email</button>
         <button onclick="switchAuthTab('phone')">Phone</button>
       </div>
-      
       <div id="emailLoginForm">
         <div class="field"><input type="email" id="loginEmail" class="neu-input" placeholder="Email Address"></div>
         <div class="field"><input type="password" id="loginPassword" class="neu-input" placeholder="Password"><span class="eye-icon" onclick="togglePass('loginPassword', this)">👁️</span></div>
         <button class="neu-btn" onclick="doEmailLogin()">Login</button>
       </div>
-      
       <div id="phoneLoginForm" style="display:none">
         <div class="field"><input type="tel" id="loginPhone" class="neu-input" placeholder="+2519XXXXXXXX"></div>
         <button class="neu-btn" onclick="doPhoneLogin()" id="sendSmsBtn">Send SMS Code</button>
@@ -158,23 +215,19 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
         </div>
         <div id="recaptcha-container"></div>
       </div>
-      
       <div class="auth-switch">Don't have an account? <span onclick="toggleAuthView('signup')">Create Account</span></div>
     </div>
 
     <div id="signupView" style="display:none">
-      <h1 class="auth-title">Create Account</h1>
+      <div class="auth-title">Create Account</div>
       <div class="auth-sub">የእርስዎን መለያ ይፍጠሩ</div>
-      
       <div class="field"><input type="text" id="signupName" class="neu-input" placeholder="Full Name"></div>
       <div class="field"><input type="email" id="signupEmail" class="neu-input" placeholder="Email Address"></div>
       <div class="field"><input type="password" id="signupPassword" class="neu-input" placeholder="Password (min 6 chars)"><span class="eye-icon" onclick="togglePass('signupPassword', this)">👁️</span></div>
       <div class="field"><input type="tel" id="signupPhone" class="neu-input" placeholder="Phone Number (09...)"></div>
-      
       <button class="neu-btn" onclick="doSignup()">Create Account</button>
       <div class="auth-switch">Already have an account? <span onclick="toggleAuthView('login')">Login</span></div>
     </div>
-    
     <div class="auth-error" id="authError"></div>
   </div>
 </div>
@@ -261,16 +314,29 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
       <span>🛠️</span> Contact Support
       <span style="margin-left:auto; font-size:13px; color:var(--text-light);">molayedanel@gmail.com</span>
     </div>
+    <!-- ስልክ ቁጥር እና ቴሌግራም እንደነበሩት ተመልሰዋል -->
+    <div class="profile-list-item" onclick="window.location.href='tel:0900684074'">
+      <span>📞</span> Call us
+      <span style="margin-left:auto; font-size:13px; color:var(--text-light);">09 00 68 40 74</span>
+    </div>
+    <div class="profile-list-item" onclick="window.location.href='https://t.me/vip_mall1'">
+      <span>✈️</span> Telegram
+      <span style="margin-left:auto; font-size:13px; color:var(--text-light);">@vip_mall1</span>
+    </div>
   </div>
 </div>
 
-<!-- BOTTOM NAV -->
+<!-- ==================== BOTTOM NAV (የተስተካከለው) ==================== -->
 <div class="bottom-nav">
-  <div class="b-nav-item active" onclick="window.scrollTo(0,0); closeProfile()"><span>🏠</span>Home</div>
-  <div class="b-nav-item" onclick="document.getElementById('search').focus()"><span>🔍</span>Search</div>
-  <div class="b-nav-item special" onclick="openVideo()"><div class="icon-inner">▶</div></div>
-  <div class="b-nav-item" onclick="openModal('cart')"><span>🛒</span>Cart</div>
-  <div class="b-nav-item" onclick="openProfile()"><span>👤</span>Profile</div>
+  <div class="b-nav-item active" onclick="window.scrollTo(0,0); closeProfile()"><i class="fa-solid fa-house"></i>Home</div>
+  <div class="b-nav-item" onclick="document.getElementById('search').focus()"><i class="fa-solid fa-magnifying-glass"></i>Search</div>
+  
+  <div class="b-nav-item special" onclick="openVideo()">
+    <div class="icon-inner"><i class="fa-solid fa-play"></i></div>
+  </div>
+  
+  <div class="b-nav-item" onclick="openModal('cart')"><i class="fa-solid fa-cart-shopping"></i>Cart</div>
+  <div class="b-nav-item" onclick="openProfile()"><i class="fa-solid fa-user"></i>Profile</div>
 </div>
 
 <!-- MODAL CONTAINER -->
@@ -302,32 +368,24 @@ function saveData() {
   localStorage.setItem('vip-users', JSON.stringify(users));
 }
 
-// ==================== BACK BUTTON FIX (ስልኩ ባክ ሲል እንዲመለስ) ====================
+// ==================== BACK BUTTON FIX ====================
 history.pushState({ page: "home" }, "home", window.location.href);
-
 window.addEventListener('popstate', function(event) {
-  // 1. ሞዳል ክፍት ከሆነ ይዘጋ
   if ($('modalBack').classList.contains('show')) {
     closeModal();
-    history.pushState({ page: "home" }, "home", window.location.href); // ገጹ እንዳይዘጋ እንደገና እንመርቃለን
+    history.pushState({ page: "home" }, "home", window.location.href);
     return;
   }
-  
-  // 2. የፕሮፋይል ገጽ ክፍት ከሆነ ይዘጋ
   if ($('profilePage').classList.contains('active')) {
     closeProfile();
     history.pushState({ page: "home" }, "home", window.location.href);
     return;
   }
-  
-  // 3. የመግቢያ (Auth) ገጽ ክፍት ከሆነ ይዘጋ
   if ($('authScreen').classList.contains('active')) {
     $('authScreen').classList.remove('active');
     history.pushState({ page: "home" }, "home", window.location.href);
     return;
   }
-
-  // ሌላ ምንም ክፍት ገጽ ከሌለ ስልኩ እንደተለመደው ከገጹ ይወጣል
   history.back();
 });
 
