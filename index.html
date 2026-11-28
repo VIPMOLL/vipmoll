@@ -30,8 +30,6 @@
   --shadow-dark: #a3b1c6;
   --radius: 20px;
   --header-h: 70px;
-  --profile-bg: #f8fafc;
-  --profile-card: #ffffff;
 }
 
 body.dark-mode {
@@ -43,8 +41,6 @@ body.dark-mode {
   --primary-hover: #dc2626;
   --shadow-light: #2a2a2a;
   --shadow-dark: #000000;
-  --profile-bg: #0a0a0a;
-  --profile-card: #151515;
 }
 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Ethiopic", Arial, sans-serif; }
@@ -67,79 +63,17 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 .cat-item { white-space: nowrap; padding: 10px 16px; background: var(--bg); border-radius: 20px; box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); color: var(--text-light); font-weight: 600; cursor: pointer; font-size: 13px; transition: 0.3s;}
 .cat-item.active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); color: var(--primary); }
 
-/* ==================== SLIDER & 3D CARDS ==================== */
-.slider-section { 
-  margin: 20px max(16px, calc((100vw - 1240px)/2)); 
-  display: flex; 
-  overflow-x: auto; 
-  gap: 16px; 
-  scroll-snap-type: x mandatory; 
-  padding-bottom: 10px;
-  scrollbar-width: none;
-}
+/* SLIDER & 3D CARDS */
+.slider-section { margin: 20px max(16px, calc((100vw - 1240px)/2)); display: flex; overflow-x: auto; gap: 16px; scroll-snap-type: x mandatory; padding-bottom: 10px; scrollbar-width: none; }
 .slider-section::-webkit-scrollbar { display: none; }
-
-/* The 3D Welcome Card */
-.home-welcome-3d { 
-  flex: 0 0 85%; 
-  max-width: 350px;
-  scroll-snap-align: center; 
-  background: var(--bg); 
-  border-radius: 24px; 
-  padding: 35px 24px; 
-  text-align: center; 
-  box-shadow: 12px 12px 24px var(--shadow-dark), -12px -12px 24px var(--shadow-light); 
-  border: 1px solid rgba(255,255,255,0.05);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+.home-welcome-3d { flex: 0 0 85%; max-width: 350px; scroll-snap-align: center; background: var(--bg); border-radius: 24px; padding: 35px 24px; text-align: center; box-shadow: 12px 12px 24px var(--shadow-dark), -12px -12px 24px var(--shadow-light); display: flex; flex-direction: column; justify-content: center; align-items: center; }
 .home-welcome-3d h2 { font-size: 22px; font-weight: 900; margin: 0 0 12px; color: var(--text); }
 .home-welcome-3d p { font-size: 14px; color: var(--text-light); line-height: 1.5; margin: 0 0 24px; }
-.btn-phone-home { 
-  background: var(--primary); 
-  color: white; 
-  padding: 16px; 
-  border-radius: 16px; 
-  width: 100%; 
-  font-size: 16px; 
-  font-weight: 700; 
-  border: none; 
-  cursor: pointer; 
-  box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light); 
-}
-.home-welcome-3d .small-text { font-size: 12px; color: var(--text-light); margin-top: 12px; }
-
-/* Admin Ad/Banner Card */
-.admin-ad-card {
-  flex: 0 0 85%;
-  max-width: 350px;
-  scroll-snap-align: center;
-  background: linear-gradient(135deg, var(--primary), #8b5cf6);
-  border-radius: 24px;
-  padding: 24px;
-  color: white;
-  box-shadow: 8px 8px 16px rgba(0,0,0,0.3);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  overflow: hidden;
-}
-.admin-ad-card::before {
-  content: 'AD';
-  position: absolute; top: 10px; right: 10px;
-  background: rgba(255,255,255,0.2);
-  padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; letter-spacing: 1px;
-}
+.btn-phone-home { background: var(--primary); color: white; padding: 16px; border-radius: 16px; width: 100%; font-size: 16px; font-weight: 700; border: none; cursor: pointer; box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light); }
+.admin-ad-card { flex: 0 0 85%; max-width: 350px; scroll-snap-align: center; background: linear-gradient(135deg, var(--primary), #8b5cf6); border-radius: 24px; padding: 24px; color: white; box-shadow: 8px 8px 16px rgba(0,0,0,0.3); display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
 .admin-ad-card h3 { margin: 0 0 8px; font-size: 20px; font-weight: 900; }
 .admin-ad-card p { margin: 0; font-size: 13px; opacity: 0.9; line-height: 1.4; }
-.admin-ad-card .btn-ad { 
-  background: white; color: var(--primary); 
-  border: none; padding: 10px 16px; border-radius: 10px; 
-  font-weight: 700; margin-top: 16px; cursor: pointer; width: fit-content;
-}
+.btn-ad { background: white; color: var(--primary); border: none; padding: 10px 16px; border-radius: 10px; font-weight: 700; margin-top: 16px; cursor: pointer; width: fit-content; }
 
 /* Products */
 .wrap { max-width: 1240px; margin: 20px auto; padding: 0 16px; }
@@ -173,30 +107,16 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
 .otp-container { display: flex; gap: 8px; justify-content: center; margin: 20px 0; }
 .otp-input { width: 45px; height: 55px; border: none; border-radius: 12px; background: var(--bg); box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); text-align: center; font-size: 20px; font-weight: 900; color: var(--text); outline: none; transition: 0.3s; }
 
-/* Profile Page */
-.profile-page { display: none; background: var(--profile-bg); min-height: 100vh; position: fixed; inset: 0; z-index: 60; overflow-y: auto; padding-bottom: 80px; transition: 0.3s;}
-.profile-page.active { display: block; }
-.profile-header { padding: 20px 16px; display: flex; align-items: center; gap: 16px; background: var(--profile-bg); position: sticky; top: 0; z-index: 10; transition: 0.3s;}
-.profile-header h2 { margin: 0; font-size: 20px; font-weight: 900; color: var(--text); }
-.profile-welcome { background: var(--profile-card); margin: 0 16px 20px; border-radius: 16px; padding: 24px; text-align: center; box-shadow: 4px 4px 12px var(--shadow-dark), -4px -4px 12px var(--shadow-light); transition: 0.3s; border: 1px solid rgba(128,128,128,0.1);}
-.profile-welcome h2 { margin: 0 0 8px; font-size: 20px; font-weight: 900; color: var(--text); }
-.profile-welcome p { margin: 0 0 20px; font-size: 14px; color: var(--text-light); line-height: 1.5; }
-.btn-phone { background: var(--primary); color: white; padding: 16px; border-radius: 12px; width: 100%; font-size: 16px; font-weight: 700; border: none; margin-bottom: 12px; cursor: pointer; box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light); }
-.sell-ananas { background: var(--profile-card); margin: 0 16px 20px; padding: 20px; border-radius: 16px; display: flex; align-items: center; justify-content: space-between; color: var(--text); cursor: pointer; box-shadow: 4px 4px 12px var(--shadow-dark), -4px -4px 12px var(--shadow-light); transition: 0.3s; border: 1px solid rgba(128,128,128,0.1);}
-.sell-ananas div { display: flex; align-items: center; gap: 12px; }
-.sell-ananas .icon { background: var(--primary); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; }
-.profile-list { margin: 0 16px 20px; background: var(--profile-card); border-radius: 16px; overflow: hidden; box-shadow: 4px 4px 12px var(--shadow-dark), -4px -4px 12px var(--shadow-light); transition: 0.3s; border: 1px solid rgba(128,128,128,0.1);}
-.profile-list-item { padding: 16px; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid var(--surface); font-size: 15px; font-weight: 600; color: var(--text); cursor: pointer; transition: 0.3s;}
-.profile-list-item:last-child { border-bottom: none; }
-.profile-list-item span:first-child { font-size: 20px; color: var(--text-light); }
-
-/* Toggle Switch */
-.switch { position: relative; display: inline-block; width: 44px; height: 24px; margin-left: auto; }
-.switch input { opacity: 0; width: 0; height: 0; }
-.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px; }
-.slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
-input:checked + .slider { background-color: var(--primary); }
-input:checked + .slider:before { transform: translateX(20px); }
+/* Modals */
+.modalback { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 100; align-items: flex-end; justify-content: center; padding: 0; }
+.modalback.show { display: flex; }
+.modal { width: 100%; max-width: 520px; max-height: 90vh; overflow: auto; background: var(--bg); border-radius: 30px 30px 0 0; padding: 24px; box-shadow: 0 -10px 40px var(--shadow-dark); animation: slideUp 0.3s; transition: background 0.3s; }
+.modalhead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.modalhead h2 { font-size: 20px; font-weight: 800; margin: 0; color: var(--text); }
+.close-x-btn { background: var(--bg); border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 18px; font-weight: bold; cursor: pointer; color: var(--text); box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); display: flex; align-items: center; justify-content: center; transition: 0.2s;}
+.close-x-btn:active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); }
+.menu-item { display: flex; align-items: center; gap: 16px; padding: 16px; border-radius: 16px; cursor: pointer; font-weight: 700; color: var(--text); background: var(--bg); width: 100%; text-align: left; font-size: 15px; margin-bottom: 12px; border: none; box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); transition: 0.2s; }
+.menu-item:active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); }
 
 /* BOTTOM NAV */
 .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg); display: flex; justify-content: space-around; align-items: center; padding: 8px 0 16px 0; z-index: 50; box-shadow: 0 -4px 12px var(--shadow-dark); transition: 0.3s;}
@@ -206,18 +126,8 @@ input:checked + .slider:before { transform: translateX(20px); }
 .b-nav-item.special { width: 60px; height: 60px; border-radius: 50%; background: var(--bg); margin-top: -30px; box-shadow: 4px 4px 12px var(--shadow-dark), -4px -4px 12px var(--shadow-light); justify-content: center; align-items: center; display: flex; position: relative; }
 .b-nav-item.special .icon-inner { width: 48px; height: 48px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 22px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
 
-/* Modals */
-.modalback { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 100; align-items: flex-end; justify-content: center; padding: 0; }
-.modalback.show { display: flex; }
-.modal { width: 100%; max-width: 520px; max-height: 90vh; overflow: auto; background: var(--bg); border-radius: 30px 30px 0 0; padding: 24px; box-shadow: 0 -10px 40px var(--shadow-dark); animation: slideUp 0.3s; transition: background 0.3s; }
-.modalhead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-.modalhead h2 { font-size: 20px; font-weight: 800; margin: 0; color: var(--text); }
-.close-x-btn { background: var(--bg); border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 18px; font-weight: bold; cursor: pointer; color: var(--text); box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light); display: flex; align-items: center; justify-content: center; transition: 0.2s;}
-.close-x-btn:active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); }
-
 @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
 </style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -240,7 +150,6 @@ input:checked + .slider:before { transform: translateX(20px); }
         <div class="field"><input type="tel" id="loginPhone" class="neu-input" placeholder="09XXXXXXXX"></div>
         <button class="neu-btn" onclick="doPhoneLogin()" id="sendSmsBtn">Send SMS Code</button>
         
-        <!-- 3D OTP Inputs -->
         <div id="otpInputDiv" style="display:none; margin-top:16px;">
           <p style="font-size:12px; color:var(--text-light); margin-bottom:10px;">Enter 6-digit code</p>
           <div class="otp-container">
@@ -313,64 +222,6 @@ input:checked + .slider:before { transform: translateX(20px); }
   </div>
 </div>
 
-<!-- PROFILE PAGE -->
-<div class="profile-page" id="profilePage">
-  <div class="profile-header">
-    <button onclick="closeProfile()" style="background:none; border:none; font-size:24px; cursor:pointer; color:var(--text);">←</button>
-    <h2>Profile</h2>
-  </div>
-
-  <div class="profile-welcome" id="profileWelcome">
-    <h2>Welcome to VIP MALL</h2>
-    <p>Sign in with your phone to track orders, save wishlists and get support.</p>
-    <button class="btn-phone" onclick="openAuthModal()">Continue with phone</button>
-  </div>
-
-  <div class="profile-welcome" id="userInfo" style="display:none;">
-    <div style="width:60px; height:60px; border-radius:50%; background:var(--primary); color:white; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:bold; margin:0 auto 12px; box-shadow: 4px 4px 8px var(--shadow-dark);">
-      <span id="userAvatar">B</span>
-    </div>
-    <h2 id="userNameDisplay" style="margin:0 0 4px; font-size:18px;">Bezabh</h2>
-    <p id="userEmailDisplay" style="margin:0 0 4px; font-size:13px; color:var(--text-light);">molayedanel@gmail.com</p>
-    <p id="userPhoneDisplay" style="margin:0 0 16px; font-size:13px; color:var(--text-light);">0900684074</p>
-    <button class="neu-btn" onclick="doLogout()" style="color:var(--primary); background:var(--bg); box-shadow:inset 2px 2px 5px var(--shadow-dark);">Logout</button>
-  </div>
-
-  <div class="sell-ananas" onclick="openModal('sell')">
-    <div>
-      <div class="icon">🏪</div>
-      <div>
-        <div style="font-weight:800;font-size:16px">Sell on VIP MALL</div>
-        <div style="font-size:12px;color:var(--text-light)">Register your shop and start selling</div>
-      </div>
-    </div>
-    <span style="font-size:20px; color:var(--text-light)">›</span>
-  </div>
-
-  <div style="margin: 0 16px 8px; font-size:12px; font-weight:800; color:var(--text-light); letter-spacing:1px;">PREFERENCES</div>
-  <div class="profile-list">
-    <div class="profile-list-item" onclick="toggleDarkMode()">
-      <span>🌙</span> Night mode
-      <label class="switch">
-        <input type="checkbox" id="darkModeToggle">
-        <span class="slider"></span>
-      </label>
-    </div>
-  </div>
-
-  <div style="margin: 0 16px 8px; font-size:12px; font-weight:800; color:var(--text-light); letter-spacing:1px;">SUPPORT</div>
-  <div class="profile-list">
-    <div class="profile-list-item" onclick="window.location.href='tel:0900684074'">
-      <span>📞</span> Call us
-      <span style="margin-left:auto; font-size:13px; color:var(--text-light);">09 00 68 40 74</span>
-    </div>
-    <div class="profile-list-item" onclick="window.location.href='https://t.me/vip_mall1'">
-      <span>✈️</span> Telegram
-      <span style="margin-left:auto; font-size:13px; color:var(--text-light);">@vip_mall1</span>
-    </div>
-  </div>
-</div>
-
 <!-- BOTTOM NAV -->
 <div class="bottom-nav">
   <div class="b-nav-item active" onclick="window.scrollTo(0,0); closeProfile()"><span>🏠</span>Home</div>
@@ -419,11 +270,6 @@ window.addEventListener('popstate', function(event) {
     history.pushState({ page: "home" }, "home", window.location.href);
     return;
   }
-  if ($('profilePage').classList.contains('active')) {
-    closeProfile();
-    history.pushState({ page: "home" }, "home", window.location.href);
-    return;
-  }
   if ($('authScreen').classList.contains('active')) {
     $('authScreen').classList.remove('active');
     history.pushState({ page: "home" }, "home", window.location.href);
@@ -461,7 +307,6 @@ function switchAuthTab(type) {
   }
 }
 
-// OTP Inputs Auto Focus
 function moveFocus(current, index) {
   if (current.value.length === 1 && index < 6) {
     const next = document.querySelectorAll('.otp-input')[index];
@@ -511,32 +356,77 @@ async function verifyPhoneCode() {
 function loginSuccess(identifier) {
   currentUser = identifier;
   localStorage.setItem('vip-user', JSON.stringify(currentUser));
-  if (!users[identifier]) users[identifier] = { name: identifier.split('@')[0] || 'User', phone: identifier, balance: 0 };
-  saveData(); $('authScreen').classList.remove('active'); openProfile();
+  if (!users[identifier]) users[identifier] = { name: identifier.split('@')[0] || 'Bezabh', phone: '0900684074', balance: 0 };
+  saveData(); $('authScreen').classList.remove('active'); closeModal(); 
+  openMenu(); // ከገባ በኋላ ወደ ሜኑ ይሄዳል
 }
 
 function doLogout() {
   window.fbSignOut(window.auth).catch(()=>{});
-  currentUser = null; localStorage.removeItem('vip-user'); closeProfile(); openProfile(); 
+  currentUser = null; localStorage.removeItem('vip-user'); closeModal(); 
 }
 
 // ==================== UI FUNCTIONS ====================
-function openProfile() {
-  $('profilePage').classList.add('active'); window.scrollTo(0,0);
+// የፕሮፋይል ገጹ ሙሉ በሙሉ ተወግዶ በምትኩ ሜኑ (Menu) ተሰርቷል
+function openProfile() { openMenu(); }
+
+function openMenu() {
+  $('modalTitle').innerText = 'Menu';
+  let userHtml = '';
+  
   if (currentUser) {
-    $('profileWelcome').style.display = 'none'; $('userInfo').style.display = 'block';
-    let user = users[currentUser] || { name: 'Bezabh', phone: '0900684074' };
-    $('userAvatar').innerText = user.name[0] || 'B';
-    $('userNameDisplay').innerText = user.name;
-    $('userEmailDisplay').innerText = currentUser.includes('@') ? currentUser : 'molayedanel@gmail.com';
-    $('userPhoneDisplay').innerText = user.phone;
-  } else {
-    $('profileWelcome').style.display = 'block'; $('userInfo').style.display = 'none';
+    let u = users[currentUser] || { name: 'Bezabh', phone: '0900684074' };
+    userHtml = `
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid var(--surface);">
+        <div style="width:50px; height:50px; border-radius:50%; background:var(--primary); color:white; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:bold;">${u.name[0] || 'B'}</div>
+        <div>
+          <div style="font-weight:800; font-size:16px; color:var(--text);">${u.name}</div>
+          <div style="font-size:12px; color:var(--text-light);">${currentUser.includes('@') ? currentUser : 'molayedanel@gmail.com'}</div>
+          <div style="font-size:12px; color:var(--text-light);">${u.phone}</div>
+        </div>
+      </div>
+    `;
   }
-  history.pushState({ page: "profile" }, "profile", window.location.href);
+
+  $('modalContent').innerHTML = `
+    ${userHtml}
+    <div class="menu-item" onclick="openModal('sell')">
+      <span>➕</span> Sell Item
+    </div>
+    <div class="menu-item" onclick="alert('Wallet feature coming soon!')">
+      <span>💳</span> Wallet
+    </div>
+    <div class="menu-item" onclick="toggleDarkMode()">
+      <span>🌙</span> Dark Mode
+    </div>
+    <!-- Support Info Added Here -->
+    <div class="menu-item" onclick="window.location.href='mailto:molayedanel@gmail.com'">
+      <span>📧</span> molayedanel@gmail.com
+    </div>
+    <div class="menu-item" onclick="window.location.href='tel:0900684074'">
+      <span>📞</span> 0900684074
+    </div>
+    <div class="menu-item" onclick="window.open('https://t.me/vip_mall1', '_blank')">
+      <span>✈️</span> Telegram Channel
+    </div>
+    <div class="menu-item" onclick="window.open('https://facebook.com', '_blank')">
+      <span>📘</span> Facebook
+    </div>
+    <div class="menu-item" onclick="window.open('https://instagram.com', '_blank')">
+      <span>📸</span> Instagram
+    </div>
+    
+    ${currentUser ? `<div class="menu-item" onclick="doLogout()" style="color:#ef4444;"><span>🚪</span> Logout</div>` : `<div class="menu-item" onclick="openAuthModal()" style="color:var(--primary);"><span>🔑</span> Login / Sign Up</div>`}
+  `;
+  $('modalBack').classList.add('show');
+  history.pushState({ page: "menu" }, "menu", window.location.href);
 }
 
-function closeProfile() { $('profilePage').classList.remove('active'); }
+function closeProfile() { 
+  if ($('modalBack').classList.contains('show')) {
+    closeModal(); 
+  }
+}
 
 function renderProducts() {
   const q = $('search').value.toLowerCase(); const grid = $('products'); grid.innerHTML = ''; let count = 0;
@@ -557,7 +447,7 @@ function openProductDetail(id) {
   const p = products.find(x => x.id === id); if (!p) return;
   $('modalTitle').innerText = 'Product Details';
   $('modalContent').innerHTML = `
-    <div style="background:var(--profile-card); border-radius:16px; overflow:hidden; margin-bottom:20px; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+    <div style="background:var(--surface); border-radius:16px; overflow:hidden; margin-bottom:20px; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
       <div style="height:250px; background:var(--bg); display:flex; align-items: center; justify-content:center;">
         ${p.img ? `<img src="${p.img}" style="width:100%;height:100%;object-fit:contain;">` : '<span style="font-size:80px">📦</span>'}
       </div>
@@ -574,27 +464,52 @@ function openProductDetail(id) {
 
 // ==================== SELL MODAL ====================
 function openModal(type) {
+  closeModal(); // Close menu first if open
+  
   if (type === 'sell') {
     if (!currentUser) { openAuthModal(); return; }
-    $('modalTitle').innerText = 'Sell New Item';
-    $('modalContent').innerHTML = `
-      <div class="field"><input id="sellName" class="neu-input" placeholder="Product Name / የምርት ስም"></div>
-      <div class="field"><input id="sellPrice" type="number" class="neu-input" placeholder="Price (ETB) / ዋጋ በብር"></div>
-      <div class="field"><input id="sellLoc" class="neu-input" placeholder="Location / አድራሻ"></div>
-      <div class="field"><textarea id="sellDesc" class="neu-input" placeholder="Description / ማብራሪያ" rows="3"></textarea></div>
-      <div class="field"><input type="file" id="sellImg" accept="image/*" class="neu-input" style="padding:12px;"></div>
-      <div class="field"><input type="url" id="sellVideo" class="neu-input" placeholder="Video Link (YouTube) / የቪዲዮ ሊንክ"></div>
-      <button class="neu-btn" onclick="publishProduct()">Publish Item / ምርቱን አስገባ</button>
-    `;
-    $('modalBack').classList.add('show');
-    history.pushState({ page: "modal" }, "modal", window.location.href);
+    setTimeout(() => {
+      $('modalTitle').innerText = 'Sell New Item';
+      $('modalContent').innerHTML = `
+        <div class="field"><input id="sellName" class="neu-input" placeholder="Product Name / የምርት ስም"></div>
+        <div class="field"><input id="sellPrice" type="number" class="neu-input" placeholder="Price (ETB) / ዋጋ በብር"></div>
+        <div class="field"><input id="sellLoc" class="neu-input" placeholder="Location / አድራሻ"></div>
+        <div class="field"><textarea id="sellDesc" class="neu-input" placeholder="Description / ማብራሪያ" rows="3"></textarea></div>
+        <div class="field"><input type="file" id="sellImg" accept="image/*" class="neu-input" style="padding:12px;"></div>
+        <div class="field"><input type="url" id="sellVideo" class="neu-input" placeholder="Video Link (YouTube) / የቪዲዮ ሊንክ"></div>
+        <button class="neu-btn" onclick="publishProduct()">Publish Item / ምርቱን አስገባ</button>
+      `;
+      $('modalBack').classList.add('show');
+      history.pushState({ page: "modal" }, "modal", window.location.href);
+    }, 300); // Small delay for smooth transition
   }
   else if (type === 'cart') {
-    $('modalTitle').innerText = 'My Cart';
-    $('modalContent').innerHTML = `<div style="text-align:center; padding:40px 20px;"><div style="font-size:60px; margin-bottom:16px;">🛒</div><h3>Your cart is empty</h3></div>`;
-    $('modalBack').classList.add('show');
-    history.pushState({ page: "modal" }, "modal", window.location.href);
+    setTimeout(() => {
+      $('modalTitle').innerText = 'My Cart';
+      $('modalContent').innerHTML = `<div style="text-align:center; padding:40px 20px;"><div style="font-size:60px; margin-bottom:16px;">🛒</div><h3>Your cart is empty</h3></div>`;
+      $('modalBack').classList.add('show');
+      history.pushState({ page: "modal" }, "modal", window.location.href);
+    }, 300);
   }
+}
+
+function openLanguageMenu() {
+  $('modalTitle').innerText = 'Select Language';
+  $('modalContent').innerHTML = `
+    <div class="menu-item">🇪🇹 አማርኛ (Amharic)</div>
+    <div class="menu-item">🇬🇧 English</div>
+    <div class="menu-item">🇨🇳 中文 (Chinese)</div>
+    <div class="menu-item">🇮🇳 हिन्दी (Hindi)</div>
+    <div class="menu-item">🇪🇸 Español (Spanish)</div>
+    <div class="menu-item">🇫🇷 Français (French)</div>
+    <div class="menu-item">🇸🇦 العربية (Arabic)</div>
+    <div class="menu-item">🇧🇩 বাংলা (Bengali)</div>
+    <div class="menu-item">🇷🇺 Русский (Russian)</div>
+    <div class="menu-item">🇵🇹 Português (Portuguese)</div>
+    <div class="menu-item">🇮🇩 Bahasa Indonesia</div>
+  `;
+  $('modalBack').classList.add('show');
+  history.pushState({ page: "modal" }, "modal", window.location.href);
 }
 
 function closeModal() { $('modalBack').classList.remove('show'); }
@@ -602,7 +517,8 @@ function closeModal() { $('modalBack').classList.remove('show'); }
 function toggleDarkMode() {
   const isDark = document.body.classList.toggle('dark-mode');
   localStorage.setItem('vip-theme', isDark ? 'dark' : 'light');
-  $('darkModeToggle').checked = isDark;
+  closeModal();
+  setTimeout(() => openMenu(), 200); // Re-open menu to show updated colors
 }
 
 function publishProduct() {
@@ -662,9 +578,7 @@ $('modalBack').onclick = function(e) { if (e.target === $('modalBack')) { closeM
 // Init
 if (localStorage.getItem('vip-theme') === 'dark') {
   document.body.classList.add('dark-mode');
-  $('darkModeToggle').checked = true;
 }
 renderProducts();
-if (currentUser) openProfile();
 </script>
 </body></html>
