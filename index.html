@@ -265,9 +265,8 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
     <div class="cat-item" data-filter="Vehicles">🚗 መኪና</div>
   </nav>
 
-  <!-- ==================== SLIDER SECTION (ወደ ጎን የሚንሸራተት) ==================== -->
+  <!-- SLIDER SECTION -->
   <div class="slider-section">
-    <!-- 3D Welcome Card -->
     <div class="home-welcome-3d" id="homeWelcomeCard">
       <h2>Welcome to VIP MALL</h2>
       <p>Sign in with your phone to track orders, save wishlists and get support.</p>
@@ -275,7 +274,6 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
       <p class="small-text">We'll text a verification code to your number.</p>
     </div>
 
-    <!-- Admin Ad Space -->
     <div class="admin-ad-card">
       <div>
         <h3>🚀 ልዩ ማስታወቂያ!</h3>
@@ -317,6 +315,7 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
     <button class="neu-btn" onclick="doLogout()" style="color:var(--primary); background:var(--bg); box-shadow:inset 2px 2px 5px var(--shadow-dark);">Logout</button>
   </div>
 
+  <!-- Sell Section in Profile -->
   <div class="sell-ananas" onclick="openModal('sell')">
     <div>
       <div class="icon">🏪</div>
@@ -352,13 +351,16 @@ body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80p
   </div>
 </div>
 
-<!-- BOTTOM NAV -->
+<!-- BOTTOM NAV (የተስተካከለው) -->
 <div class="bottom-nav">
   <div class="b-nav-item active" onclick="window.scrollTo(0,0); closeProfile()"><span>🏠</span>Home</div>
-  <div class="b-nav-item" onclick="document.getElementById('search').focus()"><span>🔍</span>Search</div>
+  <!-- Search ተወግዶ Sell ተካቷል -->
+  <div class="b-nav-item" onclick="openModal('sell')"><span>🏪</span>Sell</div>
+  
   <div class="b-nav-item special" onclick="openVideo()">
     <div class="icon-inner">▶</div>
   </div>
+  
   <div class="b-nav-item" onclick="openModal('cart')"><span>🛒</span>Cart</div>
   <div class="b-nav-item" onclick="openProfile()"><span>👤</span>Profile</div>
 </div>
@@ -540,14 +542,19 @@ function openProductDetail(id) {
   history.pushState({ page: "modal" }, "modal", window.location.href);
 }
 
+// ==================== SELL MODAL (የተሟላ) ====================
 function openModal(type) {
   if (type === 'sell') {
     if (!currentUser) { openAuthModal(); return; }
     $('modalTitle').innerText = 'Sell New Item';
     $('modalContent').innerHTML = `
-      <div class="field"><input id="sellName" class="neu-input" placeholder="Product Name"></div>
-      <div class="field"><input id="sellPrice" type="number" class="neu-input" placeholder="Price (ETB)"></div>
-      <button class="neu-btn" onclick="publishProduct()">Publish Item</button>
+      <div class="field"><input id="sellName" class="neu-input" placeholder="Product Name / የምርት ስም"></div>
+      <div class="field"><input id="sellPrice" type="number" class="neu-input" placeholder="Price (ETB) / ዋጋ በብር"></div>
+      <div class="field"><input id="sellLoc" class="neu-input" placeholder="Location / አድራሻ"></div>
+      <div class="field"><textarea id="sellDesc" class="neu-input" placeholder="Description / ማብራሪያ" rows="3"></textarea></div>
+      <div class="field"><input type="file" id="sellImg" accept="image/*" class="neu-input" style="padding:12px;"></div>
+      <div class="field"><input type="url" id="sellVideo" class="neu-input" placeholder="Video Link (YouTube) / የቪዲዮ ሊንክ"></div>
+      <button class="neu-btn" onclick="publishProduct()">Publish Item / ምርቱን አስገባ</button>
     `;
     $('modalBack').classList.add('show');
     history.pushState({ page: "modal" }, "modal", window.location.href);
@@ -574,11 +581,40 @@ function toggleDarkMode() {
   localStorage.setItem('vip-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
 }
 
+// ==================== PUBLISH PRODUCT ====================
 function publishProduct() {
-  const name = $('sellName').value.trim(); const price = Number($('sellPrice').value);
+  const name = $('sellName').value.trim();
+  const price = Number($('sellPrice').value);
+  const loc = $('sellLoc').value.trim() || 'Addis Ababa';
+  const desc = $('sellDesc').value.trim() || 'No description';
+  const video = $('sellVideo').value.trim() || '';
+  const imgFile = $('sellImg').files[0];
+
   if (!name || !price) { alert('Name & Price required!'); return; }
-  products.unshift({ id: Date.now(), name, cat: 'Other', price, loc: 'Addis Ababa', desc: '', img: '', seller: currentUser, phone: '0900684074' });
-  saveData(); closeModal(); renderProducts(); alert('✅ Item published!');
+
+  const saveProduct = (imgData) => {
+    products.unshift({ 
+      id: Date.now(), 
+      name, 
+      cat: 'Other', 
+      price, 
+      loc, 
+      desc, 
+      img: imgData, 
+      video: video,
+      seller: currentUser, 
+      phone: users[currentUser]?.phone || '0900684074' 
+    });
+    saveData(); closeModal(); renderProducts(); alert('✅ Item published!');
+  };
+
+  if (imgFile) {
+    const reader = new FileReader();
+    reader.onload = (e) => saveProduct(e.target.result);
+    reader.readAsDataURL(imgFile);
+  } else {
+    saveProduct('');
+  }
 }
 
 function openVideo() {
